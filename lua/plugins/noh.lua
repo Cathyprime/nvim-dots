@@ -1,0 +1,3 @@
+return {
+    "jesseleite/vim-noh",
+}
