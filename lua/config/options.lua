@@ -64,6 +64,9 @@ opt.shortmess:append("c")
 -- mode
 opt.showmode = false
 
+-- no clipboard
+opt.clipboard = ""
+
 -- undo
 opt.undofile = true
 opt.undodir = vim.fn.stdpath("config") .. "/undo"
