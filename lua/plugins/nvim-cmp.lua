@@ -8,7 +8,7 @@ return {
             ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         })
         opts.sources = vim.tbl_extend("force", opts.sources, {
-            { name = "neorg" },
+            { name = "orgmode" },
         })
     end,
 }
