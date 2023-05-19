@@ -1,16 +1,19 @@
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "scala", "sbt", "java" },
+    callback = function()
+        require("metals").initialize_or_attach({})
+        -- metals_config = require("metals").bare_config()
+        -- metals_config.settings = {
+        --     serverVersion = "0.10.9+131-30f6a57b-SNAPSHOT",
+        -- }
+    end,
+    group = nvim_metals_group,
+})
 
 return {
     "scalameta/nvim-metals",
     dependencies = { "nvim-lua/plenary.nvim" },
     ft = "scala",
-    config = function()
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = { "scala", "sbt", "java" },
-            callback = function()
-                require("metals").initialize_or_attach({})
-            end,
-            group = nvim_metals_group,
-        })
-    end,
+    cmd = "MetalsInstall",
 }
