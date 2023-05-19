@@ -3,10 +3,11 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "scala", "sbt", "java" },
     callback = function()
         require("metals").initialize_or_attach({})
-        -- metals_config = require("metals").bare_config()
-        -- metals_config.settings = {
-        --     serverVersion = "0.10.9+131-30f6a57b-SNAPSHOT",
-        -- }
+        metals_config = require("metals").bare_config()
+        metals_config.settings = {
+            serverVersion = "0.10.9+131-30f6a57b-SNAPSHOT",
+        }
+        metals_config.init_options.statusBarProvider = "on"
     end,
     group = nvim_metals_group,
 })
@@ -15,5 +16,4 @@ return {
     "scalameta/nvim-metals",
     dependencies = { "nvim-lua/plenary.nvim" },
     ft = "scala",
-    cmd = "MetalsInstall",
 }
