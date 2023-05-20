@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("FileType", {
         require("metals").initialize_or_attach({})
         metals_config = require("metals").bare_config()
         metals_config.settings = {
-            serverVersion = "0.10.9+131-30f6a57b-SNAPSHOT",
+            serverVersion = "latest.snapshot",
         }
         metals_config.init_options.statusBarProvider = "on"
     end,
