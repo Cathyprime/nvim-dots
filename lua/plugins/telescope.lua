@@ -14,11 +14,4 @@ return {
             },
         },
     },
-    keys = {
-        {
-            "<leader>uc",
-            require("lazyvim.util").telescope("colorscheme", { enable_preview = true }),
-            desc = "colorscheme with preview",
-        },
-    },
 }
