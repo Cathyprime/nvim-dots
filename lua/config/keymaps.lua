@@ -8,8 +8,8 @@ keymap.set("i", "<C-c>", "<Esc>", { noremap = false })
 keymap.set("v", "<C-c>", "<Esc>", { noremap = false })
 
 -- telescope
-keymap.set("n", "<Leader>fs", "<cmd>Telescope live_grep<CR>")
-keymap.set("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>")
+keymap.set("n", "<Leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep" })
+keymap.set("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help Tags" })
 
 -- undo tree
 keymap.set("n", "<F5>", "<cmd>UndotreeToggle<CR>", { noremap = true, silent = true })
