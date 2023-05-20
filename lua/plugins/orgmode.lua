@@ -1,3 +1,9 @@
+require("which-key").register({
+    o = {
+        name = "org",
+    },
+}, { prefix = "<leader>" })
+
 return {
     "nvim-orgmode/orgmode",
     config = function()
@@ -5,6 +11,7 @@ return {
         require("orgmode").setup({
             org_agenda_files = { "~/Documents/org/agenda/school.org", "~/Documents/org/agenda/personal.org" },
             org_default_notes_file = "~/Documents/org/todo.org",
+            mappings = {},
         })
     end,
 }
