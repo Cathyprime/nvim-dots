@@ -3,6 +3,9 @@ local keymap = vim.keymap
 -- leader
 vim.g.mapleader = " "
 
+-- go home
+keymap.set("n", "gh", "<cmd>Alpha<CR>", { silent = true, desc = "Dashboard" })
+
 -- C-c to Esc
 keymap.set("i", "<C-c>", "<Esc>", { noremap = false })
 keymap.set("v", "<C-c>", "<Esc>", { noremap = false })
