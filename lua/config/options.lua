@@ -48,9 +48,6 @@ opt.splitbelow = true
 -- word
 opt.iskeyword:append("-")
 
--- mouse
-opt.mouse = ""
-
 -- update time
 opt.updatetime = 300
 
