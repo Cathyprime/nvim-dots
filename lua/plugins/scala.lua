@@ -8,6 +8,9 @@ vim.api.nvim_create_autocmd("FileType", {
             serverVersion = "latest.snapshot",
         }
         metals_config.init_options.statusBarProvider = "on"
+        metals_config.on_attach = function(client, bufnr)
+            require("metals").setup_dap()
+        end
     end,
     group = nvim_metals_group,
 })
