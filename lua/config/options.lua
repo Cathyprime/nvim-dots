@@ -45,9 +45,6 @@ opt.backspace = "indent,eol,start"
 opt.splitright = true
 opt.splitbelow = true
 
--- word
-opt.iskeyword:append("-")
-
 -- update time
 opt.updatetime = 300
 
