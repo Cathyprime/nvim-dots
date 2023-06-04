@@ -1,44 +1,53 @@
-local keymap = vim.keymap
+local keymap = vim.keymap.set
 
 -- leader
 vim.g.mapleader = " "
 
 -- go home
-keymap.set("n", "gh", "<cmd>Alpha<CR>", { silent = true, desc = "Dashboard" })
+keymap("n", "gh", "<cmd>Alpha<CR>", { silent = true, desc = "Dashboard" })
 
--- C-c to Esc
-keymap.set("i", "<C-c>", "<Esc>", { noremap = false })
-keymap.set("v", "<C-c>", "<Esc>", { noremap = false })
+-- system keyboard
+require("which-key").register({
+    K = {
+        name = "Keyboard",
+    },
+}, { prefix = "<leader>" })
+keymap("n", "<leader>Ky", '"+y', { silent = true, desc = "copy to system keyboard" })
+keymap("n", "<leader>Ky", '"+Y', { silent = true, desc = "copy line to system keyboard" })
+keymap("n", "<leader>Kd", '"+d', { silent = true, desc = "cut to system keyboard" })
+keymap("n", "<leader>KD", '"+D', { silent = true, desc = "cut line to system keyboard" })
+keymap("n", "<leader>Kp", '"+p', { silent = true, desc = "paste from system keyboard" })
+keymap("n", "<leader>KP", '"+P', { silent = true, desc = "paste from system keyboard before" })
 
 -- telescope
-keymap.set("n", "<Leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep" })
-keymap.set("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help Tags" })
+keymap("n", "<Leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Live Grep" })
+keymap("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help Tags" })
 
 -- undo tree
-keymap.set("n", "<F5>", "<cmd>UndotreeToggle<CR>", { noremap = true, silent = true })
+keymap("n", "<F5>", "<cmd>UndotreeToggle<CR>", { noremap = true, silent = true })
 
 -- Switch lines VS**** style
-keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
-keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
-keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+keymap("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
+keymap("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
+keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
 -- nvterm
-keymap.set("n", "<A-h>", function()
+keymap("n", "<A-h>", function()
     require("nvterm.terminal").toggle("horizontal")
 end, { noremap = true, silent = true })
-keymap.set("n", "<A-v>", function()
+keymap("n", "<A-v>", function()
     require("nvterm.terminal").toggle("vertical")
 end, { noremap = true, silent = true })
-keymap.set("n", "<A-i>", function()
+keymap("n", "<A-i>", function()
     require("nvterm.terminal").toggle("float")
 end, { noremap = true, silent = true })
-keymap.set("t", "<A-h>", function()
+keymap("t", "<A-h>", function()
     require("nvterm.terminal").toggle("horizontal")
 end, { noremap = true, silent = true })
-keymap.set("t", "<A-v>", function()
+keymap("t", "<A-v>", function()
     require("nvterm.terminal").toggle("vertical")
 end, { noremap = true, silent = true })
-keymap.set("t", "<A-i>", function()
+keymap("t", "<A-i>", function()
     require("nvterm.terminal").toggle("float")
 end, { noremap = true, silent = true })
