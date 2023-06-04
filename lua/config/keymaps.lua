@@ -29,14 +29,3 @@ keymap("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help Tags" }
 
 -- undo tree
 keymap("n", "<F5>", "<cmd>UndotreeToggle<CR>", { noremap = true, silent = true })
-
--- nvterm
-keymap({ "n", "t" }, "<A-h>", function()
-    require("nvterm.terminal").toggle("horizontal")
-end, { noremap = true, silent = true })
-keymap({ "n", "t" }, "<A-v>", function()
-    require("nvterm.terminal").toggle("vertical")
-end, { noremap = true, silent = true })
-keymap({ "n", "t" }, "<A-i>", function()
-    require("nvterm.terminal").toggle("float")
-end, { noremap = true, silent = true })
