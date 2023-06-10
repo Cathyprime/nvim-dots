@@ -1,3 +1,0 @@
-return {
-    "BooleanCube/keylab.nvim",
-}
