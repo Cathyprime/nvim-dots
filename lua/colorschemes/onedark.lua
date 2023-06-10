@@ -1,0 +1,3 @@
+return {
+    "mawkler/onedark.nvim",
+}
