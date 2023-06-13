@@ -8,6 +8,8 @@ return {
         vim.o.termguicolors = true
     end,
     config = function()
-        require("modicator").setup()
+        require("modicator").setup({
+            require("config.highlightgroups"),
+        })
     end,
 }
