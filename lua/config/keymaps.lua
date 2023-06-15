@@ -5,7 +5,7 @@ local wk = require("which-key").register
 vim.g.mapleader = " "
 
 -- go home
-keymap("n", "<leader>h", "<cmd>Alpha<CR>", { silent = true, desc = "Dashboard" })
+keymap("n", "<leader>H", "<cmd>Alpha<CR>", { silent = true, desc = "Dashboard" })
 
 -- system keyboard
 wk({
