@@ -10,6 +10,7 @@ return {
             "rust-analyzer",
             "rustfmt",
             "typescript-language-server",
+            "editorconfig-checker",
         },
     },
 }
