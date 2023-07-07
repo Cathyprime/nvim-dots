@@ -1,3 +1,4 @@
+-- modicator
 vim.api.nvim_set_hl(0, "NormalMode", {
     fg = "#8db371",
 })
@@ -15,4 +16,10 @@ vim.api.nvim_set_hl(0, "ReplaceMode", {
 })
 vim.api.nvim_set_hl(0, "SelectMode", {
     fg = "#b670cb",
+})
+
+-- flash
+vim.api.nvim_set_hl(0, "FlashLabel", {
+    fg = "#53007D",
+    bg = "#ebd09c",
 })
