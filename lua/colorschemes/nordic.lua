@@ -1,3 +1,0 @@
-return {
-    "AlexvZyl/nordic.nvim",
-}
