@@ -1,6 +1,3 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
 local opt = vim.opt
 
 -- line numbers
@@ -38,6 +35,9 @@ opt.background = "dark"
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 
+-- incremental substitute
+opt.inccommand = "nosplit"
+
 -- backspace
 opt.backspace = "indent,eol,start"
 
@@ -65,3 +65,20 @@ opt.clipboard = ""
 -- undo
 opt.undofile = true
 opt.undodir = vim.fn.stdpath("config") .. "/undo"
+
+-- Command-line completion mode
+opt.wildmode = "longest:full,full"
+
+-- Minimum window width
+opt.winminwidth = 5
+
+-- Disable line wrap
+opt.wrap = false
+
+if vim.fn.has("nvim-0.9.0") == 1 then
+	opt.splitkeep = "screen"
+	opt.shortmess:append({ C = true })
+end
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
