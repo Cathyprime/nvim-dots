@@ -16,11 +16,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		{ import = "plugins.editor" },
+		{ import = "plugins.lsp" },
 		{ import = "plugins.coding" },
 		{ import = "plugins.coding.langs" },
+		{ import = "plugins.editor" },
 		{ import = "plugins.ui" },
-		{ import = "plugins.lsp" },
 		{ import = "plugins.util" },
 		{ import = "colorschemes" },
 	},
