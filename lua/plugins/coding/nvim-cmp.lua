@@ -12,6 +12,11 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"saadparwaiz1/cmp_luasnip",
+		{
+			"Saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+			config = true,
+		},
 	},
 	opts = function()
 		vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -44,6 +49,7 @@ return {
 				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },
+				{ name = "creates" },
 			}),
 			formatting = {
 				format = function(_, item)
