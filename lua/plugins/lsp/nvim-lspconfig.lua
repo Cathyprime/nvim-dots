@@ -150,7 +150,6 @@ return {
 			end,
 		},
 	},
-	---@param opts PluginLspOpts
 	config = function(_, opts)
 		local Util = require("yoolayn.util.funcs")
 		-- setup autoformat
