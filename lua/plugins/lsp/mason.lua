@@ -11,6 +11,7 @@ return {
 			"pyright",
 			"typescript-language-server",
 			"editorconfig-checker",
+			"clangd",
 		},
 	},
 	---@param opts MasonSettings | {ensure_installed: string[]}
