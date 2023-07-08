@@ -14,7 +14,10 @@ return {
 		{ "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 		{ "<leader>fR", Util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 		-- search
+		{ "<leader>sg", Util.telescope("live_grep"), desc = "Grep (root dir)" },
+		{ "<leader>sG", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
 		{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
 		{ "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
 		{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
