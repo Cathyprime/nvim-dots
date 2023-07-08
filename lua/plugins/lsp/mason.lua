@@ -1,5 +1,4 @@
 return {
-
 	"williamboman/mason.nvim",
 	cmd = "Mason",
 	keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
@@ -14,7 +13,6 @@ return {
 			"clangd",
 		},
 	},
-	---@param opts MasonSettings | {ensure_installed: string[]}
 	config = function(_, opts)
 		require("mason").setup(opts)
 		local mr = require("mason-registry")
