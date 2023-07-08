@@ -1,5 +1,11 @@
 local M = {}
 
+M.opt = nil
+
+function M.enabled()
+	return M.opts.autoformat
+end
+
 function M.setup(opts)
 	M.opts = opts
 	vim.api.nvim_create_autocmd("BufWritePre", {
