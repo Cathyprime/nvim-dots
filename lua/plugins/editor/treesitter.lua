@@ -20,7 +20,6 @@ return {
 		{ "<c-space>", desc = "Increment selection" },
 		{ "<bs>", desc = "Decrement selection", mode = "x" },
 	},
-	---@type TSConfig
 	opts = {
 		highlight = { enable = true },
 		indent = { enable = true },
@@ -59,7 +58,6 @@ return {
 			},
 		},
 	},
-	---@param opts TSConfig
 	config = function(_, opts)
 		if type(opts.ensure_installed) == "table" then
 			---@type table<string, boolean>
@@ -75,7 +73,6 @@ return {
 		require("nvim-treesitter.configs").setup(opts)
 
 		if load_textobjects then
-			-- PERF: no need to load the plugin, if we only need its queries for mini.ai
 			if opts.textobjects then
 				for _, mod in ipairs({ "move", "select", "swap", "lsp_interop" }) do
 					if opts.textobjects[mod] and opts.textobjects[mod].enable then
