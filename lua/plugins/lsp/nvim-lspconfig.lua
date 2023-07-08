@@ -134,6 +134,31 @@ return {
 					},
 				},
 			},
+			tsserver = {
+				keys = {
+					{ "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", desc = "Organize Imports" },
+					{ "<leader>cR", "<cmd>TypescriptRenameFile<CR>", desc = "Rename File" },
+				},
+				settings = {
+					typescript = {
+						format = {
+							indentSize = vim.o.shiftwidth,
+							convertTabsToSpaces = vim.o.expandtab,
+							tabSize = vim.o.tabstop,
+						},
+					},
+					javascript = {
+						format = {
+							indentSize = vim.o.shiftwidth,
+							convertTabsToSpaces = vim.o.expandtab,
+							tabSize = vim.o.tabstop,
+						},
+					},
+					completions = {
+						completeFunctionCalls = true,
+					},
+				},
+			},
 		},
 		setup = {
 			clangd = function(_, opts)
@@ -146,6 +171,10 @@ return {
 			rust_analyzer = function(_, opts)
 				local rust_tools_opts = require("yoolayn.util.funcs").opts("rust-tools.nvim")
 				require("rust-tools").setup(vim.tbl_deep_extend("force", rust_tools_opts or {}, { server = opts }))
+				return true
+			end,
+			tsserver = function(_, opts)
+				require("typescript").setup({ server = opts })
 				return true
 			end,
 		},
