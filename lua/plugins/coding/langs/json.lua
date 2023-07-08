@@ -1,10 +1,11 @@
 return {
 	{
+		"b0o/SchemaStore.nvim",
+		ft = "json",
+		version = false,
+	},
+	{
 		"neovim/nvim-lspconfig",
-		dependencies = {
-			"b0o/SchemaStore.nvim",
-			version = false,
-		},
 		opts = {
 			servers = {
 				jsonls = {
@@ -26,10 +27,6 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = {
-			"b0o/SchemaStore.nvim",
-			version = false,
-		},
 		opts = {
 			servers = {
 				jsonls = {
