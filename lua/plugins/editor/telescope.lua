@@ -1,4 +1,4 @@
-local Util = require("plugins.util")
+local Util = require("yoolayn.util.funcs")
 
 return {
 	"nvim-telescope/telescope.nvim",
@@ -22,7 +22,7 @@ return {
 		{ "<leader>sm", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
 		{ "<leader>sw", Util.telescope("grep_string"), desc = "Word (root dir)" },
 		{ "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
-		{ "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
+		{ "<leader>uc", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
 		{
 			"<leader>ss",
 			Util.telescope("lsp_document_symbols", {
@@ -77,11 +77,6 @@ return {
 					end,
 					["<C-k>"] = function(...)
 						return require("telescope.actions").preview_scrolling_up(...)
-					end,
-				},
-				n = {
-					["q"] = function(...)
-						return require("telescope.actions").close(...)
 					end,
 				},
 			},
