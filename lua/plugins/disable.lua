@@ -4,5 +4,6 @@ return {
     { "ggandor/flit.nvim", enabled = false },
     { "ggandor/leap.nvim", enabled = false },
     { "goolord/alpha-nvim", enabled = false },
+    { "folke/persistence.nvim", enable = false },
     { "dstein64/vim-startuptime", enable = false },
 }
