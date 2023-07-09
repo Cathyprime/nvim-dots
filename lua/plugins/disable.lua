@@ -4,4 +4,5 @@ return {
     { "nvim-neo-tree/neo-tree.nvim", enabled = false },
     { "ggandor/flit.nvim", enabled = false },
     { "ggandor/leap.nvim", enabled = false },
+    { "goolord/alpha-nvim", enabled = false },
 }
