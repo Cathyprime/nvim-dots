@@ -1,7 +1,7 @@
 return {
-  "goolord/alpha-nvim",
-  opts = function(_, opts)
-    local logo = [[
+    "goolord/alpha-nvim",
+    opts = function(_, opts)
+        local logo = [[
 	  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
 	  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
 	  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
@@ -10,6 +10,6 @@ return {
 	  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
 	                   [ @yoolayn ]
     ]]
-    opts.section.header.val = vim.split(logo, "\n", { trimempty = true })
-  end,
+        opts.section.header.val = vim.split(logo, "\n", { trimempty = true })
+    end,
 }
