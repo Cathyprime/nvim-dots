@@ -11,7 +11,7 @@ end, { silent = true, desc = "Dashboard" })
 
 -- system keyboard
 wk({
-    K = {
+    k = {
         name = "Keyboard",
         y = { '"+y', "yank to system keyboard" },
         Y = { '"+Y', "yank line to system keyboard" },
