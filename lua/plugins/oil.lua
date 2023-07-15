@@ -10,12 +10,5 @@ return {
             end,
             desc = "Oil explorer (cwd)",
         },
-        {
-            "<leader>.",
-            function()
-                require("oil").toggle_float()
-            end,
-            desc = "Oil Floating (cwd)",
-        },
     },
 }
