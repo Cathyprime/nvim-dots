@@ -51,6 +51,7 @@ opt.updatetime = 300
 -- swap & backup
 opt.swapfile = false
 opt.writebackup = false
+vim.o.backupcopy = "yes"
 
 -- short message
 opt.shortmess:append("c")
