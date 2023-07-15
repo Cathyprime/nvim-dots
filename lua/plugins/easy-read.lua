@@ -1,10 +1,8 @@
 return {
     "JellyApple102/easyread.nvim",
-    config = function()
-        require("easyread").setup({
-            filetypes = {},
-        })
-    end,
+    opts = {
+        filetypes = {},
+    },
     cmd = "EasyreadToggle",
     keys = {
         {

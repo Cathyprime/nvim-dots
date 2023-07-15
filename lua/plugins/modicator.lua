@@ -7,7 +7,5 @@ return {
         vim.o.number = true
         vim.o.termguicolors = true
     end,
-    config = function()
-        require("modicator").setup()
-    end,
+    opts = {},
 }
