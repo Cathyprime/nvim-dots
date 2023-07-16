@@ -41,9 +41,6 @@ opt.inccommand = "nosplit"
 -- backspace
 opt.backspace = "indent,eol,start"
 
--- hidden characters
-opt.list = true
-
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
