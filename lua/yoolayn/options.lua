@@ -55,6 +55,7 @@ vim.o.backupcopy = "yes"
 
 -- short message
 opt.shortmess:append("c")
+opt.shortmess:append("I")
 
 -- mode
 opt.showmode = false
