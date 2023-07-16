@@ -10,6 +10,9 @@ return {
 		},
 	},
 	{
+		"stevearc/dressing.nvim",
+	},
+	{
 		"folke/noice.nvim",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
