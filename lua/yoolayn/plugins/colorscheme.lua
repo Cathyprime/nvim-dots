@@ -1,18 +1,36 @@
 return {
 	{
 		'rose-pine/neovim',
-		name = 'rose-pine'
+		priority = 1000,
+		name = 'rose-pine',
 	},
 	{
 		"navarasu/onedark.nvim",
-		opts = {
-			style = "warmer",
-		},
+		lazy = true,
+		opts = { style = "deep" }
 	},
-	"catppuccin/nvim",
-	"sainnhe/everforest",
-	"rebelot/kanagawa.nvim",
-	"cpea2506/one_monokai.nvim",
-	"EdenEast/nightfox.nvim",
-	"AlexvZyl/nordic.nvim",
+	{
+		"catppuccin/nvim",
+		lazy = true,
+	},
+	{
+		"sainnhe/everforest",
+		lazy = true,
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = true,
+	},
+	{
+		"cpea2506/one_monokai.nvim",
+		lazy = true,
+	},
+	{
+		"EdenEast/nightfox.nvim",
+		lazy = true,
+	},
+	{
+		"AlexvZyl/nordic.nvim",
+		lazy = true,
+	},
 }
