@@ -1,3 +1,0 @@
-return {
-    "mawkler/onedark.nvim",
-}
