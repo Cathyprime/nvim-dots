@@ -45,9 +45,9 @@ return {
 
 		lsp.on_attach(function(client, bufnr)
 
-			vim.keymap.set("n", "<leader>lrn", function() vim.lsp.buf.rename() end, { bufnr = bufnr, remap = false, desc = "lsp rename" })
-			vim.keymap.set("n", "<leader>lrr", function() vim.lsp.buf.references() end, { bufnr = bufnr, remap = false, desc = "references" })
-			vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { bufnr = bufnr, remap = false, desc = "signature help" })
+			vim.keymap.set("n", "<leader>lrn", function() vim.lsp.buf.rename() end, { remap = false, desc = "lsp rename" })
+			vim.keymap.set("n", "<leader>lrr", function() vim.lsp.buf.references() end, { remap = false, desc = "references" })
+			vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { remap = false, desc = "signature help" })
 
 		end)
 		lsp.setup()
