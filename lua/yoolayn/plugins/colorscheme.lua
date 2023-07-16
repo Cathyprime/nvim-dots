@@ -3,7 +3,12 @@ return {
 		'rose-pine/neovim',
 		name = 'rose-pine'
 	},
-	"navarasu/onedark.nvim",
+	{
+		"navarasu/onedark.nvim",
+		opts = {
+			style = "warmer",
+		},
+	},
 	"catppuccin/nvim",
 	"sainnhe/everforest",
 	"rebelot/kanagawa.nvim",
