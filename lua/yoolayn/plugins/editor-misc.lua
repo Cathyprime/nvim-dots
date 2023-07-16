@@ -1,5 +1,15 @@
 return {
 	{
+		"mbbill/undotree",
+		keys = {
+			{
+				"<leader>u",
+				"<cmd>UndotreeToggle<cr>",
+				desc = "Undo tree",
+			},
+		},
+	},
+	{
 		"ThePrimeagen/harpoon",
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
