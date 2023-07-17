@@ -93,4 +93,19 @@ return {
 		"chentoast/marks.nvim",
 		opts = {},
 	},
+	{
+		"JellyApple102/easyread.nvim",
+		opts = {
+			filetypes = {},
+		},
+		cmd = "EasyreadToggle",
+		keys = {
+			{
+				"<leader>er",
+				":EasyreadToggle<CR>",
+				desc = "Bionic Reading",
+			},
+		},
+		ft = "txt",
+	},
 }
