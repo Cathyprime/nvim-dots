@@ -89,4 +89,8 @@ return {
 		"anuvyklack/help-vsplit.nvim",
 		opts = {},
 	},
+	{
+		"chentoast/marks.nvim",
+		opts = {},
+	},
 }
