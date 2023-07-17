@@ -26,7 +26,7 @@ opt.guicursor = "i-ci-ve:block"
 -- scrolloff
 vim.cmd("set scrolloff=10")
 
--- sql filetyp rebind
+-- sql filetype rebind
 vim.cmd("let g:ftplugin_sql_omni_key = '<C-p>'")
 
 -- appearance
@@ -46,7 +46,82 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- update time
-opt.updatetime = 300
+opt.updatetime = 50
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
+
+-- no clipboard
+opt.clipboard = ""
 
 -- swap & backup
 opt.swapfile = false
@@ -75,11 +150,6 @@ opt.winminwidth = 5
 
 -- Disable line wrap
 opt.wrap = false
-
-if vim.fn.has("nvim-0.9.0") == 1 then
-	opt.splitkeep = "screen"
-	opt.shortmess:append({ C = true })
-end
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
