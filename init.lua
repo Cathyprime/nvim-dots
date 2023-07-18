@@ -1,3 +1,6 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
-require("highlights")
+require("yoolayn.options")
+require("yoolayn.keymaps")
+require("yoolayn.lazy")
+require("lsp-setup")
+require("yoolayn.colors")
+require("yoolayn.autocmds")
