@@ -8,9 +8,13 @@ return {
 		keys = {
 			-- general
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files" },
+			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "find files" },
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find Buffers" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "help tags" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "live grep" },
+			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "find keymaps" },
+			{ "<leader>fm", "<cmd>Telescope marks<cr>", desc = "find marks" },
+			{ "<leader>fM", "<cmd>Telescope manpages<cr>", desc = "find manpages" },
 			{
 				"<leader>fs",
 				function()
@@ -35,7 +39,9 @@ return {
 			-- git
 			{ "<leader>gf", "<cmd>Telescope git_files<cr>", desc = "find files" },
 			{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "status" },
+			{ "<leader>gS", "<cmd>Telescope git_stash<cr>", desc = "stash" },
 			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "commits" },
+			{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "branches" },
 		},
 	},
 	{
