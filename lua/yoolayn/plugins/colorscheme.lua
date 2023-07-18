@@ -34,4 +34,8 @@ return {
 		"AlexvZyl/nordic.nvim",
 		lazy = true,
 	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = true,
+	},
 }
