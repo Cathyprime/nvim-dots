@@ -38,4 +38,8 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = true,
 	},
+	{
+		"xero/miasma.nvim",
+		lazy = true,
+	},
 }
