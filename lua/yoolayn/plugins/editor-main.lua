@@ -35,7 +35,7 @@ return {
 			-- git
 			{ "<leader>gf", "<cmd>Telescope git_files<cr>", desc = "find files" },
 			{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "status" },
-			{ "<leader>gc", "<cmd>Telescope git_status<cr>", desc = "commits" },
+			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "commits" },
 		},
 	},
 	{
