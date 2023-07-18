@@ -42,4 +42,8 @@ return {
 		"xero/miasma.nvim",
 		lazy = true,
 	},
+	{
+		"lunarvim/Onedarker.nvim",
+		lazy = true,
+	},
 }
