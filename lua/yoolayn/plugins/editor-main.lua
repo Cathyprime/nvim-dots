@@ -1,9 +1,9 @@
 return {
 	{
-		'nvim-telescope/telescope.nvim',
-		tag = '0.1.2',
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.2",
 		dependencies = {
-			'nvim-lua/plenary.nvim'
+			"nvim-lua/plenary.nvim",
 		},
 		keys = {
 			-- general
@@ -14,8 +14,7 @@ return {
 			{
 				"<leader>fs",
 				function()
-					require("telescope.builtin").lsp_document_symbols(
-					{
+					require("telescope.builtin").lsp_document_symbols({
 						symbols = {
 							"Class",
 							"Function",
@@ -27,10 +26,10 @@ return {
 							"Trait",
 							"Field",
 							"Property",
-						}
+						},
 					})
 				end,
-				desc = "find symbols"
+				desc = "find symbols",
 			},
 
 			-- git
