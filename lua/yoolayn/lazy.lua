@@ -15,5 +15,6 @@ require("lazy").setup({
 	spec = {
 		{ import = "lsp-setup.plugins" },
 		{ import = "yoolayn.plugins" },
+		{ import = "yoolayn.plugins.languages" },
 	},
 })
