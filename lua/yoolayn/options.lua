@@ -31,9 +31,8 @@ vim.cmd("let g:ftplugin_sql_omni_key = '<C-p>'")
 
 -- appearance
 opt.termguicolors = true
-opt.background = "dark"
 opt.signcolumn = "yes"
-opt.colorcolumn = "80"
+-- opt.colorcolumn = "80"
 
 -- incremental substitute
 opt.inccommand = "nosplit"
