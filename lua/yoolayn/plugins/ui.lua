@@ -1,21 +1,5 @@
 return {
 	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 500
-		end,
-		opts = {
-			presets = {
-				operators = false,
-				motions = false,
-				windows = false,
-				nav = false,
-			},
-		},
-	},
-	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		event = "VeryLazy",
