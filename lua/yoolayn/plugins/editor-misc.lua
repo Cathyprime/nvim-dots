@@ -52,5 +52,10 @@ return {
 			require("telescope").load_extension("harpoon")
 		end,
 	},
+	{
+		"echasnovski/mini.pairs",
+		event = "VeryLazy",
+		opts = {},
+	},
 
 }
