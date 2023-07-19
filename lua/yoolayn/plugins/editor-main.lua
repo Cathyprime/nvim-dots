@@ -5,6 +5,22 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							["<C-j>"] = function(...)
+								return require("telescope.actions").preview_scrolling_down(...)
+							end,
+							["<C-k>"] = function(...)
+								return require("telescope.actions").preview_scrolling_up(...)
+							end,
+						},
+					},
+				},
+			})
+		end,
 		keys = {
 			-- general
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files" },
@@ -12,6 +28,13 @@ return {
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find Buffers" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "help tags" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "live grep" },
+			{
+				"<leader>fG",
+				function()
+					require("telescope.builtin").live_grep({ search_dirs = { vim.fn.expand("%:p") } })
+				end,
+				desc = "live grep current file",
+			},
 			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "find keymaps" },
 			{ "<leader>fm", "<cmd>Telescope marks<cr>", desc = "find marks" },
 			{ "<leader>fM", "<cmd>Telescope manpages<cr>", desc = "find manpages" },
