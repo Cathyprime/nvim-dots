@@ -74,10 +74,6 @@ return {
 		opts = {},
 	},
 	{
-		"chentoast/marks.nvim",
-		opts = {},
-	},
-	{
 		"JellyApple102/easyread.nvim",
 		opts = {
 			filetypes = {},
