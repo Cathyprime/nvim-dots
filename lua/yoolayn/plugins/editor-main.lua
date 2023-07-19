@@ -59,6 +59,8 @@ return {
 			"nvim-treesitter/nvim-treesitter-context",
 		},
 		opts = {
+			highlight = { enable = true },
+			indent = { enable = true },
 			ensure_installed = {
 				"bash",
 				"c",
