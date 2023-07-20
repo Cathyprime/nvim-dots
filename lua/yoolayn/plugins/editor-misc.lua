@@ -205,9 +205,10 @@ return {
 				open = { "Telescope find_files" },
 			},
 		},
-		config = function(_, opts)
+		config = function(def, opts)
+			local options = vim.tbl_deep_extend("force", def, opts)
 			require("telescope").load_extension("workspaces")
-			require("workspaces").setup(opts)
+			require("workspaces").setup(options)
 		end,
 		keys = {
 			{
