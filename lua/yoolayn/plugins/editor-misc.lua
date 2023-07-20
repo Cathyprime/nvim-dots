@@ -225,4 +225,31 @@ return {
 			})
 		end,
 	},
+	{
+		"natecraddock/workspaces.nvim",
+		opts = {
+			cd_type = "local",
+			auto_open = true,
+			hooks = {
+				open = { "Telescope find_files" },
+			},
+		},
+		config = function(_, opts)
+			require("telescope").load_extension("workspaces")
+			require("workspaces").setup(opts)
+		end,
+		keys = {
+			{
+				"<leader>fw",
+				"<cmd>Telescope workspaces<cr>",
+				desc = "find workspace",
+			},
+		},
+		cmd = {
+			"WorkspacesAdd",
+			"WorkspacesRemove",
+			"WorkspacesList",
+			"WorkspacesOpen",
+		},
+	},
 }
