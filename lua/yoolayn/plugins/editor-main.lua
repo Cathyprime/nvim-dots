@@ -37,7 +37,7 @@ return {
 			},
 			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "find keymaps" },
 			{ "<leader>fm", "<cmd>Telescope marks<cr>", desc = "find marks" },
-			{ "<leader>fM", "<cmd>Telescope manpages<cr>", desc = "find manpages" },
+			{ "<leader>fM", "<cmd>Telescope man_pages<cr>", desc = "find manpages" },
 			{
 				"<leader>fs",
 				function()
