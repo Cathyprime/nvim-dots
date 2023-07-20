@@ -17,4 +17,7 @@ require("lazy").setup({
 		{ import = "yoolayn.plugins" },
 		{ import = "yoolayn.plugins.languages" },
 	},
+	checker = {
+		enabled = true,
+	},
 })
