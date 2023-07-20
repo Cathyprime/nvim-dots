@@ -42,8 +42,6 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
-			-- char = "▏",
-			char = "│",
 			filetype_exclude = {
 				"help",
 				"alpha",
@@ -56,9 +54,16 @@ return {
 				"toggleterm",
 				"lazyterm",
 			},
-			show_trailing_blankline_indent = false,
-			show_current_context = false,
+			show_end_of_line = true,
+			space_char_blankline = " ",
 		},
+		config = function(default, opts)
+			vim.opt.list = true
+			vim.opt.listchars:append("eol:↴")
+
+			local options = vim.tbl_deep_extend("force", default, opts)
+			require("indent_blankline").setup(options)
+		end,
 	},
 	{
 		"stevearc/dressing.nvim",
