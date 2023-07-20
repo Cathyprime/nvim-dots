@@ -14,6 +14,12 @@ return {
 					return require("lsp-setup.util").has("nvim-cmp")
 				end,
 			},
+			{
+				"dgagn/diagflow.nvim",
+				opts = {
+					scope = "line",
+				},
+			},
 		},
 		---@class PluginLspOpts
 		opts = {
@@ -248,11 +254,5 @@ return {
 				ensure_installed()
 			end
 		end,
-	},
-	{
-		"dgagn/diagflow.nvim",
-		opts = {
-			scope = "line",
-		},
 	},
 }
