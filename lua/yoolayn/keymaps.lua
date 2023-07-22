@@ -1,3 +1,5 @@
+local Utils = require("yoolayn.utils")
+
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>E", vim.cmd.Ex)
@@ -30,6 +32,13 @@ vim.keymap.set(
     [["_d]],
     { desc = "delete to black hole" }
 )
+
+vim.keymap.set("n", "<leader>gg", function()
+    Utils.float_term(
+        { "lazygit" },
+        { cwd = vim.fn.getcwd(), esc_esc = false, ctrl_hjkl = false }
+    )
+end, { desc = "open lazygit" })
 
 vim.keymap.set(
     "n",
