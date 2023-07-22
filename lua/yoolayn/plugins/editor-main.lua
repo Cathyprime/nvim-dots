@@ -85,11 +85,6 @@ return {
             },
             { "<leader>fm", "<cmd>Telescope marks<cr>", desc = "find marks" },
             {
-                "<leader>fM",
-                "<cmd>Telescope man_pages<cr>",
-                desc = "find manpages",
-            },
-            {
                 "<leader>fs",
                 function()
                     require("telescope.builtin").lsp_document_symbols({
