@@ -3,10 +3,6 @@ return {
         "nvim-lualine/lualine.nvim",
         dependencies = {
             "nvim-tree/nvim-web-devicons",
-            {
-                "chrisgrieser/nvim-recorder",
-                opts = {},
-            },
         },
         event = "VeryLazy",
         opts = {
@@ -20,12 +16,26 @@ return {
                         path = 1,
                     },
                 },
-                -- lualine_y = {
-                --     { require("recorder").displaySlots },
-                -- },
-                -- lualine_z = {
-                --     { require("recorder").recordingStatus },
-                -- },
+                lualine_x = {
+					-- stylua: ignore
+                    {
+                        function() return require("noice").api.status.command.get() end,
+                        cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+                        color = { fg = "#ff9e64" },
+                    },
+					-- stylua: ignore
+                    {
+                        function() return require("noice").api.status.mode.get() end,
+                        cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+                        color = { fg = "#ff9e64" },
+                    },
+					-- stylua: ignore
+                    {
+                        function() return require("noice").api.status.search.get() end,
+                        cond = function() return package.loaded["noice"] and require("noice").api.status.search.has() end,
+                        color = { fg = "#ff9e64" },
+                    },
+                },
             },
         },
     },
