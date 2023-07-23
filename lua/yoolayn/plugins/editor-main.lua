@@ -149,6 +149,10 @@ return {
             },
             "nvim-treesitter/nvim-treesitter-context",
         },
+        keys = {
+            { "<c-space>", desc = "Increment selection" },
+            { "<bs>", desc = "Decrement selection", mode = "x" },
+        },
         opts = {
             highlight = { enable = true },
             indent = { enable = true },
