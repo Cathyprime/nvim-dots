@@ -5,14 +5,14 @@ end
 vim.api.nvim_create_autocmd("RecordingEnter", {
     group = augroup("MacroMessageOn"),
     callback = function()
-        print("Recording started!")
+        vim.notify("Recording started!")
     end,
 })
 
 vim.api.nvim_create_autocmd("RecordingLeave", {
     group = augroup("MacroMessageOff"),
     callback = function()
-        print("Recording ended!")
+        vim.notify("Recording ended!")
     end,
 })
 
