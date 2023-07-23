@@ -1,45 +1,5 @@
 return {
     {
-        "nvim-lualine/lualine.nvim",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        event = "VeryLazy",
-        opts = {
-            options = {
-                globalstatus = true,
-            },
-            sections = {
-                lualine_c = {
-                    {
-                        "filename",
-                        path = 1,
-                    },
-                },
-                lualine_x = {
-					-- stylua: ignore
-                    {
-                        function() return require("noice").api.status.command.get() end,
-                        cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-                        color = { fg = "#ff9e64" },
-                    },
-					-- stylua: ignore
-                    {
-                        function() return require("noice").api.status.mode.get() end,
-                        cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-                        color = { fg = "#ff9e64" },
-                    },
-					-- stylua: ignore
-                    {
-                        function() return require("noice").api.status.search.get() end,
-                        cond = function() return package.loaded["noice"] and require("noice").api.status.search.has() end,
-                        color = { fg = "#ff9e64" },
-                    },
-                },
-            },
-        },
-    },
-    {
         "echasnovski/mini.indentscope",
         version = false, -- wait till new 0.7.0 release to put it back on semver
         event = { "BufReadPre", "BufNewFile" },
@@ -97,63 +57,6 @@ return {
     },
     {
         "stevearc/dressing.nvim",
-    },
-    {
-        "folke/noice.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-        },
-        event = "VeryLazy",
-        config = function()
-            require("noice").setup({
-                lsp = {
-                    override = {
-                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                        ["vim.lsp.util.stylize_markdown"] = true,
-                        ["cmp.entry.get_documentation"] = true,
-                    },
-                },
-                routes = {
-                    {
-                        filter = {
-                            event = "msg_show",
-                            any = {
-                                { find = "%d+L, %d+B" },
-                                { find = "; after #%d+" },
-                                { find = "; before #%d+" },
-                            },
-                        },
-                        view = "mini",
-                    },
-                },
-                presets = {
-                    bottom_search = true,
-                    long_message_to_split = true,
-                    inc_rename = true,
-                },
-                cmdline = {
-                    view = "cmdline",
-                    format = {
-                        search_down = {
-                            view = "cmdline",
-                        },
-                        search_up = {
-                            view = "cmdline",
-                        },
-                    },
-                },
-            })
-        end,
-		-- stylua: ignore
-		keys = {
-			{ "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-			{ "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-			{ "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
-			{ "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
-			{ "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
-			{ "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll forward", mode = {"i", "n", "s"} },
-			{ "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward", mode = {"i", "n", "s"}},
-		},
     },
     {
         "anuvyklack/help-vsplit.nvim",
