@@ -109,19 +109,27 @@ return {
             {
                 "<leader>gf",
                 "<cmd>Telescope git_files<cr>",
-                desc = "find files",
+                desc = "find git files",
             },
-            { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "status" },
-            { "<leader>gS", "<cmd>Telescope git_stash<cr>", desc = "stash" },
+            {
+                "<leader>gs",
+                "<cmd>Telescope git_status<cr>",
+                desc = "git status",
+            },
+            {
+                "<leader>gS",
+                "<cmd>Telescope git_stash<cr>",
+                desc = "git stash",
+            },
             {
                 "<leader>gc",
                 "<cmd>Telescope git_commits<cr>",
-                desc = "commits",
+                desc = "git commits",
             },
             {
                 "<leader>gb",
                 "<cmd>Telescope git_branches<cr>",
-                desc = "branches",
+                desc = "git branches",
             },
         },
     },
