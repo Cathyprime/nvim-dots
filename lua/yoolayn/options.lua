@@ -59,6 +59,9 @@ opt.shortmess:append("c")
 -- mode
 opt.showmode = false
 
+-- global status line
+opt.laststatus = 3
+
 -- no clipboard
 opt.clipboard = ""
 
