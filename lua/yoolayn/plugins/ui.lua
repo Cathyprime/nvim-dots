@@ -18,9 +18,6 @@ return {
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = {
                     "help",
-                    "alpha",
-                    "dashboard",
-                    "neo-tree",
                     "Trouble",
                     "lazy",
                     "mason",
@@ -40,9 +37,6 @@ return {
         opts = {
             filetype_exclude = {
                 "help",
-                "alpha",
-                "dashboard",
-                "neo-tree",
                 "Trouble",
                 "lazy",
                 "mason",
