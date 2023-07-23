@@ -1,7 +1,13 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = "nvim-tree/nvim-web-devicons",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+            {
+                "chrisgrieser/nvim-recorder",
+                opts = {},
+            },
+        },
         event = "VeryLazy",
         opts = {
             options = {
@@ -14,6 +20,12 @@ return {
                         path = 1,
                     },
                 },
+                -- lualine_y = {
+                --     { require("recorder").displaySlots },
+                -- },
+                -- lualine_z = {
+                --     { require("recorder").recordingStatus },
+                -- },
             },
         },
     },
