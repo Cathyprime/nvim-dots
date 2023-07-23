@@ -1,5 +1,48 @@
 return {
     {
+        "Yoolayn/nvim-notify",
+        event = "VeryLazy",
+        keys = {
+            {
+                "<leader>nn",
+                function()
+                    require("notify").dismiss({ silent = true, pending = true })
+                end,
+                desc = "dismiss notifications",
+            },
+            {
+                "<leader>nh",
+                "<cmd>Telescope notify<cr>",
+                desc = "notification history",
+            },
+        },
+        opts = {
+            level = vim.log.levels.INFO,
+            timeout = 1000,
+            max_width = nil,
+            max_height = nil,
+            stages = "fade",
+            render = "compact",
+            background_colour = "NotifyBackground",
+            on_open = nil,
+            on_close = nil,
+            minimum_width = 50,
+            fps = 30,
+            top_down = true,
+            icons = {
+                ERROR = "",
+                WARN = "",
+                INFO = "",
+                DEBUG = "",
+                TRACE = "✎",
+            },
+        },
+        init = function()
+            require("telescope").load_extension("notify")
+            vim.notify = require("notify")
+        end,
+    },
+    {
         "echasnovski/mini.statusline",
         event = "VeryLazy",
         opts = {
