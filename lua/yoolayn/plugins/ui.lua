@@ -76,9 +76,9 @@ return {
         cmd = "EasyreadToggle",
         keys = {
             {
-                "<leader>ur",
+                "<leader>uR",
                 ":EasyreadToggle<CR>",
-                desc = "Bionic Reading",
+                desc = "easy read",
             },
         },
         ft = "txt",
