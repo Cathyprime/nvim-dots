@@ -89,15 +89,7 @@ return {
         build = "<cmd>TSUpdate<cr>",
         dependencies = {
             "JoosepAlviste/nvim-ts-context-commentstring",
-            {
-                "nvim-treesitter/nvim-treesitter-textobjects",
-                init = function()
-                    require("lazy.core.loader").disable_rtp_plugin(
-                        "nvim-treesitter-textobjects"
-                    )
-                    load_textobjects = true
-                end,
-            },
+            "nvim-treesitter/nvim-treesitter-textobjects",
             "nvim-treesitter/nvim-treesitter-context",
         },
         keys = {
