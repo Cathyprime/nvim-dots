@@ -2,7 +2,9 @@ return {
     {
         "NeogitOrg/neogit",
         dependencies = "nvim-lua/plenary.nvim",
-        config = true,
+        opts = {
+            disable_signs = true,
+        },
         keys = {
             {
                 "<leader>gg",
