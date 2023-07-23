@@ -35,40 +35,15 @@ return {
                 },
             })
         end,
+        -- stylua: ignore
         keys = {
             -- general
-            {
-                "<leader>ff",
-                "<cmd>Telescope find_files<cr>",
-                desc = "find files",
-            },
-            {
-                "<leader>fr",
-                "<cmd>Telescope oldfiles<cr>",
-                desc = "find files",
-            },
-            {
-                "<leader>fp",
-                function()
-                    require("telescope.builtin").builtin()
-                end,
-                desc = "find pickers",
-            },
-            {
-                "<leader>fb",
-                "<cmd>Telescope buffers<cr>",
-                desc = "find Buffers",
-            },
-            {
-                "<leader>fh",
-                "<cmd>Telescope help_tags<cr>",
-                desc = "help tags",
-            },
-            {
-                "<leader>fg",
-                "<cmd>Telescope live_grep<cr>",
-                desc = "live grep",
-            },
+            { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files", },
+            { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "find files", },
+            { "<leader>fp", function() require("telescope.builtin").builtin() end, desc = "find pickers", },
+            { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find Buffers", },
+            { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "help tags", },
+            { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "live grep", },
             {
                 "<leader>fG",
                 function()
@@ -78,11 +53,7 @@ return {
                 end,
                 desc = "live grep current file",
             },
-            {
-                "<leader>fk",
-                "<cmd>Telescope keymaps<cr>",
-                desc = "find keymaps",
-            },
+            { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "find keymaps", },
             { "<leader>fm", "<cmd>Telescope marks<cr>", desc = "find marks" },
             {
                 "<leader>fs",
@@ -106,31 +77,11 @@ return {
             },
 
             -- git
-            {
-                "<leader>gf",
-                "<cmd>Telescope git_files<cr>",
-                desc = "find git files",
-            },
-            {
-                "<leader>gs",
-                "<cmd>Telescope git_status<cr>",
-                desc = "git status",
-            },
-            {
-                "<leader>gS",
-                "<cmd>Telescope git_stash<cr>",
-                desc = "git stash",
-            },
-            {
-                "<leader>gc",
-                "<cmd>Telescope git_commits<cr>",
-                desc = "git commits",
-            },
-            {
-                "<leader>gb",
-                "<cmd>Telescope git_branches<cr>",
-                desc = "git branches",
-            },
+            { "<leader>gf", "<cmd>Telescope git_files<cr>", desc = "find git files", },
+            { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "git status", },
+            { "<leader>gS", "<cmd>Telescope git_stash<cr>", desc = "git stash", },
+            { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "git commits", },
+            { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "git branches", },
         },
     },
     {
