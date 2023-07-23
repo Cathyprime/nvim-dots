@@ -89,10 +89,6 @@ return {
     },
     {
         "echasnovski/mini.ai",
-        -- keys = {
-        --   { "a", mode = { "x", "o" } },
-        --   { "i", mode = { "x", "o" } },
-        -- },
         event = { "BufReadPre", "BufNewFile" },
         dependencies = { "nvim-treesitter-textobjects" },
         opts = function()
@@ -170,11 +166,6 @@ return {
                         ac
                     )
                 end
-                require("which-key").register({
-                    mode = { "o", "x" },
-                    i = i,
-                    a = a,
-                })
             end)
         end,
     },
