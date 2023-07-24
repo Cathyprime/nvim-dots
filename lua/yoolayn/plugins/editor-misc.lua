@@ -59,7 +59,7 @@ return {
     },
     {
         "echasnovski/mini.pairs",
-        event = { "BufReadPre", "BufNewFile" },
+        event = "VeryLazy",
         opts = {},
     },
     {
@@ -77,7 +77,7 @@ return {
     },
     {
         "echasnovski/mini.comment",
-        event = { "BufReadPre", "BufNewFile" },
+        event = "VeryLazy",
         opts = {
             options = {
                 custom_commentstring = function()
@@ -89,7 +89,7 @@ return {
     },
     {
         "echasnovski/mini.ai",
-        event = { "BufReadPre", "BufNewFile" },
+        event = "VeryLazy",
         dependencies = { "nvim-treesitter-textobjects" },
         opts = function()
             local ai = require("mini.ai")
@@ -171,7 +171,6 @@ return {
     },
     {
         "folke/flash.nvim",
-        vscode = true,
         opts = {},
 		-- stylua: ignore
 		keys = {
