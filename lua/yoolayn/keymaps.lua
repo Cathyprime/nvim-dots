@@ -4,6 +4,10 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>E", vim.cmd.Ex)
 
+-- disable scroll full page
+vim.keymap.set("n", "<C-b>", "<Nop>")
+vim.keymap.set("n", "<C-f>", "<Nop>")
+
 -- move lines in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
