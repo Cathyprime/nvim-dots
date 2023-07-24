@@ -44,7 +44,6 @@ return {
     },
     {
         "echasnovski/mini.statusline",
-        event = "VeryLazy",
         opts = {
             set_vim_settings = false,
         },
