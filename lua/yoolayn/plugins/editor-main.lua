@@ -39,7 +39,7 @@ return {
         keys = {
             -- general
             { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files", },
-            { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "find files", },
+            { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "find recent files", },
             { "<leader>fp", function() require("telescope.builtin").builtin() end, desc = "find pickers", },
             { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find Buffers", },
             { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "help tags", },
