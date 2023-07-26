@@ -209,36 +209,4 @@ return {
 			{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "find todo" },
 		},
     },
-    {
-        "natecraddock/workspaces.nvim",
-        opts = {
-            cd_type = "local",
-            auto_open = true,
-            hooks = {
-                open = {
-                    function()
-                        require("telescope.builtin").builtin()
-                    end,
-                },
-            },
-        },
-        config = function(def, opts)
-            local options = vim.tbl_deep_extend("force", def, opts)
-            require("telescope").load_extension("workspaces")
-            require("workspaces").setup(options)
-        end,
-        keys = {
-            {
-                "<leader>fw",
-                "<cmd>Telescope workspaces<cr>",
-                desc = "find workspace",
-            },
-        },
-        cmd = {
-            "WorkspacesAdd",
-            "WorkspacesRemove",
-            "WorkspacesList",
-            "WorkspacesOpen",
-        },
-    },
 }
