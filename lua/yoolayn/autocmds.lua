@@ -2,20 +2,6 @@ local function augroup(name)
     return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
 
-vim.api.nvim_create_autocmd({
-    "CursorMoved",
-    "ModeChanged",
-    "WinLeave",
-}, {
-    group = vim.api.nvim_create_augroup("Minintro-hide", { clear = true }),
-    callback = function()
-        if vim.bo.filetype == "minintro" then
-            vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(false, true))
-        end
-        vim.api.nvim_clear_autocmds({ group = "Minintro-hide" })
-    end,
-})
-
 vim.api.nvim_create_autocmd("BufWinEnter", {
     callback = function()
         if vim.bo.filetype == "help" then
