@@ -1,10 +1,5 @@
 return {
     {
-        "folke/noice.nvim",
-        dependencies = "MunifTanjim/nui.nvim",
-        opts = {},
-    },
-    {
         "Yoolayn/nvim-intro",
         config = {
             intro = {
