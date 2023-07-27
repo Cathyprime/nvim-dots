@@ -1,7 +1,37 @@
 return {
     {
-        "Yoolayn/minintro.nvim",
-        config = true,
+        "Yoolayn/nvim-intro",
+        config = {
+            intro = {
+                "███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+                "████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+                "██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+                "██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+                "██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+                "╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+                "                      [ @Yoolayn ]                    ",
+                "                                                      ",
+                "  type :checkhealth<Enter> ->   to optimize Nvim      ",
+                "  type :Lazy<Enter>        ->   to update plugins     ",
+                "  type :help<Enter>        ->   for help              ",
+                "                                                      ",
+                "  type :help news<Enter>   ->   for help              ",
+                "                                                      ",
+                "  press <Space>ff          ->   to find files         ",
+                "  press <Space>fr          ->   to find recent files  ",
+                "  press <Space>gg          ->   to start Neogit       ",
+                "                                                      ",
+                "                   Have a nice day :)                 ",
+            },
+            color = "#f7f3f2",
+            scratch = true,
+            highlights = function()
+                local ns = vim.api.nvim_create_namespace("EnterMatch")
+                vim.api.nvim_set_hl(ns, "EnterMatch", { fg = "#187df0" })
+                vim.api.nvim_set_hl_ns(ns)
+                vim.fn.matchadd("EnterMatch", "<Enter>")
+            end,
+        },
     },
     {
         "vigoux/notifier.nvim",
