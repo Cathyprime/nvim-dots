@@ -30,12 +30,9 @@ return {
             },
             color = "#f7f3f2",
             scratch = true,
-            highlights = function()
-                local ns = vim.api.nvim_create_namespace("EnterMatch")
-                vim.api.nvim_set_hl(ns, "EnterMatch", { fg = "#187df0" })
-                vim.api.nvim_set_hl_ns(ns)
-                vim.fn.matchadd("EnterMatch", "<Enter>")
-            end,
+            highlights = {
+                ["<Enter>"] = "#187df0",
+            },
         },
     },
     {
