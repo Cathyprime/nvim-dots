@@ -20,7 +20,7 @@ return {
                 "  type :Lazy<Enter>        ->   to update plugins     ",
                 "  type :help<Enter>        ->   for help              ",
                 "                                                      ",
-                "  type :help news<Enter>   ->   for help              ",
+                "  type :help news<Enter>   ->   to read news          ",
                 "                                                      ",
                 "  press <Space>ff          ->   to find files         ",
                 "  press <Space>fr          ->   to find recent files  ",
