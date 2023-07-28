@@ -1,5 +1,8 @@
 return {
     {
+        "anuvyklack/hydra.nvim",
+    },
+    {
         "mbbill/undotree",
         keys = {
             {
