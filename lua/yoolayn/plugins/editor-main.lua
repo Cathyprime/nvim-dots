@@ -30,6 +30,10 @@ return {
                                     ...
                                 )
                             end,
+                            ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
+                        },
+                        n = {
+                            ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
                         },
                     },
                 },
