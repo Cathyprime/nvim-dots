@@ -6,6 +6,7 @@ return {
     },
     {
         "Yoolayn/nvim-intro",
+        lazy = "VimEnter",
         config = {
             intro = {
                 "███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
