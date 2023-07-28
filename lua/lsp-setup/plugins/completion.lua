@@ -92,10 +92,10 @@ return {
                     }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 }),
                 sources = cmp.config.sources({
-                    { name = "buffer" },
-                    { name = "cmdline" },
                     { name = "luasnip" },
                     { name = "nvim_lsp" },
+                    { name = "cmdline" },
+                    { name = "buffer" },
                     { name = "path" },
                 }),
                 formatting = {
@@ -106,6 +106,11 @@ return {
                         end
                         return item
                     end,
+                },
+                window = {
+                    documentation = {
+                        winhighlight = "Normal:CmpDocBackground",
+                    },
                 },
                 experimental = {
                     ghost_text = {
