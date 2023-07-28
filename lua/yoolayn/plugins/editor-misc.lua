@@ -16,7 +16,7 @@ return {
         },
         keys = {
             {
-                "<C-h>",
+                "<leader>h",
                 function()
                     require("harpoon.ui").toggle_quick_menu()
                 end,
@@ -30,27 +30,32 @@ return {
                 desc = "Add File",
             },
             {
-                "<leader>hg",
+                "<C-f>",
                 function()
-                    local result =
-                        vim.fn.input({ prompt = "Enter mark number: " })
-                    local number = tonumber(result)
-                    if number ~= nil then
-                        require("harpoon.ui").nav_file(number)
-                    else
-                        vim.api.nvim_echo(
-                            { { "Enter a number!", "Normal" } },
-                            true,
-                            {}
-                        )
-                    end
+                    require("harpoon.ui").nav_file(1)
                 end,
-                desc = "go to mark {arg}",
+                desc = "go to file 1",
             },
             {
-                "<leader>hf",
-                "<cmd>Telescope harpoon marks<CR>",
-                desc = "find marks",
+                "<C-s>",
+                function()
+                    require("harpoon.ui").nav_file(2)
+                end,
+                desc = "go to file 2",
+            },
+            {
+                "<c-n>",
+                function()
+                    require("harpoon.ui").nav_file(3)
+                end,
+                desc = "go to file 3",
+            },
+            {
+                "<c-h>",
+                function()
+                    require("harpoon.ui").nav_file(4)
+                end,
+                desc = "go to file 4",
             },
         },
         config = function()
