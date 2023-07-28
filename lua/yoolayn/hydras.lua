@@ -17,10 +17,10 @@ Hydra({
     mode = "n",
     body = "<C-w>",
     heads = {
-        { "h", "<C-w>h" },
-        { "j", "<C-w>j" },
-        { "k", "<C-w>k" },
-        { "l", "<C-w>l" },
+        { "<C-h>", "<C-w>h" },
+        { "<C-j>", "<C-w>j" },
+        { "<C-k>", "<C-w>k" },
+        { "<C-l>", "<C-w>l" },
     },
     config = {
         timout = 500,
