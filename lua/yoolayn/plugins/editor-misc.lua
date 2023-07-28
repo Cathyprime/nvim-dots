@@ -193,17 +193,35 @@ return {
         "folke/trouble.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
         cmd = { "TroubleToggle", "Trouble" },
-        opts = { use_diagnostic_signs = true },
+        opts = {
+            use_diagnostic_signs = true,
+            group = false,
+        },
         keys = {
             {
                 "<leader>xx",
-                "<cmd>TroubleToggle document_diagnostics<cr>",
-                desc = "Document Diagnostics (Trouble)",
+                "<cmd>TroubleToggle<cr>",
+                desc = "toggle trouble",
             },
             {
-                "<leader>xX",
+                "<leader>xw",
                 "<cmd>TroubleToggle workspace_diagnostics<cr>",
-                desc = "Workspace Diagnostics (Trouble)",
+                desc = "workspace diagnostics (trouble)",
+            },
+            {
+                "<leader>xd",
+                "<cmd>TroubleToggle document_diagnostics<cr>",
+                desc = "document diagnostics (trouble)",
+            },
+            {
+                "<leader>xq",
+                "<cmd>TroubleToggle quickfix<cr>",
+                desc = "quickfix (trouble)",
+            },
+            {
+                "<leader>xl",
+                "<cmd>TroubleToggle loclist<cr>",
+                desc = "loclist (trouble)",
             },
         },
     },
