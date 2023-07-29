@@ -55,7 +55,6 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
             "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-cmdline",
         },
         opts = function()
             vim.api.nvim_set_hl(
@@ -94,7 +93,6 @@ return {
                 sources = cmp.config.sources({
                     { name = "luasnip" },
                     { name = "nvim_lsp" },
-                    { name = "cmdline" },
                     { name = "buffer" },
                     { name = "path" },
                 }),
