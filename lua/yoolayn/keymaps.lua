@@ -1,4 +1,4 @@
-local Utils = require("yoolayn.utils")
+-- local Utils = require("yoolayn.utils")
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
