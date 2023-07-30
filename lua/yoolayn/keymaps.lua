@@ -20,6 +20,10 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "prev search" })
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "replace and don't save" })
 
+-- stylua: ignore start
+vim.keymap.set({ "o", "x" }, "il", ":<c-u>normal! _vg_<cr>", { desc = "inner line" })
+vim.keymap.set({ "o", "x" }, "al", ":<c-u>normal! 0v$<cr>", { desc = "around line" })
+
 -- stylua: ignore
 vim.keymap.set( { "n", "v" }, "<leader>y", [["+y]], { desc = "yank to clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank to clipboard" })
