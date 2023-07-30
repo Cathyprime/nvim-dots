@@ -57,7 +57,7 @@ vim.o.backupcopy = "yes"
 opt.shortmess:append("c")
 
 -- mode
-opt.showmode = false
+opt.showmode = true
 
 -- global status line
 opt.laststatus = 3
