@@ -20,21 +20,14 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "prev search" })
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "replace and don't save" })
 
-vim.keymap.set(
-    { "n", "v" },
-    "<leader>y",
-    [["+y]],
-    { desc = "yank to clipboard" }
-)
+-- stylua: ignore
+vim.keymap.set( { "n", "v" }, "<leader>y", [["+y]], { desc = "yank to clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank to clipboard" })
 vim.keymap.set("n", "<leader>p", [["+p]], { desc = "paste from clipboard" })
 vim.keymap.set("n", "<leader>P", [["+P]], { desc = "Paste from clipboard" })
 
-vim.keymap.set(
-    { "n", "v" },
-    "<leader>d",
-    [["_d]],
-    { desc = "delete to black hole" }
+-- style: ignore
+vim.keymap.set( { "n", "v" }, "<leader>d", [["_d]], { desc = "delete to black hole" }
 )
 
 -- vim.keymap.set("n", "<leader>gg", function()
