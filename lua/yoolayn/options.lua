@@ -25,7 +25,7 @@ opt.cursorline = true
 opt.guicursor = "i-ci-ve:block"
 
 -- scrolloff
-vim.cmd("set scrolloff=10")
+vim.opt.scrolloff = 4
 
 -- sql filetype rebind
 vim.cmd("let g:ftplugin_sql_omni_key = '<C-p>'")
