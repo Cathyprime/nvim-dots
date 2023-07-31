@@ -56,6 +56,9 @@ vim.o.backupcopy = "yes"
 -- short message
 opt.shortmess:append("c")
 
+-- remove "_" from word
+opt.iskeyword:remove("_")
+
 -- mode
 opt.showmode = true
 
