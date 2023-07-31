@@ -43,10 +43,26 @@ return {
         keys = {
             -- general
             { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files", },
-            { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "find recent files", },
-            { "<leader>fp", function() require("telescope.builtin").builtin() end, desc = "find pickers", },
-            { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find Buffers", },
-            { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "help tags", },
+            { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "find recent files" },
+            { "<leader>fp", function() require("telescope.builtin").builtin() end, desc = "find pickers" },
+            { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "find Buffers" },
+            { "<leader>fh", function ()
+                local vhelp = vim.api.nvim_create_augroup("Vertical Help", {})
+                vim.api.nvim_create_autocmd("BufEnter", {
+                    group = vhelp,
+                    callback = function ()
+                        if vim.bo.filetype == "help" then
+                            vim.cmd("wincmd L")
+                            vim.api.nvim_clear_autocmds({group = vhelp})
+                        end
+                    end
+                })
+                require("telescope.builtin").help_tags()
+            end, desc = "vertical help tags" },
+            { "<leader>fH", function ()
+                vim.api.nvim_clear_autocmds({ group = "Vertical Help" })
+                require("telescope.builtin").help_tags()
+            end, desc = "help tags" },
             { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "live grep", },
             {
                 "<leader>fG",

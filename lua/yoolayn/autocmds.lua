@@ -2,14 +2,6 @@ local function augroup(name)
     return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
-    callback = function()
-        if vim.bo.filetype == "help" then
-            vim.cmd("wincmd L")
-        end
-    end,
-})
-
 vim.api.nvim_create_autocmd("RecordingEnter", {
     group = augroup("MacroMessageOn"),
     callback = function()
