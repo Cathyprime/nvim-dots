@@ -60,7 +60,9 @@ return {
                 require("telescope.builtin").help_tags()
             end, desc = "vertical help tags" },
             { "<leader>fH", function ()
-                vim.api.nvim_clear_autocmds({ group = "Vertical Help" })
+                if next(vim.api.nvim_get_autocmds({group = "Vertical Help"})) ~= nil then
+                    vim.api.nvim_clear_autocmds({ group = "Vertical Help" })
+                end
                 require("telescope.builtin").help_tags()
             end, desc = "help tags" },
             { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "live grep", },
