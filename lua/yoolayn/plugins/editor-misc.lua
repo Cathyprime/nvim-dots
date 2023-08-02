@@ -74,10 +74,13 @@ return {
         "echasnovski/mini.surround",
         opts = {
             mappings = {
-                find = nil,
-                find_left = nil,
-                highlight = nil,
-                update_n_line = nil,
+                add = "ys",
+                delete = "ds",
+                replace = "cs",
+                find = "",
+                find_left = "",
+                highlight = "",
+                update_n_lines = "",
             },
             n_lines = nil,
             respect_selection_type = true,
