@@ -71,20 +71,8 @@ return {
         opts = {},
     },
     {
-        "echasnovski/mini.surround",
-        opts = {
-            mappings = {
-                add = "ys",
-                delete = "ds",
-                replace = "cs",
-                find = "",
-                find_left = "",
-                highlight = "",
-                update_n_lines = "",
-            },
-            n_lines = nil,
-            respect_selection_type = true,
-        },
+        "kylechui/nvim-surround",
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.comment",
