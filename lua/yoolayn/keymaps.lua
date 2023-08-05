@@ -1,8 +1,7 @@
 -- local Utils = require("yoolayn.utils")
 
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>E", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>ef", vim.cmd.Ex)
 
 -- disable scroll full page
 vim.keymap.set("n", "<C-b>", "<Nop>")
