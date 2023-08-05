@@ -38,9 +38,6 @@ opt.signcolumn = "yes"
 -- incremental substitute
 opt.inccommand = "nosplit"
 
--- backspace
-opt.backspace = "indent,eol,start"
-
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
@@ -64,9 +61,6 @@ opt.showmode = true
 
 -- global status line
 opt.laststatus = 3
-
--- no clipboard
-opt.clipboard = ""
 
 -- undo
 opt.undofile = true
