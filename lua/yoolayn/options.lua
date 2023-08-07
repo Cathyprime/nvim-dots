@@ -12,10 +12,11 @@ opt.expandtab = true
 
 -- line wrapping
 opt.wrap = true
+opt.textwidth = 100
 
 -- list
 opt.list = true
-opt.listchars:append("leadmultispace:\\u2502   ,eol:\\u21b5,trail:-")
+opt.listchars:append("leadmultispace:\\u2502   ,trail:-")
 
 -- search settings
 opt.ignorecase = false
