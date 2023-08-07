@@ -112,7 +112,12 @@ return {
         dependencies = {
             "JoosepAlviste/nvim-ts-context-commentstring",
             "nvim-treesitter/nvim-treesitter-textobjects",
-            "nvim-treesitter/nvim-treesitter-context",
+            {
+                "nvim-treesitter/nvim-treesitter-context",
+                config = function()
+                    require("treesitter-context").setup()
+                end,
+            },
         },
         keys = {
             { "<c-space>", desc = "Increment selection" },
