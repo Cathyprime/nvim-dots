@@ -13,6 +13,10 @@ opt.expandtab = true
 -- line wrapping
 opt.wrap = true
 
+-- list
+opt.list = true
+opt.listchars:append("leadmultispace:\\u2502   ,eol:\\u21b5,trail:-")
+
 -- search settings
 opt.ignorecase = false
 opt.smartcase = true
