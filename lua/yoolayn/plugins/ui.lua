@@ -39,12 +39,6 @@ return {
         },
     },
     {
-        "echasnovski/mini.statusline",
-        opts = {
-            set_vim_settings = false,
-        },
-    },
-    {
         "echasnovski/mini.indentscope",
         version = false,
         event = { "BufReadPre", "BufNewFile" },
