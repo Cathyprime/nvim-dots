@@ -212,10 +212,10 @@ return {
         cmd = { "TodoTrouble", "TodoTelescope" },
         event = { "BufReadPost", "BufNewFile" },
         config = true,
-		-- stylua: ignore
-		keys = {
-			{ "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "display todo using trouble" },
-			{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "find todo" },
-		},
+        -- stylua: ignore
+        keys = {
+            { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "display todo using trouble" },
+            { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "find todo" },
+        },
     },
 }
