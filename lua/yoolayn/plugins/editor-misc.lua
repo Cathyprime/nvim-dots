@@ -172,6 +172,30 @@ return {
         end,
     },
     {
+        "lukas-reineke/indent-blankline.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {
+            filetype_exclude = {
+                "help",
+                "Trouble",
+                "lazy",
+                "mason",
+                "notify",
+                "toggleterm",
+                "lazyterm",
+            },
+            show_end_of_line = true,
+            space_char_blankline = " ",
+        },
+        config = function(default, opts)
+            vim.opt.list = true
+            vim.opt.listchars:append("eol:↴")
+
+            local options = vim.tbl_deep_extend("force", default, opts)
+            require("indent_blankline").setup(options)
+        end,
+    },
+    {
         "folke/trouble.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
         cmd = { "TroubleToggle", "Trouble" },
