@@ -67,4 +67,8 @@ return require('packer').startup(function(use)
 
     use({"echasnovski/mini.pairs",
         config = function() require("mini.pairs").setup() end })
+
+    use({"mbbill/undotree"})
+    use({"anuvyklack/hydra.nvim"})
+
 end)
