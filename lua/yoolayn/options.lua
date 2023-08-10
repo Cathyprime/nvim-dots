@@ -16,7 +16,7 @@ opt.textwidth = 100
 
 -- list
 opt.list = true
-opt.listchars:append("leadmultispace:\\u2502   ,trail:-")
+opt.listchars:append("trail:-")
 
 -- search settings
 opt.ignorecase = false
