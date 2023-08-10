@@ -41,6 +41,9 @@ require("nvim-treesitter.configs").setup({
         "yaml",
         "zig",
     },
+    context_commentstring = {
+        enabled = true
+    },
     sync_install = false,
     highlight = {
         enable = true,
