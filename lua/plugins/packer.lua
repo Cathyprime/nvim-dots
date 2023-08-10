@@ -71,4 +71,7 @@ return require('packer').startup(function(use)
     use({"mbbill/undotree"})
     use({"anuvyklack/hydra.nvim"})
 
+    -- file navigations
+    use({"ThePrimeagen/harpoon"})
+    use({"stevearc/oil.nvim"})
 end)
