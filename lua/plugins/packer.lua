@@ -56,4 +56,15 @@ return require('packer').startup(function(use)
         requires = {"nvim-treesitter/nvim-treesitter"},
         after = "nvim-treesitter",
         config = function() require("treesitter-context").setup() end })
+
+    -- helpers for editing
+    use({"numToStr/Comment.nvim",
+        config = function() require('Comment').setup() end })
+
+    use({"kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function() require("nvim-surround").setup() end })
+
+    use({"echasnovski/mini.pairs",
+        config = function() require("mini.pairs").setup() end })
 end)
