@@ -43,4 +43,17 @@ return require('packer').startup(function(use)
     -- treesitter stuff
     use({"nvim-treesitter/nvim-treesitter",
         { run = ":TSUpdate" }})
+
+    use({"nvim-treesitter/nvim-treesitter-textobjects",
+        requires = {"nvim-treesitter/nvim-treesitter"},
+        after = "nvim-treesitter", })
+
+    use({"JoosepAlviste/nvim-ts-context-commentstring",
+        requires = {"nvim-treesitter/nvim-treesitter"},
+        after = "nvim-treesitter", })
+
+    use({ "nvim-treesitter/nvim-treesitter-context",
+        requires = {"nvim-treesitter/nvim-treesitter"},
+        after = "nvim-treesitter",
+        config = function() require("treesitter-context").setup() end })
 end)
