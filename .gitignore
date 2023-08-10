@@ -1,3 +1,2 @@
 undo
-lazy-lock.json
-lua/yoolayn/plugins/dev/*
+plugin/packer_compiled.lua
