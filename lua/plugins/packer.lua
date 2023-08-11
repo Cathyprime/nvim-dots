@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
     use({ 'nvim-telescope/telescope.nvim', tag = '0.1.2',
         requires = { {'nvim-lua/plenary.nvim'} } })
 
+    -- colorscheme
     use({"rebelot/kanagawa.nvim",
         config = function()
             require("kanagawa").setup({
@@ -71,11 +72,11 @@ return require('packer').startup(function(use)
     use({"mbbill/undotree"})
     use({"anuvyklack/hydra.nvim"})
 
-    -- file navigations
+    -- file management
     use({"ThePrimeagen/harpoon"})
     use({"stevearc/oil.nvim"})
 
-    -- git
+    -- git integration
     use({ "lewis6991/gitsigns.nvim",
         config = function()
             require("gitsigns").setup({
