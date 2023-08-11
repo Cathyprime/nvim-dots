@@ -1,5 +1,6 @@
 local lsp = require('lsp-zero').preset({})
 
+-- keybinds
 lsp.on_attach(function(_, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
@@ -9,17 +10,23 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("i", "<c-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, desc = "show signature"})
 end)
 
+-- required servers
 lsp.ensure_installed({
-    "rust_analyzer",
-    "tsserver",
-    "pylsp",
+    "jsonls",
     "lua_ls",
+    "pylsp",
+    "rust_analyzer",
+    "tailwindcss",
+    "tsserver",
+    "yamlls",
 })
 
+-- cmp
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_action = require('lsp-zero').cmp_action()
 
+---@diagnostic disable-next-line
 cmp.setup({
     sources = {
         {name = "luasnip"},
@@ -36,6 +43,59 @@ cmp.setup({
         ["<tab>"] = cmp_action.luasnip_jump_forward(),
         ["<s-tab>"] = cmp_action.luasnip_jump_backward(),
     },
+})
+
+-- server setups
+require("lspconfig").tsserver.setup({
+    settings = {
+        typescript = {
+            format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+            },
+        },
+        javascript = {
+            format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+            },
+        },
+        completions = {
+            completeFunctionCalls = true,
+        },
+    }
+})
+
+require("lspconfig").tailwindcss.setup({
+    filetypes_exclude = { "markdown" },
+})
+
+require("lspconfig").rust_analyzer.setup({
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                allFeatures = true,
+                loadOutDirsFromCheck = true,
+                runBuildScripts = true,
+            },
+            -- Add clippy lints for Rust.
+            checkOnSave = {
+                allFeatures = true,
+                command = "clippy",
+                extraArgs = { "--no-deps" },
+            },
+            procMacro = {
+                enable = true,
+                ignored = {
+                    ["async-trait"] = { "async_trait" },
+                    ["napi-derive"] = { "napi" },
+                    ["async-recursion"] = { "async_recursion" },
+                },
+            },
+        },
+    }
 })
 
 lsp.setup()
