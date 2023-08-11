@@ -76,7 +76,9 @@ return require('packer').startup(function(use)
     use({"ThePrimeagen/harpoon"})
     use({"stevearc/oil.nvim",
         config = function ()
-            require("oil").setup()
+            require("oil").setup({
+                default_file_explorer = false,
+            })
             vim.keymap.set("n", "<leader>ee", function() require("oil").open() end, {desc = "explore edit"})
         end})
 
