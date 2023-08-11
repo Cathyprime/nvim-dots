@@ -127,4 +127,11 @@ return require('packer').startup(function(use)
                 blend = 0
             }
         }) end, })
+
+    -- ui
+    use({"JellyApple102/easyread.nvim",
+        config = function ()
+            require("easyread").setup({ filetypes = {} })
+            vim.keymap.set("n", "<leader>ur", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
+            end })
 end)
