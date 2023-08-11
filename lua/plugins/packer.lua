@@ -115,4 +115,15 @@ return require('packer').startup(function(use)
 
     use({"folke/neodev.nvim",
         config = function () require("neodev").setup() end })
+
+    use({'j-hui/fidget.nvim',
+        tag = 'legacy',
+        config = function() require("fidget").setup({
+            text = {
+                spinner = "moon"
+            },
+            window = {
+                blend = 0
+            }
+        }) end, })
 end)
