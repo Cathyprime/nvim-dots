@@ -60,7 +60,9 @@ return require('packer').startup(function(use)
 
     use({"Wansmer/treesj",
         requires = { "nvim-treesitter" },
-        config = function() require("treesj").setup() end })
+        config = function() require("treesj").setup({
+            use_default_keymaps = false,
+        }) end })
 
     -- helpers for editing
     use({"numToStr/Comment.nvim",
