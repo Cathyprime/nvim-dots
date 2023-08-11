@@ -5,6 +5,7 @@ require("nvim-treesitter.configs").setup({
         "cmake",
         "comment",
         "cpp",
+        "diff",
         "fish",
         "gitattributes",
         "gitcommit",
