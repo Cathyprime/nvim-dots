@@ -58,6 +58,10 @@ return require('packer').startup(function(use)
         after = "nvim-treesitter",
         config = function() require("treesitter-context").setup() end })
 
+    use({"Wansmer/treesj",
+        requires = { "nvim-treesitter" },
+        config = function() require("treesj").setup() end })
+
     -- helpers for editing
     use({"numToStr/Comment.nvim",
         config = function() require('Comment').setup() end })
