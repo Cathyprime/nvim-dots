@@ -108,10 +108,11 @@ return require('packer').startup(function(use)
             {"rafamadriz/friendly-snippets",
             config = function () require("luasnip.loaders.from_vscode").lazy_load() end},
             {"hrsh7th/cmp-path"},
+            {"saadparwaiz1/cmp_luasnip"},
             {"dgagn/diagflow.nvim",
             config = function () require("diagflow").setup({ scope = "line", }) end }}
-    })
+        })
 
     use({"folke/neodev.nvim",
-    config = function () require("neodev").setup() end })
+        config = function () require("neodev").setup() end })
 end)
