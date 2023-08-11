@@ -134,4 +134,14 @@ return require('packer').startup(function(use)
             require("easyread").setup({ filetypes = {} })
             vim.keymap.set("n", "<leader>ur", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
             end })
+    use({"folke/todo-comments.nvim",
+        config = function () 
+            vim.api.nvim_create_autocmd("VimEnter", {
+                callback = function ()
+                    require("todo-comments").setup()
+                end,
+                once = true
+            })
+        end,
+        requires = { "nvim-lua/plenary.nvim" } })
 end)
