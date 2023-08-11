@@ -93,8 +93,7 @@ return require('packer').startup(function(use)
     use({"tpope/vim-fugitive"})
 
     -- lsp
-    use({
-        "VonHeikemen/lsp-zero.nvim",
+    use({"VonHeikemen/lsp-zero.nvim",
         branch = "v2.x",
         requires = {
             -- LSP Support
