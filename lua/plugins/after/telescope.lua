@@ -55,11 +55,6 @@ vim.keymap.set("n", "<leader>fs", function()
 
 -- git
 vim.keymap.set("n", "<c-p>", "<cmd>Telescope git_files<cr>", {desc = "find git files" })
-vim.keymap.set("n", "<leader>gf", "<cmd>Telescope git_files<cr>", {desc = "find git files" })
-vim.keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>", {desc = "git status" })
-vim.keymap.set("n", "<leader>gS", "<cmd>Telescope git_stash<cr>", {desc = "git stash" })
-vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", {desc = "git commits" })
-vim.keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", {desc = "git branches" })
 
 require("telescope").setup({
     defaults = {
