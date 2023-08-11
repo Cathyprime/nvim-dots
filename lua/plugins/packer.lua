@@ -86,7 +86,7 @@ return require('packer').startup(function(use)
                         vim.keymap.set(mode, lhs, rhs, opts)
                     end
                     -- stylua: ignore
-                    map({"o", "x"}, "ih", ":<C-u>Gitsigns select_hunk", {desc = "hunk"})
+                    map({"o", "x"}, "ih", ":<C-u>Gitsigns select_hunk<cr>", {desc = "hunk"})
                 end,
             })
         end})
