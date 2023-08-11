@@ -1,0 +1,8 @@
+require("plugins.packer")
+require("plugins.after.telescope")
+require("plugins.after.treesitter")
+require("plugins.after.treesitter-textobj")
+require("plugins.after.hydras")
+require("plugins.after.harpoon")
+require("plugins.after.neodev")
+require("plugins.after.lsp")

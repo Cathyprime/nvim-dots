@@ -1,7 +1,7 @@
 -- local Utils = require("yoolayn.utils")
 
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>ef", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>ef", vim.cmd.Ex, {desc = "explore files"})
 
 -- disable scroll full page
 vim.keymap.set("n", "<C-b>", "<Nop>")
@@ -32,13 +32,6 @@ vim.keymap.set("n", "<leader>P", [["+P]], { desc = "Paste from clipboard" })
 -- style: ignore
 vim.keymap.set( { "n", "v" }, "<leader>d", [["_d]], { desc = "delete to black hole" }
 )
-
--- vim.keymap.set("n", "<leader>gg", function()
---     Utils.float_term(
---         { "lazygit" },
---         { cwd = vim.fn.getcwd(), esc_esc = false, ctrl_hjkl = false }
---     )
--- end, { desc = "open lazygit" })
 
 vim.keymap.set(
     "n",
