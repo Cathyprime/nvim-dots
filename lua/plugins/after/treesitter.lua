@@ -52,3 +52,5 @@ require("nvim-treesitter.configs").setup({
     },
     additional_vim_regex_highlighting = false,
 })
+
+vim.keymap.set("n", "<leader>j", function () require("treesj").toggle() end, { desc = "toggle join/split" })
