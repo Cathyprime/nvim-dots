@@ -6,7 +6,7 @@ lsp.on_attach(function(_, bufnr)
   lsp.default_keymaps({buffer = bufnr})
     vim.keymap.set("n", "<leader>cn", function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = "rename variable"})
     vim.keymap.set("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", {buffer = true})
-    vim.keymap.set("i", "<c-h>", function() vim.lsp.buf.sugnature_help() end, {buffer = bufnr, desc = "show signature"})
+    vim.keymap.set("i", "<c-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, desc = "show signature"})
 end)
 
 lsp.ensure_installed({
@@ -22,7 +22,9 @@ local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
     sources = {
+        {name = "luasnip"},
         {name = "nvim_lsp"},
+        {name = "path"},
     },
     mapping = {
         ["<c-j>"] = cmp.mapping.select_next_item(cmp_select),
