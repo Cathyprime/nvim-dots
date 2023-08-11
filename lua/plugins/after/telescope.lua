@@ -85,10 +85,10 @@ require("telescope").setup({
                     ...
                     )
                 end,
-                --<esc>["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
+                ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
             },
             n = {
-                --<esc>["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
+                ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
             },
         },
     },

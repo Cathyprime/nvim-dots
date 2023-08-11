@@ -135,7 +135,7 @@ return require('packer').startup(function(use)
             vim.keymap.set("n", "<leader>ur", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
             end })
     use({"folke/todo-comments.nvim",
-        config = function () 
+        config = function ()
             vim.api.nvim_create_autocmd("VimEnter", {
                 callback = function ()
                     require("todo-comments").setup()
@@ -144,4 +144,15 @@ return require('packer').startup(function(use)
             })
         end,
         requires = { "nvim-lua/plenary.nvim" } })
+    use({"folke/trouble.nvim",
+        config = function ()
+            require("trouble").setup({
+                group = false
+            })
+            vim.keymap.set("n", "<leader>xw", function() require("trouble").open("workspace_diagnostics") end)
+            vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+            vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_diagnostics") end)
+            vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end)
+            vim.keymap.set("n", "<leader>xl", function() require("trouble").open("loclist") end)
+        end})
 end)
