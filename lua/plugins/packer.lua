@@ -74,7 +74,11 @@ return require('packer').startup(function(use)
 
     -- file management
     use({"ThePrimeagen/harpoon"})
-    use({"stevearc/oil.nvim"})
+    use({"stevearc/oil.nvim",
+        config = function ()
+            require("oil").setup()
+            vim.keymap.set("n", "<leader>ee", function() require("oil").open() end, {desc = "explore edit"})
+        end})
 
     -- git integration
     use({ "lewis6991/gitsigns.nvim",
