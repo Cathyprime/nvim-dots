@@ -25,6 +25,8 @@ lsp.ensure_installed({
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_action = require('lsp-zero').cmp_action()
+local kind_mapper = require("cmp.types").lsp.CompletionItemKind
+local ts_utils = require("nvim-treesitter.ts_utils")
 
 ---@diagnostic disable-next-line
 lsp.setup_nvim_cmp({
@@ -36,16 +38,51 @@ lsp.setup_nvim_cmp({
         {name = "look", keyword_length = 5},
         {name = "buffer", keyword_length = 3},
     }),
+
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
     },
+
     mapping = {
         ["<c-j>"] = cmp.mapping.select_next_item(cmp_select),
         ["<c-k>"] = cmp.mapping.select_prev_item(cmp_select),
-        ["<cr>"] = cmp.mapping.confirm({ select = true}),
+        ["<cr>"] = cmp.mapping.confirm({ select = false}),
         ["<c-space>"] = cmp.mapping.complete(),
-        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<c-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<c-d>"] = cmp.mapping.scroll_docs(4),
         ["<tab>"] = cmp_action.luasnip_jump_forward(),
         ["<s-tab>"] = cmp_action.luasnip_jump_backward(),
+    },
+
+    ---@diagnostic disable-next-line
+    formatting = {
+        fields = {"kind", "abbr", "menu"},
+        format = function (_, item)
+            local kind = item.kind
+
+            item.kind = (icons[kind] or " ")
+            item.menu = "(" .. kind .. ")"
+
+            item.abbr = item.abbr:match("[^(]+")
+
+            return item
+        end,
+    },
+
+    sorting = {
+        comparators = {
+            cmp.config.compare.exact,
+            cmp.config.compare.recently_used,
+            function (entry1, entry2)
+                local kind1 = kind_mapper[entry1:get_kind()]
+                local kind2 = kind_mapper[entry2:get_kind()]
+                if kind1 < kind2 then
+                    return true
+                end
+            end
+        }
     },
 })
 
