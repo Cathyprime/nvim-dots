@@ -2,9 +2,9 @@ local lsp = require('lsp-zero').preset({})
 
 -- keybinds
 lsp.on_attach(function(_, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp.default_keymaps({buffer = bufnr})
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp.default_keymaps({buffer = bufnr})
     vim.keymap.set("n", "<leader>cn", function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = "rename variable"})
     vim.keymap.set("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", {buffer = true})
     vim.keymap.set("i", "<c-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, desc = "show signature"})
@@ -33,8 +33,8 @@ lsp.setup_nvim_cmp({
         {name = "nvim_lsp"},
         {name = "path"},
     }, {
-        {name = "look"},
-        {name = "buffer", keyword_length = 4},
+        {name = "look", keyword_length = 5},
+        {name = "buffer", keyword_length = 3},
     }),
     },
     mapping = {
@@ -84,7 +84,6 @@ require("lspconfig").rust_analyzer.setup({
                 loadOutDirsFromCheck = true,
                 runBuildScripts = true,
             },
-            -- Add clippy lints for Rust.
             checkOnSave = {
                 allFeatures = true,
                 command = "clippy",
