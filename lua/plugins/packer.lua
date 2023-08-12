@@ -103,10 +103,7 @@ return require('packer').startup(function(use)
                 end,
             })
         end})
-    use({"tpope/vim-fugitive",
-        config = function ()
-            vim.keymap.set("n", "<leader>g", ":G<cr>", { desc = "open fugitive" })
-        end})
+    use({"tpope/vim-fugitive"})
 
     -- lsp
     use({"VonHeikemen/lsp-zero.nvim",
