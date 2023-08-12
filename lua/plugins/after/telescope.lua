@@ -4,26 +4,7 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", {desc = "find
 vim.keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", {desc = "find recent files" })
 vim.keymap.set("n", "<leader>fp", function() require("telescope.builtin").builtin() end, {desc = "find pickers" })
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", {desc = "find Buffers" })
-vim.keymap.set("n", "<leader>fh", function ()
-    local vhelp = vim.api.nvim_create_augroup("Vertical Help", {})
-    vim.api.nvim_create_autocmd("BufEnter", {
-        group = vhelp,
-        callback = function ()
-            if vim.bo.filetype == "help" then
-                vim.cmd("wincmd L")
-                vim.api.nvim_clear_autocmds({group = vhelp})
-            end
-        end
-    })
-    require("telescope.builtin").help_tags()
-end, {desc = "vertical help tags" })
-
-vim.keymap.set("n", "<leader>fH", function ()
-    if next(vim.api.nvim_get_autocmds({group = "Vertical Help"})) ~= nil then
-        vim.api.nvim_clear_autocmds({ group = "Vertical Help" })
-    end
-    require("telescope.builtin").help_tags()
-end, {desc = "help tags" })
+vim.keymap.set("n", "<leader>fh", function () require("telescope.builtin").help_tags() end, {desc = "vertical help tags" })
 
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", {desc = "live grep" })
 vim.keymap.set("n", "<leader>fG", function()
