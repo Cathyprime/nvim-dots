@@ -1,4 +1,5 @@
-require'nvim-treesitter.configs'.setup {
+---@diagnostic disable-next-line
+require("nvim-treesitter.configs").setup {
     textobjects = {
         select = {
             enable = true,
