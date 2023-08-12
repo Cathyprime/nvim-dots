@@ -64,6 +64,9 @@ return require('packer').startup(function(use)
             use_default_keymaps = false,
         }) end })
 
+    use({"nvim-treesitter/playground",
+        requires = { "nvim-treesitter/nvim-treesitter"}})
+
     -- helpers for editing
     use({"numToStr/Comment.nvim",
         config = function() require('Comment').setup() end })
