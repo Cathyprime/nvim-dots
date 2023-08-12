@@ -77,6 +77,9 @@ opt.wildmode = "longest:full,full"
 -- Minimum window width
 opt.winminwidth = 5
 
+-- popup menu
+opt.pumheight = 8
+
 -- Disable line wrap
 opt.wrap = false
 
