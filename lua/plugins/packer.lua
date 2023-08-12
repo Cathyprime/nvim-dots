@@ -59,7 +59,7 @@ return require('packer').startup(function(use)
         config = function() require("treesitter-context").setup() end })
 
     use({"Wansmer/treesj",
-        requires = { "nvim-treesitter" },
+        requires = { "nvim-treesitter/nvim-treesitter" },
         config = function() require("treesj").setup({
             use_default_keymaps = false,
         }) end })
