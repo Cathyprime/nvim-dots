@@ -27,11 +27,15 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_action = require('lsp-zero').cmp_action()
 
 ---@diagnostic disable-next-line
-cmp.setup({
-    sources = {
+lsp.setup_nvim_cmp({
+    sources = cmp.config.sources({
         {name = "luasnip"},
         {name = "nvim_lsp"},
         {name = "path"},
+    }, {
+        {name = "look"},
+        {name = "buffer", keyword_length = 4},
+    }),
     },
     mapping = {
         ["<c-j>"] = cmp.mapping.select_next_item(cmp_select),
