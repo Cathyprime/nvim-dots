@@ -64,6 +64,9 @@ opt.shortmess:append("c")
 -- mode
 opt.showmode = true
 
+-- backspace
+opt.backspace = ""
+
 -- global status line
 opt.laststatus = 3
 
