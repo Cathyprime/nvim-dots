@@ -27,7 +27,6 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_action = require('lsp-zero').cmp_action()
 local icons = require("util.icons").icons
 local kind_mapper = require("cmp.types").lsp.CompletionItemKind
-local ts_utils = require("nvim-treesitter.ts_utils")
 
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function ()
