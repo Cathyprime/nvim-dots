@@ -42,12 +42,18 @@ vim.api.nvim_create_autocmd("VimEnter", {
 ---@diagnostic disable-next-line
 lsp.setup_nvim_cmp({
     sources = cmp.config.sources({
-        {name = "luasnip"},
-        {name = "nvim_lsp"},
-        {name = "path"},
+        {
+            name = "omni",
+            options = {
+                disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" }
+            }
+        },
+        { name = "luasnip" },
+        { name = "nvim_lsp" },
+        { name = "path" },
     }, {
-        {name = "look", keyword_length = 5},
-        {name = "buffer", keyword_length = 3},
+        { name = "look", keyword_length = 5 },
+        { name = "buffer", keyword_length = 3 },
     }),
 
     snippet = {
@@ -69,7 +75,7 @@ lsp.setup_nvim_cmp({
 
     ---@diagnostic disable-next-line
     formatting = {
-        fields = {"kind", "abbr", "menu"},
+        fields = { "kind", "abbr", "menu" },
         format = function (_, item)
             local kind = item.kind
 
