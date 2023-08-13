@@ -18,6 +18,9 @@ opt.textwidth = 100
 opt.list = true
 opt.listchars:append("trail:-")
 
+-- path
+opt.path:append("**")
+
 -- search settings
 opt.ignorecase = false
 opt.smartcase = true
