@@ -2,20 +2,6 @@ local function augroup(name)
     return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
 
-vim.api.nvim_create_autocmd("RecordingEnter", {
-    group = augroup("MacroMessageOn"),
-    callback = function()
-        vim.notify("Recording started!")
-    end,
-})
-
-vim.api.nvim_create_autocmd("RecordingLeave", {
-    group = augroup("MacroMessageOff"),
-    callback = function()
-        vim.notify("Recording ended!")
-    end,
-})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup("highlight_yank"),
     callback = function()
