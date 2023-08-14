@@ -35,12 +35,12 @@ vim.keymap.set( { "n", "v" }, "<leader>d", [["_d]], { desc = "delete to black ho
 vim.keymap.set(
     "n",
     "<leader>s",
-    [[:s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],
+    [[:s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>]],
     { desc = "replace inline instances under cursor" }
 )
 vim.keymap.set(
     "n",
     "<leader>S",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>]],
     { desc = "replace all instances under cursor" }
 )
