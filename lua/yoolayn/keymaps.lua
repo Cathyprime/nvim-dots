@@ -30,8 +30,7 @@ vim.keymap.set("n", "<leader>p", [["+p]], { desc = "paste from clipboard" })
 vim.keymap.set("n", "<leader>P", [["+P]], { desc = "Paste from clipboard" })
 
 -- style: ignore
-vim.keymap.set( { "n", "v" }, "<leader>d", [["_d]], { desc = "delete to black hole" }
-)
+vim.keymap.set( { "n", "v" }, "<leader>d", [["_d]], { desc = "delete to black hole" })
 
 vim.keymap.set(
     "n",
