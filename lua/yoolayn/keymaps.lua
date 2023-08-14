@@ -13,8 +13,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll up" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "next search" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "prev search" })
 
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "replace and don't save" })
-
 -- stylua: ignore start
 vim.keymap.set({ "o", "x" }, "il", ":<c-u>normal! _vg_<cr>", { desc = "inner line", silent = true })
 vim.keymap.set({ "o", "x" }, "al", ":<c-u>normal! 0v$<cr>", { desc = "around line", silent = true })
