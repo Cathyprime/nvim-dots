@@ -44,7 +44,7 @@ opt.signcolumn = "yes"
 -- opt.colorcolumn = "80"
 
 -- incremental substitute
-opt.inccommand = "nosplit"
+opt.inccommand = "split"
 
 -- split windows
 opt.splitright = true
