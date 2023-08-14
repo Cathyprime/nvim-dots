@@ -186,6 +186,18 @@ return require('packer').startup(function(use)
             vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end)
             vim.keymap.set("n", "<leader>xl", function() require("trouble").open("loclist") end)
         end})
+
+    use({"nvim-tree/nvim-tree.lua",
+        requires = {"nvim-tree/nvim-web-devicons"},
+        config = function ()
+            require("nvim-tree").setup({
+                filters = {
+                    dotfiles = true,
+                }
+            })
+            vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<cr>", {silent = true, noremap = true})
+        end})
+
     if packer_bootstrap then
         require('packer').sync()
     end
