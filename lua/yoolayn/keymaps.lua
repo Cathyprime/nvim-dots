@@ -7,10 +7,6 @@ vim.keymap.set("n", "<leader>ef", vim.cmd.Ex, {desc = "explore files"})
 vim.keymap.set("n", "<C-b>", "<Nop>")
 vim.keymap.set("n", "<C-f>", "<Nop>")
 
--- move lines in visual mode
-vim.keymap.set("v", "<m-j>", ":m '>+1<CR>gv=gv", { desc = "move line down" })
-vim.keymap.set("v", "<m-k>", ":m '<-2<CR>gv=gv", { desc = "move line up" })
-
 vim.keymap.set("n", "J", "mzJ`z", { desc = "join lines" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll up" })
