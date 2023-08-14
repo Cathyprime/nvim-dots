@@ -163,6 +163,7 @@ return require('packer').startup(function(use)
             require("easyread").setup({ filetypes = {} })
             vim.keymap.set("n", "<leader>ur", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
             end })
+
     use({"folke/todo-comments.nvim",
         config = function ()
             vim.api.nvim_create_autocmd("VimEnter", {
@@ -173,6 +174,7 @@ return require('packer').startup(function(use)
             })
         end,
         requires = { "nvim-lua/plenary.nvim" } })
+
     use({"folke/trouble.nvim",
         config = function ()
             require("trouble").setup({
