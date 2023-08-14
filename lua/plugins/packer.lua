@@ -198,6 +198,8 @@ return require('packer').startup(function(use)
             vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<cr>", {silent = true, noremap = true})
         end})
 
+    use({"ThePrimeagen/vim-be-good"})
+
     if packer_bootstrap then
         require('packer').sync()
     end
