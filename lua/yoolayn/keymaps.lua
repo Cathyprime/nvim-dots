@@ -8,8 +8,8 @@ vim.keymap.set("n", "<C-b>", "<Nop>")
 vim.keymap.set("n", "<C-f>", "<Nop>")
 
 -- move lines in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
+vim.keymap.set("v", "<m-j>", ":m '>+1<CR>gv=gv", { desc = "move line down" })
+vim.keymap.set("v", "<m-k>", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "join lines" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down" })
