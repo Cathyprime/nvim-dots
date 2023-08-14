@@ -44,3 +44,15 @@ vim.keymap.set(
     [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>]],
     { desc = "replace all instances under cursor" }
 )
+vim.keymap.set(
+    "v",
+    "<leader>s",
+    [[y:s/<c-r>"/<c-r>"/g<left><left>]],
+    { desc = "replace marked inline" }
+)
+vim.keymap.set(
+    "v",
+    "<leader>S",
+    [[y:%s/<c-r>"//gc<left><left><left>]],
+    { desc = "replace all marked" }
+)
