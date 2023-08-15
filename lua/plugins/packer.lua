@@ -172,6 +172,7 @@ return require('packer').startup(function(use)
 
     -- misc
     use({"ThePrimeagen/vim-be-good"})
+    use ({"tpope/vim-dispatch"})
 
     if packer_bootstrap then
         require('packer').sync()
