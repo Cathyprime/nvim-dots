@@ -49,50 +49,40 @@ return require('packer').startup(function(use)
             end,
         })
         vim.cmd("colorscheme kanagawa-wave")
-        end
-        })
+        end })
 
     -- treesitter stuff
     use({"nvim-treesitter/nvim-treesitter",
         { run = ":TSUpdate" }})
-
     use({"nvim-treesitter/nvim-treesitter-textobjects",
         requires = {"nvim-treesitter/nvim-treesitter"},
         after = "nvim-treesitter", })
-
     use({"JoosepAlviste/nvim-ts-context-commentstring",
         requires = {"nvim-treesitter/nvim-treesitter"},
         after = "nvim-treesitter", })
-
     use({ "nvim-treesitter/nvim-treesitter-context",
         requires = {"nvim-treesitter/nvim-treesitter"},
         after = "nvim-treesitter",
         config = function() require("treesitter-context").setup() end })
-
     use({"Wansmer/treesj",
         requires = { "nvim-treesitter/nvim-treesitter" },
         config = function() require("treesj").setup({
             use_default_keymaps = false,
         }) end })
-
     use({"nvim-treesitter/playground",
         requires = { "nvim-treesitter/nvim-treesitter"}})
 
     -- helpers for editing
     use({"numToStr/Comment.nvim",
         config = function() require('Comment').setup() end })
-
     use({"kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
         config = function() require("nvim-surround").setup() end })
-
     use({"echasnovski/mini.pairs",
         config = function() require("mini.pairs").setup() end })
-
     use({"mbbill/undotree",
         config = function ()
-            vim.keymap.set("n", "<leader>u", ":UndotreeToggle<cr>", {silent = true, desc = "toggle undotree"})
-        end})
+            vim.keymap.set("n", "<leader>u", ":UndotreeToggle<cr>", {silent = true, desc = "toggle undotree"}) end})
     use({"anuvyklack/hydra.nvim"})
 
     -- file management
@@ -102,11 +92,20 @@ return require('packer').startup(function(use)
             require("oil").setup({
                 default_file_explorer = false,
             })
-            vim.keymap.set("n", "<leader>ee", function() require("oil").open() end, {desc = "explore edit"})
-        end})
+            vim.keymap.set("n", "<leader>ee", function() require("oil").open() end, {desc = "explore edit"}) end})
+    use({"nvim-tree/nvim-tree.lua",
+        requires = {"nvim-tree/nvim-web-devicons"},
+        config = function ()
+            require("nvim-tree").setup({
+                filters = {
+                    dotfiles = true,
+                }
+            })
+            vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<cr>", {silent = true, noremap = true}) end})
 
     -- git integration
-    use({ "lewis6991/gitsigns.nvim",
+    use({"tpope/vim-fugitive"})
+    use({"lewis6991/gitsigns.nvim",
         config = function()
             require("gitsigns").setup({
                 on_attach = function(bufnr)
@@ -120,7 +119,6 @@ return require('packer').startup(function(use)
                 end,
             })
         end})
-    use({"tpope/vim-fugitive"})
 
     -- lsp
     use({"VonHeikemen/lsp-zero.nvim",
@@ -145,10 +143,8 @@ return require('packer').startup(function(use)
             {"dgagn/diagflow.nvim",
             config = function () require("diagflow").setup({ scope = "line", }) end }}
         })
-
     use({"folke/neodev.nvim",
         config = function () require("neodev").setup() end })
-
     use({'j-hui/fidget.nvim',
         tag = 'legacy',
         config = function() require("fidget").setup({
@@ -157,16 +153,13 @@ return require('packer').startup(function(use)
             },
             window = {
                 blend = 0
-            }
-        }) end, })
+            } }) end, })
 
     -- ui
     use({"JellyApple102/easyread.nvim",
         config = function ()
             require("easyread").setup({ filetypes = {} })
-            vim.keymap.set("n", "<leader>U", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
-            end })
-
+            vim.keymap.set("n", "<leader>U", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true }) end })
     use({"folke/todo-comments.nvim",
         config = function ()
             vim.api.nvim_create_autocmd("VimEnter", {
@@ -174,21 +167,10 @@ return require('packer').startup(function(use)
                     require("todo-comments").setup()
                 end,
                 once = true
-            })
-        end,
+            }) end,
         requires = { "nvim-lua/plenary.nvim" } })
 
-    use({"nvim-tree/nvim-tree.lua",
-        requires = {"nvim-tree/nvim-web-devicons"},
-        config = function ()
-            require("nvim-tree").setup({
-                filters = {
-                    dotfiles = true,
-                }
-            })
-            vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<cr>", {silent = true, noremap = true})
-        end})
-
+    -- misc
     use({"ThePrimeagen/vim-be-good"})
 
     if packer_bootstrap then
