@@ -89,7 +89,10 @@ return require('packer').startup(function(use)
     use({"echasnovski/mini.pairs",
         config = function() require("mini.pairs").setup() end })
 
-    use({"mbbill/undotree"})
+    use({"mbbill/undotree",
+        config = function ()
+            vim.keymap.set("n", "<leader>u", ":UndotreeToggle<cr>", {silent = true, desc = "toggle undotree"})
+        end})
     use({"anuvyklack/hydra.nvim"})
 
     -- file management
@@ -161,7 +164,7 @@ return require('packer').startup(function(use)
     use({"JellyApple102/easyread.nvim",
         config = function ()
             require("easyread").setup({ filetypes = {} })
-            vim.keymap.set("n", "<leader>ur", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
+            vim.keymap.set("n", "<leader>U", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
             end })
 
     use({"folke/todo-comments.nvim",
