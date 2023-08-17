@@ -65,16 +65,6 @@ require("lazy").setup({
             end,
         },
 
-        -- treesitter stuff
-        { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-        { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-        { "JoosepAlviste/nvim-ts-context-commentstring", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-        { "nvim-treesitter/nvim-treesitter-context", dependencies = {"nvim-treesitter/nvim-treesitter"},
-        config = function() require("treesitter-context").setup() end },
-        {"Wansmer/treesj", dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = function() require("treesj").setup({ _default_keymaps = false, }) end },
-        {"nvim-treesitter/playground", dependencies = { "nvim-treesitter/nvim-treesitter" }},
-
         -- helpers for editing
         { "numToStr/Comment.nvim", config = function() require('Comment').setup() end },
         { "kylechui/nvim-surround", tag = "*", config = function() require("nvim-surround").setup() end },
