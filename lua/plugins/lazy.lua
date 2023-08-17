@@ -66,38 +66,37 @@ require("lazy").setup({
         },
 
         -- helpers for editing
-        { "numToStr/Comment.nvim", config = function() require('Comment').setup() end },
-        { "kylechui/nvim-surround", tag = "*", config = function() require("nvim-surround").setup() end },
-        { "echasnovski/mini.pairs", config = function() require("mini.pairs").setup() end },
-        {"mbbill/undotree", config = function ()
-            vim.keymap.set("n", "<leader>u", ":UndotreeToggle<cr>", { silent = true, desc = "toggle undotree" })
-        end },
+        {"numToStr/Comment.nvim", config = function() require('Comment').setup() end },
+        {"kylechui/nvim-surround", tag = "*", config = function() require("nvim-surround").setup() end },
+        {"echasnovski/mini.pairs", config = function() require("mini.pairs").setup() end },
+        {"mbbill/undotree",
+            keys = { { "<leader>u", ":UndotreeToggle<cr>", { silent = true, desc = "toggle undotree" } } } },
         {"anuvyklack/hydra.nvim"},
+
         -- file management
         {"ThePrimeagen/harpoon"},
-        {"stevearc/oil.nvim", config = function ()
-            require("oil").setup({ default_file_explorer = false })
-            vim.keymap.set("n", "<leader>ee", function() require("oil").open() end, {desc = "explore edit"})
-        end},
-        ({"nvim-tree/nvim-tree.lua",
-        dependencies = {"nvim-tree/nvim-web-devicons"},
-        config = function ()
-            require("nvim-tree").setup({ filters = { dotfiles = true } })
-            vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<cr>", {silent = true, noremap = true})
-        end}),
+        {"stevearc/oil.nvim",
+            opts = { default_file_explorer = false, },
+            keys = { {"<leader>ee", function() require("oil").open() end, { desc = "explore edit" }} }},
+        {"nvim-tree/nvim-tree.lua",
+            dependencies = {"nvim-tree/nvim-web-devicons"},
+            opts = { filters = { dotfiles = true } },
+            keys = { { "<leader>ef", ":NvimTreeToggle<cr>", {silent = true}} }, },
 
         -- git integration
         {"tpope/vim-fugitive"},
         {"tpope/vim-rhubarb"},
-        {"lewis6991/gitsigns.nvim", config = function()
+        {"lewis6991/gitsigns.nvim",
+        config = function()
             require("gitsigns").setup({
                 on_attach = function(bufnr)
                     vim.keymap.set({"o", "x"}, "ih", ":<C-u>Gitsigns select_hunk<cr>", {desc = "inner hunk", buffer = bufnr})
-                end, })
-            end},
+                end,
+            })
+        end},
 
-            -- lsp
-            {"VonHeikemen/lsp-zero.nvim",
+        -- lsp
+        {"VonHeikemen/lsp-zero.nvim",
             branch = "v2.x",
             dependencies = {
                 -- LSP Support
@@ -113,11 +112,10 @@ require("lazy").setup({
                 {"hrsh7th/cmp-buffer"},
                 {"octaltree/cmp-look"},
                 {"rafamadriz/friendly-snippets",
-                config = function () require("luasnip.loaders.from_vscode").lazy_load() end},
+                    config = function () require("luasnip.loaders.from_vscode").lazy_load() end},
                 {"hrsh7th/cmp-path"},
                 {"saadparwaiz1/cmp_luasnip"},
-                {"dgagn/diagflow.nvim", config = function () require("diagflow").setup({ scope = "line", })
-                end }
+                {"dgagn/diagflow.nvim", config = function () require("diagflow").setup({ scope = "line", }) end }
             }
         },
         {"folke/neodev.nvim", config = function () require("neodev").setup() end },
@@ -129,20 +127,15 @@ require("lazy").setup({
 
         -- ui
         {"JellyApple102/easyread.nvim",
-        config = function ()
-            require("easyread").setup({ filetypes = {} })
-            vim.keymap.set("n", "<leader>U", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
-        end},
+            config = function ()
+                require("easyread").setup({ filetypes = {} })
+                vim.keymap.set("n", "<leader>U", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
+            end
+        },
         {"folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        event = "VimEnter",
-        -- config = function ()
-        --     vim.api.nvim_create_autocmd("VimEnter", {
-        --         callback = function ()
-        --             require("todo-comments").setup()
-        --         end,
-        --         once = true
-        --     }) end,
+            dependencies = { "nvim-lua/plenary.nvim" },
+            opts = {},
+            event = "VimEnter",
         },
 
         -- misc
