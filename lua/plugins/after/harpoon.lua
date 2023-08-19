@@ -1,4 +1,4 @@
-local term = 1
+local term = 0
 return {
     "ThePrimeagen/harpoon",
     keys = {
@@ -51,23 +51,26 @@ return {
             "<leader>tc",
             function()
                 local command = vim.fn.input({ prompt = "bash: " })
-                require("harpoon.tmux").sendCommand(term, command)
-                require("harpoon.tmux").gotoTerminal(term)
+                local tmux = require("harpoon.tmux")
+                tmux.sendCommand(term, command)
+                tmux.gotoTerminal(term)
             end,
             {desc = "tmux custom", }},
         {
             "<leader>ty",
             function ()
-                require("harpoon.tmux").sendCommand(term, "yarn")
-                require("harpoon.tmux").gotoTerminal(term)
+                local tmux = require("harpoon.tmux")
+                tmux.sendCommand(term, "yarn")
+                tmux.gotoTerminal(term)
             end,
             { desc = "tmux yarn" }
         },
         {
             "<leader>tr",
             function ()
-                require("harpoon.tmux").sendCommand(term, "cargo")
-                require("harpoon.tmux").gotoTerminal(term)
+                local tmux = require("harpoon.tmux")
+                tmux.sendCommand(term, "cargo")
+                tmux.gotoTerminal(term)
             end,
             {desc = "tmux rust"}
         },
