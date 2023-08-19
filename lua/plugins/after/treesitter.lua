@@ -21,7 +21,6 @@ return {
             "bash",
             "c",
             "cmake",
-            "comment",
             "commonlisp",
             "cpp",
             "diff",
