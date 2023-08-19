@@ -66,9 +66,18 @@ require("lazy").setup({
         },
 
         -- helpers for editing
-        {"numToStr/Comment.nvim", config = function() require('Comment').setup() end },
-        {"kylechui/nvim-surround", tag = "*", config = function() require("nvim-surround").setup() end },
-        {"echasnovski/mini.pairs", config = function() require("mini.pairs").setup() end },
+        { "numToStr/Comment.nvim", config = function() require('Comment').setup() end, keys = { "gc", "gcA" } },
+        {
+            "kylechui/nvim-surround",
+            tag = "*",
+            keys = {"ys", "cs", "ds", {"S", mode = "v"}},
+            config = function() require("nvim-surround").setup() end,
+        },
+        {
+            "echasnovski/mini.pairs",
+            event = {"BufReadPost", "BufNewPost"},
+            config = function() require("mini.pairs").setup() end,
+        },
         {"mbbill/undotree",
             keys = { { "<leader>u", ":UndotreeToggle<cr>", { silent = true, desc = "toggle undotree" } } } },
         {"anuvyklack/hydra.nvim"},
@@ -117,7 +126,7 @@ require("lazy").setup({
                 {"dgagn/diagflow.nvim", config = function () require("diagflow").setup({ scope = "line", }) end }
             }
         },
-        {"folke/neodev.nvim", config = function () require("neodev").setup() end },
+        { "folke/neodev.nvim", config = function () require("neodev").setup() end, ft = "lua" },
         {'j-hui/fidget.nvim', tag = 'legacy',
         config = function() require("fidget").setup({
             text = { spinner = "moon" },
@@ -140,7 +149,7 @@ require("lazy").setup({
         -- lispy stuff (love lisp btw)
         {"eraserhd/parinfer-rust",
             build = "cargo build --release",
-            ft = "lisp"},
+            ft = { "lisp", "yuck" }},
         {"elkowar/yuck.vim",
             ft = "yuck"},
 
