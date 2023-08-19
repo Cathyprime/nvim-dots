@@ -94,6 +94,7 @@ return {
 
             sorting = {
                 comparators = {
+                    cmp.config.compare.score,
                     cmp.config.compare.exact,
                     cmp.config.compare.recently_used,
                     function (entry1, entry2)
