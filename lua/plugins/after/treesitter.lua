@@ -1,8 +1,17 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    version = true,
+    version = false,
+    build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
-    opts = {
+    cmd = { "TSUpdateSync" },
+    keys = {
+        {
+            "<leader>j",
+            function () require("treesj").toggle() end,
+            { desc = "toggle join/split" }
+        },
+    },
+    config = function () require("nvim-treesitter.configs").setup({
         ensure_installed = {
             "bash",
             "c",
@@ -43,15 +52,12 @@ return {
             "vim",
             "vimdoc",
             "yaml",
+            "yuck",
             "zig",
         },
-        context_commentstring = {
-            enabled = true
-        },
+        context_commentstring = { enabled = true },
         sync_install = false,
-        highlight = {
-            enable = true,
-        },
+        highlight = { enable = true },
         additional_vim_regex_highlighting = false,
         textobjects = {
             select = {
@@ -91,21 +97,19 @@ return {
                 include_surrounding_whitespace = true,
             },
         }
-    },
-    config = function (opts)
-        require("nvim-treesitter.configs").setup(opts)
-        vim.keymap.set("n", "<leader>j", function () require("treesj").toggle() end, { desc = "toggle join/split" } )
+    })
     end,
     dependencies = {
-
-        { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-        { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-        { "JoosepAlviste/nvim-ts-context-commentstring", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-        { "nvim-treesitter/nvim-treesitter-context", dependencies = {"nvim-treesitter/nvim-treesitter"},
-        config = function() require("treesitter-context").setup() end },
-        {"Wansmer/treesj", dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = function() require("treesj").setup({ _default_keymaps = false, }) end },
-        {"nvim-treesitter/playground", dependencies = { "nvim-treesitter/nvim-treesitter" }},
+        { "nvim-treesitter/nvim-treesitter-textobjects" },
+        { "JoosepAlviste/nvim-ts-context-commentstring" },
+        { "nvim-treesitter/nvim-treesitter-context",
+            config = function()
+                require("treesitter-context").setup()
+            end
+        },
+        {"Wansmer/treesj",
+        config = function() require("treesj").setup({ use_default_keymaps = false, }) end },
+        {"nvim-treesitter/playground"},
     }
 }
 
