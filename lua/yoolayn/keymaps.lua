@@ -6,9 +6,6 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<C-b>", "<Nop>")
 vim.keymap.set("n", "<C-f>", "<Nop>")
 
--- keep cursor position on joining lines
-vim.keymap.set("n", "J", "mzJ`z", { desc = "join lines" })
-
 -- recenter screen
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll up" })
@@ -27,6 +24,10 @@ vim.keymap.set("n", "<leader>P", [["+P]], { desc = "Paste from clipboard" })
 
 -- blackhole register
 vim.keymap.set( { "n", "v" }, "<leader>d", [["_d]], { desc = "delete to black hole" })
+
+-- misc
+vim.keymap.set("n", "J", "mzJ`z", { desc = "join lines" })
+vim.keymap.set("n", "gp", "`[v`]", { desc = "select pasted test" })
 
 -- substitute commands
 vim.keymap.set(
