@@ -109,7 +109,7 @@ return {
             end
         },
         {"Wansmer/treesj",
-        config = function() require("treesj").setup({ use_default_keymaps = false, }) end },
+        config = function() require("treesj").setup({ use_default_keymaps = false, max_join_lines = 150 }) end },
         {"nvim-treesitter/playground"},
     }
 }
