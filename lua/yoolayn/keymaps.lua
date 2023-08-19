@@ -18,7 +18,7 @@ vim.keymap.set({ "o", "x" }, "al", ":<c-u>normal! 0v$<cr>", { desc = "around lin
 
 -- clipboard interaction
 vim.keymap.set( { "n", "v" }, "<leader>y", [["+y]], { desc = "yank to clipboard" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank to clipboard" })
+vim.keymap.set("n", "<leader>Y", [["+yy]], { desc = "Yank to clipboard" })
 vim.keymap.set("n", "<leader>p", [["+p]], { desc = "paste from clipboard" })
 vim.keymap.set("n", "<leader>P", [["+P]], { desc = "Paste from clipboard" })
 
@@ -28,6 +28,7 @@ vim.keymap.set( { "n", "v" }, "<leader>d", [["_d]], { desc = "delete to black ho
 -- misc
 vim.keymap.set("n", "J", "mzJ`z", { desc = "join lines" })
 vim.keymap.set("n", "gp", "`[v`]", { desc = "select pasted test" })
+vim.keymap.set("n", "Y", "yy", { desc = "copy line" })
 
 -- substitute commands
 vim.keymap.set(
