@@ -75,7 +75,6 @@ require("lazy").setup({
         },
         {
             "echasnovski/mini.pairs",
-            event = {"BufReadPost", "BufNewPost"},
             config = function() require("mini.pairs").setup() end,
         },
         {"mbbill/undotree",
