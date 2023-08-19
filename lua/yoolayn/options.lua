@@ -10,6 +10,9 @@ opt.shiftwidth = 4
 opt.smartindent = true
 opt.expandtab = true
 
+-- exrc
+opt.exrc = true
+
 -- line wrapping
 opt.wrap = true
 opt.textwidth = 100
