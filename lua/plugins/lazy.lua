@@ -66,7 +66,7 @@ require("lazy").setup({
         },
 
         -- helpers for editing
-        { "numToStr/Comment.nvim", config = function() require('Comment').setup() end, keys = { "gc", "gcA" } },
+        { "numToStr/Comment.nvim", config = function() require('Comment').setup() end, keys = { "gc", "gcA", {"gc", mode="v"} } },
         {
             "kylechui/nvim-surround",
             tag = "*",
