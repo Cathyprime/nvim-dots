@@ -139,9 +139,10 @@ require("lazy").setup({
 
         -- lispy stuff (love lisp btw)
         {"eraserhd/parinfer-rust",
-            build = "cargo build --release" },
+            build = "cargo build --release",
+            ft = "lisp"},
         {"elkowar/yuck.vim",
-            filetypes = "yuck"},
+            ft = "yuck"},
 
         -- misc
         {"ThePrimeagen/vim-be-good"},
