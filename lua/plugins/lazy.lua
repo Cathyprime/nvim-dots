@@ -137,6 +137,12 @@ require("lazy").setup({
             event = "VimEnter",
         },
 
+        -- lispy stuff (love lisp btw)
+        {"eraserhd/parinfer-rust",
+            build = "cargo build --release" },
+        {"elkowar/yuck.vim",
+            filetypes = "yuck"},
+
         -- misc
         {"ThePrimeagen/vim-be-good"},
         {"tpope/vim-dispatch"},
