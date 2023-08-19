@@ -9,6 +9,11 @@ Hydra({
         { "l", "5zl", { desc = "←/→" } },
         { "H", "zH" },
         { "L", "zL", { desc = "half screen ←/→" } },
+        { "<CR>", nil, { exit = true } },
+        { "q", nil, { exit = true, desc = "leave" } },
+    },
+    config = {
+        timout = 500,
     },
 })
 
@@ -38,5 +43,8 @@ Hydra({
         { "+", "<C-w>+" },
         { "-", "<C-w>-", { desc = "height" } },
         { "=", "<C-w>=", { desc = "reset" } },
+    },
+    config = {
+        timout = 500,
     },
 })
