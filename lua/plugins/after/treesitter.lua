@@ -10,6 +10,11 @@ return {
             function () require("treesj").toggle() end,
             { desc = "toggle join/split" }
         },
+        {
+            "<leader>C",
+            ":TSContextToggle<cr>",
+            { desc = "toggle context", silent = true}
+        },
     },
     config = function () require("nvim-treesitter.configs").setup({
         ensure_installed = {
