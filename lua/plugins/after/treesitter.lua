@@ -61,7 +61,7 @@ return {
             "yuck",
             "zig",
         },
-        context_commentstring = { enabled = true },
+        context_commentstring = { enabled = false },
         sync_install = false,
         highlight = { enable = true },
         additional_vim_regex_highlighting = false,
