@@ -17,6 +17,7 @@ return {
             "c",
             "cmake",
             "comment",
+            "commonlisp",
             "cpp",
             "diff",
             "fish",
