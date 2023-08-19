@@ -1,5 +1,3 @@
-local builtin = require("telescope.builtin")
-
 return {
     "nvim-telescope/telescope.nvim",
     keys = {
@@ -15,7 +13,7 @@ return {
         },
         {
             "<leader>fp",
-            function() builtin.builtin() end,
+            function() require("telescope.builtin").builtin() end,
             {desc = "find pickers" },
         },
         {
@@ -25,7 +23,7 @@ return {
         },
         {
             "<leader>fh",
-            function () builtin.help_tags() end,
+            function () require("telescope.builtin").help_tags() end,
             {desc = "vertical help tags" },
         },
 
@@ -37,7 +35,7 @@ return {
         {
             "<leader>fG",
             function()
-                builtin.live_grep({ search_dirs = { vim.fn.expand("%:p") } })
+                require("telescope.builtin").live_grep({ search_dirs = { vim.fn.expand("%:p") } })
             end,
             {desc = "live grep current file" }
         },
@@ -55,7 +53,7 @@ return {
         {
             "<leader>fs",
             function()
-                builtin.lsp_document_symbols({
+                require("telescope.builtin").lsp_document_symbols({
                     symbols = {
                         "Class",
                         "Function",
