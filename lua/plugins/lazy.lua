@@ -83,9 +83,6 @@ require("lazy").setup({
 
         -- file management
         {"ThePrimeagen/harpoon"},
-        {"stevearc/oil.nvim",
-            opts = { default_file_explorer = false, },
-            keys = { {"<leader>ee", function() require("oil").open() end, { desc = "explore edit" }} }},
         {"nvim-tree/nvim-tree.lua",
             dependencies = {"nvim-tree/nvim-web-devicons"},
             opts = { filters = { dotfiles = true } },
