@@ -151,5 +151,6 @@ require("lazy").setup({
         -- misc
         {"ThePrimeagen/vim-be-good"},
         {"tpope/vim-dispatch"},
+        {"godlygeek/tabular"},
     }
 })
