@@ -60,7 +60,7 @@ return {
             "yuck",
             "zig",
         },
-        context_commentstring = { enabled = false },
+        context_commentstring = { enabled = true },
         sync_install = false,
         highlight = { enable = true },
         additional_vim_regex_highlighting = false,
@@ -107,11 +107,6 @@ return {
     dependencies = {
         { "nvim-treesitter/nvim-treesitter-textobjects" },
         { "JoosepAlviste/nvim-ts-context-commentstring" },
-        { "nvim-treesitter/nvim-treesitter-context",
-            config = function()
-                require("treesitter-context").setup()
-            end
-        },
         {"Wansmer/treesj",
         config = function() require("treesj").setup({ use_default_keymaps = false, max_join_lines = 150 }) end },
         {"nvim-treesitter/playground"},
