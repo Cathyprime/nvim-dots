@@ -86,7 +86,7 @@ require("lazy").setup({
         {"nvim-tree/nvim-tree.lua",
             dependencies = {"nvim-tree/nvim-web-devicons"},
             opts = { filters = { dotfiles = true } },
-            keys = { { "<leader>ef", ":NvimTreeToggle<cr>", {silent = true}} }, },
+            keys = { { "<leader>e", ":NvimTreeToggle<cr>", {silent = true}} }, },
 
         -- git integration
         {"tpope/vim-fugitive"},
