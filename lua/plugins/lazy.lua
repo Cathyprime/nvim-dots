@@ -66,6 +66,7 @@ require("lazy").setup({
         },
 
         -- helpers for editing
+        "rstacruz/vim-closer",
         {
             "numToStr/Comment.nvim",
             config = function() require('Comment').setup() end,
@@ -76,10 +77,6 @@ require("lazy").setup({
             tag = "*",
             keys = {"ys", "cs", "ds", {"S", mode = "v"}},
             config = function() require("nvim-surround").setup() end,
-        },
-        {
-            "echasnovski/mini.pairs",
-            config = function() require("mini.pairs").setup() end,
         },
         {
             "mbbill/undotree",
