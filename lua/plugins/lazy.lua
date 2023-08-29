@@ -171,5 +171,6 @@ require("lazy").setup({
         "ThePrimeagen/vim-be-good",
         "tpope/vim-dispatch",
         "godlygeek/tabular",
+        "tpope/vim-eunuch",
     }
 })
