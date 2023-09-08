@@ -2,6 +2,7 @@ return {
     "VonHeikemen/lsp-zero.nvim",
     config = function ()
         local lsp = require('lsp-zero').preset({})
+        local ls = require("luasnip")
 
         -- keybinds
         lsp.on_attach(function(_, bufnr)
@@ -12,6 +13,7 @@ return {
             vim.keymap.set("n", "<leader>crn", function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = "rename variable"})
             vim.keymap.set("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", {buffer = true})
             vim.keymap.set("i", "<c-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, desc = "show signature"})
+            vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
         end)
 
         -- required servers
@@ -46,12 +48,6 @@ return {
         ---@diagnostic disable-next-line
         lsp.setup_nvim_cmp({
             sources = cmp.config.sources({
-                {
-                    name = "omni",
-                    options = {
-                        disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" }
-                    }
-                },
                 { name = "luasnip" },
                 { name = "nvim_lsp" },
                 { name = "path" },
@@ -67,14 +63,13 @@ return {
             },
 
             mapping = {
-                ["<c-j>"] = cmp.mapping.select_next_item(cmp_select),
-                ["<c-k>"] = cmp.mapping.select_prev_item(cmp_select),
+                ["<c-n>"] = cmp.mapping.select_next_item(cmp_select),
+                ["<c-p>"] = cmp.mapping.select_prev_item(cmp_select),
                 ["<cr>"] = cmp.mapping.confirm({ select = false}),
-                ["<c-space>"] = cmp.mapping.complete(),
+                ["<c-e>"] = cmp.mapping.abort(),
+                ["<c-c>"] = cmp.mapping.complete(),
                 ["<c-u>"] = cmp.mapping.scroll_docs(-4),
                 ["<c-d>"] = cmp.mapping.scroll_docs(4),
-                ["<tab>"] = cmp_action.luasnip_jump_forward(),
-                ["<s-tab>"] = cmp_action.luasnip_jump_backward(),
             },
 
             ---@diagnostic disable-next-line
@@ -90,6 +85,10 @@ return {
 
                     return item
                 end,
+            },
+
+            completion = {
+                autocomplete = false,
             },
 
             sorting = {
@@ -161,5 +160,14 @@ return {
         })
 
         lsp.setup()
+        vim.keymap.set({"i"}, "<c-e>", function() ls.expand() end, {silent = true})
+        vim.keymap.set({"i", "s"}, "<c-j>", function() ls.jump( 1) end, {silent = true})
+        vim.keymap.set({"i", "s"}, "<c-k>", function() ls.jump(-1) end, {silent = true})
+
+        vim.keymap.set({"i", "s"}, "<c-s>", function()
+            if ls.choice_active() then
+                ls.change_choice(1)
+            end
+        end, {silent = true})
     end
 }
