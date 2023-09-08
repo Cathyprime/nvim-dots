@@ -22,7 +22,7 @@ opt.list = true
 opt.listchars:append("trail:-")
 
 -- path
-opt.path:append("**")
+opt.path = (".,**")
 
 -- search settings
 opt.ignorecase = false
