@@ -15,22 +15,22 @@ return {
 
         -- file navigation
         {
-            "<C-f>",
+            "<C-h>f",
             function() require("harpoon.ui").nav_file(1) end,
             {desc = "go to first", }
         },
         {
-            "<C-s>",
+            "<C-h>s",
             function() require("harpoon.ui").nav_file(2) end,
             {desc = "go to second", }
         },
         {
-            "<c-n>",
+            "<c-h>n",
             function() require("harpoon.ui").nav_file(3) end,
             { desc = "go to next" }
         },
         {
-            "<c-h>",
+            "<c-h>h",
             function() require("harpoon.ui").nav_file(4) end,
             {desc = "go to harpoon", }
         },
