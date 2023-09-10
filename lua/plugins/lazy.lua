@@ -154,7 +154,7 @@ require("lazy").setup({
         {
             "JellyApple102/easyread.nvim",
             config = function ()
-                require("easyread").setup({ filetypes = {} })
+                require("easyread").setup({ fileTypes = {} })
                 vim.keymap.set("n", "<leader>U", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
             end
         },
