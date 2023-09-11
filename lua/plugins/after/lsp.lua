@@ -21,7 +21,6 @@ return {
             "alex",
             "jsonls",
             "lua_ls",
-            "proselint",
             "pylsp",
             "rust_analyzer",
             "tailwindcss",
