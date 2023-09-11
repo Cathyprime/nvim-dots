@@ -1,3 +1,3 @@
 let maplocalleader = "\\"
-compiler sh
+compiler shellcheck
 nnoremap <buffer> <silent> <localleader>r :Make %<cr>
