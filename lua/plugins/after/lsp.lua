@@ -18,7 +18,6 @@ return {
 
         -- required servers
         lsp.ensure_installed({
-            "alex",
             "jsonls",
             "lua_ls",
             "pylsp",
