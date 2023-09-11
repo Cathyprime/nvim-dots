@@ -18,6 +18,7 @@ return {
 
         -- required servers
         lsp.ensure_installed({
+            "bashls",
             "jsonls",
             "lua_ls",
             "pylsp",
