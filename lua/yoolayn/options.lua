@@ -20,6 +20,7 @@ opt.textwidth = 100
 -- list
 opt.list = true
 opt.listchars:append("trail:-")
+opt.listchars:append("tab:  ")
 
 -- path
 opt.path = (".,**")
