@@ -13,9 +13,11 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll up" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "next search" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "prev search" })
 
--- line text objects
-vim.keymap.set({ "o", "x" }, "il", ":<c-u>normal! _vg_<cr>", { desc = "inner line", silent = true })
-vim.keymap.set({ "o", "x" }, "al", ":<c-u>normal! 0v$<cr>", { desc = "around line", silent = true })
+-- text objects
+vim.keymap.set({ "o", "x" }, "il", ":<c-u>norm! _vg_<cr>", { desc = "inner line", silent = true })
+vim.keymap.set({ "o", "x" }, "al", ":<c-u>norm! 0v$<cr>", { desc = "a line", silent = true })
+vim.keymap.set({ "o", "x" }, "i_", ":<c-u>norm! T_vt_<cr>", { desc = "inner underscore", silent = true})
+vim.keymap.set({ "o", "x" }, "a_", ":<c-u>norm! F_vf_<cr>", { desc = "a underscore", silent = true})
 
 -- clipboard interaction
 vim.keymap.set( { "n", "v" }, "<leader>y", [["+y]], { desc = "yank to clipboard" })
