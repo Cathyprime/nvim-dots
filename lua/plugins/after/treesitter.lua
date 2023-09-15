@@ -91,9 +91,9 @@ return {
                 -- and should return the mode ('v', 'V', or '<c-v>') or a table
                 -- mapping query_strings to modes.
                 selection_modes = {
-                    ['@parameter.outer'] = 'v', -- charwise
-                    ['@function.outer'] = 'V', -- linewise
-                    ['@class.outer'] = '<c-v>', -- blockwise
+                    ["@parameter.outer"] = "v", -- charwise
+                    ["@function.outer"] = "V", -- linewise
+                    ["@class.outer"] = "<c-v>", -- blockwise
                 },
                 -- If you set this to `true` (default is `false`) then any textobject is
                 -- extended to include preceding or succeeding whitespace. Succeeding
@@ -106,6 +106,37 @@ return {
                 -- and should return true of false
                 include_surrounding_whitespace = true,
             },
+            move = {
+                enable = true,
+                set_jumps = true,
+                goto_next_start = {
+                    ["]l"] = "@loop.outer",
+                    ["]]"] = "@function.outer",
+                },
+                goto_next_end = {
+                    ["]L"] = "@loop.outer",
+                    ["]["] = "@function.outer",
+                },
+                goto_previous_start = {
+                    ["[l"] = "@loop.outer",
+                    ["[["] = "@function.outer",
+                },
+                goto_previos_end = {
+                    ["[L"] = "@loop.outer",
+                    ["[]"] = "@function.outer",
+                },
+            },
+            swap = {
+                enable = true,
+                swap_next = {
+                    ["gsa"] = "@parameter.inner",
+                    ["gsf"] = "@function.outer",
+                },
+                swap_previous = {
+                    ["gSa"] = "@parameter.inner",
+                    ["gSf"] = "@function.outer",
+                }
+            }
         }
     })
     end,
