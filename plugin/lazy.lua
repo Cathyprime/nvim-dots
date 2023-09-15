@@ -22,7 +22,7 @@ require("lazy").setup({
         change_detection = {
             notify = false
         },
-        { import = "plugins.after" },
+        { import = "plugin" },
         -- telescope stuff
         {
             'nvim-telescope/telescope.nvim',
