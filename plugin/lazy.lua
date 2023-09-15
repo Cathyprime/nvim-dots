@@ -138,11 +138,6 @@ require("lazy").setup({
             }
         },
         {
-            "folke/neodev.nvim",
-            config = function () require("neodev").setup() end,
-            ft = "lua",
-        },
-        {
             "j-hui/fidget.nvim", tag = 'legacy',
             config = function() require("fidget").setup({
                 text = { spinner = "moon" },
