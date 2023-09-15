@@ -16,6 +16,7 @@ return {
             { desc = "toggle context", silent = true}
         },
     },
+    ---@diagnostic disable-next-line
     config = function () require("nvim-treesitter.configs").setup({
         ensure_installed = {
             "bash",
@@ -74,9 +75,13 @@ return {
                     ["if"] = { query = "@function.inner", desc = "select inner functions" },
                     ["ac"] = { query = "@class.outer", desc = "select a class" },
                     ["ic"] = { query = "@class.inner", desc = "select inner class" },
-                    ["as"] = { query = "@scope", query_group = "locals", desc = "select language scope" },
                     ["aa"] = { query = "@parameter.outer", desc = "select a argument" },
                     ["ia"] = { query = "@parameter.inner", desc = "select inner argument" },
+                    ["ii"] = { query = "@conditional.inner", desc = "select a conditional" },
+                    ["ai"] = { query = "@conditional.outer", desc = "select inner conditional" },
+                    ["il"] = { query = "@loop.inner", desc = "select a loop" },
+                    ["al"] = { query = "@loop.outer", desc = "select inner loop" },
+                    ["at"] = { query = "@comment.outer", desc = "select a comment" },
                 },
                 -- You can choose the select mode (default is charwise 'v')
                 --
