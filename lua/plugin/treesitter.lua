@@ -4,13 +4,6 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSUpdateSync" },
-    keys = {
-        {
-            "<leader>j",
-            function () require("treesj").toggle() end,
-            { desc = "toggle join/split" }
-        },
-    },
     ---@diagnostic disable-next-line
     config = function () require("nvim-treesitter.configs").setup({
         ensure_installed = {
@@ -138,8 +131,6 @@ return {
     dependencies = {
         { "nvim-treesitter/nvim-treesitter-textobjects" },
         { "JoosepAlviste/nvim-ts-context-commentstring" },
-        {"Wansmer/treesj",
-        config = function() require("treesj").setup({ use_default_keymaps = false, max_join_lines = 150 }) end },
         {"nvim-treesitter/playground"},
     }
 }
