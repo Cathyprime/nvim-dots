@@ -14,8 +14,8 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "next search" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "prev search" })
 
 -- text objects
-vim.keymap.set({ "o", "x" }, "il", ":<c-u>norm! _vg_<cr>", { desc = "inner line", silent = true })
-vim.keymap.set({ "o", "x" }, "al", ":<c-u>norm! 0v$<cr>", { desc = "a line", silent = true })
+vim.keymap.set({ "o", "x" }, "is", ":<c-u>norm! _vg_<cr>", { desc = "inner line", silent = true })
+vim.keymap.set({ "o", "x" }, "as", ":<c-u>norm! 0v$<cr>", { desc = "a line", silent = true })
 vim.keymap.set({ "o", "x" }, "i_", ":<c-u>norm! T_vt_<cr>", { desc = "inner underscore", silent = true})
 vim.keymap.set({ "o", "x" }, "a_", ":<c-u>norm! F_vf_<cr>", { desc = "a underscore", silent = true})
 
