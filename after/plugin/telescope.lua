@@ -4,12 +4,12 @@ require("telescope").setup({
     defaults = {
         mappings = {
             i = {
-                ["<C-d>"] = function(...)
+                ["<C-y>"] = function(...)
                     return actions.preview_scrolling_down(
                     ...
                     )
                 end,
-                ["<C-u>"] = function(...)
+                ["<C-e>"] = function(...)
                     return actions.preview_scrolling_up(
                     ...
                     )
