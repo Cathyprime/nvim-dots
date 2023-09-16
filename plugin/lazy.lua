@@ -31,62 +31,16 @@ require("lazy").setup({
         },
 
         -- colorscheme
-        {
-            "rebelot/kanagawa.nvim",
-            config = function()
-                require("kanagawa").setup({
-                    transparent = true,
-                    colors = {
-                        theme = {
-                            all = { ui = { bg_gutter = "none" } },
-                        },
-                    },
-                    overrides = function(colors)
-                        local theme = colors.theme
-                        return {
-                            TelescopeTitle = { fg = theme.ui.special, bold = true },
-                            TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-                            TelescopePromptBorder = {
-                                fg = theme.ui.bg_p1,
-                                bg = theme.ui.bg_p1,
-                            },
-                            TelescopeResultsNormal = {
-                                fg = theme.ui.fg_dim,
-                                bg = theme.ui.bg_m1,
-                            },
-                            TelescopeResultsBorder = {
-                                fg = theme.ui.bg_m1,
-                                bg = theme.ui.bg_m1,
-                            },
-                            TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-                            TelescopePreviewBorder = {
-                                bg = theme.ui.bg_dim,
-                                fg = theme.ui.bg_dim,
-                            },
-                        }
-                    end,
-                })
-                vim.cmd("colorscheme kanagawa-wave")
-            end,
-        },
+        "rebelot/kanagawa.nvim",
 
         -- helpers for editing
         "rstacruz/vim-closer",
-        {
-            "numToStr/Comment.nvim",
-            config = function() require('Comment').setup() end,
-            keys = { "gc", "gcA", {"gc", mode="v"} },
-        },
+        "numToStr/Comment.nvim",
         {
             "kylechui/nvim-surround",
             tag = "*",
-            keys = {"ys", "cs", "ds", {"S", mode = "v"}},
-            config = function() require("nvim-surround").setup() end,
         },
-        {
-            "mbbill/undotree",
-            keys = { { "<leader>u", ":UndotreeToggle<cr>", { silent = true, desc = "toggle undotree" } } },
-        },
+        "mbbill/undotree",
         "anuvyklack/hydra.nvim" ,
 
         -- file management
@@ -95,19 +49,11 @@ require("lazy").setup({
             "nvim-tree/nvim-tree.lua",
             dependencies = {"nvim-tree/nvim-web-devicons"},
             opts = { filters = { dotfiles = true } },
-            keys = { { "<leader>e", ":NvimTreeToggle<cr>", { silent = true } } },
         },
 
         -- git integration
         "tpope/vim-fugitive",
-        {
-            "lewis6991/gitsigns.nvim",
-            config = function()
-                require("gitsigns").setup({
-                    on_attach = function(bufnr) vim.keymap.set({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<cr>", { desc = "inner hunk", buffer = bufnr }) end,
-                })
-            end
-        },
+        "lewis6991/gitsigns.nvim",
 
         -- lsp
         {
@@ -125,39 +71,19 @@ require("lazy").setup({
                 "L3MON4D3/LuaSnip",     -- Required
                 "hrsh7th/cmp-buffer",
                 "octaltree/cmp-look",
-                {
-                    "rafamadriz/friendly-snippets",
-                    config = function () require("luasnip.loaders.from_vscode").lazy_load() end,
-                },
+                "rafamadriz/friendly-snippets",
                 "hrsh7th/cmp-path",
                 "saadparwaiz1/cmp_luasnip",
-                {
-                    "dgagn/diagflow.nvim",
-                    config = function () require("diagflow").setup({ scope = "line", }) end,
-                }
+                "dgagn/diagflow.nvim",
             }
         },
-        {
-            "j-hui/fidget.nvim", tag = 'legacy',
-            config = function() require("fidget").setup({
-                text = { spinner = "moon" },
-                window = { blend = 0 } })
-            end
-        },
+        "j-hui/fidget.nvim", tag = 'legacy',
 
         -- ui
-        {
-            "JellyApple102/easyread.nvim",
-            config = function ()
-                require("easyread").setup({ fileTypes = {} })
-                vim.keymap.set("n", "<leader>U", ":EasyreadToggle<cr>", { desc = "toggle easier reading", silent = true })
-            end
-        },
+        "JellyApple102/easyread.nvim",
         {
             "folke/todo-comments.nvim",
             dependencies = { "nvim-lua/plenary.nvim" },
-            opts = {},
-            event = "VimEnter",
         },
 
         -- lispy stuff (love lisp btw)
