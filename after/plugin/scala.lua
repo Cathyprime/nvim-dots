@@ -13,9 +13,3 @@ local nvim_metals_group =
     end,
     group = nvim_metals_group,
 })
-
-return {
-    "scalameta/nvim-metals",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    ft = "scala",
-}
