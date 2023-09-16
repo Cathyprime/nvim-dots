@@ -22,12 +22,11 @@ require("lazy").setup({
         change_detection = {
             notify = false
         },
-        { import = "plugin" },
         -- telescope stuff
         {
             'nvim-telescope/telescope.nvim',
             tag = '0.1.2',
-            dependencies = { { 'nvim-lua/plenary.nvim' } },
+            dependencies = { 'nvim-lua/plenary.nvim' },
         },
 
         -- colorscheme
@@ -55,6 +54,16 @@ require("lazy").setup({
         "tpope/vim-fugitive",
         "lewis6991/gitsigns.nvim",
 
+        -- treesitter
+        {
+            "nvim-treesitter/nvim-treesitter",
+            build = ":TSUpdate",
+            dependencies = {
+                "nvim-treesitter/nvim-treesitter-textobjects",
+                "JoosepAlviste/nvim-ts-context-commentstring",
+                "nvim-treesitter/playground",
+            }
+        },
         -- lsp
         {
             "VonHeikemen/lsp-zero.nvim",
@@ -75,9 +84,13 @@ require("lazy").setup({
                 "hrsh7th/cmp-path",
                 "saadparwaiz1/cmp_luasnip",
                 "dgagn/diagflow.nvim",
-            }
+            },
         },
         "j-hui/fidget.nvim", tag = 'legacy',
+        {
+            "scalameta/nvim-metals",
+            dependencies = { "nvim-lua/plenary.nvim" },
+        },
 
         -- ui
         "JellyApple102/easyread.nvim",
@@ -88,15 +101,15 @@ require("lazy").setup({
 
         -- lispy stuff (love lisp btw)
         {"eraserhd/parinfer-rust",
-            build = "cargo build --release",
-            ft = { "lisp", "yuck" }},
+        build = "cargo build --release",
+        ft = { "lisp", "yuck" }},
         {"elkowar/yuck.vim",
-            ft = "yuck"},
+        ft = "yuck"},
 
         -- misc
         "ThePrimeagen/vim-be-good",
         "tpope/vim-dispatch",
         "godlygeek/tabular",
         "tpope/vim-eunuch",
-    }
+ a   }
 })
