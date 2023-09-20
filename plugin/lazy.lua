@@ -44,11 +44,6 @@ require("lazy").setup({
 
         -- file management
         "ThePrimeagen/harpoon",
-        {
-            "nvim-tree/nvim-tree.lua",
-            dependencies = {"nvim-tree/nvim-web-devicons"},
-            opts = { filters = { dotfiles = true } },
-        },
 
         -- git integration
         "tpope/vim-fugitive",
