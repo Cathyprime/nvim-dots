@@ -81,7 +81,10 @@ require("lazy").setup({
                 "dgagn/diagflow.nvim",
             },
         },
-        "j-hui/fidget.nvim", tag = 'legacy',
+        {
+            "j-hui/fidget.nvim",
+            tag = "legacy"
+        },
         {
             "scalameta/nvim-metals",
             dependencies = { "nvim-lua/plenary.nvim" },
