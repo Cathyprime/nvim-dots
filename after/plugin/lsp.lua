@@ -55,7 +55,7 @@ lsp.setup_nvim_cmp({
 
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            ls.lsp_expand(args.body)
         end,
     },
 
@@ -166,3 +166,10 @@ vim.keymap.set({"i", "s"}, "<c-l>", function()
         ls.change_choice(1)
     end
 end, {silent = true})
+
+vim.keymap.set("n", "<leader><leader>s", "<cmd>e ~/.config/nvim/after/plugin/luasnip.lua<cr>", { silent = true })
+
+ls.config.set_config({
+    history = true,
+    updateevents = "TextChanged,TextChangedI"
+})
