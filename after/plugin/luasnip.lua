@@ -9,18 +9,6 @@ local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
 -- local rep = require("luasnip.extras").rep
 
-ls.add_snippets("all", {
-    s("(", fmt("({})", {
-        i(0)
-    })),
-    s("[", fmt("[{}]", {
-        i(0)
-    })),
-    s("{", fmt("{{{}}}", {
-        i(0)
-    })),
-})
-
 ls.add_snippets("lua", {
     s("req", fmt([[local {varname} = require "{path}"]], {
         varname = f(function(import_name)
@@ -40,4 +28,16 @@ ls.add_snippets("lua", {
     s("setup", fmt("setup({{{}}})", {
         i(0)
     })),
+    s("var", fmt("local {} = {}", {
+        i(1, "name"),
+        i(0, "value")
+    })),
+    s("p", fmt("print(\"{}\")", {
+        i(0)
+    })),
+    s("noti", fmt([[vim.notify("{}", {}, {{{}}})]], {
+        i(1, "message"),
+        i(2, "loglevel"),
+        i(0, "")
+    }))
 })
