@@ -45,10 +45,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 ---@diagnostic disable-next-line
 lsp.setup_nvim_cmp({
     sources = cmp.config.sources({
-        { name = "luasnip" },
         { name = "nvim_lsp" },
         { name = "path" },
     }, {
+        { name = "luasnip" },
         { name = "look", keyword_length = 5 },
         { name = "buffer", keyword_length = 3 },
     }),
@@ -161,7 +161,7 @@ vim.keymap.set({"i"}, "<c-e>", function() ls.expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "<c-j>", function() ls.jump( 1) end, {silent = true})
 vim.keymap.set({"i", "s"}, "<c-k>", function() ls.jump(-1) end, {silent = true})
 
-vim.keymap.set({"i", "s"}, "<c-s>", function()
+vim.keymap.set({"i", "s"}, "<c-l>", function()
     if ls.choice_active() then
         ls.change_choice(1)
     end
