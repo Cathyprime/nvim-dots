@@ -33,7 +33,7 @@ require("lazy").setup({
         "rebelot/kanagawa.nvim",
 
         -- helpers for editing
-        "rstacruz/vim-closer",
+        "cohama/lexima.vim",
         "numToStr/Comment.nvim",
         {
             "kylechui/nvim-surround",
