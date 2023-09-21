@@ -2,27 +2,35 @@ local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 require("telescope").setup({
     defaults = {
+        layout_strategy = "horizontal",
+        layout_config = {
+            height = 0.90,
+            width = 0.90,
+            preview_cutoff = 120,
+            horizontal = { preview_width = 0.50 },
+            vertical = { width = 0.55, height = 0.9, preview_cutoff = 0 },
+            prompt_position = "bottom",
+        },
         mappings = {
             i = {
-                ["<C-y>"] = function(...)
-                    return actions.preview_scrolling_down(
-                    ...
-                    )
+                ["<C-l>"] = function (...)
+                    return actions.smart_send_to_loclist(...)
                 end,
+                ["<C-q>"] = function (...)
+                    return actions.smart_send_to_qflist(...)
+                end,
+                ["<C-u>"] = false,
                 ["<C-e>"] = function(...)
-                    return actions.preview_scrolling_up(
-                    ...
-                    )
+                    return actions.preview_scrolling_down(...)
+                end,
+                ["<C-y>"] = function(...)
+                    return actions.preview_scrolling_up(...)
                 end,
                 ["<C-j>"] = function(...)
-                    return actions.move_selection_next(
-                    ...
-                    )
+                    return actions.move_selection_next(...)
                 end,
                 ["<C-k>"] = function(...)
-                    return actions.move_selection_previous(
-                    ...
-                    )
+                    return actions.move_selection_previous(...)
                 end,
             },
         },
@@ -119,10 +127,23 @@ vim.keymap.set(
 )
 
 -- git
-
 vim.keymap.set(
     "n",
     "<c-p>",
-    "<cmd>Telescope git_files<cr>",
-    {desc = "find git files" }
+    "<cmd>lua require'yoolayn.telescope-config'.project_files()<cr>",
+    {desc = "find git files/fallback to find files" }
+)
+
+vim.keymap.set(
+    "n",
+    "<leader><c-p>",
+    "<cmd>Telescope find_files<cr>",
+    {desc = "find git files/fallback to find files" }
+)
+
+vim.keymap.set(
+    "n",
+    "<leader><c-h>",
+    "<cmd>Telescope find_files hidden=true<cr>",
+    {desc = "find git files/fallback to find files" }
 )
