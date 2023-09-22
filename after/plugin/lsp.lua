@@ -45,6 +45,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 ---@diagnostic disable-next-line
 lsp.setup_nvim_cmp({
     sources = cmp.config.sources({
+        { name = "nvim_lua" },
         { name = "nvim_lsp" },
         { name = "path" },
     }, {
@@ -130,6 +131,9 @@ require("lspconfig").tsserver.setup({
 require("lspconfig").tailwindcss.setup({
     filetypes_exclude = { "markdown" },
 })
+
+local lua_opts = lsp.nvim_lua_ls()
+require('lspconfig').lua_ls.setup(lua_opts)
 
 require("lspconfig").rust_analyzer.setup({
     settings = {
