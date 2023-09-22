@@ -63,8 +63,8 @@ ls.add_snippets("lua", {
         i(0, "value")
     })),
 
-    s("p", fmt([[print("{}")]], {
-        i(0)
+    s("p", fmt([[print({})]], {
+        i(0),
     })),
 
     s("noti", fmt([[vim.notify("{}", {}, {{{}}})]], {
@@ -72,5 +72,20 @@ ls.add_snippets("lua", {
         i(2, "loglevel"),
         i(0, "")
     })),
+
+    s("for", fmt([[
+    for {index}, {value} in {pair}({table}) do
+        {body}
+    end
+    ]], {
+        pair = c(1, {
+            t("pairs"),
+            t("ipairs")
+        }),
+        index = i(2, "_"),
+        value = i(3, "v"),
+        table = i(4),
+        body = i(0)
+    }))
 
 })
