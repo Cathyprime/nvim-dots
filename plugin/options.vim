@@ -64,9 +64,6 @@ set shortmess+=c
 " mode
 set showmode
 
-" backspace
-set backspace=
-
 " global status line
 set laststatus=3
 
