@@ -12,15 +12,14 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 ls.add_snippets("rust", {
     s("fn", fmt([[
-    fn {funame}({argname}: {argtype}) -> {retype} {{
+    fn {funame}({arg}) -> {retype} {{
         {body}
     }}
     ]], {
         funame = i(1, "name"),
-        argname = i(2, "arg"),
-        argtype = i(3, "type"),
-        retype = i(4, "RetType"),
-        body = i(0, "unimplemented!")
+        arg = i(2, "arg"),
+        retype = i(3, "RetType"),
+        body = i(0, "unimplemented!;")
     })),
 
     s("p", fmt([[println!({});]], {i(0)})),
