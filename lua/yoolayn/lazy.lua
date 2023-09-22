@@ -131,6 +131,9 @@ require("lazy").setup({
             "scalameta/nvim-metals",
             dependencies = { "nvim-lua/plenary.nvim" },
             config = function()
+                local lsp_zero = require('lsp-zero')
+                local metals_config = require('metals').bare_config()
+                metals_config.capabilities = lsp_zero.get_capabilities()
                 local nvim_metals_group =
                 vim.api.nvim_create_augroup("nvim-metals", { clear = true })
                 vim.api.nvim_create_autocmd("FileType", {
