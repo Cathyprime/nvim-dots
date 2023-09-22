@@ -16,12 +16,16 @@ require("lazy").setup({
         install = {
             missing = false,
         },
+        defaults = {
+            lazy = true
+        },
         checker = {
             enabled = false,
         },
         change_detection = {
             notify = false
         },
+        -- {import = "plugin"}
         -- telescope stuff
         {
             'nvim-telescope/telescope.nvim',
@@ -34,12 +38,21 @@ require("lazy").setup({
 
         -- helpers for editing
         "cohama/lexima.vim",
-        "numToStr/Comment.nvim",
+        {
+            "numToStr/Comment.nvim",
+            opts = {},
+        },
         {
             "kylechui/nvim-surround",
             tag = "*",
+            opts = {},
         },
-        "mbbill/undotree",
+        {
+            "mbbill/undotree",
+            keys = {
+                {"<leader>u", "<cmd>UndotreeToggle<cr>", {silent = true}}
+            },
+        },
         "anuvyklack/hydra.nvim" ,
 
         -- file management
@@ -47,7 +60,21 @@ require("lazy").setup({
 
         -- git integration
         "tpope/vim-fugitive",
-        "lewis6991/gitsigns.nvim",
+        {
+            "lewis6991/gitsigns.nvim",
+            opts = {
+                on_attach = function(bufnr)
+                    vim.keymap.set(
+                    { "o", "x" },
+                    "ih",
+                    ":<C-u>Gitsigns select_hunk<cr>",
+                    {
+                        desc = "inner hunk",
+                        buffer = bufnr
+                    })
+                end,
+            }
+        },
 
         -- treesitter
         {
@@ -75,26 +102,57 @@ require("lazy").setup({
                 "L3MON4D3/LuaSnip",     -- Required
                 "hrsh7th/cmp-buffer",
                 "octaltree/cmp-look",
-                "rafamadriz/friendly-snippets",
+                {
+                    "rafamadriz/friendly-snippets",
+                    config = function()
+                        require("luasnip.loaders.from_vscode").lazy_load({
+                            exclude = { "lua", "rust" },
+                        })
+                    end
+                },
                 "hrsh7th/cmp-path",
                 "saadparwaiz1/cmp_luasnip",
-                "dgagn/diagflow.nvim",
+                {
+                    "dgagn/diagflow.nvim",
+                    opts = {scope = "line"}
+                },
             },
         },
         {
             "j-hui/fidget.nvim",
-            tag = "legacy"
+            tag = "legacy",
+            opts = {
+                text = { spinner = "moon" },
+                window = { blend = 0 }
+            }
         },
         {
             "scalameta/nvim-metals",
             dependencies = { "nvim-lua/plenary.nvim" },
+            config = function()
+                local nvim_metals_group =
+                vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+                vim.api.nvim_create_autocmd("FileType", {
+                    pattern = { "scala", "sbt", "java" },
+                    callback = function()
+                        require("metals").initialize_or_attach({})
+                        local metals_config = require("metals").bare_config()
+                        metals_config.settings = {
+                            showImplicitArguments = true,
+                            serverVersion = "latest.snapshot",
+                        }
+                        metals_config.init_options.statusBarProvider = "on"
+                    end,
+                    group = nvim_metals_group,
+                })
+            end
         },
 
         -- ui
-        "JellyApple102/easyread.nvim",
         {
             "folke/todo-comments.nvim",
             dependencies = { "nvim-lua/plenary.nvim" },
+            event = "VimEnter",
         },
 
         -- lispy stuff (love lisp btw)
@@ -109,5 +167,5 @@ require("lazy").setup({
         "tpope/vim-dispatch",
         "godlygeek/tabular",
         "tpope/vim-eunuch",
- a   }
-})
+        a   }
+    })

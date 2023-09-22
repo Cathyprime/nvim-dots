@@ -130,7 +130,7 @@ vim.keymap.set(
 vim.keymap.set(
     "n",
     "<c-p>",
-    "<cmd>lua require'yoolayn.telescope-config'.project_files()<cr>",
+    "<cmd>lua require'util.telescope-config'.project_files()<cr>",
     {desc = "find git files/fallback to find files" }
 )
 

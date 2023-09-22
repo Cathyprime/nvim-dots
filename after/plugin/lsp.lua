@@ -175,18 +175,18 @@ ls.config.set_config({
 local types = require("luasnip.util.types")
 
 require'luasnip'.config.setup({
-	ext_opts = {
-		[types.choiceNode] = {
-			active = {
-				virt_text = {{"●", "PortalOrange"}},
+    ext_opts = {
+        [types.choiceNode] = {
+            active = {
+                virt_text = {{"●", "PortalOrange"}},
                 hl_mode = "combine"
-			}
-		},
-		[types.insertNode] = {
-			active = {
-				virt_text = {{"●", "PortalBlue"}},
+            }
+        },
+        [types.insertNode] = {
+            active = {
+                virt_text = {{"●", "PortalBlue"}},
                 hl_mode = "combine"
-			}
-		}
-	},
+            }
+        }
+    },
 })
