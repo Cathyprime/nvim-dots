@@ -1,13 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -56,6 +56,25 @@ require("lazy").setup({
         "anuvyklack/hydra.nvim" ,
 
         -- file management
+        {
+            "nvim-tree/nvim-tree.lua",
+            dependencies = {"nvim-tree/nvim-web-devicons"},
+            config = function()
+                -- NOTE: i have no idea why, but without binding on VimEnter
+                -- it does not bind at all
+                vim.api.nvim_create_autocmd("VimEnter", {
+                    once = true,
+                    callback = function()
+                        vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { silent = true })
+                    end
+                })
+                require("nvim-tree").setup({
+                    filters = {
+                        dotfiles = true,
+                    }
+                })
+            end
+        },
         "ThePrimeagen/harpoon",
 
         -- git integration
@@ -157,6 +176,7 @@ require("lazy").setup({
             "folke/todo-comments.nvim",
             dependencies = { "nvim-lua/plenary.nvim" },
             event = "VimEnter",
+            opts = {},
         },
 
         -- lispy stuff (love lisp btw)
@@ -171,5 +191,5 @@ require("lazy").setup({
         "tpope/vim-dispatch",
         "godlygeek/tabular",
         "tpope/vim-eunuch",
-       }
+    }
 })
