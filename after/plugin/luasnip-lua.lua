@@ -10,6 +10,32 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local rep = require("luasnip.extras").rep
 
 ls.add_snippets("lua", {
+    s("kv", {
+        i(1, "key"),
+        t(" = "),
+        i(0, "value"),
+        t(",")
+    }),
+
+    s("kfn", fmt([[
+    {key} = function({args})
+        {body}
+    end
+    ]], {
+        key = i(1, "key"),
+        args = i(2),
+        body = i(3, "???")
+    })),
+
+    s("ktb", fmt([[
+    {key} = {{
+        {body}
+    }}
+    ]], {
+        key = i(1, "key"),
+        body = i(0)
+    })),
+
     s("req", fmt([[local {varname} = require "{path}"]], {
         varname = f(function(import_name)
             local parts = vim.split(import_name[1][1], "%.")
