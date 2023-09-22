@@ -171,5 +171,5 @@ require("lazy").setup({
         "tpope/vim-dispatch",
         "godlygeek/tabular",
         "tpope/vim-eunuch",
-        a   }
-    })
+       }
+})
