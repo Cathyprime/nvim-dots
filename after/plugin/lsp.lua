@@ -167,9 +167,26 @@ vim.keymap.set({"i", "s"}, "<c-l>", function()
     end
 end, {silent = true})
 
-vim.keymap.set("n", "<leader><leader>s", "<cmd>e ~/.config/nvim/after/plugin/luasnip.lua<cr>", { silent = true })
-
 ls.config.set_config({
     history = true,
     updateevents = "TextChanged,TextChangedI"
+})
+
+local types = require("luasnip.util.types")
+
+require'luasnip'.config.setup({
+	ext_opts = {
+		[types.choiceNode] = {
+			active = {
+				virt_text = {{"●", "PortalOrange"}},
+                hl_mode = "combine"
+			}
+		},
+		[types.insertNode] = {
+			active = {
+				virt_text = {{"●", "PortalBlue"}},
+                hl_mode = "combine"
+			}
+		}
+	},
 })
