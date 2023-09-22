@@ -70,7 +70,7 @@ ls.add_snippets("lua", {
     s("noti", fmt([[vim.notify("{}", {}, {{{}}})]], {
         i(1, "message"),
         i(2, "loglevel"),
-        i(0, "")
+        i(3, "")
     })),
 
     s("for", fmt([[
@@ -85,7 +85,7 @@ ls.add_snippets("lua", {
         index = i(2, "_"),
         value = i(3, "v"),
         table = i(4),
-        body = i(0)
+        body = i(5)
     })),
 
     s("while", fmt([[
@@ -94,7 +94,7 @@ ls.add_snippets("lua", {
     end
     ]],{
         cond = i(1, "condition"),
-        body = i(0)
+        body = i(2)
     })),
 
     s("mod", fmt([[
@@ -114,7 +114,36 @@ ls.add_snippets("lua", {
     ]], {
         name = i(1, "name"),
         args = i(2),
-        body = i(0),
+        body = i(3),
+    })),
+
+    s("if", fmt([[
+    if {cond} then
+        {body}
+    end
+    ]],{
+        cond = i(1, "condition"),
+        body = c(2, {
+            sn(nil, fmt("   {}", {
+                i(1)
+            })),
+            sn(nil, fmt([[
+            {body1}
+            else
+                {body2}
+            ]], {
+                body1 = i(1),
+                body2 = i(2)
+            }))
+        })
+    })),
+
+    s("elseif", fmt([[
+    elseif {cond} then
+        {body}
+    ]], {
+        cond = i(1, "condition"),
+        body = i(2)
     })),
 
 })
