@@ -101,6 +101,7 @@ require("lazy").setup({
                 "hrsh7th/cmp-nvim-lsp", -- Required
                 "L3MON4D3/LuaSnip",     -- Required
                 "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-nvim-lua",
                 "octaltree/cmp-look",
                 {
                     "rafamadriz/friendly-snippets",
