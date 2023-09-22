@@ -171,14 +171,12 @@ vim.keymap.set({"i", "s"}, "<c-l>", function()
     end
 end, {silent = true})
 
-ls.config.set_config({
-    history = true,
-    updateevents = "TextChanged,TextChangedI"
-})
-
 local types = require("luasnip.util.types")
 
-require'luasnip'.config.setup({
+ls.config.setup({
+    history = true,
+    update_events = {"TextChanged", "TextChangedI"},
+    enable_autosnippets = false,
     ext_opts = {
         [types.choiceNode] = {
             active = {
