@@ -86,6 +86,35 @@ ls.add_snippets("lua", {
         value = i(3, "v"),
         table = i(4),
         body = i(0)
-    }))
+    })),
+
+    s("while", fmt([[
+    while {cond} do
+        {body}
+    end
+    ]],{
+        cond = i(1, "condition"),
+        body = i(0)
+    })),
+
+    s("mod", fmt([[
+    local M = {{}}
+
+    {body}
+
+    return M
+    ]], {
+        body = i(0)
+    })),
+
+    s("meth", fmt([[
+    local M.{name} = function({args})
+        {body}
+    end
+    ]], {
+        name = i(1, "name"),
+        args = i(2),
+        body = i(0),
+    })),
 
 })
