@@ -2,7 +2,6 @@ local ls = require("luasnip")
 local s = ls.snippet
 local c = ls.choice_node
 local sn = ls.snippet_node
-local isn = ls.indent_snippet_node
 local i = ls.insert_node
 local f = ls.function_node
 local d = ls.dynamic_node
@@ -13,20 +12,47 @@ local fmt = require("luasnip.extras.fmt").fmt
 ls.add_snippets("lua", {
     s("req", fmt([[local {varname} = require "{path}"]], {
         varname = f(function(import_name)
-            local parts = vim.split(import_name[1][1], ".", {plain = true})
+            local parts = vim.split(import_name[1][1], "%.")
             return parts[#parts] or ""
         end, {1}),
         path = i(1)
     })),
 
-    s("fn", fmt([[
-    local function {fun_name}()
-        {body}
-    end
-    ]], {
-        fun_name = i(1, "name"),
-        body = i(0, "???")
+    s("reqc", fmt([[require("{}").{}({})]], {
+        i(1, "module"),
+        i(2, "setup"),
+        i(0)
     })),
+
+    s(
+        {trig = "(.*)fn", regTrig = true},
+        fmt([[{}]], {
+            d(1, function(_, snip)
+                if snip.captures[1] == "" then
+                    return sn(nil, fmt([[
+                        {scope}function {name}({args})
+                            {body}
+                        end
+                        ]], {
+                            scope = c(1, {t("local "), t("")}),
+                            name = i(2, "name"),
+                            args = i(3),
+                            body = i(4, "???")
+                        }))
+                else
+                    return sn(nil, fmt([[
+                        {before}function ({args})
+                            {body}
+                        end
+                        ]], {
+                            before = t(snip.captures[1]),
+                            args = i(1),
+                            body = i(2, "???")
+                        }))
+                end
+            end)
+            })
+        ),
 
     s("setup", fmt("setup({{{}}})", {
         i(0)
@@ -45,6 +71,6 @@ ls.add_snippets("lua", {
         i(1, "message"),
         i(2, "loglevel"),
         i(0, "")
-    }))
+    })),
 
 })
