@@ -7,6 +7,7 @@ local i = ls.insert_node
 local f = ls.function_node
 local d = ls.dynamic_node
 local t = ls.text_node
+local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
 -- local rep = require("luasnip.extras").rep
 
@@ -25,10 +26,16 @@ ls.add_snippets("rust", {
     s("p", fmt([[println!({});]], {i(0)})),
 
     s("main", fmt([[
-    fn main() {{
+    fn main() {}{{
         {}
     }}
-    ]], i(0, "unimplemented!"))),
+    ]], {
+        c(1, {
+            t"",
+            sn(nil, {t"-> ", i(1, "RetType"), t" "})
+        }),
+        i(0, "unimplemented!"),
+    })),
 
     s("var", fmt([[let {mut}{name}: {type} = {value};]], {
         mut = c(1, {t "", t "mut "}),
@@ -66,6 +73,63 @@ ls.add_snippets("rust", {
         body = i(0)
     })),
 
+    s("enum", fmt([[
+    enum {name} {{
+        {body}
+    }}
+    ]], {
+        name = i(1, "name"),
+        body = i(0)
+    })),
+
+    s("struct", fmt([[
+    struct {name} {{
+        {body}
+    }}
+    ]], {
+        name = i(1, "name"),
+        body = i(0)
+    })),
+
+    s(
+        { trig = "match,([%a]+),([%d]+)", regTrig = true, hidden = true },
+        fmt([[
+        {assign}match {var} {{
+            {arms}
+        }}
+        ]], {
+            assign = c(1, {
+                sn(nil, {t("let "), i(1, "name"), t(": "), i(2, "type"), t(" = ")}),
+                t""
+            }),
+            var = i(2, "variable"),
+            arms = d(3, function (_, snip)
+                local retTable = {}
+                local function new_line(index)
+                    if index == 1 then
+                        return t("")
+                    else
+                        return t({"", ""})
+                    end
+                end
+                for index=1,snip.captures[2] do
+                    table.insert(retTable, isn(index, {
+                        new_line(index),
+                        t(snip.captures[1] .. "::"),
+                        i(1),
+                        t(" => "),
+                        c(2, {
+                            sn(nil, i(1)),
+                            sn(nil, {t"{", i(1), t"}"})
+                        }),
+                        t(",")
+                    }, "$PARENT_INDENT\t"))
+                end
+                return sn(nil, retTable)
+            end)
+        })
+    ),
+
     s(
         { trig = "match([%d]+)", regTrig = true, hidden = true },
         fmt([[
@@ -74,7 +138,7 @@ ls.add_snippets("rust", {
         }}
         ]], {
             assign = c(1, {
-                sn(nil, {t("let "), i(1, "name"), t(" = ")}),
+                sn(nil, {t("let "), i(1, "name"), t(": "), i(2, "type"), t(" = ")}),
                 t""
             }),
             var = i(2, "variable"),
@@ -91,9 +155,12 @@ ls.add_snippets("rust", {
                     table.insert(retTable, isn(index, {
                         new_line(index),
                         i(1, "pattern"),
-                        t(" => {"),
-                        i(2,"do"),
-                        t("},")
+                        t(" => "),
+                        c(2, {
+                            sn(nil, i(1)),
+                            sn(nil, {t"{", i(1), t"}"})
+                        }),
+                        t(",")
                     }, "$PARENT_INDENT\t"))
                 end
                 return sn(nil, retTable)
@@ -122,7 +189,7 @@ ls.add_snippets("rust", {
         })
     })),
 
-    s("elseif", fmt([[
+    s({trig = ".*eif", regTrig = true, hidden = true}, fmt([[
     }} else if {condition} {{
         {body}
     ]], {
