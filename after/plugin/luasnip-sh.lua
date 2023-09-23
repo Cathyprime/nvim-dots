@@ -81,5 +81,32 @@ ls.add_snippets("sh", {
             }))
         }),
         body = i(0)
-    }))
+    })),
+
+    s("var", fmt([[{name}={choice}]], {
+        name = c(1, {
+            r(1, "varname"),
+            sn(nil, {
+                t"local ",
+                r(1, "varname")
+            })
+        }),
+        choice = c(2, {
+            sn(nil, {
+                t"$(",
+                r(1, "varvalue"),
+                t")"
+            }),
+            sn(nil, {
+                t[["]],
+                r(1, "varvalue"),
+                t[["]],
+            })
+        })
+    }), {
+        stored = {
+            ["varname"] = i(1, "name"),
+            ["varvalue"] = i(1, "value"),
+        },
+    })
 })
