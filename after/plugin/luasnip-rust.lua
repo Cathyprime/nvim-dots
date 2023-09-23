@@ -37,5 +37,97 @@ ls.add_snippets("rust", {
         value = i(0, "value")
     })),
 
-})
+    s("for", fmt([[
+    for {var} in {table} {{
+        {body}
+    }}
+    ]], {
+        var = i(1, "variable"),
+        table = i(2, "x..y"),
+        body = i(0)
+    })),
 
+    s("while", fmt([[
+    while {condition} {{
+        {body}
+    }}
+    ]], {
+        condition = i(1, "true"),
+        body = i(0)
+    })),
+
+    s("whilet", fmt([[
+    while let {pattern} = {expression} {{
+        {body}
+    }}
+    ]], {
+        pattern = i(1, "pattern"),
+        expression = i(2, "expression"),
+        body = i(0)
+    })),
+
+    s(
+        { trig = "match([%d]+)", regTrig = true, hidden = true },
+        fmt([[
+        {assign}match {var} {{
+            {arms}
+        }}
+        ]], {
+            assign = c(1, {
+                sn(nil, {t("let "), i(1, "name"), t(" = ")}),
+                t""
+            }),
+            var = i(2, "variable"),
+            arms = d(3, function (_, snip)
+                local retTable = {};
+                local function new_line(index)
+                    if index == 1 then
+                        return t("")
+                    else
+                        return t({"", ""})
+                    end
+                end
+                for index=1,snip.captures[1] do
+                    table.insert(retTable, isn(index, {
+                        new_line(index),
+                        i(1, "pattern"),
+                        t(" => {"),
+                        i(2,"do"),
+                        t("},")
+                    }, "$PARENT_INDENT\t"))
+                end
+                return sn(nil, retTable)
+            end)
+        })
+    ),
+
+    s("if", fmt([[
+    if {cond} {{
+        {body}
+    }}
+    ]],{
+        cond = i(1, "condition"),
+        body = c(2, {
+            sn(nil, fmt("   {}", {
+                i(1)
+            })),
+            sn(nil, fmt([[
+            {body1}
+            }} else {{
+                {body2}
+            ]], {
+                body1 = i(1),
+                body2 = i(2)
+            }))
+        })
+    })),
+
+    s("elseif", fmt([[
+    }} else if {condition} {{
+        {body}
+    ]], {
+        condition = i(1),
+        body = i(0),
+    }))
+
+})
