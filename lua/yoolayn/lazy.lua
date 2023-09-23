@@ -16,9 +16,6 @@ require("lazy").setup({
         install = {
             missing = false,
         },
-        defaults = {
-            lazy = true
-        },
         checker = {
             enabled = false,
         },
@@ -49,9 +46,14 @@ require("lazy").setup({
         },
         {
             "mbbill/undotree",
-            keys = {
-                {"<leader>u", "<cmd>UndotreeToggle<cr>", {silent = true}}
-            },
+            config = function ()
+                vim.api.nvim_create_autocmd("VimEnter", {
+                    once = true,
+                    callback = function()
+                        vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", {silent = true})
+                    end
+                })
+            end
         },
         "anuvyklack/hydra.nvim" ,
 
