@@ -50,35 +50,25 @@ ls.add_snippets("lua", {
         i(0)
     })),
 
-    s(
-        {trig = "(.*)fn", regTrig = true},
-        fmt([[{}]], {
-            d(1, function(_, snip)
-                if snip.captures[1] == "" then
-                    return sn(nil, fmt([[
-                        {scope}function {name}({args})
-                            {body}
-                        end
-                        ]], {
-                            scope = c(1, {t("local "), t("")}),
-                            name = i(2, "name"),
-                            args = i(3),
-                            body = i(4, "???")
-                        }))
-                else
-                    return sn(nil, fmt([[
-                        {before}function ({args})
-                            {body}
-                        end
-                        ]], {
-                            before = t(snip.captures[1]),
-                            args = i(1),
-                            body = i(2, "???")
-                        }))
-                end
-            end)
-            })
-        ),
+    s("fn", fmt([[
+    {scope}function {name}({args})
+        {body}
+    end
+    ]], {
+        scope = f(function(name)
+            print(name[1][1])
+            if name[1][1] == "" then
+                return ""
+            elseif string.match(name[1][1], "^[A-Z_]+$")  then
+                return ""
+            else
+                return "local "
+            end
+        end, { 1 }),
+        name = i(1),
+        args = i(2),
+        body = i(0)
+    })),
 
     s("setup", fmt("setup({{{}}})", {
         i(0)
@@ -97,6 +87,17 @@ ls.add_snippets("lua", {
         i(1, "message"),
         i(2, "loglevel"),
         i(3, "")
+    })),
+
+    s("fori", fmt([[
+    for {var}={start},{fin} do
+        {body}
+    end
+    ]], {
+        var = i(1, "i"),
+        start = i(2, "start"),
+        fin = i(3, "inclusive"),
+        body = i(0)
     })),
 
     s("for", fmt([[
