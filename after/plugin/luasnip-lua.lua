@@ -165,7 +165,7 @@ ls.add_snippets("lua", {
         })
     })),
 
-    s("elseif", fmt([[
+    s({trig = ".*eif", hidden = true, regTrig = true}, fmt([[
     elseif {cond} then
         {body}
     ]], {
