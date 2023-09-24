@@ -8,6 +8,7 @@ local f = ls.function_node
 local d = ls.dynamic_node
 local t = ls.text_node
 local r = ls.restore_node
+local ai = require("luasnip.nodes.absolute_indexer")
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
@@ -41,7 +42,7 @@ ls.add_snippets("javascript", {
                     t"let ",
                 }),
                 i(2, "name"),
-                t" = function (",
+                t" = function(",
                 i(3),
                 t")"
             }),
@@ -59,8 +60,8 @@ ls.add_snippets("javascript", {
     {type} {name}{value};
     ]], {
         type = c(1, {
-            t"let",
             t"const",
+            t"let",
         }),
         name = i(2, "name"),
         value = c(3, {
@@ -142,6 +143,28 @@ ls.add_snippets("javascript", {
     ]], {
         condition = i(1),
         body = i(0),
+    })),
+
+    s("imp", fmt([[
+    import {what}{as} from "{module}";
+    ]], {
+        what = i(1, "thingies"),
+        module = i(2, "module"),
+        as = c(3, {
+            t"",
+            sn(nil, {
+                t" as \"",
+                f(function (import_name)
+                    local parts = vim.split(import_name[1][1], "%/")
+                    if parts[#parts] == "lodash" then
+                        return "_"
+                    else
+                        return parts[#parts] or "name"
+                    end
+                end, { ai[2] }),
+                t"\""
+            })
+        })
     })),
 
     s("req", fmt([[
