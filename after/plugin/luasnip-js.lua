@@ -20,8 +20,8 @@ ls.add_snippets("javascript", {
         fn = c(1, {
             sn(nil, {
                 c(1, {
-                    t"let ",
                     t"const ",
+                    t"let ",
                 }),
                 i(2, "name"),
                 t" = (",
@@ -37,8 +37,8 @@ ls.add_snippets("javascript", {
             }),
             sn(nil, {
                 c(1, {
-                    t"let ",
                     t"const ",
+                    t"let ",
                 }),
                 i(2, "name"),
                 t" = function (",
@@ -85,8 +85,8 @@ ls.add_snippets("javascript", {
         var = c(1, {
             sn(nil, {
                 c(1, {
-                    t"let ",
                     t"const ",
+                    t"let ",
                 }),
                 i(2, "name"),
                 t" = "
