@@ -56,7 +56,6 @@ ls.add_snippets("lua", {
     end
     ]], {
         scope = f(function(name)
-            print(name[1][1])
             if name[1][1] == "" then
                 return ""
             elseif string.match(name[1][1], "^[A-Z_]+$")  then
@@ -74,7 +73,14 @@ ls.add_snippets("lua", {
         i(0)
     })),
 
-    s("var", fmt("local {} = {}", {
+    s("var", fmt("{}{} = {}", {
+        f(function (name)
+            if string.match(name[1][1], "^[A-Z_]+$") or name[1][1] == "" then
+                return ""
+            else
+                return "local "
+            end
+        end, { 1 }),
         i(1, "name"),
         i(0, "value")
     })),
