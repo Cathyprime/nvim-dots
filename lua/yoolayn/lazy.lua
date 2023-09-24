@@ -124,16 +124,7 @@ require("lazy").setup({
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-nvim-lua",
                 "octaltree/cmp-look",
-                {
-                    "rafamadriz/friendly-snippets",
-                    config = function()
-                        require("luasnip.loaders.from_vscode").lazy_load({
-                            exclude = { "lua", "rust", "gitcommit", "sh" },
-                        })
-                    end
-                },
                 "hrsh7th/cmp-path",
-                "saadparwaiz1/cmp_luasnip",
                 {
                     "dgagn/diagflow.nvim",
                     opts = {scope = "line"}
