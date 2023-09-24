@@ -1,14 +1,14 @@
 function! MacroOnLines()
-    let reg = nr2char(getchar())
-    if empty(reg)
-        echo "no register selected"
-        return
-    endif
-    let l:start = line("'<")
-    let l:end = line("'>")
-    for l:line in range(l:start, l:end)
-        execute l:line . 'normal @' . reg . "\<cr>"
-    endfor
+	let reg = nr2char(getchar())
+	if empty(reg)
+		echo "no register selected"
+		return
+	endif
+	let l:start = line("'<")
+	let l:end = line("'>")
+	for l:line in range(l:start, l:end)
+		execute l:line . 'normal @' . reg . "\<cr>"
+	endfor
 endfunction
 
 let mapleader = " "

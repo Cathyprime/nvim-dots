@@ -12,154 +12,154 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local rep = require("luasnip.extras").rep
 
 ls.add_snippets("gitcommit", {
-    s("feat", fmt([[
-    feat{scope}: {message}
+	s("feat", fmt([[
+	feat{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("fix", fmt([[
-    fix{scope}: {message}
+	s("fix", fmt([[
+	fix{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("style", fmt([[
-    style{scope}: {message}
+	s("style", fmt([[
+	style{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("refractor", fmt([[
-    refractor{scope}: {message}
+	s("refractor", fmt([[
+	refractor{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("cc", fmt([[
-    {type}{scope}: {message}
+	s("cc", fmt([[
+	{type}{scope}: {message}
 
-    {body}]], {
-        type = i(1),
-        scope = c(2, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(3,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		type = i(1),
+		scope = c(2, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(3,"commit message"),
+		body = i(0)
+	})),
 
-    s("chore", fmt([[
-    chore{scope}: {message}
+	s("chore", fmt([[
+	chore{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("test", fmt([[
-    test{scope}: {message}
+	s("test", fmt([[
+	test{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("ci", fmt([[
-    ci{scope}: {message}
+	s("ci", fmt([[
+	ci{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("build", fmt([[
-    build{scope}: {message}
+	s("build", fmt([[
+	build{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("docs", fmt([[
-    docs{scope}: {message}
+	s("docs", fmt([[
+	docs{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("perf", fmt([[
-    perf{scope}: {message}
+	s("perf", fmt([[
+	perf{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
-    s("BREAK", fmt([[
-    BREAKING CHANGE: {message}]], {
-        message = i(0,"commit message"),
-    })),
+	s("BREAK", fmt([[
+	BREAKING CHANGE: {message}]], {
+		message = i(0,"commit message"),
+	})),
 
-    s("remove", fmt([[
-    remove{scope}: {message}
+	s("remove", fmt([[
+	remove{scope}: {message}
 
-    {body}]], {
-        scope = c(1, {
-            sn(nil, fmt("({})", i(1, "scope"))),
-            t("")
-        }),
-        message = i(2,"commit message"),
-        body = i(0)
-    })),
+	{body}]], {
+		scope = c(1, {
+			sn(nil, fmt("({})", i(1, "scope"))),
+			t("")
+		}),
+		message = i(2,"commit message"),
+		body = i(0)
+	})),
 
 })
