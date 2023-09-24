@@ -179,4 +179,32 @@ ls.add_snippets("lua", {
         body = i(2)
     })),
 
+    s("autocmd", fmt([[
+    vim.api.nvim_create_autocmd({event}, {{
+        once = {once},
+        callback = function({arg})
+            {body}
+        end
+    }})
+    ]], {
+        event = c(1, {
+            sn(nil, {
+                t[["]],
+                i(1, "event"),
+                t[["]],
+            }),
+            sn(nil, {
+                t"{",
+                i(1, "events"),
+                t"}",
+            }),
+        }),
+        once = c(2, {
+            t"false",
+            t"true",
+        }),
+        arg = i(3),
+        body = i(0),
+    }))
+
 })
