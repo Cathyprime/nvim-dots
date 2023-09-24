@@ -92,7 +92,7 @@ ls.add_snippets("rust", {
     })),
 
     s(
-        { trig = "match,([%a]+),([%d]+)", regTrig = true, hidden = true },
+        { trig = "match([%a]+)([%d]+)", regTrig = true, hidden = true },
         fmt([[
         {assign}match {var} {{
             {arms}
