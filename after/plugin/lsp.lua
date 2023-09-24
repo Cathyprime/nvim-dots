@@ -49,7 +49,6 @@ lsp.setup_nvim_cmp({
         { name = "nvim_lsp" },
         { name = "path" },
     }, {
-        { name = "luasnip" },
         { name = "look", keyword_length = 5 },
         { name = "buffer", keyword_length = 3 },
     }),
