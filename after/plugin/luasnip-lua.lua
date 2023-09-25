@@ -2,6 +2,7 @@ local ls = require("luasnip")
 local s = ls.snippet
 local c = ls.choice_node
 local sn = ls.snippet_node
+local isn = ls.indent_snippet_node
 local i = ls.insert_node
 local f = ls.function_node
 local d = ls.dynamic_node
@@ -181,10 +182,8 @@ ls.add_snippets("lua", {
 
 	s("autocmd", fmt([[
 	vim.api.nvim_create_autocmd({event}, {{
-		once = {once},
-		callback = function({arg})
-			{body}
-		end
+		once = {once},{pattern}
+		{fn}
 	}})
 	]], {
 		event = c(1, {
@@ -203,8 +202,38 @@ ls.add_snippets("lua", {
 			t"false",
 			t"true",
 		}),
-		arg = i(3),
-		body = i(0),
+		pattern = c(3, {
+			t"",
+			isn(nil, {
+				t{"", "pattern = "},
+				c(1, {
+					sn(nil, {
+						t[["]],
+						i(1),
+						t[[",]],
+					}),
+					sn(nil, {
+						t"{",
+						i(1),
+						t"},",
+					})
+				})
+			}, "\t$PARENT_INDENT")
+		}),
+		fn = c(4, {
+			sn(nil, {
+				t"command = \"",
+				i(1),
+				t[[",]],
+			}),
+			isn(nil, {
+				t"callback = function(",
+				i(1),
+				t{")", "\t"},
+				i(2),
+				t{"", "end,"},
+			}, "$PARENT_INDENT\t")
+		}),
 	}))
 
 })
