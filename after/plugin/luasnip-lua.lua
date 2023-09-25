@@ -117,7 +117,7 @@ ls.add_snippets("lua", {
 			t("ipairs")
 		}),
 		index = i(2, "_"),
-		value = i(3, "v"),
+		value = i(3, "value"),
 		table = i(4),
 		body = i(5)
 	})),
@@ -141,7 +141,7 @@ ls.add_snippets("lua", {
 		body = i(0)
 	})),
 
-	s("meth", fmt([[
+	s("m", fmt([[
 	local M.{name} = function({args})
 		{body}
 	end
@@ -158,17 +158,15 @@ ls.add_snippets("lua", {
 	]],{
 		cond = i(1, "condition"),
 		body = c(2, {
-			sn(nil, fmt("	{}", {
-				i(1)
-			})),
-			sn(nil, fmt([[
+			i(1),
+			isn(nil, fmt([[
 			{body1}
 			else
 				{body2}
 			]], {
 				body1 = i(1),
 				body2 = i(2)
-			}))
+			}), "$PARENT_INDENT")
 		})
 	})),
 
@@ -187,16 +185,8 @@ ls.add_snippets("lua", {
 	}})
 	]], {
 		event = c(1, {
-			sn(nil, {
-				t[["]],
-				i(1, "event"),
-				t[["]],
-			}),
-			sn(nil, {
-				t"{",
-				i(1, "events"),
-				t"}",
-			}),
+			sn(nil, fmt([["{}"]], { i(1, "event") })),
+			sn(nil, fmt([[{<>}]], { i(1, "event") }, { delimiters = "<>" })),
 		}),
 		once = c(2, {
 			t"false",
@@ -205,34 +195,23 @@ ls.add_snippets("lua", {
 		pattern = c(3, {
 			t"",
 			isn(nil, {
-				t{"", "pattern = "},
+				t{ "", "pattern = " },
 				c(1, {
-					sn(nil, {
-						t[["]],
-						i(1),
-						t[[",]],
-					}),
-					sn(nil, {
-						t"{",
-						i(1),
-						t"},",
-					})
+					sn(nil, fmt([["{}",]], { i(1, "pattern") })),
+					sn(nil, fmt("{<>},", { i(1, "patterns") }, { delimiters = "<>" })),
 				})
-			}, "\t$PARENT_INDENT")
+			}, "$PARENT_INDENT\t")
 		}),
 		fn = c(4, {
-			sn(nil, {
-				t"command = \"",
-				i(1),
-				t[[",]],
-			}),
-			isn(nil, {
-				t"callback = function(",
-				i(1),
-				t{")", "\t"},
-				i(2),
-				t{"", "end,"},
-			}, "$PARENT_INDENT\t")
+			sn(nil, fmt([[command = "{}"]], { i(1, "command") })),
+			isn(nil, fmt([[
+			callback = function({args})
+				{body}
+			end
+			]], {
+				args = i(1),
+				body = i(2),
+			}), "$PARENT_INDENT\t")
 		}),
 	}))
 
