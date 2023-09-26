@@ -31,17 +31,17 @@ nnoremap N Nzzzv
 
 " === text objects ===
 " inner line
-onoremap is :<c-u>norm! _vg_<cr>
-xnoremap is :<c-u>norm! _vg_<cr>
+onoremap <silent> is :<c-u>norm! _vg_<cr>
+xnoremap <silent> is :<c-u>norm! _vg_<cr>
 " a line
-onoremap as :<c-u>norm! 0v$<cr>
-xnoremap as :<c-u>norm! 0v$<cr>
+onoremap <silent> as :<c-u>norm! 0v$<cr>
+xnoremap <silent> as :<c-u>norm! 0v$<cr>
 " inner underscore
-onoremap i_ :<c-u>norm! T_vt_<cr>
-xnoremap i_ :<c-u>norm! T_vt_<cr>
+onoremap <silent> i_ :<c-u>norm! T_vt_<cr>
+xnoremap <silent> i_ :<c-u>norm! T_vt_<cr>
 " a underscore
-onoremap a_ :<c-u>norm! F_vf_<cr>
-xnoremap a_ :<c-u>norm! F_vf_<cr>
+onoremap <silent> a_ :<c-u>norm! F_vf_<cr>
+xnoremap <silent> a_ :<c-u>norm! F_vf_<cr>
 
 " === clipboard interaction ===
 " " yank to clipboard
@@ -62,8 +62,6 @@ nnoremap <leader>P "+P
 nnoremap J mzJ`z
 " select pasted test
 nnoremap gp `[v`]
-" copy line
-nnoremap Y yy
 " redo
 nnoremap U <c-r>
 
