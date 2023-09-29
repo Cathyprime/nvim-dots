@@ -15,5 +15,7 @@ function! g:StartREPL(filetype)
 	augroup END
 endfunction
 
-nnoremap <silent> <c-w>r :<c-u>call StartREPL("vim")<cr>
-nnoremap <silent> <c-w>R :<c-u>call StartREPL("lua")<cr>
+command -nargs=1 StartREPL call StartREPL(<q-args>)
+
+nnoremap <silent> <c-w>r :<c-u>StartREPL vim<cr>
+nnoremap <silent> <c-w>R :<c-u>StartREPL lua<cr>
