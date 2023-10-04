@@ -10,7 +10,6 @@ lsp.on_attach(function(_, bufnr)
 	vim.keymap.set("n", "<leader>crn", function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = "rename variable"})
 	vim.keymap.set("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", {buffer = true})
 	vim.keymap.set("i", "<c-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, desc = "show signature"})
-	vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
 end)
 
 -- required servers
@@ -63,8 +62,8 @@ lsp.setup_nvim_cmp({
 		["<c-n>"] = cmp.mapping.select_next_item(cmp_select),
 		["<c-p>"] = cmp.mapping.select_prev_item(cmp_select),
 		["<cr>"] = cmp.mapping.confirm({ select = false}),
-		["<c-e>"] = cmp.mapping.abort(),
-		["<c-c>"] = cmp.mapping.complete(),
+		["<esc>"] = cmp.mapping.abort(),
+		["<c-x>c"] = cmp.mapping.complete(),
 		["<c-u>"] = cmp.mapping.scroll_docs(-4),
 		["<c-d>"] = cmp.mapping.scroll_docs(4),
 	},
