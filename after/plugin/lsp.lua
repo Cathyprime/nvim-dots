@@ -19,7 +19,6 @@ lsp.ensure_installed({
 	"lua_ls",
 	"pylsp",
 	"rust_analyzer",
-	"tailwindcss",
 	"tsserver",
 	"yamlls",
 })
