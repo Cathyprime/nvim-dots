@@ -125,10 +125,6 @@ require("lspconfig").tsserver.setup({
 	}
 })
 
-require("lspconfig").tailwindcss.setup({
-	filetypes_exclude = { "markdown" },
-})
-
 local lua_opts = lsp.nvim_lua_ls()
 require('lspconfig').lua_ls.setup(lua_opts)
 
