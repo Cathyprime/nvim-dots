@@ -31,8 +31,8 @@ nnoremap N Nzzzv
 
 " === text objects ===
 " inner line
-onoremap <silent> is :<c-u>norm! _vg_<cr>
-xnoremap <silent> is :<c-u>norm! _vg_<cr>
+onoremap <silent> iL :<c-u>norm! _vg_<cr>
+xnoremap <silent> iL :<c-u>norm! _vg_<cr>
 " a line
 onoremap <silent> as :<c-u>norm! 0v$<cr>
 xnoremap <silent> as :<c-u>norm! 0v$<cr>
