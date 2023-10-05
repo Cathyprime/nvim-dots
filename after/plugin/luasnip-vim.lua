@@ -45,12 +45,10 @@ ls.add_snippets("vim", {
 		})
 	})),
 
-	s({trig = ".*eif", regTrig = true,}, fmt([[
-	elseif {condition}
-		{body}
-	]], {
-		condition = i(1, "condition"),
-		body = i(0)
+	s({trig = [[\%( \{4\}\|	\)\?eif]], hidden = true, regTrig = true, trigEngine = "vim"}, fmt([[{}]], {
+		isn(1, {
+			t"elseif ", i(1, "condition"), t({"", "\t"}), i(2)
+		}, "$PARENT_INDENT")
 	})),
 
 	s("aug", fmt([[

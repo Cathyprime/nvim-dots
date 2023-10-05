@@ -37,7 +37,7 @@ ls.add_snippets("sh", {
 		t{"", "fi"}
 	}),
 
-	s({trig = ".*eif", regTrig = true}, {
+	s({trig = [[\%( \{4\}\|	\)\?eif]], hidden = true, regTrig = true, trigEngine = "vim"}, {
 		t"elif ",
 		c(1, {
 			i(1, "condition"),
