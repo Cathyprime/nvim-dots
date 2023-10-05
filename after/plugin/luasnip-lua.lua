@@ -170,7 +170,7 @@ ls.add_snippets("lua", {
 		})
 	})),
 
-	s({trig = ".*eif", hidden = true, regTrig = true}, fmt([[
+	s({trig = [[\%( \{4\}\|	\)\?eif]], hidden = true, regTrig = true, trigEngine = "vim"}, fmt([[
 	elseif {cond} then
 		{body}
 	]], {

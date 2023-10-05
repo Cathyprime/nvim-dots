@@ -189,7 +189,7 @@ ls.add_snippets("rust", {
 		})
 	})),
 
-	s({trig = ".*eif", regTrig = true, hidden = true}, fmt([[
+	s({trig = [[\%( \{4\}\|	\)\?eif]], hidden = true, regTrig = true, trigEngine = "vim"}, fmt([[
 	}} else if {condition} {{
 		{body}
 	]], {

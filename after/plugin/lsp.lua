@@ -61,7 +61,7 @@ lsp.setup_nvim_cmp({
 		["<c-n>"] = cmp.mapping.select_next_item(cmp_select),
 		["<c-p>"] = cmp.mapping.select_prev_item(cmp_select),
 		["<cr>"] = cmp.mapping.confirm({ select = false}),
-		["<esc>"] = cmp.mapping.abort(),
+		["<c-e>"] = cmp.mapping.abort(),
 		["<c-x>c"] = cmp.mapping.complete(),
 		["<c-u>"] = cmp.mapping.scroll_docs(-4),
 		["<c-d>"] = cmp.mapping.scroll_docs(4),
@@ -154,7 +154,7 @@ require("lspconfig").rust_analyzer.setup({
 })
 
 lsp.setup()
-vim.keymap.set({"i"}, "<c-e>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i"}, "<c-s>", function() ls.expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "<c-j>", function() ls.jump( 1) end, {silent = true})
 vim.keymap.set({"i", "s"}, "<c-k>", function() ls.jump(-1) end, {silent = true})
 
