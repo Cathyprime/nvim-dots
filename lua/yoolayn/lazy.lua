@@ -39,11 +39,7 @@ require("lazy").setup({
 			"numToStr/Comment.nvim",
 			opts = {},
 		},
-		{
-			"kylechui/nvim-surround",
-			tag = "*",
-			opts = {},
-		},
+		"tpope/vim-surround",
 		{
 			"mbbill/undotree",
 			config = function ()
