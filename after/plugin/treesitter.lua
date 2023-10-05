@@ -28,6 +28,7 @@ require("nvim-treesitter.configs").setup({
 		"norg",
 		"python",
 		"query",
+		"r",
 		"regex",
 		"ron",
 		"rst",
