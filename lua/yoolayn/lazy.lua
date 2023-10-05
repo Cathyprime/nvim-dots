@@ -180,6 +180,7 @@ require("lazy").setup({
 		"tpope/vim-dispatch",
 		"godlygeek/tabular",
 		"tpope/vim-eunuch",
+		"tpope/vim-repeat",
 		"stefandtw/quickfix-reflector.vim",
 	}
 })
