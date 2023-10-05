@@ -14,7 +14,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 ls.add_snippets("vim", {
 
 	s("fn", fmt([[
-	function{clear} {name}()
+	function{clear} {name}({args})
 		{body}
 	endfunction
 	]], {
@@ -23,6 +23,7 @@ ls.add_snippets("vim", {
 			t"",
 		}),
 		name = i(2, "name"),
+		args = i(3),
 		body = i(0)
 	})),
 
