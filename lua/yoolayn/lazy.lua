@@ -148,7 +148,7 @@ require("lazy").setup({
 					pattern = { "scala", "sbt", "java" },
 					callback = function()
 						require("metals").initialize_or_attach({})
-						local metals_config = require("metals").bare_config()
+						require("metals").setup_dap()
 						metals_config.settings = {
 							showImplicitArguments = true,
 							serverVersion = "latest.snapshot",
@@ -159,6 +159,11 @@ require("lazy").setup({
 				})
 			end
 		},
+		-- debugging
+		"mfussenegger/nvim-dap",
+		"rcarriga/nvim-dap-ui",
+		"theHamsta/nvim-dap-virtual-text",
+		"leoluz/nvim-dap-go",
 
 		-- ui
 		{
