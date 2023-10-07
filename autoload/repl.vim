@@ -1,16 +1,17 @@
-function! repl#FullLines(start, stop, name)
+function! s:LineToSystem(line, name)
+	let l:cmd = "echo '" .. a:line .. "' | ~/.tmux/scripts/repl.sh " .. a:name
+	call system(l:cmd)
+endfunction
+
+function! s:FullLines(start, stop, name)
 	let text = []
 	for line in range(a:start, a:stop)
 		let text += [getline(line)]
 	endfor
-	for line in text
-		let l:cmd = "echo '" .. l:line .. "' | ~/.tmux/scripts/repl.sh " .. a:name
-		echo l:line
-		let l:result = system(l:cmd)
-	endfor
+	call map(text, {_, line -> s:LineToSystem(l:line, a:name) })
 endfunction
 
-function! repl#PartialLines(start_line, start_col, stop_line, stop_col, name)
+function! s:PartialLines(start_line, start_col, stop_line, stop_col, name)
 	let text = []
 
 	for line in range(a:start_line, a:stop_line)
@@ -25,10 +26,7 @@ function! repl#PartialLines(start_line, start_col, stop_line, stop_col, name)
 		endif
 	endfor
 
-	for line in text
-		let l:cmd = "echo '" .. l:line .. "' | ~/.tmux/scripts/repl.sh " .. a:name
-		call system(l:cmd)
-	endfor
+	call map(text, {_, line -> s:LineToSystem(l:line, a:name) })
 endfunction
 
 function! repl#ToRepl(line1, line2, name)
@@ -44,18 +42,15 @@ endfunction
 function! repl#ToReplMap(name, norm)
 	if a:norm ==# "n"
 		let l:line = line(".")
-		call repl#FullLines(l:line, l:line, a:name)
-		" return ":<c-u>call system(" .. l:cmd .. ")" .. "<cr>"
+		call s:FullLines(l:line, l:line, a:name)
 	elseif visualmode() ==# 'v'
 		let [start_line, start_col] = getpos("'<")[1:2]
 		let [stop_line, stop_col] = getpos("'>")[1:2]
-		call repl#PartialLines(start_line, start_col, stop_line, stop_col, a:name)
-		" return ""
+		call s:PartialLines(start_line, start_col, stop_line, stop_col, a:name)
 	elseif visualmode() ==# 'V'
 		let l:start = line("'<")
 		let l:stop = line("'>")
-		call repl#FullLines(l:start, l:stop, a:name)
-		" return ":w !~/.tmux/scripts/repl.sh " .. a:name .. "<cr>"
+		call s:FullLines(l:start, l:stop, a:name)
 	endif
 endfunction
 
