@@ -26,8 +26,7 @@ set path=.,**
 set noignorecase
 set smartcase
 set incsearch
-set hls
-set is
+set nohls
 
 " cursor
 set cursorline
