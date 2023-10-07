@@ -20,5 +20,5 @@ vnoremap <silent> <Plug>(R_vrepl) :<c-u>call repl#ToReplMap("R", "v")<cr>
 nnoremap <silent> <Plug>(Js_nrepl) :<c-u>call repl#ToReplMap("node", "n")<cr>
 vnoremap <silent> <Plug>(Js_vrepl) :<c-u>call repl#ToReplMap("node", "v")<cr>
 " typescript
-nnoremap <silent> <Plug>(Js_nrepl) :<c-u>call repl#ToReplMap("ts-node", "n")<cr>
-vnoremap <silent> <Plug>(Js_vrepl) :<c-u>call repl#ToReplMap("ts-node", "v")<cr>
+nnoremap <silent> <Plug>(Ts_nrepl) :<c-u>call repl#ToReplMap("ts-node", "n")<cr>
+vnoremap <silent> <Plug>(Ts_vrepl) :<c-u>call repl#ToReplMap("ts-node", "v")<cr>
