@@ -1,2 +1,2 @@
-nmap <buffer> <silent> <cr> <Plug>(Scala_nrepl)
-vmap <buffer> <silent> <cr> <Plug>(Scala_vrepl)
+nmap <buffer> <silent> <localleader>p <Plug>(Scala_nrepl)
+vmap <buffer> <silent> <localleader>p <Plug>(Scala_vrepl)

@@ -1,2 +1,2 @@
-nmap <buffer> <silent> <cr> <Plug>(R_nrepl)
-vmap <buffer> <silent> <cr> <Plug>(R_vrepl)
+nmap <buffer> <silent> <localleader>p <Plug>(R_nrepl)
+vmap <buffer> <silent> <localleader>p <Plug>(R_vrepl)
