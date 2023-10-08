@@ -1,2 +1,2 @@
-nmap <buffer> <silent> <cr> <Plug>(Ts_nrepl)
-vmap <buffer> <silent> <cr> <Plug>(Ts_vrepl)
+nmap <buffer> <silent> <localleader>p <Plug>(Ts_nrepl)
+vmap <buffer> <silent> <localleader>p <Plug>(Ts_vrepl)

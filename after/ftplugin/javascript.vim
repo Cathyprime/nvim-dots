@@ -1,2 +1,2 @@
-nmap <buffer> <silent> <cr> <Plug>(Js_nrepl)
-vmap <buffer> <silent> <cr> <Plug>(Js_vrepl)
+nmap <buffer> <silent> <localleader>p <Plug>(Js_nrepl)
+vmap <buffer> <silent> <localleader>p <Plug>(Js_vrepl)

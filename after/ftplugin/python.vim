@@ -1,2 +1,2 @@
-nmap <buffer> <silent> <cr> <Plug>(Python_nrepl)
-vmap <buffer> <silent> <cr> <Plug>(Python_vrepl)
+nmap <buffer> <silent> <localleader>p <Plug>(Python_nrepl)
+vmap <buffer> <silent> <localleader>p <Plug>(Python_vrepl)
