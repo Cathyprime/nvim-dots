@@ -25,3 +25,5 @@ dap.configurations.scala = {
 		},
 	}
 }
+
+vim.fn.sign_define("DapStopped", { text = "ඞ", texthl = "Error" })
