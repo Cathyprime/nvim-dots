@@ -9,7 +9,7 @@ local d = ls.dynamic_node
 local t = ls.text_node
 local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
--- local rep = require("luasnip.extras").rep
+local rep = require("luasnip.extras").rep
 
 ls.add_snippets("html", {
 	s("html5", fmt([[
@@ -48,4 +48,24 @@ ls.add_snippets("html", {
 		name = i(2, "name"),
 		body = i(0),
 	})),
+
+	s("tag", fmt([[
+	<{name}{opts}>
+		{body}
+	</{repeatname}>
+	]], {
+		name = i(1, "name"),
+		repeatname = rep(1),
+		opts = c(2, {
+			t"",
+			sn(nil, fmt("{class} = \"{name}\"", {
+				class = c(1, {
+					t" class",
+					t" id",
+				}),
+				name = i(2, "name"),
+			})),
+		}),
+		body = i(3),
+	}))
 })
