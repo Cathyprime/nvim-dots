@@ -35,4 +35,17 @@ ls.add_snippets("html", {
 		stylesheet = i(4, "styles"),
 		body = i(0)
 	})),
+
+	s("div", fmt([[
+	<div {type} = "{name}">
+		{body}
+	</div>
+	]], {
+		type = c(1, {
+			t"class",
+			t"id"
+		}),
+		name = i(2, "name"),
+		body = i(0),
+	})),
 })
