@@ -17,11 +17,11 @@ set statusline=\%#SLBackground#
 set statusline+=\%#SLMode#
 set statusline+=\ %{statusline#Mode()}\ 
 set statusline+=\%#SLBackground#
-set statusline+=\ %F
+set statusline+=\ %f
 set statusline+=\%= " separator
 set statusline+=\ %#SLFileType#
-set statusline+=\ FT:\ %Y
+set statusline+=\ ft:\ %y
 set statusline+=\ %#SLBufNumber#
-set statusline+=\ BN:\ %n
+set statusline+=\ bn:\ %n
 set statusline+=\ %#SLLineNumber#
-set statusline+=\ LN:\ %l\ 
+set statusline+=\ ln:\ %l\ 
