@@ -174,6 +174,10 @@ require("lazy").setup({
 			opts = {},
 		},
 
+		-- database
+		"tpope/vim-dadbod",
+		"kristijanhusak/vim-dadbod-ui",
+
 		-- lispy stuff (love lisp btw)
 		{"eraserhd/parinfer-rust",
 		build = "cargo build --release",
