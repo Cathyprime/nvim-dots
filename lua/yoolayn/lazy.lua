@@ -192,5 +192,6 @@ require("lazy").setup({
 		"tpope/vim-eunuch",
 		"tpope/vim-repeat",
 		"stefandtw/quickfix-reflector.vim",
+		"dstein64/vim-startuptime",
 	}
 })
