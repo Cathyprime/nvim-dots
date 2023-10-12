@@ -12,16 +12,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	install = {
+		missing = false,
+	},
+	checker = {
+		enabled = false,
+	},
+	change_detection = {
+		notify = false
+	},
 	spec = {
-		--install = {
-			--missing = false,
-		--},
-		--checker = {
-			--enabled = false,
-		--},
-		--change_detection = {
-			--notify = false
-		--},
-		{import = "yoolayn/plugins"}
+		{import = "yoolayn/plugin"},
 	}
 })
