@@ -2,7 +2,7 @@ highlight SLBackground guibg=#181818 guifg=#c8c093
 highlight SLFileType guibg=#ce0406 guifg=black
 highlight SLBufNumber guibg=SeaGreen guifg=#003333
 highlight SLLineNumber guibg=#80a0ff guifg=#003366
-highlight SLNormal guibg=#571cbd guifg=#181818
+highlight SLNormal guibg=#571cbd guifg=#c8c093
 highlight SLInsert guibg=#7e9cd8 guifg=#181818
 highlight SLVisual guibg=#76946a guifg=#181818
 highlight SLVisualLine guibg=#ad410e
