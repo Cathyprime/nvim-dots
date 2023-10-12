@@ -1,5 +1,6 @@
 return {
 	"VonHeikemen/lsp-zero.nvim",
+	event = "VimEnter",
 	dependencies = {
 		"neovim/nvim-lspconfig",             -- Required
 		"williamboman/mason.nvim",           -- Optional

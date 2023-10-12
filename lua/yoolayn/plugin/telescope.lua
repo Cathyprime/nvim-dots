@@ -5,7 +5,6 @@ return {
 	},
 	config = function()
 		local actions = require("telescope.actions")
-		local builtin = require("telescope.builtin")
 		require("telescope").setup({
 			defaults = {
 				layout_strategy = "horizontal",
@@ -58,26 +57,22 @@ return {
 		},
 		{
 			"<leader>fh",
-			function () builtin.help_tags() end,
+			function () require("telescope.builtin").help_tags() end,
+		},
+		{
+			"<leader>fg",
+			"<cmd>Telescope live_grep<cr>"
 		},
 		{
 			"<leader>fG",
 			function()
-				builtin.live_grep({ search_dirs = { vim.fn.expand("%:p") } })
+				require("telescope.builtin").live_grep({ search_dirs = { vim.fn.expand("%:p") } })
 			end,
-		},
-		{
-			"<leader>fk",
-			"<cmd>Telescope keymaps<cr>",
-		},
-		{
-			"<leader>fm",
-			"<cmd>Telescope marks<cr>",
 		},
 		{
 			"<leader>fs",
 			function()
-				builtin.lsp_document_symbols({
+				require("telescope.builtin").lsp_document_symbols({
 					symbols = {
 						"Class",
 						"Function",
