@@ -61,7 +61,7 @@ set nowritebackup
 set shortmess+=c
 
 " mode
-set showmode
+set noshowmode
 
 " global status line
 set laststatus=3
