@@ -2,16 +2,16 @@ function! statusline#Mode()
 	hi clear SLMode
 	if mode() ==# 'n' || mode() ==# 'niI' || mode() ==# 'niR' || mode() ==# 'niV' || mode() ==# 'nt' || mode() ==# 'ntT'
 		hi link SLMode SLNormal
-		return "-- norm --"
+		return "-[ norm ]-"
 	elseif mode() ==# 'v' || mode() ==# 'vs'
 		hi link SLMode SLVisual
-		return "-- vis ---"
+		return "-[ vis ]--"
 	elseif mode() ==# 'V' || mode() ==# 'Vs'
 		hi link SLMode SLVisualLine
-		return "-- visL --"
+		return "-[ visL ]-"
 	elseif mode() ==# '' || mode() ==# 's'
 		hi link SLMode SLVisualBlock
-		return "-- visB --"
+		return "-[ visB ]-"
 	elseif mode() ==# 's' || mode() ==# 'S' || mode() ==# ''
 		hi link SLMode SLSelect
 		return "-- slct --"
