@@ -11,8 +11,6 @@ function! MacroOnLines()
 	endfor
 endfunction
 
-let mapleader = " "
-let localleader = "\\"
 xnoremap <silent> @ :<c-u>call MacroOnLines()<cr>
 
 " === disable scroll full page ===

@@ -1,0 +1,4 @@
+"scalameta/nvim-metals",
+	"nvim-lua/plenary.nvim",
+"eraserhd/parinfer-rust",
+"elkowar/yuck.vim",
