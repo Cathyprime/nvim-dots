@@ -2,31 +2,31 @@ function! statusline#Mode()
 	hi clear SLMode
 	if mode() ==# 'n' || mode() ==# 'niI' || mode() ==# 'niR' || mode() ==# 'niV' || mode() ==# 'nt' || mode() ==# 'ntT'
 		hi link SLMode SLNormal
-		return "norm"
+		return "-- norm --"
 	elseif mode() ==# 'v' || mode() ==# 'vs'
 		hi link SLMode SLVisual
-		return "vis "
+		return "-- vis ---"
 	elseif mode() ==# 'V' || mode() ==# 'Vs'
 		hi link SLMode SLVisualLine
-		return "visL"
+		return "-- visL --"
 	elseif mode() ==# '' || mode() ==# 's'
 		hi link SLMode SLVisualBlock
-		return "visB"
+		return "-- visB --"
 	elseif mode() ==# 's' || mode() ==# 'S' || mode() ==# ''
 		hi link SLMode SLSelect
-		return "sel "
+		return "-- slct --"
 	elseif mode() ==# 'i' || mode() ==# 'ic' || mode() ==# 'ix'
 		hi link SLMode SLInsert
-		return "ins "
+		return "-- isrt --"
 	elseif mode() ==# 'R' || mode() ==# 'Rc' || mode() ==# 'Rx'
 		hi link SLMode SLReplace
-		return "rep "
+		return "-- rplc --"
 	elseif mode() ==# 'c' || mode() ==# 'cv'
 		hi link SLMode SLCommand
-		return "com "
+		return "-- comm --"
 	elseif mode() ==# 't'
 		hi link SLMode SLTerminal
-		return "term"
+		return "-- term --"
 	else
 		hi SLMode guibg=black guifg=white
 		return "[???]"
