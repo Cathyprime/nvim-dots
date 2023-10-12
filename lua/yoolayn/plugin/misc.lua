@@ -11,6 +11,7 @@ return {
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
+		opts = {},
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -32,4 +33,11 @@ return {
 				})
 			end,
 		}
-	},}
+	},
+	{
+		"dstein64/vim-startuptime",
+		cmd = {
+			"StartupTime"
+		}
+	}
+}
