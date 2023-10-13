@@ -37,13 +37,7 @@ ls.add_snippets("python", {
 		{body}
 	]], {
 		name = i(1, "name"),
-		args = c(2, {
-			t"",
-			sn(nil, {
-				t", ",
-				i(1)
-			})
-		}),
+		args = i(2),
 		type = i(3, "RetType"),
 		body = i(0)
 	})),
@@ -77,5 +71,21 @@ ls.add_snippets("python", {
 		cond = i(1, "condition"),
 		body = i(2)
 	})),
+
+	s("class", fmt([[
+	class {name}{inheritance}:
+		{body}
+	]], {
+		name = i(1, "name"),
+		inheritance = c(2, {
+			t"",
+			sn(nil, {
+				t"(",
+				i(1, "class"),
+				t")"
+			})
+		}),
+		body = i(0)
+	}))
 
 })
