@@ -90,9 +90,8 @@ ls.add_snippets("python", {
 	})),
 
 	s("init", fmt([[
-	def __init__(self{args}) -> None: {{
+	def __init__(self{args}) -> None:
 		{assign}{body}
-	}}
 	]], {
 		args = i(1),
 		assign = d(2, function (args)
@@ -106,9 +105,12 @@ ls.add_snippets("python", {
 			local nodes = {}
 
 			for _, arg in ipairs(args_split) do
-				local name = vim.split(arg, ":")[1]
-				local type = vim.split(arg, ":")[2]
-				table.insert(nodes, "self." .. name .. ": " .. type .. " = " .. name)
+				local name = vim.split(arg, ":")[1] or ""
+				local type = vim.split(arg, ":")[2] or ""
+				if type ~= "" then
+					type = ": " .. type
+				end
+				table.insert(nodes, "self." .. name .. type .. " = " .. name)
 			end
 			return isn(nil, t(nodes), "$PARENT_INDENT\t")
 		end, { 1 }),
