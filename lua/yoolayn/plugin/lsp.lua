@@ -1,6 +1,7 @@
 return {
 	"VonHeikemen/lsp-zero.nvim",
 	event = "VimEnter",
+	branch = "v2.x",
 	dependencies = {
 		"neovim/nvim-lspconfig",             -- Required
 		"williamboman/mason.nvim",           -- Optional
@@ -12,8 +13,6 @@ return {
 		"hrsh7th/cmp-nvim-lua",
 		"octaltree/cmp-look",
 		"hrsh7th/cmp-path",
-		"dgagn/diagflow.nvim",
-		"j-hui/fidget.nvim",
 	},
 	config = function()
 		local lsp = require('lsp-zero').preset({})
