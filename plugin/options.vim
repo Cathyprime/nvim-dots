@@ -88,3 +88,6 @@ let g:markdown_recommended_style=0
 " disable netrw
 let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
+
+" grepprg
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
