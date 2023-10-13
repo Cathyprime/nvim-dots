@@ -15,6 +15,7 @@ ls.add_snippets("python", {
 	s("unitteststart", fmt([[
 	import unittest
 
+
 	class {name}(unittest.TestCase):
 		{body}
 	]], {
