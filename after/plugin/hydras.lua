@@ -63,7 +63,7 @@ local debug = Hydra({
 		{"O", function() require("dap").step_out() end, {desc = "step out"}},
 		{"u", function() require("dapui").toggle() end, {desc = "ui"}},
 		{"c", function() require("dap").continue() end, {desc = "continue"}},
-		{"q", nil, {exit = true, desc = "leave"}},
+		{"<F2>", nil, {exit = true, desc = "leave"}},
 	},
 })
 
