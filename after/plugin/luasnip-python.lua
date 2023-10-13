@@ -87,6 +87,32 @@ ls.add_snippets("python", {
 			})
 		}),
 		body = i(0)
-	}))
+	})),
+
+	s("init", fmt([[
+	def __init__(self{args}) -> None: {{
+		{assign}{body}
+	}}
+	]], {
+		args = i(1),
+		assign = d(2, function (args)
+			local args_str = args[1][1]
+			args_str = args_str:gsub(' ', '')
+			args_str = args_str:sub(2) or ""
+			if args_str == "" then
+				return sn(nil, {t("")})
+			end
+			local args_split = vim.split(args_str, ',')
+			local nodes = {}
+
+			for _, arg in ipairs(args_split) do
+				local name = vim.split(arg, ":")[1]
+				local type = vim.split(arg, ":")[2]
+				table.insert(nodes, "self." .. name .. ": " .. type .. " = " .. name)
+			end
+			return isn(nil, t(nodes), "$PARENT_INDENT\t")
+		end, { 1 }),
+		body = i(0)
+	})),
 
 })
