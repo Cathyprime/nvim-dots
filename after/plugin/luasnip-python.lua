@@ -24,7 +24,7 @@ ls.add_snippets("python", {
 	})),
 
 	s("fn", fmt([[
-	def {name}({args}) -> {type}
+	def {name}({args}) -> {type}:
 		{body}
 	]], {
 		name = i(1, "name"),
@@ -34,7 +34,7 @@ ls.add_snippets("python", {
 	})),
 
 	s("m", fmt([[
-	def {name}(self{args}) -> {type}
+	def {name}(self{args}) -> {type}:
 		{body}
 	]], {
 		name = i(1, "name"),
