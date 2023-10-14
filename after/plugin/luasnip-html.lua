@@ -58,7 +58,7 @@ ls.add_snippets("html", {
 		repeatname = rep(1),
 		opts = c(2, {
 			t"",
-			sn(nil, fmt([[{class}=\"{name}\"]], {
+			sn(nil, fmt([[{class}="{name}"]], {
 				class = c(1, {
 					t" class",
 					t" id",
