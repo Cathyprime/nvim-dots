@@ -1,2 +1,3 @@
 compiler shellcheck
-nnoremap <buffer> <silent> <localleader>r :Make %<cr>
+let b:dispatch = "%"
+nnoremap <buffer> <silent> <localleader>r :Dispatch<cr>
