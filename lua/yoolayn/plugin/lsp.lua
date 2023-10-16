@@ -24,7 +24,7 @@ return {
 			-- to learn the available actions
 			lsp.default_keymaps({buffer = bufnr})
 			vim.keymap.set("n", "<leader>ca", function () vim.lsp.buf.code_action() end, {buffer = bufnr, desc = "code actions"})
-			vim.keymap.set("n", "<leader>crn", function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = "rename variable"})
+			vim.keymap.set("n", "<leader>cc", function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = "rename variable"})
 			vim.keymap.set("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", {buffer = true})
 			vim.keymap.set("i", "<c-h>", function() vim.lsp.buf.signature_help() end, {buffer = bufnr, desc = "show signature"})
 		end)
