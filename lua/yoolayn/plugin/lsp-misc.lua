@@ -1,6 +1,7 @@
 return {
 	{
 		"dgagn/diagflow.nvim",
+		event = {"BufEnter", "BufReadPre"},
 		opts = {
 			scope = "line"
 		}
@@ -8,6 +9,7 @@ return {
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
+		event = {"BufEnter", "BufReadPre"},
 		opts = {
 			text = {
 				spinner = "moon",

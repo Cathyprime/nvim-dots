@@ -1,12 +1,13 @@
 return {
 	{
 		"numToStr/Comment.nvim",
+		event = {"BufEnter", "BufReadPre"},
 		opts = {},
 	},
 	{
 		"mbbill/undotree",
 		keys = {
-			{ "<leader>u", "UndoTreetoggle<cr>" }
+			{ "<leader>u", "<cmd>UndotreeToggle<cr>" }
 		}
 	},
 	{
@@ -21,6 +22,7 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		event = {"BufEnter", "BufReadPre"},
 		opts = {
 			on_attach = function(bufnr)
 				vim.keymap.set(

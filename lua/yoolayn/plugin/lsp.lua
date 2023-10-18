@@ -1,6 +1,6 @@
 return {
 	"VonHeikemen/lsp-zero.nvim",
-	event = "VimEnter",
+	event = {"BufEnter", "BufReadPre"},
 	branch = "v2.x",
 	dependencies = {
 		"neovim/nvim-lspconfig",             -- Required

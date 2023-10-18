@@ -1,5 +1,6 @@
 return {
 	"scalameta/nvim-metals",
+	event = {"BufEnter", "BufReadPre"},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
