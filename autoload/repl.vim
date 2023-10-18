@@ -1,5 +1,7 @@
 function! s:LineToSystem(line, name)
-	let l:cmd = "echo '" .. a:line .. "' | ~/.tmux/scripts/repl.sh " .. a:name
+	" TODO: change work around to properly send single quotes
+	let l:line = substitute(a:line, "'", "\"", "g")
+	let l:cmd = "echo '" .. l:line .. "' | ~/.tmux/scripts/repl.sh " .. a:name
 	call system(l:cmd)
 endfunction
 
@@ -34,7 +36,7 @@ function! repl#ToRepl(line1, line2, name)
 	let stop = a:line2
 	for line in range(start, stop)
 		let l:cmd = "echo \'" .. getline(line) .. "\' | ~/.tmux/scripts/repl.sh " .. a:name
-		call system(l:cmd)
+		call s:LineToSystem(l:cmd, a:name)
 	endfor
 	return ""
 endfunction
