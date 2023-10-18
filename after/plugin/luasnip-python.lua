@@ -12,7 +12,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local rep = require("luasnip.extras").rep
 
 ls.add_snippets("python", {
-	s("unitteststart", fmt([[
+	s("unittest", fmt([[
 	import unittest
 
 
@@ -75,6 +75,8 @@ ls.add_snippets("python", {
 
 	s("class", fmt([[
 	class {name}{inheritance}:
+
+
 		{body}
 	]], {
 		name = i(1, "name"),
