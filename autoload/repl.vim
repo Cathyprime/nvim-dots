@@ -1,7 +1,9 @@
 function! s:LineToSystem(line, name)
-	" TODO: change work around to properly send single quotes
-	let l:line = substitute(a:line, "'", "\"", "g")
-	let l:cmd = "echo '" .. l:line .. "' | ~/.tmux/scripts/repl.sh " .. a:name
+	let l:line = substitute(a:line, "\\", "\\\\\\", "g")
+	let l:line = substitute(l:line, "\"", "\\\\\"", "g")
+	let l:line = substitute(l:line, "\'", "\\\\\'", "g")
+	let l:line = substitute(l:line, "\`", "\\\\\`", "g")
+	let l:cmd = "echo \"" .. l:line .. "\" | ~/.tmux/scripts/repl.sh " .. a:name
 	call system(l:cmd)
 endfunction
 
