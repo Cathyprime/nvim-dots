@@ -213,6 +213,32 @@ ls.add_snippets("javascript", {
 		body = i(0)
 	})),
 
+	s({trig = "for([%w_]*)", regTrig = true}, fmt([[
+	for (int {index} = {start}; {indexrep} < {stop}; {indexpp}) {{
+		{body}
+	}}
+	]], {
+		index = d(1, function (_, snip)
+			local var = snip.captures[1]
+			if var == "" then
+				var = "i"
+			end
+			return sn(1,i(1, var))
+		end),
+		start = i(2, "0"),
+		indexrep = rep(1),
+		stop = i(3, "stop"),
+		indexpp = d(4, function (_, snip)
+			local var = snip.captures[1]
+			if var == "" then
+				var = "i"
+			end
+			var = var .. "++"
+			return sn(1, i(1, var))
+		end, { 1 }),
+		body = i(0)
+	})),
+
 	s("m", fmt([[
 	{name}({args}) {{
 		{body}
