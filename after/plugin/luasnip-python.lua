@@ -12,6 +12,16 @@ local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 ls.add_snippets("python", {
+
+	s("test", fmt([[
+	def test_{name}(self{args}) -> None:
+		{body}
+	]], {
+		name = i(1, "name"),
+		args = i(2),
+		body = i(0)
+	})),
+
 	s("prop", fmt([[
 	@property
 	def {name}(self) -> {type}:
@@ -20,7 +30,6 @@ ls.add_snippets("python", {
 	@{repName2}.setter
 	def {repName3}(self, value: {repType}) -> None:
 		self._{repName4} = value
-
 	]], {
 		name = i(1, "name"),
 		repName1 = rep(1),
@@ -34,8 +43,14 @@ ls.add_snippets("python", {
 	s("unittest", fmt([[
 	import unittest
 
+
 	class {name}(unittest.TestCase):
+
 		{body}
+
+
+	if __name__ == '__main__':
+		unittest.main()
 	]], {
 		name = i(1, "name"),
 		body = i(0)
@@ -124,8 +139,9 @@ ls.add_snippets("python", {
 			local nodes = {}
 
 			for _, arg in ipairs(args_split) do
-				local name = vim.split(arg, ":")[1] or ""
-				local type = vim.split(arg, ":")[2] or ""
+				local trimmed = vim.split(arg, "=")[1] or arg
+				local name = vim.split(trimmed, ":")[1] or ""
+				local type = vim.split(trimmed, ":")[2] or ""
 				if type ~= "" then
 					type = ": " .. type
 				end
