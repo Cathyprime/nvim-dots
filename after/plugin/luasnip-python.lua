@@ -15,7 +15,6 @@ ls.add_snippets("python", {
 	s("unittest", fmt([[
 	import unittest
 
-
 	class {name}(unittest.TestCase):
 		{body}
 	]], {
@@ -75,7 +74,6 @@ ls.add_snippets("python", {
 
 	s("class", fmt([[
 	class {name}{inheritance}:
-
 
 		{body}
 	]], {
