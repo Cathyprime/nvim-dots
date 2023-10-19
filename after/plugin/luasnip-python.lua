@@ -9,9 +9,28 @@ local d = ls.dynamic_node
 local t = ls.text_node
 local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
--- local rep = require("luasnip.extras").rep
+local rep = require("luasnip.extras").rep
 
 ls.add_snippets("python", {
+	s("prop", fmt([[
+	@property
+	def {name}(self) -> {type}:
+		return self._{repName1}
+
+	@{repName2}.setter
+	def {repName3}(self, value: {repType}) -> None:
+		self._{repName4} = value
+
+	]], {
+		name = i(1, "name"),
+		repName1 = rep(1),
+		repName2 = rep(1),
+		repName3 = rep(1),
+		repName4 = rep(1),
+		type = i(2, "type"),
+		repType = rep(2),
+	})),
+
 	s("unittest", fmt([[
 	import unittest
 
