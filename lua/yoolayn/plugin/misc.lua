@@ -48,5 +48,13 @@ return {
 		opts = {
 			symbol = "│",
 		},
+	},
+	{
+		"echasnovski/mini.align",
+		version = false,
+		opts = {
+			start = '',
+			start_with_preview = 'ga',
+		},
 	}
 }
