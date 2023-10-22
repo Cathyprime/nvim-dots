@@ -11,7 +11,7 @@ local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
 -- local rep = require("luasnip.extras").rep
 
-ls.add_snippets("sh", {
+ls.add_snippets("zsh", {
 	s("if", {
 		t"if ",
 		c(1, {
