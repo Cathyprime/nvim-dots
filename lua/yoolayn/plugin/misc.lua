@@ -53,8 +53,17 @@ return {
 		"echasnovski/mini.align",
 		version = false,
 		opts = {
-			start = '',
-			start_with_preview = 'ga',
+			start = "",
+			start_with_preview = "ga",
 		},
-	}
+	},
+	{
+		"echasnovski/mini.splitjoin",
+		version = false,
+		opts = {
+			mappings = {
+				toggle = "gs",
+			},
+		},
+	},
 }
