@@ -121,12 +121,10 @@ return {
 				swap = {
 					enable = true,
 					swap_next = {
-						["gsa"] = "@parameter.inner",
-						["gsf"] = "@function.outer",
+						["g>"] = "@parameter.inner",
 					},
 					swap_previous = {
-						["gSa"] = "@parameter.inner",
-						["gSf"] = "@function.outer",
+						["g<"] = "@parameter.inner",
 					}
 				}
 			}
