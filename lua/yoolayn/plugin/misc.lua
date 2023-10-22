@@ -41,5 +41,12 @@ return {
 		cmd = {
 			"StartupTime"
 		}
+	},
+	{
+		"echasnovski/mini.indentscope",
+		version = false,
+		opts = {
+			symbol = "│",
+		},
 	}
 }
