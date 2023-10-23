@@ -53,8 +53,10 @@ return {
 		"echasnovski/mini.align",
 		version = false,
 		opts = {
-			start = "",
-			start_with_preview = "ga",
+			mappings = {
+				start = "",
+				start_with_preview = "ga",
+			},
 		},
 	},
 	{
