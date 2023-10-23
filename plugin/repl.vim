@@ -1,6 +1,8 @@
 command -nargs=+ -range SendToRepl call repl#ToRepl(<line1>, <line2>, <q-args>)
 command -nargs=1 StartREPL call repl#StartREPL(<q-args>)
 
+nnoremap <silent> <c-w>r :StartREPL vim<cr>
+
 nnoremap <silent> <Plug>(VimREPL) :call repl#StartREPL("vim")<cr>
 nnoremap <silent> <Plug>(LuaREPL) :call repl#StartREPL("lua")<cr>
 
