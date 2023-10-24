@@ -13,6 +13,16 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local rep = require("luasnip.extras").rep
 
 ls.add_snippets("typescript", {
+	s("timeout", fmt([[
+	setTimeout(({args}) => {{
+		{body}
+	}}, {time})
+	]], {
+		args = i(1),
+		time = i(2, "time"),
+		body = i(0)
+	})),
+
 	s("fn", fmt([[
 	{fn} {{
 		{body}
