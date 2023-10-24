@@ -42,7 +42,7 @@ ls.add_snippets("javascript", {
 			sn(nil, {
 				t"function ",
 				i(1, "name"),
-				t" (",
+				t"(",
 				i(2),
 				t")"
 			}),
