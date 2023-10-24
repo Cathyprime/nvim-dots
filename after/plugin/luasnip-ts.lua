@@ -32,7 +32,7 @@ ls.add_snippets("typescript", {
 				t" =>"
 			}),
 			sn(nil, {
-				t"function",
+				t"function ",
 				i(1, "name"),
 				t" (",
 				i(2),
