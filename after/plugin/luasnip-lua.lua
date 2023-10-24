@@ -52,7 +52,7 @@ ls.add_snippets("lua", {
 	})),
 
 	s("fn", fmt([[
-	{scope}function {name}({args})
+	{scope}function{space}{name}({args})
 		{body}
 	end
 	]], {
@@ -63,6 +63,13 @@ ls.add_snippets("lua", {
 				return ""
 			else
 				return "local "
+			end
+		end, { 1 }),
+		space = f(function(name)
+			if name[1][1] == "" then
+				return ""
+			else
+				return " "
 			end
 		end, { 1 }),
 		name = i(1),
