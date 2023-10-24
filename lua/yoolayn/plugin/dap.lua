@@ -24,16 +24,6 @@ return {
 			dapui.close()
 		end
 
-		dap.configurations.scala = {
-			{
-				type = "scala",
-				request = "launch",
-				name = "Run with arg and env file",
-				metals = {
-				},
-			}
-		}
-
 		vim.fn.sign_define("DapStopped", { text = "ඞ", texthl = "Error" })
 	end,
 }
