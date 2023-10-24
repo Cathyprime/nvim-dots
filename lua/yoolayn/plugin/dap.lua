@@ -9,11 +9,33 @@ return {
 	},
 	config = function()
 		local dap = require("dap")
+		local dapui = require("dapui")
 		require("nvim-dap-virtual-text").setup()
 		require("dapui").setup()
 		require("dap-go").setup()
 
-		local dap, dapui = require("dap"), require("dapui")
+		dap.adapters["pwa-node"] = {
+			type = "server",
+			host = "::1",
+			port = 8123,
+			executable = {
+				command = "js-debug-adapter",
+			}
+		}
+
+		for _, language in ipairs { "typescript", "javascript" } do
+			dap.configurations[language] = {
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Launch file",
+					program = "${file}",
+					cwd = "${workspaceFolder}",
+					runtimeExecutable = "node",
+				},
+			}
+		end
+
 		dap.listeners.after.event_initialized["dapui_config"] = function()
 			dapui.open()
 		end
