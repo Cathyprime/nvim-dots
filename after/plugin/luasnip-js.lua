@@ -30,7 +30,7 @@ ls.add_snippets("javascript", {
 				t") =>",
 			}),
 			sn(nil, {
-				t"function",
+				t"function ",
 				i(1, "name"),
 				t" (",
 				i(2),
