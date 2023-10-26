@@ -4,5 +4,4 @@ return {
 	"kristijanhusak/vim-dadbod-ui",
 	"anuvyklack/hydra.nvim" ,
 	"dohsimpson/vim-macroeditor",
-	"junegunn/fzf.vim"
 }
