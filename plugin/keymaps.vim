@@ -49,11 +49,10 @@ vnoremap  <leader>y "+y
 nnoremap <leader>Y "+yy
 " " paste from clipboard
 nnoremap <leader>p "+p
+vnoremap <leader>p "+p
 " " Paste from clipboard
 nnoremap <leader>P "+P
-"
-" === blackhole register ===
-" vim.keymap.set( { "n", "v" }, "<leader>d", [["_d]], { desc = "delete to black hole" })
+vnoremap <leader>P "+P
 
 " === misc ===
 " join lines
@@ -65,10 +64,6 @@ nnoremap U <c-r>
 
 " === substitute commands ===
 " replace inline instances under cursor
-nnoremap <leader>s :s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
+nnoremap <leader>s :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 " replace all instances under cursor
-nnoremap <leader>S :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
-" replace marked inline
-vnoremap <leader>s y:s/<c-r>"/<c-r>"/g<left><left>
-" replace all marked
-vnoremap <leader>S y:%s/<c-r>"//gc<left><left><left>
+vnoremap <leader>s y:%s/<c-r>"/<c-r>"/g<left><left>
