@@ -18,7 +18,7 @@ local function on_attach(client, bufnr)
 	vim.keymap.set("n", "gd",         function() vim.lsp.buf.definition() end,     opts)
 
 	vim.api.nvim_buf_set_option(bufnr,"completefunc", "v:lua.vim.lsp.omnifunc")
-	vim.api.nvim_buf_set_option(bufnr,"formatexpr",   "v:lua.vim.lsp.formatexpr()")
+	-- vim.api.nvim_buf_set_option(bufnr,"formatexpr",   "v:lua.vim.lsp.formatexpr()")
 	if client.server_capabilities.definitionProvider then
 		vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
 	end
@@ -66,6 +66,33 @@ require("mason-lspconfig").setup({
 				}
 			})
 		end,
+		lua_ls = function()
+			require("lspconfig").lua_ls.setup({
+				on_init = function(client)
+					local path = client.workspace_folders[1].name
+					if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+						client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
+							Lua = {
+								runtime = {
+									version = "LuaJIT",
+								},
+								workspace = {
+									checkThirdParty = false,
+									library = {
+										vim.env.VIMRUNTIME,
+										"${3rd}/luv/library",
+										"${3rd}/busted/library",
+									},
+								},
+							},
+						})
+
+						client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+					end
+					return true
+				end
+			})
+		end,
 		rust_analyzer = function()
 			require("lspconfig").rust_analyzer.setup({
 				settings = {
@@ -89,8 +116,24 @@ require("mason-lspconfig").setup({
 							},
 						},
 					},
-				}
+				},
 			})
 		end
 	}
+})
+require("mason-tool-installer").setup({
+	ensure_installed = {
+		"prettier",
+		"stylua",
+		"isort",
+		"black",
+		"pylint",
+		"eslint_d",
+		"gofumpt",
+		"goimports",
+		"golines",
+		"luacheck",
+		"golangci-lint",
+		"mypy",
+	},
 })
