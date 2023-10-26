@@ -28,7 +28,7 @@ cmp.setup({
 
 	snippet = {
 		expand = function(args)
-			ls.lsp_expand(args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 
@@ -57,11 +57,12 @@ cmp.setup({
 		end,
 	},
 
-	completion = {
-		autocomplete = false,
-	},
+	-- completion = {
+	-- 	autocomplete = false,
+	-- },
 
 	sorting = {
+		---@
 		comparators = {
 			cmp.config.compare.score,
 			cmp.config.compare.exact,
