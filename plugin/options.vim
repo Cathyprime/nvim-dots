@@ -40,7 +40,7 @@ set scrolloff=6
 
 " appearance
 set termguicolors
-" set signcolumn=yes
+set signcolumn=yes
 " set colorcolumn=100
 
 " incremental substitute
@@ -70,8 +70,9 @@ set laststatus=3
 set undofile
 set undodir=$HOME/.config/nvim/undo
 
-" Command-line completion mode
+" completion settings
 set wildmode=longest:full,full
+set completeopt=menu
 
 " Minimum window width
 set winminwidth=5
