@@ -4,11 +4,6 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local icons = require("util.icons").icons
 local kind_mapper = require("cmp.types").lsp.CompletionItemKind
 
-vim.cmd([[sign define DiagnosticSignError text=]] .. icons.Error .. [[ texthl=DiagnosticSignError linehl= numhl= ]])
-vim.cmd([[sign define DiagnosticSignWarn text=]] .. icons.Warning .. [[ texthl=DiagnosticSignWarn linehl= numhl= ]])
-vim.cmd([[sign define DiagnosticSignInfo text=]] .. icons.Info .. [[ texthl=DiagnosticSignInfo linehl= numhl= ]])
-vim.cmd([[sign define DiagnosticSignHint text=]] .. icons.Hint .. [[ texthl=DiagnosticSignHint linehl= numhl= ]])
-
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function ()
 		vim.api.nvim_set_hl(0, "CmpItemMenu", {
