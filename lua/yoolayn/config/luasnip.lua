@@ -31,3 +31,5 @@ ls.config.setup({
 		}
 	},
 })
+
+require("luasnip.loaders.from_lua").lazy_load({paths = "./lua/yoolayn/snippets"})
