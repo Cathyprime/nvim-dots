@@ -27,7 +27,7 @@ return {
 			doc_lines = 6,
 			hint_prefix = ":",
 			hint_enable = false,
-			toggle_key = "<a-s>",
+			toggle_key = "<c-t>",
 		},
 		config = function(_, opts) require 'lsp_signature'.setup(opts) end
 	}
