@@ -19,7 +19,9 @@ local function on_attach(client, bufnr)
 end
 
 local default_setup = function(server)
-	lspconfig[server].setup({})
+	lspconfig[server].setup({
+		on_attach = on_attach,
+	})
 end
 
 require("mason").setup({})
