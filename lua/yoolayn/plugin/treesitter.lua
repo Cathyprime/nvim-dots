@@ -1,6 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = {"BufEnter", "BufReadPre"},
+	event = {"BufNewFile", "BufReadPost"},
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"JoosepAlviste/nvim-ts-context-commentstring",
