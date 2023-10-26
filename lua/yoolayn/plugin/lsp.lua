@@ -1,20 +1,30 @@
 return {
-	"VonHeikemen/lsp-zero.nvim",
-	event = {"BufEnter", "BufReadPre"},
-	branch = "v2.x",
-	dependencies = {
-		"neovim/nvim-lspconfig",             -- Required
-		"williamboman/mason.nvim",           -- Optional
-		"williamboman/mason-lspconfig.nvim", -- Optional
-		"hrsh7th/nvim-cmp",     -- Required
-		"hrsh7th/cmp-nvim-lsp", -- Required
-		"L3MON4D3/LuaSnip",     -- Required
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-nvim-lua",
-		"octaltree/cmp-look",
-		"hrsh7th/cmp-path",
+	{
+		"neovim/nvim-lspconfig",
+		event = {"BufEnter", "BufReadPre"},
+		dependencies = {
+			{ "folke/neodev.nvim", opts = {} },
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"dgagn/diagflow.nvim",
+			"j-hui/fidget.nvim",
+		},
+		config = function()
+			require("yoolayn.config.lsp")
+		end,
 	},
-	config = function()
-		require("yoolayn.config.lsp")
-	end,
+	{
+		"hrsh7th/nvim-cmp",
+		event = {"BufEnter", "BufReadPre"},
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-buffer",
+			"octaltree/cmp-look",
+			"hrsh7th/cmp-path",
+		},
+		config = function()
+			require("yoolayn.config.cmp")
+		end
+	}
 }
