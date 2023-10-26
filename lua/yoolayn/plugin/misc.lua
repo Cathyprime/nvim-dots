@@ -5,6 +5,15 @@ return {
 		opts = {},
 	},
 	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+			require("nvim-autopairs").remove_rule('"')
+			require("nvim-autopairs").remove_rule("'")
+			require("nvim-autopairs").remove_rule('`')
+		end
+	},
+	{
 		"mbbill/undotree",
 		keys = {
 			{ "<leader>u", "<cmd>UndotreeToggle<cr>" }
