@@ -1,6 +1,7 @@
 return {
 	{
 		"echasnovski/mini.indentscope",
+		event = { "BufReadPost", "BufNewFile" },
 		version = false,
 		opts = {
 			symbol = "│",
@@ -8,6 +9,7 @@ return {
 	},
 	{
 		"echasnovski/mini.align",
+		keys = { { "ga" } },
 		version = false,
 		opts = {
 			mappings = {
@@ -19,6 +21,7 @@ return {
 	{
 		"echasnovski/mini.splitjoin",
 		version = false,
+		keys = { { "gs" } },
 		opts = {
 			mappings = {
 				toggle = "gs",
