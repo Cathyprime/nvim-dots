@@ -42,4 +42,8 @@ return {
 			"StartupTime"
 		}
 	},
+	{
+		"ThePrimeagen/vim-be-good",
+		cmd = "VimBeGood",
+	}
 }
