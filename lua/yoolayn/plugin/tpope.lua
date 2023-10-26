@@ -24,7 +24,7 @@ return {
 	},
 	{
 		"tpope/vim-surround",
-		event = { "BufNewFile", "BufWritePost" },
+		event = { "BufNewFile", "BufReadPost", "InsertEnter" },
 	},
 	{
 		"tpope/vim-fugitive",
