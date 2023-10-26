@@ -13,7 +13,7 @@ set exrc
 
 " line wrapping
 set wrap
-set textwidth=100
+" set textwidth=100
 
 " list
 set list
