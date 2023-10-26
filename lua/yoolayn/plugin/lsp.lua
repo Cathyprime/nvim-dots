@@ -1,7 +1,7 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		event = {"BufEnter", "BufReadPre"},
+		event = { "BufEnter", "BufReadPost" },
 		dependencies = {
 			{ "folke/neodev.nvim", opts = {} },
 			"williamboman/mason.nvim",
@@ -15,7 +15,7 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		event = {"BufEnter", "BufReadPre"},
+		event = {"InsertEnter"},
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
