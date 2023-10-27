@@ -8,10 +8,10 @@ return {
 			lua = { "luacheck" },
 			go = { "golangcilint" },
 			python = { "mypy", "ruff" },
-			javascript = { "elint_d" },
-			typescript = { "elint_d" },
-			javascriptreact = { "elint_d" },
-			typescriptreact = { "elint_d" },
+			javascript = { "eslint_d" },
+			typescript = { "eslint_d" },
+			javascriptreact = { "eslint_d" },
+			typescriptreact = { "eslint_d" },
 		}
 
 		require("lint").linters.luacheck.args = {
