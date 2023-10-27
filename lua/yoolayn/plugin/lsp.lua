@@ -9,6 +9,7 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"dgagn/diagflow.nvim",
 			"j-hui/fidget.nvim",
+			"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		},
 		config = function()
 			require("yoolayn.config.lsp")
@@ -16,7 +17,7 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		event = {"InsertEnter"},
+		event = { "InsertEnter" },
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
@@ -24,6 +25,6 @@ return {
 		},
 		config = function()
 			require("yoolayn.config.cmp")
-		end
-	}
+		end,
+	},
 }
