@@ -127,7 +127,7 @@ require("mason-tool-installer").setup({
 		"stylua",
 		"isort",
 		"black",
-		"pylint",
+		"ruff",
 		"eslint_d",
 		"gofumpt",
 		"goimports",
