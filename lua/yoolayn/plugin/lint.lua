@@ -7,7 +7,7 @@ return {
 		lint.linters_by_ft = {
 			lua = { "luacheck" },
 			go = { "golangcilint" },
-			python = { "mypy", "pylint" },
+			python = { "mypy", "ruff" },
 			javascript = { "elint_d" },
 			typescript = { "elint_d" },
 			javascriptreact = { "elint_d" },
