@@ -1,12 +1,5 @@
 return {
 	{
-		"dgagn/diagflow.nvim",
-		lazy = true,
-		opts = {
-			scope = "line"
-		}
-	},
-	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
 		lazy = true,
@@ -30,5 +23,17 @@ return {
 			toggle_key = "<c-t>",
 		},
 		config = function(_, opts) require 'lsp_signature'.setup(opts) end
+	},
+	{
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		config = function()
+			require("lsp_lines").setup()
+			vim.diagnostic.config({
+				virtual_text = false,
+				virtual_lines = {
+					only_current_line = true
+				}
+			})
+		end,
 	}
 }

@@ -18,7 +18,6 @@ local function on_attach(client, bufnr)
 	vim.keymap.set("n", "gd",         function() vim.lsp.buf.definition() end,     opts)
 
 	vim.api.nvim_buf_set_option(bufnr,"completefunc", "v:lua.vim.lsp.omnifunc")
-	-- vim.api.nvim_buf_set_option(bufnr,"formatexpr",   "v:lua.vim.lsp.formatexpr()")
 	if client.server_capabilities.definitionProvider then
 		vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
 	end
@@ -45,6 +44,7 @@ require("mason-lspconfig").setup({
 		default_setup,
 		tsserver = function()
 			require("lspconfig").tsserver.setup({
+				on_attach = on_attach,
 				settings = {
 					typescript = {
 						format = {
@@ -68,6 +68,7 @@ require("mason-lspconfig").setup({
 		end,
 		lua_ls = function()
 			require("lspconfig").lua_ls.setup({
+				on_attach = on_attach,
 				on_init = function(client)
 					local path = client.workspace_folders[1].name
 					if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
@@ -95,6 +96,7 @@ require("mason-lspconfig").setup({
 		end,
 		rust_analyzer = function()
 			require("lspconfig").rust_analyzer.setup({
+				on_attach = on_attach,
 				settings = {
 					["rust-analyzer"] = {
 						cargo = {
