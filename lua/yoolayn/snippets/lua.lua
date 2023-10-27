@@ -25,7 +25,7 @@ return {
 		body = i(0)
 	})),
 
-	s("req", fmt([[local {varname} = require "{path}"]], {
+	s("req", fmt([[local {varname} = require("{path}")]], {
 		varname = f(function(import_name)
 			local parts = vim.split(import_name[1][1], "%.")
 			return parts[#parts] or ""
