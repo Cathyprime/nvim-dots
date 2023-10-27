@@ -1,8 +1,10 @@
 -- cmp
 local cmp = require("cmp")
+local types = require("cmp.types")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local icons = require("util.icons").icons
 local kind_mapper = require("cmp.types").lsp.CompletionItemKind
+local ts_utils = require("nvim-treesitter.ts_utils")
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function ()
@@ -18,12 +20,17 @@ vim.api.nvim_create_autocmd("VimEnter", {
 ---@diagnostic disable-next-line
 cmp.setup({
 	sources = cmp.config.sources({
-		{ name = "nvim_lua" },
-		{ name = "nvim_lsp" },
 		{ name = "path" },
-	}, {
-		{ name = "look", keyword_length = 5 },
-		{ name = "buffer", keyword_length = 3 },
+		{ name = "nvim_lua" },
+		{
+			name = "nvim_lsp",
+			entry_filter = function(entry, _)
+				local check_text = types.lsp.CompletionItemKind[entry:get_kind()]
+				if check_text == "Text" then return false end
+
+				return true
+			end
+		},
 	}),
 
 	snippet = {
@@ -57,14 +64,30 @@ cmp.setup({
 		end,
 	},
 
-	-- completion = {
-	-- 	autocomplete = false,
-	-- },
-
+	---@diagnostic disable-next-line
 	sorting = {
-		---@
 		comparators = {
-			cmp.config.compare.score,
+			function(entry1, entry2)
+				local kind1 = entry1.completion_item.kind
+				local kind2 = entry2.completion_item.kind
+				local node = ts_utils.get_node_at_cursor()
+
+				if node and node:type() == "argument" then
+					if kind1 == 6 then
+						entry1.score = 100
+					end
+					if kind2 == 6 then
+						entry2.score = 100
+					end
+				end
+
+				local diff = entry2.score - entry1.score
+				if diff < 0 then
+					return true
+				else
+					return false
+				end
+			end,
 			cmp.config.compare.exact,
 			cmp.config.compare.recently_used,
 			function (entry1, entry2)
