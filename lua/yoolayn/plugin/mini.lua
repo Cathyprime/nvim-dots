@@ -9,7 +9,7 @@ return {
 	},
 	{
 		"echasnovski/mini.align",
-		keys = { { "ga" } },
+		-- keys = { { "ga" } },
 		version = false,
 		opts = {
 			mappings = {
