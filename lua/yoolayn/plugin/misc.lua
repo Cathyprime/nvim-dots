@@ -58,7 +58,7 @@ return {
 			"DiffviewLog",
 			"DiffviewOpen",
 			"DiffviewRefresh",
-			"DiffviewToggleFiles a",
+			"DiffviewToggleFiles",
 		}
 	},
 	{
