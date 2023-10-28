@@ -7,7 +7,6 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			"dgagn/diagflow.nvim",
 			"j-hui/fidget.nvim",
 			"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		},
