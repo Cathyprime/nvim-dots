@@ -113,5 +113,34 @@ return {
 		keys = {
 			{ "<leader>c", "<cmd>PickColor<cr>" }
 		}
+	},
+	{
+		"folke/flash.nvim",
+		config = function()
+			require("yoolayn.config.flash")
+		end,
+		keys = {
+			{
+				"r",
+				function()
+					require("flash").remote()
+				end,
+				mode = "o",
+			},
+			{
+				"gr",
+				function()
+					require("flash").treesitter_search()
+				end,
+				mode = "x"
+			},
+			{
+				"R",
+				function()
+					require("flash").treesitter()
+				end,
+				mode = { "o", "x" }
+			}
+		}
 	}
 }
