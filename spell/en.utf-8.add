@@ -19,3 +19,5 @@ netrw
 netrwPlugin
 grepprg
 cmp
+api
+nvim_buf_get_lines
