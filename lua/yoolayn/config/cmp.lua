@@ -90,6 +90,7 @@ cmp.setup({
 	---@diagnostic disable-next-line
 	sorting = {
 		comparators = {
+			cmp.config.compare.recently_used,
 			function(entry1, entry2)
 				local kind1 = entry1.completion_item.kind
 				local kind2 = entry2.completion_item.kind
@@ -112,7 +113,6 @@ cmp.setup({
 				end
 			end,
 			cmp.config.compare.exact,
-			cmp.config.compare.recently_used,
 			function (entry1, entry2)
 				local kind1 = kind_mapper[entry1:get_kind()]
 				local kind2 = kind_mapper[entry2:get_kind()]
