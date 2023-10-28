@@ -33,6 +33,5 @@ return {
 				}
 			end,
 		})
-		vim.cmd("colorscheme kanagawa-wave")
 	end
 }
