@@ -32,6 +32,9 @@ set hls
 set cursorline
 set guicursor=i-ci-ve:block
 
+" tabline
+set showtabline=0
+
 " scrolloff
 set scrolloff=6
 
