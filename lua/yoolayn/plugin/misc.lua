@@ -48,6 +48,10 @@ return {
 		}
 	},
 	{
+		"sindrets/diffview.nvim",
+		opts = {},
+	},
+	{
 		"dstein64/vim-startuptime",
 		cmd = {
 			"StartupTime"
