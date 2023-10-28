@@ -33,6 +33,15 @@ cmp.setup({
 		},
 	}),
 
+	window = {
+		---@diagnostic disable-next-line
+		completion = {
+			border = "none",
+			side_padding = 0,
+			col_offset = -3,
+		}
+	},
+
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
@@ -56,6 +65,7 @@ cmp.setup({
 			local kind = item.kind
 
 			item.kind = (icons[kind] or " ")
+			item.kind = " " .. item.kind .. " "
 			item.menu = "(" .. kind .. ")"
 
 			item.abbr = item.abbr:match("[^(]+")
