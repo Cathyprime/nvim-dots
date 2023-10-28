@@ -8,6 +8,8 @@ return {
 		"windwp/nvim-autopairs",
 		config = function()
 			require("nvim-autopairs").setup({})
+			require("yoolayn.config.cmp-pairs")
+			require("yoolayn.config.pair-customrules")
 			require("nvim-autopairs").remove_rule('"')
 			require("nvim-autopairs").remove_rule("'")
 			require("nvim-autopairs").remove_rule('`')
