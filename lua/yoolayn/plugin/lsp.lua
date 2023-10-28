@@ -24,6 +24,7 @@ return {
 		},
 		config = function()
 			require("yoolayn.config.cmp")
+			require("yoolayn.config.cmp-colors")
 		end,
 	},
 }
