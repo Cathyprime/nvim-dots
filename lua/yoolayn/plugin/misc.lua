@@ -142,5 +142,16 @@ return {
 				mode = { "o", "x" }
 			}
 		}
-	}
+	},
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		cmd = "DBUIToggle",
+	},
+	{
+		"anuvyklack/hydra.nvim" ,
+	},
+	{
+		"dohsimpson/vim-macroeditor",
+		cmd = "MacroEdit",
+	},
 }
