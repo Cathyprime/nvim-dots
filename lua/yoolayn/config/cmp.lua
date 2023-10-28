@@ -33,6 +33,17 @@ cmp.setup({
 				return true
 			end
 		},
+	},
+	{
+		{
+			name = "omni",
+			option = {
+				disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" }
+			}
+		},
+	},
+	{
+		{ name = "buffer" },
 	}),
 
 	window = {
