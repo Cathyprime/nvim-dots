@@ -16,6 +16,7 @@ xnoremap <silent> @ :<c-u>call MacroOnLines()<cr>
 " === quickfix ===
 nnoremap <silent> ]c :cnext<cr>
 nnoremap <silent> [c :cprev<cr>
+nnoremap <silent> <leader>q :cope<cr>
 
 " === disable scroll full page ===
 nnoremap <C-b> <Nop>
