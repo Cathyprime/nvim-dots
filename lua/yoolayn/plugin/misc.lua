@@ -6,6 +6,7 @@ return {
 	},
 	{
 		"windwp/nvim-autopairs",
+		event = "InsertEnter",
 		config = function()
 			require("nvim-autopairs").setup({})
 			require("yoolayn.config.cmp-pairs")
@@ -50,6 +51,15 @@ return {
 	{
 		"sindrets/diffview.nvim",
 		opts = {},
+		cmd = {
+			"DiffviewClose",
+			"DiffviewFileHistory",
+			"DiffviewFocusFiles",
+			"DiffviewLog",
+			"DiffviewOpen",
+			"DiffviewRefresh",
+			"DiffviewToggleFiles a",
+		}
 	},
 	{
 		"dstein64/vim-startuptime",
