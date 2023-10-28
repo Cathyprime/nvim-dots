@@ -1,5 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
+	cmd = "Telescope",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
@@ -45,28 +46,32 @@ return {
 	keys = {
 		{
 			"<leader>ff",
-			"<cmd>Telescope find_files<cr>",
+			function() require("telescope.builtin").find_files({
+				theme = "dropdown"
+			}) end
 		},
 		{
 			"<leader>fo",
-			"<cmd>Telescope oldfiles<cr>",
+			function() require("telescope.builtin").oldfiles() end
 		},
 		{
 			"<leader>fb",
-			"<cmd>Telescope buffers<cr>",
+			function() require("telescope.builtin").buffers() end
 		},
 		{
 			"<leader>fh",
-			function () require("telescope.builtin").help_tags() end,
+			function() require("telescope.builtin").help_tags() end,
 		},
 		{
 			"<leader>fg",
-			"<cmd>Telescope live_grep<cr>"
+			function() require("telescope.builtin").live_grep() end
 		},
 		{
 			"<leader>fG",
 			function()
-				require("telescope.builtin").live_grep({ search_dirs = { vim.fn.expand("%:p") } })
+				require("telescope.builtin").live_grep({
+					search_dirs = { vim.fn.expand("%:p") }
+				})
 			end,
 		},
 		{
@@ -90,15 +95,11 @@ return {
 		},
 		{
 			"<c-p>",
-			"<cmd>lua require'util.telescope-config'.project_files()<cr>",
-		},
-		{
-			"<leader><c-p>",
-			"<cmd>Telescope find_files<cr>",
+			function() require("util.telescope-config").project_files() end
 		},
 		{
 			"<leader><c-h>",
-			"<cmd>Telescope find_files hidden=true<cr>",
+			function() require("telescope.builtin").find_files({ hidden = true }) end
 		},
 	}
 }
