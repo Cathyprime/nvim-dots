@@ -2,6 +2,10 @@
 set rnu
 set nu
 
+" spell
+set spell
+set spl=en_us,en_gb,pl
+
 " tabs & indentation
 set tabstop=4
 set shiftwidth=4
@@ -81,7 +85,7 @@ set completeopt=menu
 set winminwidth=5
 
 " popup menu
-set pumheight=8
+set pumheight=6
 
 " Disable line wrap
 set nowrap
