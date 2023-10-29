@@ -35,8 +35,8 @@ return {
 		body = i(0)
 	})),
 
-	s("refractor", fmt([[
-	refractor{scope}: {message}
+	s("refactor", fmt([[
+	refactor{scope}: {message}
 
 	{body}]], {
 		scope = c(1, {
