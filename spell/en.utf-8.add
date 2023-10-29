@@ -26,3 +26,4 @@ lua
 luasnip
 lsp
 dap
+quickfix
