@@ -27,10 +27,6 @@ nnoremap <C-f> <Nop>
 nnoremap <C-d> <C-d>zz
 " scroll up
 nnoremap <C-u> <C-u>zz
-" next search
-nnoremap n nzzzv
-" prev search
-nnoremap N Nzzzv
 
 " === text objects ===
 " inner line
