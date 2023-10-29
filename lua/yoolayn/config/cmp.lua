@@ -80,12 +80,12 @@ cmp.setup({
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function (_, item)
-			local kind = item.kind
+			local kind = item.kind or ""
 
-			item.kind = (icons[kind] or " ")
+			item.kind = (icons[kind] or icons["unknown"])
 			item.kind = " " .. item.kind .. " "
-			item.menu = "(" .. kind .. ")"
-
+			-- item.menu = "(" .. kind .. ")"
+			item.menu = ""
 			item.abbr = item.abbr:match("[^(]+")
 
 			return item
