@@ -27,3 +27,5 @@ luasnip
 lsp
 dap
 quickfix
+statusline
+winbar
