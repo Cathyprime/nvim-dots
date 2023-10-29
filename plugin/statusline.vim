@@ -21,17 +21,18 @@ set statusline+=\%#SLMode#
 set statusline+=\ %{statusline#Mode()}\ 
 set statusline+=\%#SLBackground#
 set statusline+=\ %f
-set statusline+=\ %m
+set statusline+=\ %m%r
 set statusline+=\%= " separator
 set statusline+=\ %#SLFileType#
 set statusline+=\ ft:\ %y
-set statusline+=\ %#SLBufNumber#
-set statusline+=\ bn:\ %n
 set statusline+=\ %#SLLineNumber#
-set statusline+=\ ln:\ %l\ 
+set statusline+=\ ln\ %l\,\ col\ %c
+set statusline+=\ %#SLBufNumber#
+set statusline+=\ bn:\ %n\ wn:\ %{winnr()}\ 
 
 augroup StatusLine
 	au!
+	au ModeChanged * redrawstatus!
 	au ColorScheme * highlight link SLBackground Normal
 				 \ | highlight SLBackground guibg=#181818
 				 \ | highlight SLFileType guibg=#ce0406 guifg=black
