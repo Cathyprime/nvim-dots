@@ -11,7 +11,6 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 -- 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 -- end
 
--- cmp settings
 ---@diagnostic disable-next-line
 cmp.setup({
 	sources = cmp.config.sources({
@@ -70,9 +69,7 @@ cmp.setup({
 		format = function (_, item)
 			local kind = item.kind or ""
 
-			item.kind = (icons[kind] or icons["unknown"])
-			item.kind = " " .. item.kind .. " "
-			-- item.menu = "(" .. kind .. ")"
+			item.kind = " " .. (icons[kind] or icons["Unknown"]) .. " "
 			item.menu = ""
 			item.abbr = item.abbr:match("[^(]+")
 
