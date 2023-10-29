@@ -28,6 +28,6 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
-		cmd = "G",
+		cmd ={ "G", "Gclog" },
 	},
 }
