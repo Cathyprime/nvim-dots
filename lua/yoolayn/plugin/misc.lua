@@ -162,8 +162,8 @@ return {
 		keys = {
 			{
 				"<c-w>t",
-				"<cmd>ToggleTerm<cr>",
-			}
+				[[<cmd>exe v:count1 . "ToggleTerm"<cr>]],
+			},
 		}
 	}
 }
