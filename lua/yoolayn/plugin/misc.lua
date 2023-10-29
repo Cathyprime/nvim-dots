@@ -155,4 +155,15 @@ return {
 		"dohsimpson/vim-macroeditor",
 		cmd = "MacroEdit",
 	},
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {},
+		keys = {
+			{
+				"<c-w>t",
+				"<cmd>ToggleTerm<cr>",
+			}
+		}
+	}
 }
