@@ -75,25 +75,6 @@ return {
 			end,
 		},
 		{
-			"<leader>fs",
-			function()
-				require("telescope.builtin").lsp_document_symbols({
-					symbols = {
-						"Class",
-						"Function",
-						"Method",
-						"Constructor",
-						"Interface",
-						"Module",
-						"Struct",
-						"Trait",
-						"Field",
-						"Property",
-					},
-				})
-			end,
-		},
-		{
 			"<c-p>",
 			function() require("util.telescope-config").project_files() end
 		},

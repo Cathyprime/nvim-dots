@@ -8,15 +8,32 @@ vim.cmd([[sign define DiagnosticSignHint text=]] .. icons.Hint .. [[ texthl=Diag
 
 local function on_attach(client, bufnr)
 	local opts = { buffer = bufnr }
-	vim.keymap.set("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>",         opts)
-	vim.keymap.set("n", "gI",         "<cmd>Telescope lsp_implementations<CR>",    opts)
-	vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end,    opts)
-	vim.keymap.set("n", "<leader>cc", function() vim.lsp.buf.rename() end,         opts)
-	vim.keymap.set("i", "<c-h>",      function() vim.lsp.buf.signature_help() end, opts)
-	vim.keymap.set("n", "[d",         function() vim.diagnostic.goto_prev() end,   opts)
-	vim.keymap.set("n", "]d",         function() vim.diagnostic.goto_next() end,   opts)
-	vim.keymap.set("n", "gd",         function() vim.lsp.buf.definition() end,     opts)
-	vim.keymap.set("n", "K",          function() vim.lsp.buf.hover() end,          opts)
+	vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references,      opts)
+	vim.keymap.set("n", "gI",         require("telescope.builtin").lsp_implementations, opts)
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,                          opts)
+	vim.keymap.set("n", "<leader>cc", vim.lsp.buf.rename,                               opts)
+	vim.keymap.set("n", "<leader>cl", require("lsp_lines").toggle,                      opts)
+	vim.keymap.set("i", "<c-h>",      vim.lsp.buf.signature_help,                       opts)
+	vim.keymap.set("n", "[d",         vim.diagnostic.goto_prev,                         opts)
+	vim.keymap.set("n", "]d",         vim.diagnostic.goto_next,                         opts)
+	vim.keymap.set("n", "gd",         vim.lsp.buf.definition,                           opts)
+	vim.keymap.set("n", "K",          vim.lsp.buf.hover,                                opts)
+	vim.keymap.set("n", "<leader>fs", function()
+		require("telescope.builtin").lsp_document_symbols({
+			symbols = {
+				"Class",
+				"Function",
+				"Method",
+				"Constructor",
+				"Interface",
+				"Module",
+				"Struct",
+				"Trait",
+				"Field",
+				"Property",
+			},
+		})
+	end, opts)
 
 	vim.api.nvim_buf_set_option(bufnr,"completefunc", "v:lua.vim.lsp.omnifunc")
 	if client.server_capabilities.definitionProvider then
