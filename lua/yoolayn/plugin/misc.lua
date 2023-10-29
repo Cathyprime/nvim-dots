@@ -94,7 +94,7 @@ return {
 				stoggleup = "",
 				stoggledown = "<Tab>",
 				stogglevm = "<Tab>",
-				stogglebuf = "b<Tab>",
+				stogglebuf = "",
 				sclear = "z<Tab>",
 				pscrollup = "<C-u>",
 				pscrolldown = "<C-d>",
