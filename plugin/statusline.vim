@@ -15,20 +15,25 @@ highlight SLTerminal guifg=#e6c384 guibg=#181818
 highlight link SLMode SLNormal
 highlight link SLModified SLFileType
 
+" statusline
 set statusline=
 set statusline=\%#SLBackground#
 set statusline+=\%#SLMode#
 set statusline+=\ %{statusline#Mode()}\ 
 set statusline+=\%#SLBackground#
-set statusline+=\ %f
-set statusline+=\ %m%r
 set statusline+=\%= " separator
 set statusline+=\ %#SLFileType#
 set statusline+=\ ft:\ %y
 set statusline+=\ %#SLLineNumber#
-set statusline+=\ ln\ %l\,\ col\ %c
+set statusline+=\ %l\:%c
 set statusline+=\ %#SLBufNumber#
 set statusline+=\ bn:\ %n\ wn:\ %{winnr()}\ 
+
+" winbar
+set winbar=
+set winbar+=%=
+set winbar+=%f\ %m%r
+set winbar+=%=
 
 augroup StatusLine
 	au!
@@ -49,4 +54,5 @@ augroup StatusLine
 				 \ | highlight SLTerminal guifg=#e6c384 guibg=#181818
 				 \ | highlight link SLMode SLNormal
 				 \ | highlight link SLModified SLFileType
+				 \ | highlight WinBar guifg=#571cbd
 augroup END
