@@ -72,6 +72,30 @@ for _, group in ipairs(groups) do
 	local hex = decoder(original.fg)
 	vim.api.nvim_set_hl(0, group, {
 		bg = original.fg,
-		fg = encoder(darken(hex, 0.40))
+		fg = encoder(darken(hex, 0.60)),
+		standout = true,
 	})
 end
+
+vim.api.nvim_set_hl(0, "PMenu", {
+	link = "SLBackground"
+})
+
+vim.api.nvim_set_hl(0, "PmenuThumb", {
+	bg = (function()
+		local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+		return encoder(darken(decoder(normal.fg), 0.60))
+	end)(),
+})
+
+vim.api.nvim_set_hl(0, "PmenuSbar", {
+	bg = (function()
+		local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+		return encoder(darken(decoder(normal.fg), 0.20))
+	end)()
+})
+
+vim.api.nvim_set_hl(0, "CmpItemMenu", {
+	fg = "#5000ca",
+	italic = true,
+})

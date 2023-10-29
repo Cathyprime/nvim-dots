@@ -11,18 +11,6 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 -- 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 -- end
 
-vim.api.nvim_create_autocmd({ "InsertEnter", "ColorScheme" }, {
-	callback = function ()
-		vim.api.nvim_set_hl(0, "CmpItemMenu", {
-			fg = "#5000ca",
-			italic = true,
-		})
-		vim.api.nvim_set_hl(0, "PMenu", {
-			link = "SLBackground"
-		})
-	end,
-})
-
 -- cmp settings
 ---@diagnostic disable-next-line
 cmp.setup({
