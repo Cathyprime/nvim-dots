@@ -143,17 +143,17 @@ require("mason-lspconfig").setup({
 })
 require("mason-tool-installer").setup({
 	ensure_installed = {
-		"prettier",
-		"stylua",
-		"isort",
 		"black",
-		"ruff",
 		"eslint_d",
 		"gofumpt",
 		"goimports",
-		"golines",
-		"luacheck",
 		"golangci-lint",
+		"golines",
+		"isort",
+		"luacheck",
 		"mypy",
+		"prettier",
+		"ruff",
+		"stylua",
 	},
 })
