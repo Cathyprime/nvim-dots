@@ -21,3 +21,8 @@ grepprg
 cmp
 api
 nvim_buf_get_lines
+treesitter
+lua
+luasnip
+lsp
+dap
