@@ -17,8 +17,7 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
-				markdown = { "prettier" },
-			}
+			},
 		})
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 	end
