@@ -9,6 +9,7 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"j-hui/fidget.nvim",
 			"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
 			require("yoolayn.config.lsp")
