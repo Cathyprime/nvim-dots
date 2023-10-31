@@ -169,6 +169,8 @@ return {
 	{
 		"chomosuke/term-edit.nvim",
 		ft = "toggleterm",
-		opts = {}
+		opts = {
+			prompt_end = [[>>= ]]
+		}
 	}
 }
