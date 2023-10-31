@@ -165,5 +165,10 @@ return {
 				[[<cmd>exe v:count1 . "ToggleTerm"<cr>]],
 			},
 		}
+	},
+	{
+		"chomosuke/term-edit.nvim",
+		ft = "toggleterm",
+		opts = {}
 	}
 }
