@@ -129,7 +129,7 @@ nnoremap gp `[v`]
 nnoremap U <c-r>
 
 " === substitute commands ===
-" replace inline instances under cursor
-nnoremap <leader>s :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
-" replace all instances under cursor
-vnoremap <leader>s y:%s/<c-r>"/<c-r>"/g<left><left>
+" search and replace word under cursor in the file
+nnoremap <leader>s :%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>
+" replace all marked instances
+vnoremap <leader>s y:%s/<c-r>"/<c-r>"/gc<left><left><left>
