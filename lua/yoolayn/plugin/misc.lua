@@ -172,5 +172,5 @@ return {
 		opts = {
 			prompt_end = [[>>= ]]
 		}
-	}
+	},
 }
