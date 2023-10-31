@@ -52,13 +52,13 @@ xnoremap <silent> a_ :<c-u>norm! F_vf_<cr>
 
 " === commands ===
 function! s:ConfirmSave()
-	let user_input = input("Save buffer? (yes/no): ")
+	let user_input = input("Save buffer and exit? (yes/no): ")
 	while user_input !=# "yes" && user_input !=# "no"
 		let user_input = input('Please choose "yes" or "no": ')
 	endwhile
 	redraw
 	if l:user_input == "yes"
-		return ":w"
+		return ":wq"
 	else
 		echom "Cancellng..."
 		return ""
