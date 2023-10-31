@@ -66,17 +66,5 @@ local debug = Hydra({
 		{"<F2>", nil, {exit = true, desc = "leave"}},
 	},
 })
-vim.keymap.set("n", "<F2>", function() debug:activate() end)
 
-Hydra({
-	name = "Git",
-	mode = "n",
-	body = "<leader>g",
-	heads = {
-		{"g", "<cmd>G<cr>"},
-		{"p", "<cmd>G push<cr>"},
-	},
-	config = {
-		timout = 499,
-	},
-})
+vim.keymap.set("n", "<F2>", function() debug:activate() end)
