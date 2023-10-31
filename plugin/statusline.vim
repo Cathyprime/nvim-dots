@@ -21,6 +21,7 @@ set statusline=\%#SLBackground#
 set statusline+=\%#SLMode#
 set statusline+=\ %{statusline#Mode()}\ 
 set statusline+=\%#SLBackground#
+set statusline+=\ %f\ %m%r
 set statusline+=\%= " separator
 set statusline+=\ %#SLFileType#
 set statusline+=\ ft:\ %y
