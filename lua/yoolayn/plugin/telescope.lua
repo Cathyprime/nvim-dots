@@ -79,7 +79,7 @@ return {
 			function() require("util.telescope-config").project_files() end
 		},
 		{
-			"<leader><c-h>",
+			"<c-x><x-f>",
 			function() require("telescope.builtin").find_files({ hidden = true }) end
 		},
 	}
