@@ -57,6 +57,12 @@ return {
 					function() gs.blame_line({ full = true }) end,
 					{ buffer = bufnr }
 				)
+				vim.keymap.set(
+					{ "n" },
+					"<leader>gr",
+					gs.reset_hunk,
+					{ buffer = bufnr }
+				)
 			end,
 		}
 	},
