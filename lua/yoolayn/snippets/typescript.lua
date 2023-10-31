@@ -253,7 +253,7 @@ return {
 		{body}
 	}}
 	]], {
-		name = i(1, "function name"),
+		name = i(1, "name"),
 		args = i(2),
 		body = i(0)
 	})),
