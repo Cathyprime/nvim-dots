@@ -78,7 +78,7 @@ return {
 					},
 					{
 						"n", "cvc",
-						"<Cmd>G commit <bar> wincmd J<CR>",
+						"<Cmd>G commit --verbose <bar> wincmd J<CR>",
 						{ desc = "Commit staged changes" },
 					},
 					{
