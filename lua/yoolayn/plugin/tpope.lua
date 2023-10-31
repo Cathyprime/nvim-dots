@@ -28,16 +28,5 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
-		cmd ={ "G", "Gclog" },
-		keys = {
-			{
-				"<leader>gg",
-				"<cmd>G<cr>"
-			},
-			{
-				"<leader>gP",
-				"<cmd>G push<cr>"
-			},
-		}
 	},
 }
