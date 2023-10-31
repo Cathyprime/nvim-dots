@@ -51,22 +51,22 @@ onoremap <silent> a_ :<c-u>norm! F_vf_<cr>
 xnoremap <silent> a_ :<c-u>norm! F_vf_<cr>
 
 " === commands ===
-function! s:ConfirmSave(quit, question)
+function! s:ConfirmSave(yes, no, question)
 	let user_input = input(a:question)
 	while user_input !=# "yes" && user_input !=# "no"
 		let user_input = input('Please choose "yes" or "no": ')
 	endwhile
 	redraw
 	if l:user_input == "yes"
-		return a:quit
+		return a:yes
 	else
 		echom "Cancellng..."
-		return ""
+		return a:no
 	endif
 endfunction
 
-nmap <expr> <c-x>s <SID>CofirmSave(":w", "Save buffer? (yes/no): ")
-nmap <expr> <c-x>c <SID>ConfirmSave(":wq", "Save buffer and exit? (yes/no): ")
+nmap <expr> <c-x>s <SID>ConfirmSave(":w", "", "Save buffer? (yes/no): ")
+nmap <expr> <c-x>c <SID>ConfirmSave(":wq", ":q!", "Save buffer? (yes/no): ")
 nnoremap <silent> <c-x><c-s> :w<cr>
 nnoremap <silent> <c-x><c-c> :wq<cr>
 
