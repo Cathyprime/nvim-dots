@@ -16,4 +16,10 @@ return {
 		retType = i(4, "Type"),
 		body = i(0)
 	})),
+
+	s("p", fmt([[
+	println({val})
+	]], {
+		val = i(1)
+	})),
 }
