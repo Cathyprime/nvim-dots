@@ -66,9 +66,9 @@ function! s:ConfirmSave(yes, no, question)
 endfunction
 
 " nmap <expr> <c-x>s <SID>ConfirmSave(":w", "", "Save buffer? (yes/no): ")
-nmap <expr> <c-c>c <SID>ConfirmSave(":wq", ":q!", "Save buffer? (yes/no): ")
 nnoremap <silent> <c-c><c-s> :w<cr>
-nnoremap <silent> <c-c><c-c> :wq<cr>
+nnoremap <expr> <c-c><c-c> <SID>ConfirmSave(":wq", ":q!", "Save buffer? (yes/no): ")
+" nnoremap <silent> <c-c><c-c> :wq<cr>
 
 " === clipboard interaction ===
 " " yank to clipboard
