@@ -220,6 +220,16 @@ return {
 				"<c-w>T",
 				[[<cmd>exe v:count1 . "ToggleTerm size=70 direction=vertical"<cr>]]
 			},
+			{
+				[[\s]],
+				[[<cmd>exe v:count1 . "ToggleTermSendCurrentLine"<cr>]],
+				mode = "n"
+			},
+			{
+				[[\s]],
+				[[<cmd>exe v:count1 . "ToggleTermSendVisualSelection"<cr>]],
+				mode = "v"
+			}
 		}
 	},
 	{
