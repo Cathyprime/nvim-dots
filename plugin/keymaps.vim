@@ -67,7 +67,9 @@ endfunction
 
 " nmap <expr> <c-x>s <SID>ConfirmSave(":w", "", "Save buffer? (yes/no): ")
 nnoremap <silent> <c-c><c-s> :w<cr>
-nnoremap <expr> <c-c><c-c> <SID>ConfirmSave(":wq", ":q!", "Save buffer? (yes/no): ")
+nnoremap <expr> <c-c>c <SID>ConfirmSave(":wq", ":q!", "Save buffer? (yes/no): ")
+nnoremap <expr> <c-c><c-c> <SID>ConfirmSave(":wqa", ":qa!", "Save buffers? (yes/no): ")
+nnoremap <a-x> :
 " nnoremap <silent> <c-c><c-c> :wq<cr>
 
 " === clipboard interaction ===
