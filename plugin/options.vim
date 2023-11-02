@@ -57,7 +57,8 @@ set inccommand=split
 set splitright
 set splitbelow
 
-" update time
+" time
+set timeoutlen=10000
 set updatetime=50
 
 " swap & backup
