@@ -216,6 +216,10 @@ return {
 				"<c-w>t",
 				[[<cmd>exe v:count1 . "ToggleTerm"<cr>]],
 			},
+			{
+				"<c-w>T",
+				[[<cmd>exe v:count1 . "ToggleTerm size=70 direction=vertical"<cr>]]
+			},
 		}
 	},
 	{
