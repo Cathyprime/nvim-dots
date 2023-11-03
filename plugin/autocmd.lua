@@ -2,6 +2,24 @@ local function augroup(name)
 	return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
 
+vim.api.nvim_create_autocmd({"VimEnter", "WinEnter"}, {
+	once = false,
+	callback = function()
+		if not vim.bo.filetype == "TelescopePrompt" then
+			vim.opt_local.cursorline = false
+		else
+			vim.opt_local.cursorline = true
+		end
+	end
+})
+
+vim.api.nvim_create_autocmd("WinLeave", {
+	once = false,
+	callback = function()
+		vim.opt_local.cursorline = false
+	end
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
 	callback = function()
