@@ -54,7 +54,9 @@ xnoremap <silent> a_ :<c-u>norm! F_vf_<cr>
 function! s:ConfirmSave(yes, no, question)
 	let user_input = input(a:question)
 	while user_input !=# "yes" && user_input !=# "no"
-		let user_input = input('Please choose "yes" or "no": ')
+		echo "Please answer yes or no."
+		sleep 1
+		let user_input = input(a:question)
 	endwhile
 	redraw
 	if l:user_input == "yes"
