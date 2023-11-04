@@ -1,5 +1,4 @@
 return {
-	"tpope/vim-dadbod",
 	"tpope/vim-dispatch",
 	"tpope/vim-repeat",
 	{

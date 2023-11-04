@@ -197,10 +197,6 @@ return {
 		}
 	},
 	{
-		"kristijanhusak/vim-dadbod-ui",
-		cmd = "DBUIToggle",
-	},
-	{
 		"anuvyklack/hydra.nvim" ,
 	},
 	{
