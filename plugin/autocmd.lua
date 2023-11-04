@@ -5,6 +5,9 @@ end
 vim.api.nvim_create_autocmd({"VimEnter", "WinEnter"}, {
 	once = false,
 	callback = function()
+		if vim.bo.filetype == "NvimTree" then
+			return
+		end
 		vim.opt_local.cursorline = true
 		vim.opt_local.relativenumber = true
 	end
