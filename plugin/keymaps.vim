@@ -62,6 +62,7 @@ function! s:ConfirmSave(yes, no, question)
 endfunction
 
 nnoremap <silent> <c-x><c-s> :w<cr>
+nnoremap <silent> <c-x><c-e> :so<cr>
 nnoremap <expr> <c-x>c <SID>ConfirmSave(":wq", ":q!", "Save buffer? (yes/no): ")
 nnoremap <expr> <c-x><c-c> <SID>ConfirmSave(":wqa", ":qa!", "Save buffers? (yes/no): ")
 nnoremap <a-x> :
