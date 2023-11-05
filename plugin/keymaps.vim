@@ -30,12 +30,6 @@ nnoremap <silent> <expr> <leader>q <SID>OpenQuickfix()
 nnoremap <C-b> <Nop>
 nnoremap <C-f> <Nop>
 
-" === recenter screen ===
-" scroll down
-nnoremap <C-d> <C-d>zz
-" scroll up
-nnoremap <C-u> <C-u>zz
-
 " === text objects ===
 " inner line
 onoremap <silent> iL :<c-u>norm! _vg_<cr>
