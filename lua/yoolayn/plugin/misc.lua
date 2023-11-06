@@ -241,18 +241,5 @@ return {
 		config = function()
 			require('fundo').install()
 		end,
-	},
-	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim",         -- required
-			"nvim-telescope/telescope.nvim", -- optional
-			"sindrets/diffview.nvim",        -- optional
-			"ibhagwan/fzf-lua",              -- optional
-		},
-		keys = {
-			{ "<c-x>g", "<cmd>Neogit<cr>" },
-		},
-		config = true
 	}
 }
