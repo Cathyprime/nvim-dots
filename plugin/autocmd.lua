@@ -1,11 +1,29 @@
+local filetypes = {
+	"NvimTree",
+	"help",
+	"man",
+	"TelescopePrompt",
+	"toggleterm",
+	"NvimTree",
+}
+
 local function augroup(name)
 	return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
+end
+
+local function chkFiletype(ft)
+	for _, value in ipairs(filetypes) do
+		if value == ft then
+			return true
+		end
+	end
+	return false
 end
 
 vim.api.nvim_create_autocmd({"VimEnter", "WinEnter"}, {
 	once = false,
 	callback = function()
-		if vim.bo.filetype == "NvimTree" then
+		if chkFiletype(vim.bo.filetype) then
 			return
 		end
 		vim.opt_local.cursorline = true
