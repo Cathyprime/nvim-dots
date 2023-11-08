@@ -5,6 +5,16 @@ return {
 		opts = {},
 	},
 	{
+		"kylechui/nvim-surround",
+		event = { "BufNewFile", "BufReadPost", "InsertEnter" },
+		opts = {
+			keymaps = {
+				insert = "<c-s>",
+				insert_line = "<c-s><c-s>",
+			}
+		}
+	},
+	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		dependencies = "hrsh7th/nvim-cmp",

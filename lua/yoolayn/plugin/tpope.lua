@@ -22,10 +22,6 @@ return {
 		}
 	},
 	{
-		"tpope/vim-surround",
-		event = { "BufNewFile", "BufReadPost", "InsertEnter" },
-	},
-	{
 		"tpope/vim-fugitive",
 		cmd ={ "G", "Gclog" },
 		keys = {
