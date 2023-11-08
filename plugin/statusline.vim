@@ -24,16 +24,16 @@ set statusline+=\%#SLBackground#
 set statusline+=\ %f\ %m%r
 set statusline+=\%= " separator
 set statusline+=\ %#SLFileType#
-set statusline+=\ ft:\ %y
+set statusline+=\ %y
 set statusline+=\ %#SLLineNumber#
 set statusline+=\ %l\:%c
 set statusline+=\ %#SLBufNumber#
-set statusline+=\ bn:\ %n\ wn:\ %{winnr()}\ 
+set statusline+=\ %{winnr()}:%n\ 
 
 " winbar
 set winbar=
 set winbar+=%=
-set winbar+=%f\ %m%r
+set winbar+=%t\ %m%r
 set winbar+=%=
 
 augroup StatusLine
