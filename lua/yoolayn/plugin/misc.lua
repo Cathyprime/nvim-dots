@@ -168,32 +168,10 @@ return {
 		}
 	},
 	{
-		"folke/flash.nvim",
-		config = function()
-			require("yoolayn.config.flash")
-		end,
+		"gsuuon/tshjkl.nvim",
+		config = true,
 		keys = {
-			{
-				"r",
-				function()
-					require("flash").remote()
-				end,
-				mode = "o",
-			},
-			{
-				"gr",
-				function()
-					require("flash").treesitter_search()
-				end,
-				mode = "x"
-			},
-			{
-				"R",
-				function()
-					require("flash").treesitter()
-				end,
-				mode = { "o", "x" }
-			}
+			{ "<m-v>" }
 		}
 	},
 	{
