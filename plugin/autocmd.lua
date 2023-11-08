@@ -20,6 +20,14 @@ local function chkFiletype(ft)
 	return false
 end
 
+vim.api.nvim_create_autocmd("CmdwinEnter", {
+	once = false,
+	callback = function()
+		vim.o.laststatus = 0
+		vim.opt_local.filetype = "minibuffer"
+	end
+})
+
 vim.api.nvim_create_autocmd({"VimEnter", "WinEnter"}, {
 	once = false,
 	callback = function()
