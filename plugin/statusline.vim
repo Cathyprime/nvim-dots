@@ -31,10 +31,10 @@ set statusline+=\ %#SLBufNumber#
 set statusline+=\ %{winnr()}:%n\ 
 
 " winbar
-set winbar=
-set winbar+=%=
-set winbar+=%t\ %m%r
-set winbar+=%=
+" set winbar=
+" set winbar+=%=
+" set winbar+=%t\ %m%r
+" set winbar+=%=
 
 augroup StatusLine
 	au!
