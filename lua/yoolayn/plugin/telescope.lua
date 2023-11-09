@@ -80,7 +80,14 @@ return {
 		},
 		{
 			"<c-x><c-f>",
-			function() require("telescope.builtin").find_files({ hidden = true }) end
+			function() require("telescope.builtin").find_files({
+				file_ignore_patterns = {
+					"node%_modules/*",
+					"venv/*",
+					"%.git/*"
+				},
+				hidden = true,
+			}) end
 		},
 	}
 }
