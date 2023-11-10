@@ -1,6 +1,7 @@
 return {
 	{
-		"elkowar/yuck.vim",
-		ft = { "lisp", "yuck" },
+		"julienvincent/nvim-paredit",
+		config = true,
+		ft = { "lisp", "fennel", "clojure" }
 	}
 }
