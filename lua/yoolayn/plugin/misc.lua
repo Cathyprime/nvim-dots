@@ -131,10 +131,6 @@ return {
 		}
 	},
 	{
-		"ThePrimeagen/vim-be-good",
-		cmd = "VimBeGood",
-	},
-	{
 		"kevinhwang91/nvim-bqf",
 		ft = "qf",
 		opts = {
@@ -168,13 +164,6 @@ return {
 				filterr = "zN",
 				fzffilter = "",
 			}
-		}
-	},
-	{
-		"ziontee113/color-picker.nvim",
-		opts = {},
-		cmd = {
-			"PickColor"
 		}
 	},
 	{
@@ -238,6 +227,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			{ "m00qek/baleia.nvim", tag = "v1.3.0" },
 		},
-		config = true
-	}
+		config = true,
+		cmd = { "Compile" }
+	},
 }
