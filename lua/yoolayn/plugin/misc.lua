@@ -230,4 +230,14 @@ return {
 		config = true,
 		cmd = { "Compile" }
 	},
+	{
+		"nvim-pack/nvim-spectre",
+		opts = {},
+		keys = {
+			{
+				"<leader>r",
+				"<cmd>lua require('spectre').toggle()<cr>"
+			}
+		}
+	}
 }
