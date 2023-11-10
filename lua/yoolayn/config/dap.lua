@@ -1,9 +1,7 @@
 local dap = require("dap")
 local dapui = require("dapui")
-require("nvim-dap-virtual-text").setup()
 require("dapui").setup()
 require("dap-go").setup()
-require("dap-python").setup("venv/bin/debugpy")
 
 dap.adapters["pwa-node"] = {
 	type = "server",

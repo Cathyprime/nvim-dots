@@ -1,6 +1,5 @@
 return {
 	"tpope/vim-dispatch",
-	"tpope/vim-repeat",
 	{
 		"tpope/vim-eunuch",
 		cmd = {
