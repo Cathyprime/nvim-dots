@@ -26,9 +26,9 @@ set statusline+=\%= " separator
 set statusline+=\ %#SLFileType#
 set statusline+=\ %y
 set statusline+=\ %#SLLineNumber#
-set statusline+=\ %l\:%c
+set statusline+=\ (%l\:%c)
 set statusline+=\ %#SLBufNumber#
-set statusline+=\ %{winnr()}:%n\ 
+set statusline+=\ [%{winnr()}:%n]\ 
 
 " winbar
 " set winbar=
