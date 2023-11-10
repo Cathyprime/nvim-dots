@@ -123,6 +123,23 @@ nnoremap <silent> <expr> <c-c>d <SID>DispatchWrapper()
 nnoremap <silent> <expr> <c-c>D <SID>DispatchWrapperChange()
 
 " === misc ===
+let s:status = "on"
+function! s:Presentation()
+	if s:status == "on"
+		set laststatus=0
+		set cmdheight=0
+		call system("tmux set -g status off")
+		let s:status = "off"
+	else
+		set laststatus=3
+		set cmdheight=1
+		call system("tmux set -g status on")
+		let s:status = "on"
+	endif
+endfunction
+command! -nargs=0 Presentation call <SID>Presentation()
+nnoremap <silent> <leader>ts :<c-u>Presentation<cr>
+
 " join lines
 nnoremap J mzJ`z
 " select pasted test
