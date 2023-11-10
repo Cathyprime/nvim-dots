@@ -16,7 +16,7 @@ vim.api.nvim_win_set_height(compile_win, 4)
 vim.api.nvim_buf_set_name(target, "compilation-mode")
 
 local cmd             = "lua/compile-mode/compiler"
-local cmd_args        = { "lol", "lua.c" }
+local cmd_args        = { "run", "lua/compile-mode/lua.c" }
 local compiler_output = uv.new_pipe()
 local compiler_err    = uv.new_pipe()
 local err_lines       = {}
