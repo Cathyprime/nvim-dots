@@ -28,4 +28,20 @@ return {
 			},
 		},
 	},
+	{
+		"echasnovski/mini.operators",
+		version = false,
+		opts = {
+			sort = {
+				prefix = "gS"
+			}
+		},
+		keys = {
+			{ "g=", mode = { "n", "x" } },
+			{ "gx", mode = { "n", "x" } },
+			{ "gm", mode = { "n", "x" } },
+			{ "gr", mode = { "n", "x" } },
+			{ "gS", mode = { "n", "x" } },
+		}
+	}
 }
