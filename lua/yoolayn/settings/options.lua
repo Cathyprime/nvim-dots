@@ -21,7 +21,7 @@ M.options = {
 	cursorline = true,
 	guicursor = "i-ci-ve:block",
 	showtabline = 0,
-	scrolloff = 6,
+	scrolloff = 8,
 	termguicolors = true,
 	signcolumn = "yes",
 	inccommand = "split",
@@ -32,7 +32,7 @@ M.options = {
 	swapfile = false,
 	writebackup = false,
 	shortmess = {
-	append = "c",
+		append = "c",
 	},
 	showmode = false,
 	laststatus = 3,
