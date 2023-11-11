@@ -34,18 +34,16 @@ vim.api.nvim_create_autocmd({"VimEnter", "WinEnter"}, {
 		if chkFiletype(vim.bo.filetype) then
 			return
 		end
-		vim.opt_local.relativenumber = true
 		vim.opt_local.cursorline = true
-		vim.opt_local.number = true
+		vim.opt_local.relativenumber = true
 	end
 })
 
 vim.api.nvim_create_autocmd("WinLeave", {
 	once = false,
 	callback = function()
-		vim.opt_local.relativenumber = false
 		vim.opt_local.cursorline = false
-		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
 	end
 })
 
