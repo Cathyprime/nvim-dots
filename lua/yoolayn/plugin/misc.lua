@@ -222,8 +222,18 @@ return {
 		opts = {},
 		keys = {
 			{
-				"<leader>r",
+				"<leader>rr",
 				"<cmd>lua require('spectre').toggle()<cr>"
+			}
+		}
+	},
+	{
+		"cshuaimin/ssr.nvim",
+		config = true,
+		keys = {
+			{
+				"<leader>rs",
+				"<cmd>lua require('ssr').open()<cr>"
 			}
 		}
 	}
