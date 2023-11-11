@@ -1,4 +1,72 @@
+local k = require("luasnip.nodes.key_indexer").new_key
+
+local function testCase(classname, snip)
+	local retTable = {}
+	for index=2,snip.captures[1] do
+		local snippet = sn(index - 1, fmt([[
+		def test_{cls}_{prop}(self) -> None:
+			{obj} = {cls}({args})
+			self.assertEqual({val}, {obj}.{propRep})
+		]], {
+			cls = t(classname),
+			prop = i(1, "property"),
+			obj = f(function(args)
+				local arg_str = args[1][1]:gsub(' ', '')
+				return arg_str
+			end, { k("objname") }),
+			args = f(function(args)
+				return args[1][1] or "\"haiii :3\""
+			end, { k("arguments") }),
+			val = f(function(args)
+				local args_str = args[1][1]:gsub(' ', '')
+				if args_str == "" then
+					return "\"haiii :3\""
+				end
+				local args_split = vim.split(args_str, ',')
+				return args_split[index] or "\"haaaiii :3\""
+			end, { k("arguments") }),
+			propRep = rep(1),
+		}))
+		table.insert(retTable, t({"", "", ""}))
+		table.insert(retTable, snippet)
+	end
+	return retTable
+end
+
 return {
+
+	s(
+		{trig = "testdata([%d]+)", regTrig = true},
+		fmt([[
+		class Test{classname}(unittest.TestCase):
+
+			def test_{cls}_{prop}(self) -> None:
+				{obj} = {cls}({args})
+				self.assertEqual({val}, {objRep}.{propRep}){arms}
+		]],
+			{
+				classname = i(1, "ClassName"),
+ 				cls = rep(1),
+				args = i(3, "args", { key = "arguments" }),
+				prop = i(4, "property"),
+				propRep = rep(4),
+				val = f(function(args)
+					local args_str = args[1][1]:gsub(' ', '')
+					if args_str == "" then
+						return "\"haiii :3\""
+					end
+					local args_split = vim.split(args_str, ',')
+					return args_split[1] or "\"haaaiii :3\""
+				end, { k("arguments") }),
+				obj = i(2, "val", { key = "objname" }),
+				objRep = rep(2),
+				arms = d(5, function(cls, snip)
+					 local tab = testCase(cls[1][1] or ":3", snip)
+					 return isn(1, tab or t("empty :c"), "$PARENT_INDENT\t")
+				end, { 1 })
+			}
+		)
+	),
 
 	s("test", fmt([[
 	def test_{name}(self{args}) -> None:
@@ -30,17 +98,13 @@ return {
 	s("unittest", fmt([[
 	import unittest
 
-
-	class {name}(unittest.TestCase):
-
-		{body}
+	{body}
 
 
 	if __name__ == '__main__':
 		unittest.main()
 	]], {
-		name = i(1, "name"),
-		body = i(0)
+		body = i(0),
 	})),
 
 	s("fn", fmt([[
