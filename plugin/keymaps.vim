@@ -31,12 +31,6 @@ nnoremap <C-b> <Nop>
 nnoremap <C-f> <Nop>
 
 " === text objects ===
-" inner line
-onoremap <silent> iL :<c-u>norm! _vg_<cr>
-xnoremap <silent> iL :<c-u>norm! _vg_<cr>
-" a line
-onoremap <silent> as :<c-u>norm! 0v$<cr>
-xnoremap <silent> as :<c-u>norm! 0v$<cr>
 " inner underscore
 onoremap <silent> i_ :<c-u>norm! T_vt_<cr>
 xnoremap <silent> i_ :<c-u>norm! T_vt_<cr>
@@ -140,7 +134,7 @@ endfunction
 command! -nargs=0 Presentation call <SID>Presentation()
 nnoremap <silent> <leader>ts :<c-u>Presentation<cr>
 
-" clean line
+" clear line
 nnoremap X 0D
 " join lines
 nnoremap J mzJ`z
