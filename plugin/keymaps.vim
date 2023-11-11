@@ -140,6 +140,8 @@ endfunction
 command! -nargs=0 Presentation call <SID>Presentation()
 nnoremap <silent> <leader>ts :<c-u>Presentation<cr>
 
+" clean line
+nnoremap X 0D
 " join lines
 nnoremap J mzJ`z
 " select pasted test
