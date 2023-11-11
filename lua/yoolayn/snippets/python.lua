@@ -97,6 +97,8 @@ return {
 
 	s("unittest", fmt([[
 	import unittest
+	from {module} import {import}
+
 
 	{body}
 
@@ -105,6 +107,8 @@ return {
 		unittest.main()
 	]], {
 		body = i(0),
+		module = i(1, "module"),
+		import = i(2, "stuff")
 	})),
 
 	s("fn", fmt([[
