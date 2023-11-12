@@ -6,6 +6,7 @@ local filetypes = {
 	"toggleterm",
 	"NvimTree",
 	"tsplayground",
+	"compile",
 }
 
 local function augroup(name)
