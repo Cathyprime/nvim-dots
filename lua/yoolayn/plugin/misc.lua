@@ -15,6 +15,19 @@ return {
 		}
 	},
 	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		dependencies = "hrsh7th/nvim-cmp",
+		config = function()
+			require("nvim-autopairs").setup({})
+			require("nvim-autopairs").remove_rule('"')
+			require("nvim-autopairs").remove_rule("'")
+			require("nvim-autopairs").remove_rule('`')
+			require("yoolayn.config.cmp-pairs")
+			require("yoolayn.config.pair-customrules")
+		end
+	},
+	{
 		"mbbill/undotree",
 		keys = {
 			{ "<leader>u", "<cmd>UndotreeToggle<cr>" }
