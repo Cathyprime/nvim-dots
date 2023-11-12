@@ -26,9 +26,11 @@ nnoremap <silent> ]c :cnext<cr>
 nnoremap <silent> [c :cprev<cr>
 nnoremap <silent> <expr> <leader>q <SID>OpenQuickfix()
 
-" === disable scroll full page ===
+" === scroll ===
 nnoremap <C-b> <Nop>
 nnoremap <C-f> <Nop>
+nnoremap <c-d> <c-d>zz
+nnoremap <c-u> <c-u>zz
 
 " === text objects ===
 " inner underscore
