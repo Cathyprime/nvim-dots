@@ -2,6 +2,8 @@ vim.keymap.set({ "n", "i"}, "<c-g>", "norm :close<cr>", { buffer = true, silent 
 vim.keymap.set({ "n", "i"}, "<c-c>", "<cmd>close<cr>", { buffer = true, silent = true })
 vim.keymap.set({"i"}, "<c-k>", "<up>", { buffer = true, silent = true })
 vim.keymap.set({"i"}, "<c-j>", "<down>", { buffer = true, silent = true })
+vim.keymap.set({"i"}, "<c-e>", "<end>", { buffer = true, silent = true })
+vim.keymap.set({"i"}, "<c-a>", "<home>", { buffer = true, silent = true })
 vim.api.nvim_win_set_height(0, 1)
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
