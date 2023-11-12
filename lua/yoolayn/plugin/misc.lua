@@ -23,6 +23,9 @@ return {
 			require("nvim-autopairs").remove_rule('"')
 			require("nvim-autopairs").remove_rule("'")
 			require("nvim-autopairs").remove_rule('`')
+			require("nvim-autopairs").remove_rule('(')
+			require("nvim-autopairs").remove_rule('[')
+			require("nvim-autopairs").remove_rule('{')
 			require("yoolayn.config.cmp-pairs")
 			require("yoolayn.config.pair-customrules")
 		end

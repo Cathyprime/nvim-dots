@@ -1,6 +1,48 @@
-local npairs = require'nvim-autopairs'
-local Rule   = require'nvim-autopairs.rule'
-local cond   = require'nvim-autopairs.conds'
+local npairs    = require'nvim-autopairs'
+local Rule      = require'nvim-autopairs.rule'
+local cond      = require'nvim-autopairs.conds'
+local autopairs = require("nvim-autopairs")
+
+local get_closing_for_line = function (line)
+	local i = -1
+	local clo = ''
+
+	while true do
+		i, _= string.find(line, "[%(%)%{%}%[%]]", i + 1)
+		if i == nil then break end
+		local ch = string.sub(line, i, i)
+		local st = string.sub(clo, 1, 1)
+
+		if ch == '{' then
+			clo = '}' .. clo
+		elseif ch == '}' then
+			if st ~= '}' then return '' end
+			clo = string.sub(clo, 2)
+		elseif ch == '(' then
+			clo = ')' .. clo
+		elseif ch == ')' then
+			if st ~= ')' then return '' end
+			clo = string.sub(clo, 2)
+		elseif ch == '[' then
+			clo = ']' .. clo
+		elseif ch == ']' then
+			if st ~= ']' then return '' end
+			clo = string.sub(clo, 2)
+		end
+	end
+
+	return clo
+end
+
+autopairs.add_rule(Rule("[%(%{%[]", "")
+		:use_regex(true)
+		:replace_endpair(function(opts)
+	return get_closing_for_line(opts.line)
+end)
+:end_wise(function(opts)
+	-- Do not endwise if there is no closing
+	return get_closing_for_line(opts.line) ~= ""
+end))
 
 local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
 npairs.add_rules {
@@ -38,7 +80,16 @@ for _, bracket in pairs(brackets) do
 		:with_move(function(opts) return opts.char == bracket[2] end)
 		:with_del(cond.none())
 		:use_key(bracket[2])
+		:with_cr(function() return false end)
 		-- Removes the trailing whitespace that can occur without this
 		:replace_map_cr(function(_) return '<C-c>2xi<CR><C-c>O' end)
+	}
+end
+
+for _, bracket in pairs(brackets) do
+	npairs.add_rules {
+		Rule(bracket[1], bracket[2])
+		:with_pair(cond.none())
+		:with_del(function() return true end)
 	}
 end
