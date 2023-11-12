@@ -5,6 +5,7 @@ local filetypes = {
 	"TelescopePrompt",
 	"toggleterm",
 	"NvimTree",
+	"tsplayground",
 }
 
 local function augroup(name)
