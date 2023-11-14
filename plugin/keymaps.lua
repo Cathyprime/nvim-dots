@@ -15,16 +15,16 @@ end
 
 local function confirm_save(yes, no, question, err_question)
 	local char
-    while true do
-		print(question)
-        char = vim.fn.nr2char(vim.fn.getchar())
-        if char == "y" or char == "n" or char == "q" then
-            break
-        else
-            print(err_question)
+	while true do
+	print(question)
+		char = vim.fn.nr2char(vim.fn.getchar())
+		if char == "y" or char == "n" or char == "q" then
+			break
+		else
+			print(err_question)
 			vim.cmd("sleep 300m")
-        end
-    end
+		end
+	end
 	if char == "y" then
 		vim.cmd(yes)
 	elseif char == "n" then
@@ -73,10 +73,10 @@ map("n", "<c-x><c-s>", "<cmd>write<cr>")
 map("n", "<c-x><c-e>", "<cmd>source<cr>")
 map("n", "<c-x><c-x>", "<c-x>")
 map("n", "<c-x><c-c>", function()
-	confirm_save("wqa", "qa", "Save buffers? [y/n/q]", "Only [y/n/q]")
+	confirm_save("wqa", "qa!", "Save buffers? [y/n/q]", "Only [y/n/q]")
 end)
 map("n", "<c-x>c", function()
-	confirm_save("wq", "q", "Save buffer? [y/n/q]", "Only [y/n/q]")
+	confirm_save("wq", "q!", "Save buffer? [y/n/q]", "Only [y/n/q]")
 end)
 
 -- misc
