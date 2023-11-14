@@ -1,86 +1,3 @@
-function! MacroOnLines()
-	let reg = nr2char(getchar())
-	if empty(reg)
-		echo "no register selected"
-		return
-	endif
-	let l:start = line("'<")
-	let l:end = line("'>")
-	for l:line in range(l:start, l:end)
-		execute l:line . 'normal @' . reg . "\<cr>"
-	endfor
-endfunction
-
-xnoremap <silent> @ :<c-u>call MacroOnLines()<cr>
-
-" === quickfix ===
-function! s:OpenQuickfix()
-	if exists('b:dispatch_ready') && b:dispatch_ready
-		let b:dispatch_ready = 0
-		return ":Cope"
-	else
-		return ":cope"
-	endif
-endfunction
-nnoremap <silent> ]c :cnext<cr>
-nnoremap <silent> [c :cprev<cr>
-nnoremap <silent> <expr> <leader>q <SID>OpenQuickfix()
-
-" === scroll ===
-nnoremap <C-b> <Nop>
-nnoremap <C-f> <Nop>
-nnoremap <c-d> <c-d>zz
-nnoremap <c-u> <c-u>zz
-
-" === text objects ===
-" inner underscore
-onoremap <silent> i_ :<c-u>norm! T_vt_<cr>
-xnoremap <silent> i_ :<c-u>norm! T_vt_<cr>
-" a underscore
-onoremap <silent> a_ :<c-u>norm! F_vf_<cr>
-xnoremap <silent> a_ :<c-u>norm! F_vf_<cr>
-
-" === commands ===
-function! s:ConfirmSave(yes, no, question)
-	let user_input = input(a:question)
-	while user_input !=# "yes" && user_input !=# "no"
-		echo "Please answer yes or no."
-		sleep 1
-		let user_input = input(a:question)
-	endwhile
-	redraw
-	if l:user_input == "yes"
-		return a:yes
-	else
-		echom "Cancellng..."
-		return a:no
-	endif
-endfunction
-
-nnoremap <silent> <c-x><c-s> :w<cr>
-nnoremap <silent> <c-x><c-e> :so<cr>
-nnoremap <expr> <c-x>c <SID>ConfirmSave(":wq", ":q!", "Save buffer? (yes/no): ")
-nnoremap <expr> <c-x><c-c> <SID>ConfirmSave(":wqa", ":qa!", "Save buffers? (yes/no): ")
-" nnoremap <silent> <m-x> :set ch=0q:i <BS>
-nnoremap <c-x><c-x> <c-x>
-
-" === marks ===
-" nicer keymap
-nnoremap ' `
-
-" === clipboard interaction ===
-" " yank to clipboard
-nnoremap  <leader>y "+y
-vnoremap  <leader>y "+y
-" " Yank to clipboard
-nnoremap <leader>Y "+yy
-" " paste from clipboard
-nnoremap <leader>p "+p
-vnoremap <leader>p "+p
-" " Paste from clipboard
-nnoremap <leader>P "+P
-vnoremap <leader>P "+P
-
 " === compile ===
 function! s:DispatchWrapper()
 	let b:dispatch_ready = 1
@@ -133,17 +50,9 @@ function! s:Presentation()
 		let s:status = "on"
 	endif
 endfunction
+
 command! -nargs=0 Presentation call <SID>Presentation()
 nnoremap <silent> <leader>ts :<c-u>Presentation<cr>
-
-" clear line
-nnoremap X 0D
-" join lines
-nnoremap J mzJ`z
-" select pasted test
-nnoremap gp `[v`]
-" redo
-nnoremap U <c-r>
 
 " === substitute commands ===
 " search and replace word under cursor in the file
