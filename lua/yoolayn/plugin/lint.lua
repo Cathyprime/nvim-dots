@@ -38,5 +38,11 @@ return {
 				lint.try_lint()
 			end
 		})
+		vim.keymap.set("n", "<leader>tl", function()
+			vim.api.nvim_clear_autocmds({
+				group = lint_augroup
+			})
+			vim.diagnostic.reset(nil, 0)
+		end)
 	end
 }
