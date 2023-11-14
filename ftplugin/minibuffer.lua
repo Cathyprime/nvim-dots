@@ -1,5 +1,13 @@
-vim.keymap.set({ "n", "i"}, "<c-g>", "norm :close<cr>", { buffer = true, silent = true })
-vim.keymap.set({ "n", "i"}, "<c-c>", "<cmd>close<cr>", { buffer = true, silent = true })
+vim.keymap.set(
+	{"n", "i"},
+	"<c-g>",
+	function()
+		vim.api.nvim_win_close(0, false)
+		return "<esc>"
+	end,
+	{ expr = true, buffer = true, silent = true }
+)
+vim.keymap.set({"n", "i"}, "<c-c>", "<cmd>close<cr>", { buffer = true, silent = true })
 vim.keymap.set({"i"}, "<c-k>", "<up>", { buffer = true, silent = true })
 vim.keymap.set({"i"}, "<c-j>", "<down>", { buffer = true, silent = true })
 vim.keymap.set({"i"}, "<c-e>", "<end>", { buffer = true, silent = true })
@@ -10,6 +18,7 @@ vim.opt_local.winbar = nil
 vim.o.laststatus = 0
 vim.opt_local.number = false
 vim.opt_local.relativenumber = false
+vim.opt_local.completeopt = "menu"
 
 local old_height = vim.opt.pumheight
 vim.opt.pumheight = 3
@@ -43,13 +52,20 @@ cmp.setup.buffer({
 	}),
 
 	mapping = {
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
+        if #cmp.get_entries() == 1 then
+          cmp.confirm({ select = true })
+        else
+          cmp.select_next_item()
+        end
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
+        if #cmp.get_entries() == 1 then
+          cmp.confirm({ select = true })
+        end
       else
         fallback()
       end
