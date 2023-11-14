@@ -8,6 +8,8 @@ vim.api.nvim_win_set_height(0, 1)
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
 vim.o.laststatus = 0
+vim.opt_local.number = false
+vim.opt_local.relativenumber = false
 
 local old_height = vim.opt.pumheight
 vim.opt.pumheight = 3
@@ -17,6 +19,7 @@ vim.api.nvim_create_autocmd("CmdwinLeave", {
 	callback = function()
 		vim.o.laststatus = 3
 		vim.opt.pumheight = old_height
+		vim.opt.cmdheight = 1
 	end
 })
 
