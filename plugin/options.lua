@@ -8,11 +8,20 @@ options.options = {
 	tabstop = 4,
 	shiftwidth = 4,
 	smartindent = true,
+
 	exrc = true,
 	list = true,
 	listchars = {
-		append = "trail:-,tab:\\u0020\\u0020",
+		append = {
+			[[trail:-]],
+			[[tab:\u0020\u0020]],
+			[[precedes:\u2190]],
+			[[extends:\u2192]],
+			[[leadmultispace:\u00b7]],
+		},
 	},
+
+	showbreak = ">->",
 	path = ".,**",
 	ignorecase = false,
 	smartcase = true,
@@ -42,7 +51,7 @@ options.options = {
 	completeopt = "menu,noselect",
 	winminwidth = 5,
 	pumheight = 6,
-	wrap = false,
+	wrap = true,
 }
 
 options.prg = {
@@ -64,7 +73,13 @@ options.globals = {
 local function set_option(name, opts)
 	local obj = vim.opt[name]
 	for func, value in pairs(opts) do
-		obj[func](obj, value)
+		if type(value) ~= "table" then
+			obj[func](obj, value)
+		else
+			for _, atom in ipairs(value) do
+				obj[func](obj, atom)
+			end
+		end
 	end
 end
 
