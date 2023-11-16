@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 	end
 })
 
-vim.api.nvim_create_autocmd({"VimEnter", "WinEnter"}, {
+vim.api.nvim_create_autocmd({"VimEnter", "WinEnter", "BufEnter" }, {
 	once = false,
 	callback = function()
 		if chkFiletype(vim.bo.filetype) then
@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd({"VimEnter", "WinEnter"}, {
 	end
 })
 
-vim.api.nvim_create_autocmd("WinLeave", {
+vim.api.nvim_create_autocmd({ "WinLeave" }, {
 	once = false,
 	callback = function()
 		vim.opt_local.cursorline = false
