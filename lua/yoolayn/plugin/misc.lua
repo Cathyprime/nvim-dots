@@ -198,12 +198,12 @@ return {
 			},
 			{
 				[[\s]],
-				[[<cmd>exe v:count1 . "ToggleTermSendCurrentLine"<cr>]],
+				[[<cmd>exe "ToggleTermSendCurrentLine"<cr>]],
 				mode = "n"
 			},
 			{
 				[[\s]],
-				[[<cmd>exe v:count1 . "ToggleTermSendVisualSelection"<cr>]],
+				[[:<c-u>exe v:count1 . "ToggleTermSendVisualSelection"<cr>]],
 				mode = "v"
 			}
 		}
