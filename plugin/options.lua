@@ -8,7 +8,6 @@ options.options = {
 	tabstop = 4,
 	shiftwidth = 4,
 	smartindent = true,
-
 	exrc = true,
 	list = true,
 	listchars = {
@@ -20,7 +19,7 @@ options.options = {
 			[[leadmultispace:\u00b7]],
 		},
 	},
-
+	linebreak = true,
 	showbreak = ">->",
 	path = ".,**",
 	ignorecase = false,
