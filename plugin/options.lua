@@ -20,7 +20,7 @@ options.options = {
 		},
 	},
 	linebreak = true,
-	showbreak = ">->",
+	showbreak = "-> ",
 	path = ".,**",
 	ignorecase = false,
 	smartcase = true,
