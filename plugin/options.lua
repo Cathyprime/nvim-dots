@@ -1,9 +1,9 @@
 local options = {}
 
 options.options = {
-	rnu  =  true,
-	nu  =  true,
-	spell  =  true,
+	rnu = true,
+	nu = true,
+	spell = true,
 	spl = "en_us,en_gb,pl",
 	tabstop = 4,
 	shiftwidth = 4,
