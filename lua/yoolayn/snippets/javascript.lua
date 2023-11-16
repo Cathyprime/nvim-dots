@@ -194,7 +194,7 @@ return {
 		args = i(1),
 		assign = d(2, function (args)
 			local args_str = args[1][1]
-			args_str = args_str:gsub(' ', '')
+			args_str = args_str:gsub(', ', ',')
 			if args_str == "" then
 				return sn(nil, {t("")})
 			end

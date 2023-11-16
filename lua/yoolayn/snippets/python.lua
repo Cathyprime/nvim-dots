@@ -11,14 +11,14 @@ local function testCase(classname, snip)
 			cls = t(classname),
 			prop = i(1, "property"),
 			obj = f(function(args)
-				local arg_str = args[1][1]:gsub(' ', '')
+				local arg_str = args[1][1]:gsub(', ', ',')
 				return arg_str
 			end, { k("objname") }),
 			args = f(function(args)
 				return args[1][1] or "\"haiii :3\""
 			end, { k("arguments") }),
 			val = f(function(args)
-				local args_str = args[1][1]:gsub(' ', '')
+				local args_str = args[1][1]:gsub(', ', ',')
 				if args_str == "" then
 					return "\"haiii :3\""
 				end
@@ -51,7 +51,7 @@ return {
 				prop = i(4, "property"),
 				propRep = rep(4),
 				val = f(function(args)
-					local args_str = args[1][1]:gsub(' ', '')
+					local args_str = args[1][1]:gsub(", ", ",")
 					if args_str == "" then
 						return "\"haiii :3\""
 					end
@@ -185,7 +185,7 @@ return {
 		args = i(1),
 		assign = d(2, function (args)
 			local args_str = args[1][1]
-			args_str = args_str:gsub(' ', '')
+			args_str = args_str:gsub(', ', ',')
 			args_str = args_str:sub(2) or ""
 			if args_str == "" then
 				return sn(nil, {t("")})
