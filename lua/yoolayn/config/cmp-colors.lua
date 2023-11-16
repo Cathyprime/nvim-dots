@@ -36,15 +36,15 @@ local function decoder(decimalColor)
 end
 
 local function darken(hex, factor)
-    local r = tonumber(hex:sub(2, 3), 16)
-    local g = tonumber(hex:sub(4, 5), 16)
-    local b = tonumber(hex:sub(6, 7), 16)
+	local r = tonumber(hex:sub(2, 3), 16)
+	local g = tonumber(hex:sub(4, 5), 16)
+	local b = tonumber(hex:sub(6, 7), 16)
 
 	r = r * factor
 	g = g * factor
 	b = b * factor
 
-    return string.format("#%02X%02X%02X", r, g, b)
+	return string.format("#%02X%02X%02X", r, g, b)
 end
 
 local function encoder(hexColor)
