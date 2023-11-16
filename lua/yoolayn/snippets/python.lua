@@ -4,9 +4,9 @@ local function testCase(classname, snip)
 	local retTable = {}
 	for index=2,snip.captures[1] do
 		local snippet = sn(index - 1, fmt([[
-		def test_{cls}_{prop}(self) -> None:
+		def test_{cls}_{propRep}(self) -> None:
 			{obj} = {cls}({args})
-			self.assertEqual({val}, {obj}.{propRep})
+			self.assertEqual({val}, {obj}.{prop})
 		]], {
 			cls = t(classname),
 			prop = i(1, "property"),
@@ -40,9 +40,9 @@ return {
 		fmt([[
 		class Test{classname}(unittest.TestCase):
 
-			def test_{cls}_{prop}(self) -> None:
+			def test_{cls}_{propRep}(self) -> None:
 				{obj} = {cls}({args})
-				self.assertEqual({val}, {objRep}.{propRep}){arms}
+				self.assertEqual({val}, {objRep}.{prop}){arms}
 		]],
 			{
 				classname = i(1, "ClassName"),
