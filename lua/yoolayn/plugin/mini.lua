@@ -18,16 +18,6 @@ return {
 			},
 		},
 	},
-	-- {
-	-- 	"echasnovski/mini.splitjoin",
-	-- 	version = false,
-	-- 	keys = { { "gs" } },
-	-- 	opts = {
-	-- 		mappings = {
-	-- 			toggle = "gs",
-	-- 		},
-	-- 	},
-	-- },
 	{
 		"echasnovski/mini.operators",
 		version = false,
