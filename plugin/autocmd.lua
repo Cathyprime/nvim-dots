@@ -7,14 +7,19 @@ local filetypes = {
 	"NvimTree",
 	"tsplayground",
 	"compile",
+	"ssr",
+}
+
+local ftcursor = {
+	"NvimTree"
 }
 
 local function augroup(name)
 	return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
 
-local function chkFiletype(ft)
-	for _, value in ipairs(filetypes) do
+local function chkFiletype(ft, table)
+	for _, value in ipairs(table) do
 		if value == ft then
 			return true
 		end
@@ -33,7 +38,10 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 vim.api.nvim_create_autocmd({"VimEnter", "WinEnter", "BufEnter" }, {
 	once = false,
 	callback = function()
-		if chkFiletype(vim.bo.filetype) then
+		if chkFiletype(vim.bo.filetype, ftcursor) then
+			vim.opt_local.cursorline = true
+			return
+		elseif chkFiletype(vim.bo.filetype, filetypes) then
 			return
 		end
 		vim.opt_local.cursorline = true
