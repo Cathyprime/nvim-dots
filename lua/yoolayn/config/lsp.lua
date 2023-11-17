@@ -150,7 +150,6 @@ require("mason-tool-installer").setup({
 		"goimports",
 		"golangci-lint",
 		"golines",
-		"isort",
 		"luacheck",
 		"mypy",
 		"prettier",
