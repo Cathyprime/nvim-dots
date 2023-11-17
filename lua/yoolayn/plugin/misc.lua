@@ -252,5 +252,20 @@ return {
 				"<cmd>lua require('ssr').open()<cr>"
 			}
 		}
+	},
+	{
+		"Wansmer/treesj",
+		opts = {
+			use_default_keymaps = false,
+			max_join_length = 160,
+		},
+		keys = {
+			{
+				"gs",
+				function()
+					require("treesj").toggle()
+				end,
+			},
+		},
 	}
 }
