@@ -8,6 +8,7 @@ options.options = {
 	tabstop = 4,
 	shiftwidth = 4,
 	smartindent = true,
+	expandtab = false,
 	exrc = true,
 	list = true,
 	listchars = {
