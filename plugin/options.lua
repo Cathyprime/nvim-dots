@@ -18,6 +18,7 @@ options.options = {
 			[[precedes:\u2190]],
 			[[extends:\u2192]],
 			[[leadmultispace:\u00b7]],
+			[[nbsp:\u2423]]
 		},
 	},
 	linebreak = true,
