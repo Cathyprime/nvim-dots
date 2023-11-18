@@ -13,7 +13,7 @@ local function openqf()
 	end
 end
 
-local function confirm_save(yes, no, question, err_question)
+local function getChar(question, err_question)
 	local char
 	while true do
 	print(question)
@@ -25,10 +25,44 @@ local function confirm_save(yes, no, question, err_question)
 			vim.cmd("sleep 300m")
 		end
 	end
+	return char
+end
+
+local function confirm_save_cur(question, err)
+	if not vim.opt_local.modified:get() then
+		vim.cmd("q")
+		return
+	end
+	local char = getChar(question, err)
 	if char == "y" then
-		vim.cmd(yes)
+		vim.cmd("wq")
 	elseif char == "n" then
-		vim.cmd(no)
+		vim.cmd("q!")
+	else
+		vim.cmd("redraw!")
+	end
+end
+
+local function find_if_modified()
+	local table = vim.api.nvim_list_bufs()
+	for _, x in ipairs(table) do
+		print(x)
+		if vim.api.nvim_buf_get_option(x, 'modified') and vim.api.nvim_buf_is_loaded(x) then
+			return true
+		end
+	end
+	return false
+end
+
+local function confirm_save_all(question, err)
+	if not find_if_modified() then
+		vim.cmd("qa")
+	end
+	local char = getChar(question, err)
+	if char == "y" then
+		vim.cmd("wqa")
+	elseif char == "n" then
+		vim.cmd("qa!")
 	else
 		vim.cmd("redraw!")
 	end
@@ -73,10 +107,10 @@ map("n", "<c-x><c-s>", "<cmd>write<cr>")
 map("n", "<c-x><c-e>", "<cmd>source<cr>")
 map("n", "<c-x><c-x>", "<c-x>")
 map("n", "<c-x><c-c>", function()
-	confirm_save("wqa", "qa!", "Save buffers? [y/n/q]", "Only [y/n/q]")
+	confirm_save_all("Save buffers? [y/n/q]", "Only [y/n/q]")
 end)
 map("n", "<c-x>c", function()
-	confirm_save("wq", "q!", "Save buffer? [y/n/q]", "Only [y/n/q]")
+	confirm_save_cur("Save buffer? [y/n/q]", "Only [y/n/q]")
 end)
 
 -- misc
