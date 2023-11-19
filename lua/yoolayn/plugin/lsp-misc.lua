@@ -22,17 +22,26 @@ return {
 			hint_enable = false,
 			toggle_key = "<c-t>",
 		},
-		config = function(_, opts) require 'lsp_signature'.setup(opts) end
+		config = function(_, opts) require "lsp_signature".setup(opts) end
 	},
 	{
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-		lazy = true,
-		config = function()
-			require("lsp_lines").setup()
-			vim.diagnostic.config({
-				virtual_text = false,
-				virtual_lines = true
-			})
-		end,
+		"dgagn/diagflow.nvim",
+		opts = {
+			max_width = 80,
+			scope = "line",
+			padding_top = 6,
+			padding_right = 10,
+			show_sign = false,
+			format = function(diagnostic)
+				local icons = require("util.icons").icons
+				local severity = {
+					icons.Error,
+					icons.Warning,
+					icons.Information,
+					icons.Hint,
+				}
+				return severity[diagnostic.severity] .. " " .. diagnostic.message
+			end
+		}
 	}
 }
