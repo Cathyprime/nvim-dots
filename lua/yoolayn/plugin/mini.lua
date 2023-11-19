@@ -33,5 +33,18 @@ return {
 			{ "gr", mode = { "n", "x" } },
 			{ "gS", mode = { "n", "x" } },
 		}
+	},
+	{
+		"echasnovski/mini.files",
+		version = false,
+		dependencies = {
+			"nvim-tree/nvim-web-devicons"
+		},
+		opts = {},
+		keys = {
+			{ "<leader>e", function()
+				require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+			end }
+		}
 	}
 }
