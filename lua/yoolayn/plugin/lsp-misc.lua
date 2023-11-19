@@ -18,8 +18,14 @@ return {
 		opts = {
 			max_height = 6,
 			doc_lines = 6,
-			hint_prefix = ":",
-			hint_enable = false,
+			floating_window = (function()
+				return vim.fn.has('nvim-0.10') == 0
+			end)(),
+			hint_prefix = "",
+			hint_enable = true,
+			hint_inline = function()
+				return vim.fn.has('nvim-0.10') == 1
+			end,
 			toggle_key = "<c-t>",
 		},
 		config = function(_, opts) require "lsp_signature".setup(opts) end
@@ -29,7 +35,7 @@ return {
 		opts = {
 			max_width = 80,
 			scope = "line",
-			padding_top = 6,
+			padding_top = 4,
 			padding_right = 10,
 			show_sign = false,
 			format = function(diagnostic)
@@ -41,7 +47,7 @@ return {
 					icons.Hint,
 				}
 				return severity[diagnostic.severity] .. " " .. diagnostic.message
-			end
+			end,
 		}
 	}
 }
