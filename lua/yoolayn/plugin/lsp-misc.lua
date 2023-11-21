@@ -32,6 +32,7 @@ return {
 	},
 	{
 		"dgagn/diagflow.nvim",
+		lazy = true,
 		opts = {
 			max_width = 80,
 			scope = "line",
