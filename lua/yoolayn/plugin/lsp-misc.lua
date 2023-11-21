@@ -43,10 +43,10 @@ return {
 				local severity = {
 					icons.Error,
 					icons.Warning,
-					icons.Information,
+					icons.Info,
 					icons.Hint,
 				}
-				return severity[diagnostic.severity] .. " " .. diagnostic.message
+				return severity[diagnostic.severity or 3] .. " " .. (diagnostic.message or "haii :3")
 			end,
 		}
 	}
