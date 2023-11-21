@@ -3,19 +3,10 @@ return {
 	cmd = "Telescope",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"Marskey/telescope-sg",
 	},
 	config = function()
 		local actions = require("telescope.actions")
 		require("telescope").setup({
-			extensions = {
-				ast_grep = {
-					command = {
-						"sg",
-						"--json=stream"
-					}
-				}
-			},
 			defaults = {
 				layout_strategy = "horizontal",
 				layout_config = {

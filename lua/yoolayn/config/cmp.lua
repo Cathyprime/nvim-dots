@@ -27,14 +27,6 @@ cmp.setup({
 		},
 	},
 	{
-		{
-			name = "omni",
-			option = {
-				disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" }
-			}
-		},
-	},
-	{
 		{ name = "buffer" },
 	}),
 
