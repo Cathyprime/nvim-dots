@@ -5,6 +5,7 @@ local filetypes = {
 	"TelescopePrompt",
 	"toggleterm",
 	"NvimTree",
+	"mason",
 	"tsplayground",
 	"compile",
 	"ssr",
