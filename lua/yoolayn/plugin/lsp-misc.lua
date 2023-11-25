@@ -1,15 +1,21 @@
 return {
 	{
 		"j-hui/fidget.nvim",
-		tag = "legacy",
 		lazy = true,
 		opts = {
-			text = {
-				spinner = "moon",
+			progress = {
+				display = {
+					progress_icon = {
+						pattern = "moon",
+						period = 1,
+					},
+				},
 			},
-			window = {
-				blend = 0,
-			},
+			notification = {
+				window = {
+					winblend = 0,
+				},
+			}
 		}
 	},
 	{
