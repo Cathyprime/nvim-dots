@@ -118,3 +118,6 @@ map("n", "X", "0D")
 map("n", "J", [[mzJ`z]])
 map("n", "gp", "`[v`]")
 map("n", "U", "<c-r>")
+
+-- command line
+map("c", "<c-a>", "<home>")
