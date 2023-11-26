@@ -48,23 +48,3 @@ Hydra({
 		timout = 500,
 	},
 })
-
-local debug = Hydra({
-	name = "debug",
-	config = {
-		color = "pink",
-	},
-	heads = {
-		{"b", function() require("dap").toggle_breakpoint() end, {desc="toggle breakpoint"} },
-		{"B", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, {desc = "break condition"}},
-		{"l", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, {desc = "log"}},
-		{"i", function() require("dap").step_into() end, {desc = "step into"}},
-		{"o", function() require("dap").step_over() end, {desc = "step over"}},
-		{"O", function() require("dap").step_out() end, {desc = "step out"}},
-		{"u", function() require("dapui").toggle() end, {desc = "ui"}},
-		{"c", function() require("dap").continue() end, {desc = "continue"}},
-		{"<F2>", nil, {exit = true, desc = "leave"}},
-	},
-})
-
-vim.keymap.set("n", "<F2>", function() debug:activate() end)
