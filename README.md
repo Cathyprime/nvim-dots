@@ -39,11 +39,6 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
 + [cmp-path](https://github.com/hrsh7th/cmp-path)
 
-### debugging
-
-+ [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
-+ [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
-+ [nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
 ### editing-support
 
 + [echasnovski/mini.move](https://dotfyle.com/plugins/echasnovski/mini.move)
