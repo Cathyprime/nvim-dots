@@ -35,6 +35,22 @@ return {
 		args = i(1, "args")
 	})),
 
+	s("ok", fmt([[
+	if ok {{
+		{body}
+	}}
+	]], {
+		body = i(0)
+	})),
+
+	s("err", fmt([[
+	if err != nil {{
+		{body}
+	}}
+	]], {
+		body = i(0)
+	})),
+
 	s("fn", fmt([[
 	func{space}{name}({args}) {left}{return_val}{right}{{
 		{body}
