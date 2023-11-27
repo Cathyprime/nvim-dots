@@ -25,12 +25,12 @@ return {
 			max_height = 6,
 			doc_lines = 6,
 			floating_window = (function()
-				return vim.fn.has('nvim-0.10') == 0
+				return vim.fn.has("nvim-0.10") == 0
 			end)(),
 			hint_prefix = "",
 			hint_enable = true,
 			hint_inline = function()
-				return vim.fn.has('nvim-0.10') == 1
+				return vim.fn.has("nvim-0.10") == 1
 			end,
 			toggle_key = "<c-t>",
 		},
