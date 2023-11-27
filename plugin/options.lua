@@ -27,6 +27,34 @@ options.options = {
 	ignorecase = false,
 	smartcase = false,
 	incsearch = true,
+	foldlevel = (function()
+		if vim.fn.has("nvim-0.10") == 1 then
+			return 20
+		else
+			return 0
+		end
+	end)(),
+	foldexpr = (function()
+		if vim.fn.has("nvim-0.10") == 1 then
+			return "v:lua.vim.treesitter.foldexpr()"
+		else
+			return "0"
+		end
+	end)(),
+	foldtext = (function()
+		if vim.fn.has("nvim-0.10") == 1 then
+			return "v:lua.vim.treesitter.foldtext()"
+		else
+			return "foldtext()"
+		end
+	end)(),
+	foldmethod = (function()
+		if vim.fn.has("nvim-0.10") == 1 then
+			return "expr"
+		else
+			return "manual"
+		end
+	end)(),
 	hls = true,
 	cursorline = true,
 	guicursor = "i-ci-ve:block",
@@ -65,12 +93,6 @@ options.globals = {
 	loaded_netrw = 1,
 	loaded_netrwPlugin = 1,
 }
-
-
-
-
-
-
 
 local function set_option(name, opts)
 	local obj = vim.opt[name]
