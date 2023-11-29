@@ -53,9 +53,3 @@ endfunction
 
 command! -nargs=0 Presentation call <SID>Presentation()
 nnoremap <silent> <leader>ts :<c-u>Presentation<cr>
-
-" === substitute commands ===
-" search and replace word under cursor in the file
-nnoremap <leader>s :%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>
-" replace all marked instances
-vnoremap <leader>s y:%s/<c-r>"/<c-r>"/gc<left><left><left>
