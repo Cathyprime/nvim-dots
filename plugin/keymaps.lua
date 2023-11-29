@@ -121,3 +121,9 @@ map("n", "U", "<c-r>")
 
 -- command line
 map("c", "<c-a>", "<home>")
+
+-- quick search and replace keymaps
+map("n", "<leader>s", ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
+map("n", "<leader>S", ":s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
+map("v", "<leader>s", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
+map("v", "<leader>S", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
