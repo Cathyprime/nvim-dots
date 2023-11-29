@@ -82,6 +82,10 @@ return {
 			end,
 		},
 		{
+			"<leader>gs",
+			require("telescope.builtin").git_status,
+		},
+		{
 			"<c-p>",
 			function() require("util.telescope-config").project_files() end
 		},
