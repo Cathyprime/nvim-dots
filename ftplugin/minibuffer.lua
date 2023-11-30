@@ -7,15 +7,23 @@ vim.keymap.set(
 	end,
 	{ expr = true, buffer = true, silent = true }
 )
-vim.keymap.set({"n", "i"}, "<c-c>", "<cmd>close<cr>", { buffer = true, silent = true })
-vim.keymap.set({"i"}, "<c-k>", "<up>", { buffer = true, silent = true })
-vim.keymap.set({"i"}, "<c-j>", "<down>", { buffer = true, silent = true })
-vim.keymap.set({"i"}, "<c-e>", "<end>", { buffer = true, silent = true })
-vim.keymap.set({"i"}, "<c-a>", "<home>", { buffer = true, silent = true })
-vim.api.nvim_win_set_height(0, 1)
+
+local function map(modes, lhs, rhs)
+	vim.keymap.set(modes, lhs, rhs, { buffer = true, silent = true })
+end
+
+map({"n", "i"}, "<c-c>", "<cmd>close<cr>")
+map("i"		  , "<c-k>",		   "<up>")
+map("i"		  , "<c-j>",		 "<down>")
+map("i"		  , "<c-e>",		  "<end>")
+map("i"		  , "<c-a>",		 "<home>")
+map("n"		  , "<esc>", "<cmd>close<cr>")
+map("n"		  , "<c-p>",		  "<nop>")
+
+vim.api.nvim_win_set_height(0, 3)
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
-vim.o.laststatus = 0
+vim.opt_global.laststatus = 0
 vim.opt_local.number = false
 vim.opt_local.relativenumber = false
 vim.opt_local.completeopt = "menu"
@@ -52,34 +60,34 @@ cmp.setup.buffer({
 	}),
 
 	mapping = {
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        if #cmp.get_entries() == 1 then
-          cmp.confirm({ select = true })
-        else
-          cmp.select_next_item()
-        end
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-        if #cmp.get_entries() == 1 then
-          cmp.confirm({ select = true })
-        end
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
+		['<Tab>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				if #cmp.get_entries() == 1 then
+					cmp.confirm({ select = true })
+				else
+					cmp.select_next_item()
+				end
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
+				if #cmp.get_entries() == 1 then
+					cmp.confirm({ select = true })
+				end
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 
-  },
+	},
 })
