@@ -70,8 +70,15 @@ end
 
 -- minibuffer
 map("n", "<m-x>", function()
+	vim.api.nvim_create_autocmd("CmdwinEnter", {
+		once = true,
+		callback = function()
+			vim.o.laststatus = 0
+			vim.opt_local.filetype = "minibuffer"
+		end
+	})
 	vim.opt.cmdheight = 0
-	return "q:i <BS>"
+	return "q:"
 end, { expr = true })
 
 -- macro on lines

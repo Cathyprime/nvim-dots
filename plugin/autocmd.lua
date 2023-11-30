@@ -1,62 +1,6 @@
-local filetypes = {
-	"NvimTree",
-	"help",
-	"man",
-	"TelescopePrompt",
-	"toggleterm",
-	"NvimTree",
-	"mason",
-	"tsplayground",
-	"compile",
-	"ssr",
-}
-
-local ftcursor = {
-	"NvimTree"
-}
-
 local function augroup(name)
 	return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
-
-local function chkFiletype(ft, table)
-	for _, value in ipairs(table) do
-		if value == ft then
-			return true
-		end
-	end
-	return false
-end
-
-vim.api.nvim_create_autocmd("CmdwinEnter", {
-	once = false,
-	callback = function()
-		vim.o.laststatus = 0
-		vim.opt_local.filetype = "minibuffer"
-	end
-})
-
-vim.api.nvim_create_autocmd({"VimEnter", "WinEnter", "BufEnter" }, {
-	once = false,
-	callback = function()
-		if chkFiletype(vim.bo.filetype, ftcursor) then
-			vim.opt_local.cursorline = true
-			return
-		elseif chkFiletype(vim.bo.filetype, filetypes) then
-			return
-		end
-		vim.opt_local.cursorline = true
-		vim.opt_local.relativenumber = true
-	end
-})
-
-vim.api.nvim_create_autocmd({ "WinLeave" }, {
-	once = false,
-	callback = function()
-		vim.opt_local.cursorline = false
-		vim.opt_local.relativenumber = false
-	end
-})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
