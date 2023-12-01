@@ -104,10 +104,10 @@ return {
 			end
 			map("<leader>a", function() harpoon:list():append() end)
 			map("<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-			map("<c-h>h", function() harpoon:list():select(1) end)
-			map("<c-h>j", function() harpoon:list():select(2) end)
-			map("<c-h>k", function() harpoon:list():select(3) end)
-			map("<c-h>l", function() harpoon:list():select(4) end)
+			map("<c-h><c-h>", function() harpoon:list():select(1) end)
+			map("<c-h><c-j>", function() harpoon:list():select(2) end)
+			map("<c-h><c-k>", function() harpoon:list():select(3) end)
+			map("<c-h><c-l>", function() harpoon:list():select(4) end)
 		end
 	}
 }
