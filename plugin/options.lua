@@ -24,8 +24,8 @@ options.options = {
 	linebreak = true,
 	showbreak = "-> ",
 	path = ".,**",
-	ignorecase = false,
-	smartcase = false,
+	ignorecase = true,
+	smartcase = true,
 	incsearch = true,
 	foldlevel = (function()
 		if vim.fn.has("nvim-0.10") == 1 then
