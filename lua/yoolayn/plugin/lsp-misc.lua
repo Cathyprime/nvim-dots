@@ -42,8 +42,8 @@ return {
 		opts = {
 			max_width = 80,
 			scope = "line",
-			padding_top = 4,
-			padding_right = 10,
+			padding_top = 2,
+			padding_right = 6,
 			show_sign = false,
 			format = function(diagnostic)
 				local icons = require("util.icons").icons
