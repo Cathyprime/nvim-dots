@@ -110,5 +110,9 @@ return {
 			map("<c-h><c-k>", function() harpoon:list():select(3) end)
 			map("<c-h><c-l>", function() harpoon:list():select(4) end)
 		end
+	},
+	{
+		"stevearc/dressing.nvim",
+		opts = {}
 	}
 }
