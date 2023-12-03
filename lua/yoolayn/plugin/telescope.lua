@@ -3,16 +3,10 @@ return {
 	cmd = "Telescope",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	config = function()
 		local actions = require("telescope.actions")
 		require("telescope").setup({
-			extensions = {
-				["ui-select"] = {
-					require("telescope.themes").get_dropdown {}
-				}
-			},
 			defaults = {
 				layout_strategy = "horizontal",
 				layout_config = {
@@ -48,7 +42,6 @@ return {
 				},
 			},
 		})
-		require("telescope").load_extension("ui-select")
 	end,
 	keys = {
 		{
