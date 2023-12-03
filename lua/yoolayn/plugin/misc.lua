@@ -90,7 +90,7 @@ return {
 		"kevinhwang91/nvim-fundo",
 		dependencies = "kevinhwang91/promise-async",
 		config = function()
-			require('fundo').install()
+			require("fundo").install()
 		end,
 	},
 	{
@@ -98,7 +98,8 @@ return {
 		branch = "harpoon2",
 		config = function()
 			local harpoon = require("harpoon")
-			harpoon:setup({})
+			---@diagnostic disable-next-line: missing-parameter
+			harpoon:setup()
 			local function map(lhs, rhs, opts)
 				vim.keymap.set("n", lhs, rhs, opts or {})
 			end
