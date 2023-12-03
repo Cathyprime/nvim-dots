@@ -19,6 +19,7 @@ local function on_attach(client, bufnr)
 	vim.keymap.set("n", "K",          vim.lsp.buf.hover,                                opts)
 	vim.keymap.set("n", "<leader>fs", function()
 		require("telescope.builtin").lsp_document_symbols({
+			sorting_strategy = "ascending",
 			symbols = {
 				"Class",
 				"Function",
