@@ -2,6 +2,14 @@ local function augroup(name)
 	return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
 
+vim.api.nvim_create_autocmd("CmdwinEnter", {
+	once = false,
+	callback = function()
+		vim.o.laststatus = 0
+		vim.opt_local.filetype = "minibuffer"
+	end
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
 	callback = function()

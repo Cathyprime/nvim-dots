@@ -12,7 +12,7 @@ local function map(modes, lhs, rhs)
 	vim.keymap.set(modes, lhs, rhs, { buffer = true, silent = true })
 end
 
-map({"n", "i"}, "<c-c>", "<cmd>close<cr>")
+map({"n", "i"}, "<c-c>",    "<esc><c-w>c")
 map("i"		  , "<c-k>",		   "<up>")
 map("i"		  , "<c-j>",		 "<down>")
 map("i"		  , "<c-e>",		  "<end>")
@@ -20,7 +20,7 @@ map("i"		  , "<c-a>",		 "<home>")
 map("n"		  , "<esc>", "<cmd>close<cr>")
 map("n"		  , "<c-p>",		  "<nop>")
 
-vim.api.nvim_win_set_height(0, 3)
+vim.api.nvim_win_set_height(0, 5)
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
 vim.opt_global.laststatus = 0

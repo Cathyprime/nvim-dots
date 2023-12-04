@@ -68,19 +68,6 @@ local function confirm_save_all(question, err)
 	end
 end
 
--- minibuffer
-map("n", "<m-x>", function()
-	vim.api.nvim_create_autocmd("CmdwinEnter", {
-		once = true,
-		callback = function()
-			vim.o.laststatus = 0
-			vim.opt_local.filetype = "minibuffer"
-		end
-	})
-	vim.opt.cmdheight = 0
-	return "q:"
-end, { expr = true })
-
 -- macro on lines
 map("x", "@", function () return ":norm @" .. vim.fn.getcharstr() .. "<cr>" end, { expr = true })
 
