@@ -23,7 +23,7 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ### colorscheme
 + [rebelot/kanagawa.nvim](https://dotfyle.com/plugins/rebelot/kanagawa.nvim)
 
-## UI
+### UI
 + [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
 
 ### comment
