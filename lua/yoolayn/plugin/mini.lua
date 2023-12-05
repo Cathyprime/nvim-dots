@@ -35,19 +35,6 @@ return {
 		}
 	},
 	{
-		"echasnovski/mini.files",
-		version = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons"
-		},
-		opts = {},
-		keys = {
-			{ "<leader>e", function()
-				require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-			end }
-		}
-	},
-	{
 		"echasnovski/mini.move",
 		opts = {},
 		keys = {
