@@ -114,5 +114,23 @@ return {
 	{
 		"stevearc/dressing.nvim",
 		opts = {}
+	},
+	{
+		"stevearc/oil.nvim",
+		opts = {
+			columns = {
+				"permissions",
+				"size",
+				"mtime",
+				"icon",
+			},
+			keymaps = {
+				["<c-c>q"] = "actions.close"
+			}
+		},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{ "<leader>e", "<cmd>Oil<cr>" }
+		}
 	}
 }
