@@ -10,6 +10,14 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 	end
 })
 
+vim.api.nvim_create_autocmd("TermOpen", {
+	callback = function()
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+		vim.opt_local.spell = false
+	end
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
 	callback = function()
