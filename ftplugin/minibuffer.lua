@@ -26,6 +26,7 @@ vim.opt_local.winbar = nil
 vim.opt_global.laststatus = 0
 vim.opt_local.number = false
 vim.opt_local.relativenumber = false
+vim.opt_local.scrolloff = 0
 vim.opt_local.completeopt = "menu"
 
 local old_height = vim.opt.pumheight
