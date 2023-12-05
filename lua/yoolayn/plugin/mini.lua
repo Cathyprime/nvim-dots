@@ -4,7 +4,7 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		version = false,
 		opts = {
-			symbol = "│",
+			symbol = "",
 		},
 	},
 	{
