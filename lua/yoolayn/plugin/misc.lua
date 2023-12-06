@@ -100,5 +100,26 @@ return {
 		keys = {
 			{ "<leader>e", "<cmd>Oil<cr>" }
 		}
+	},
+	{
+		"Vigemus/iron.nvim",
+		cmd = "IronRepl",
+		config = function()
+			require("iron.core").setup({
+				config = {
+					repl_open_cmd = "vertical botright 70 split",
+				},
+				keymaps = {
+					send_motion = "<localleader><localleader>",
+					visual_send = "<localleader><localleader>",
+					send_file = "<localleader>rf",
+					send_line = "<localleader><cr>",
+					cr = "<localleader><localleader><cr>",
+					interrupt = "<localleader><c-c>",
+					exit = "<localleader><c-d>",
+					clear = "<localleader><c-l>",
+				}
+			})
+		end
 	}
 }
