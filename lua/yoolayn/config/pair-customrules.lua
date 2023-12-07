@@ -2,7 +2,7 @@ local npairs    = require'nvim-autopairs'
 local Rule      = require'nvim-autopairs.rule'
 local cond      = require'nvim-autopairs.conds'
 
-local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
+local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' }, { '<', '>' } }
 npairs.add_rules {
 	-- Rule for a pair with left-side ' ' and right side ' '
 	Rule(' ', ' ')
@@ -13,7 +13,8 @@ npairs.add_rules {
 		return vim.tbl_contains({
 			brackets[1][1] .. brackets[1][2],
 			brackets[2][1] .. brackets[2][2],
-			brackets[3][1] .. brackets[3][2]
+			brackets[3][1] .. brackets[3][2],
+			brackets[4][1] .. brackets[4][2]
 		}, pair)
 	end)
 	:with_move(cond.none())
@@ -25,7 +26,8 @@ npairs.add_rules {
 		return vim.tbl_contains({
 			brackets[1][1] .. '  ' .. brackets[1][2],
 			brackets[2][1] .. '  ' .. brackets[2][2],
-			brackets[3][1] .. '  ' .. brackets[3][2]
+			brackets[3][1] .. '  ' .. brackets[3][2],
+			brackets[4][1] .. '  ' .. brackets[4][2]
 		}, context)
 	end)
 }
