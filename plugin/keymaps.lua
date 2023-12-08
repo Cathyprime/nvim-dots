@@ -5,11 +5,11 @@ local function map(modes, lhs, rhs, opts)
 end
 
 local function openqf()
-	if vim.b.dispatch_ready == 1 then
-		vim.b.dispatch_ready = 0
+	if vim.b.dispatch_ready then
+		vim.b["dispatch_ready"] = false
 		return "<cmd>Cope<cr>"
 	else
-		return "<cmd>cope<cr>"
+		return "<cmd>botright cope<cr>"
 	end
 end
 
@@ -67,6 +67,43 @@ local function confirm_save_all(question, err)
 		vim.cmd("redraw!")
 	end
 end
+
+local function DispatchWrapper()
+	vim.b["dispatch_ready"] = true
+	if vim.b.dispatch then
+		return ":Dispatch!<cr>"
+	end
+	local c = vim.fn.input(":Dispatch ")
+	vim.cmd"redraw"
+	vim.b["dispatch"] = c
+	return ":Dispatch!<cr>"
+end
+
+local function DispatchWrapperChange()
+	vim.b["dispatch_ready"] = true
+	if not vim.b.dispatch then
+		return DispatchWrapper()
+	end
+	local c = vim.fn.input(":Dispatch ")
+	vim.cmd"redraw"
+	vim.b["dispatch"] = c
+	return ":Dispatch!<cr>"
+end
+
+local function MakeWrapper()
+	vim.b["dispatch_ready"] = true
+	local c = vim.fn.input(":make ")
+	vim.cmd"redraw"
+	return ":Make! " .. c .. "<cr>"
+end
+
+-- Compilation
+map("n", "<c-c>s", ":Start ", { silent = false })
+map("n", "<c-c>f", ":Focus ", { silent = false })
+map("n", "<c-c>F", ":Focus!<cr>")
+map("n", "<c-c>d", DispatchWrapper, { expr = true, silent = false })
+map("n", "<c-c>D", DispatchWrapperChange, { expr = true, silent = false })
+map("n", "<c-c>m", MakeWrapper, { expr = true, silent = false })
 
 -- macro on lines
 map("x", "@", function () return ":norm @" .. vim.fn.getcharstr() .. "<cr>" end, { expr = true })
