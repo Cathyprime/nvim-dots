@@ -137,7 +137,7 @@ return {
 	})),
 
 	s("m", fmt([[
-	local M.{name} = function({args})
+	function M.{name}({args})
 		{body}
 	end
 	]], {
