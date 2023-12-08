@@ -16,3 +16,23 @@ vim.api.nvim_create_user_command(
 	end,
 	{ bang = true }
 )
+
+local status = true
+
+vim.api.nvim_create_user_command(
+	"Presentation",
+	function()
+		if status then
+			vim.opt_global.laststatus = 0
+			vim.opt_global.cmdheight = 0
+			vim.fn.system("tmux set -g status off")
+			status = false
+		else
+			vim.opt_global.laststatus = 3
+			vim.opt_global.cmdheight = 1
+			vim.fn.system("tmux set -g status on")
+			status = true
+		end
+	end,
+	{ nargs = 0 }
+)
