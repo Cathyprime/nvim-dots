@@ -27,6 +27,7 @@ Hydra({
 		{ "<C-k>", "<C-w>k" },
 		{ "<C-l>", "<C-w>l" },
 		{ "C", "<C-w>c" },
+		{ "<CR>", nil, { exit = true } },
 	},
 	config = {
 		timout = 500,
