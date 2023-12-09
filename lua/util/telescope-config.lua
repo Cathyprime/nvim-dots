@@ -1,4 +1,9 @@
 local builtin = require("telescope.builtin")
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local sorters = require("telescope.sorters")
+local state = require("telescope.actions.state")
+local actions = require("telescope.actions")
 
 local M = {}
 
@@ -26,6 +31,32 @@ M.project_files = function()
 	else
 		builtin.find_files(opts)
 	end
+end
+
+M.neovide_cd = function()
+	if not vim.g.neovide then return end
+	local function enter(prompt_bufnr)
+		local selected = state.get_selected_entry()
+		local cmd = string.format("%s %s", "cd", selected[1])
+		vim.cmd(cmd)
+		actions.close(prompt_bufnr)
+	end
+
+	local input = { "tmux-workspace", "list" }
+
+	local opts = {
+		finder = finders.new_oneshot_job(input, {}),
+		sorter = sorters.get_generic_fuzzy_sorter(),
+		attach_mappings = function(prompt_bufnr, map)
+			map("i", "<cr>", function()
+				enter(prompt_bufnr)
+			end)
+			return true
+		end
+	}
+
+	local picker = pickers.new({}, opts)
+	picker:find()
 end
 
 return M
