@@ -67,6 +67,10 @@ return {
 			function() require("telescope.builtin").live_grep() end
 		},
 		{
+			"<leader>fp",
+			require("util.telescope-config").neovide_cd,
+		},
+		{
 			"<leader>fG",
 			function()
 				require("telescope.builtin").live_grep({
