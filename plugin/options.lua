@@ -121,3 +121,12 @@ for key, value in pairs(options.options) do
 		set_option(key, value)
 	end
 end
+
+-- neovide only
+if vim.g.neovide then
+	vim.opt.guifont = "JetBrainsMono NFM"
+	vim.g.neovide_hide_mouse_when_typing = true
+	vim.g.neovide_refresh_rate = 144
+	vim.g.neovide_transparency = 0.9
+	vim.g.neovide_cursor_vfx_mode = "railgun"
+end
