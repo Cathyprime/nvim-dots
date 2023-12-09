@@ -27,11 +27,17 @@ vim.api.nvim_create_user_command(
 			vim.opt_global.cmdheight = 0
 			vim.fn.system("tmux set -g status off")
 			status = false
+			if vim.g.neovide then
+				vim.opt.guifont = "JetBrainsMono NFM:h20"
+			end
 		else
 			vim.opt_global.laststatus = 3
 			vim.opt_global.cmdheight = 1
 			vim.fn.system("tmux set -g status on")
 			status = true
+			if vim.g.neovide then
+				vim.opt.guifont = "JetBrainsMono NFM"
+			end
 		end
 	end,
 	{ nargs = 0 }
