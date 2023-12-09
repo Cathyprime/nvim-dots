@@ -86,6 +86,7 @@ return {
 	{
 		"stevearc/oil.nvim",
 		opts = {
+			default_file_explorer = true,
 			columns = {
 				"permissions",
 				"size",
@@ -97,9 +98,10 @@ return {
 			}
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		keys = {
-			{ "<leader>e", "<cmd>Oil<cr>" }
-		}
+		config = function(opts)
+			require("oil").setup(opts.opts)
+			vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { silent = true })
+		end
 	},
 	{
 		"Vigemus/iron.nvim",
