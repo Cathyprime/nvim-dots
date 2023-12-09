@@ -122,6 +122,12 @@ statusline = string.format("%s%s", statusline, " %#SLBufNumber#")
 statusline = string.format("%s%s", statusline, " [%{winnr()}:%n] ")
 vim.opt.statusline = statusline
 
+vim.api.nvim_create_autocmd("CursorMoved", {
+	callback = function()
+		vim.opt.statusline = statusline
+	end
+})
+
 vim.api.nvim_create_autocmd("ColorScheme", {
 	once = false,
 	group = vim.api.nvim_create_augroup("StatusLine", {}),
