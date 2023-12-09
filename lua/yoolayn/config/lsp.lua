@@ -56,10 +56,37 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"pylsp",
 		"rust_analyzer",
+		"tsserver",
 		"yamlls",
 	},
 	handlers = {
 		default_setup,
+		tsserver = function()
+			if not vim.g.neovide then
+				require("lspconfig").tsserver.setup({
+					on_attach = on_attach,
+					settings = {
+						typescript = {
+							format = {
+								indentSize = vim.o.shiftwidth,
+								convertTabsToSpaces = vim.o.expandtab,
+								tabSize = vim.o.tabstop,
+							},
+						},
+						javascript = {
+							format = {
+								indentSize = vim.o.shiftwidth,
+								convertTabsToSpaces = vim.o.expandtab,
+								tabSize = vim.o.tabstop,
+							},
+						},
+						completions = {
+							completeFunctionCalls = true,
+						},
+					}
+				})
+			end
+		end,
 		lua_ls = function()
 			require("lspconfig").lua_ls.setup({
 				on_attach = on_attach,
