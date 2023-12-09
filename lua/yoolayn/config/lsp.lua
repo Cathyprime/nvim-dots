@@ -8,15 +8,15 @@ vim.cmd([[sign define DiagnosticSignHint text=]] .. icons.Hint .. [[ texthl=Diag
 
 local function on_attach(client, bufnr)
 	local opts = { buffer = bufnr }
-	vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references,      opts)
-	vim.keymap.set("n", "gI",         require("telescope.builtin").lsp_implementations, opts)
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,                          opts)
-	vim.keymap.set("n", "<leader>cc", vim.lsp.buf.rename,                               opts)
-	vim.keymap.set("i", "<c-h>",      vim.lsp.buf.signature_help,                       opts)
-	vim.keymap.set("n", "[d",         vim.diagnostic.goto_prev,                         opts)
-	vim.keymap.set("n", "]d",         vim.diagnostic.goto_next,                         opts)
-	vim.keymap.set("n", "gd",         vim.lsp.buf.definition,                           opts)
-	vim.keymap.set("n", "K",          vim.lsp.buf.hover,                                opts)
+	vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references,		opts)
+	vim.keymap.set("n", "gI",		  require("telescope.builtin").lsp_implementations, opts)
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,							opts)
+	vim.keymap.set("n", "<leader>cc", vim.lsp.buf.rename,								opts)
+	vim.keymap.set("i", "<c-h>",	  vim.lsp.buf.signature_help,						opts)
+	vim.keymap.set("n", "[d",		  vim.diagnostic.goto_prev,							opts)
+	vim.keymap.set("n", "]d",		  vim.diagnostic.goto_next,							opts)
+	vim.keymap.set("n", "gd",		  vim.lsp.buf.definition,							opts)
+	vim.keymap.set("n", "K",		  vim.lsp.buf.hover,								opts)
 	vim.keymap.set("n", "<leader>fs", function()
 		require("telescope.builtin").lsp_document_symbols({
 			sorting_strategy = "ascending",
