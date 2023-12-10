@@ -35,9 +35,9 @@ local function on_attach(client, bufnr)
 		})
 	end, opts)
 
-	vim.api.nvim_buf_set_option(bufnr,"completefunc", "v:lua.vim.lsp.omnifunc")
+	vim.api.nvim_set_option_value("completefunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 	if client.server_capabilities.definitionProvider then
-		vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
+		vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
 	end
 end
 
