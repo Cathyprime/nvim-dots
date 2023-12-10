@@ -46,7 +46,6 @@ M.change_dir = function()
 	local opts = {
 		finder = finders.new_oneshot_job(input, {}),
 		sorter = sorters.get_generic_fuzzy_sorter(),
-		previewer = ,
 		attach_mappings = function(prompt_bufnr, map)
 			map("i", "<cr>", function()
 				enter(prompt_bufnr)
