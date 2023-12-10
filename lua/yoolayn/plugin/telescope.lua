@@ -68,7 +68,7 @@ return {
 		},
 		{
 			"<leader>fp",
-			require("util.telescope-config").neovide_cd,
+			require("util.telescope-config").change_dir,
 		},
 		{
 			"<leader>fG",

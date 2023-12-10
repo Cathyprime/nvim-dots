@@ -33,8 +33,7 @@ M.project_files = function()
 	end
 end
 
-M.neovide_cd = function()
-	if not vim.g.neovide then return end
+M.change_dir = function()
 	local function enter(prompt_bufnr)
 		local selected = state.get_selected_entry()
 		local cmd = string.format("%s %s", "cd", selected[1])
@@ -42,11 +41,12 @@ M.neovide_cd = function()
 		actions.close(prompt_bufnr)
 	end
 
-	local input = { "tmux-workspace", "list" }
+	local input = { os.getenv("HOME") .. "/.local/bin/tmux-workspace", "list" }
 
 	local opts = {
 		finder = finders.new_oneshot_job(input, {}),
 		sorter = sorters.get_generic_fuzzy_sorter(),
+		previewer = ,
 		attach_mappings = function(prompt_bufnr, map)
 			map("i", "<cr>", function()
 				enter(prompt_bufnr)
