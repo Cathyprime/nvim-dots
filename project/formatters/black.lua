@@ -14,8 +14,14 @@ local function format()
 	)
 end
 
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = "*.py",
 	callback = function()
-		vim.keymap.set("n", "<localleader>f", format)
+		vim.keymap.set(
+			"n",
+			"<localleader>f",
+			format,
+			{ buffer = true }
+		)
 	end
 })
