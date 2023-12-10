@@ -47,6 +47,12 @@ return {
 		{
 			"<leader>ff",
 			function() require("telescope.builtin").find_files({
+				file_ignore_patterns = {
+					"node%_modules/*",
+					"venv/*",
+					"%.git/*"
+				},
+				hidden = true,
 				theme = "dropdown"
 			}) end
 		},
