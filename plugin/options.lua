@@ -27,20 +27,8 @@ options.options = {
 	ignorecase = true,
 	smartcase = true,
 	incsearch = true,
-	foldlevel = (function()
-		if vim.fn.has("nvim-0.10") == 1 then
-			return 20
-		else
-			return 0
-		end
-	end)(),
-	foldexpr = (function()
-		if vim.fn.has("nvim-0.10") == 1 then
-			return "v:lua.vim.treesitter.foldexpr()"
-		else
-			return "0"
-		end
-	end)(),
+	foldlevel = 20,
+	foldexpr = "v:lua.vim.treesitter.foldexpr()",
 	foldtext = (function()
 		if vim.fn.has("nvim-0.10") == 1 then
 			return "v:lua.vim.treesitter.foldtext()"
@@ -48,13 +36,7 @@ options.options = {
 			return "foldtext()"
 		end
 	end)(),
-	foldmethod = (function()
-		if vim.fn.has("nvim-0.10") == 1 then
-			return "expr"
-		else
-			return "manual"
-		end
-	end)(),
+	foldmethod = "expr",
 	hls = true,
 	cursorline = true,
 	guicursor = "i-ci-ve:block",
