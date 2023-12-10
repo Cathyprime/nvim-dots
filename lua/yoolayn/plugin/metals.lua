@@ -12,7 +12,21 @@ return {
 		}
 		metals_config.init_options.statusBarProvider = "on"
 		metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
-		vim.keymap.set("n", "<leader>cmc", function()
+		local dap = require("dap")
+		dap.configurations.scala = {
+			{
+				type = "scala",
+				request = "launch",
+				name = "Run with arg and env file",
+				metals = {},
+			}
+		}
+
+		metals_config.on_attach = function(client, bufnr)
+			metals.setup_dap()
+		end
+
+		vim.keymap.set("n", "<leader>lmc", function()
 			require("telescope").extensions.metals.commands()
 		end)
 
