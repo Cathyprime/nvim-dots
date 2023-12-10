@@ -53,6 +53,9 @@ return {
 				}
 				return severity[diagnostic.severity or 3] .. " " .. (diagnostic.message or "haii :3")
 			end,
+			enable = function()
+				return vim.bo.filetype ~= "lazy"
+			end
 		}
 	}
 }
