@@ -114,12 +114,12 @@ return {
 				keymaps = {
 					send_motion = "<localleader><localleader>",
 					visual_send = "<localleader><localleader>",
-					send_file = "<localleader>rf",
-					send_line = "<localleader><cr>",
+					send_file = "<localleader><localleader>f",
+					send_line = "<localleader><localleader><localleader>",
 					cr = "<localleader><localleader><cr>",
-					interrupt = "<localleader><c-c>",
-					exit = "<localleader><c-d>",
-					clear = "<localleader><c-l>",
+					interrupt = "<localleader><localleader><c-c>",
+					exit = "<localleader><localleader><c-d>",
+					clear = "<localleader><localleader><c-l>",
 				}
 			})
 		end
