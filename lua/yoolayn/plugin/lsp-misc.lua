@@ -37,6 +37,9 @@ return {
 	{
 		"dgagn/diagflow.nvim",
 		lazy = true,
+		init = function()
+			vim.keymap.set("n", "<leader>td", require("diagflow").toggle)
+		end,
 		opts = {
 			max_width = 50,
 			scope = "line",
