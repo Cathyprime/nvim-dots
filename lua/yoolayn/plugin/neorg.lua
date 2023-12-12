@@ -2,16 +2,7 @@ return {
 	"nvim-neorg/neorg",
 	build = ":Neorg sync-parsers",
 	dependencies = { "nvim-lua/plenary.nvim" },
-	ft = "norg",
-	cmd = {
-		"Neorg",
-		"Neorg sync-parsers",
-	},
 	config = function()
-		vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-			pattern = "*.norg",
-			command = "setlocal conceallevel=3"
-		})
 		require("neorg").setup({
 			load = {
 				["core.defaults"] = {},
