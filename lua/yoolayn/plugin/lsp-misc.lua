@@ -41,7 +41,7 @@ return {
 			vim.keymap.set("n", "<leader>td", require("diagflow").toggle)
 		end,
 		opts = {
-			max_width = 50,
+			max_width = 80,
 			scope = "line",
 			padding_top = 2,
 			padding_right = 6,
