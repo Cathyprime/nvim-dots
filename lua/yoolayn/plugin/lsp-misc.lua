@@ -43,6 +43,9 @@ return {
 			padding_top = 2,
 			padding_right = 6,
 			show_sign = false,
+			severity_colors = {
+				error = "DiagnosticError"
+			},
 			format = function(diagnostic)
 				local icons = require("util.icons").icons
 				local severity = {

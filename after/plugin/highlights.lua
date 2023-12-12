@@ -1,4 +1,13 @@
 local augroup = vim.api.nvim_create_augroup("custom_highlight", {})
+
+local diagGroups = {
+	"DiagnosticFloatingError",
+	"DiagnosticFloatingHint",
+	"DiagnosticFloatingOk",
+	"DiagnosticFloatingWarn",
+	"DiagnosticFloatingInfo"
+}
+
 vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
 	once = false,
 	group = augroup,
@@ -15,5 +24,16 @@ vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
 		vim.api.nvim_set_hl(0, "Folded", {
 			fg = "None"
 		})
+		for _, group in ipairs(diagGroups) do
+			local old
+			if group == "DiagnosticFloatingError" then
+				old = vim.api.nvim_get_hl(0, { name = "DiagnosticError" })
+			else
+				old = vim.api.nvim_get_hl(0, { name = group })
+			end
+			vim.api.nvim_set_hl(0, group, {
+				fg = old.fg
+			})
+		end
 	end
 })
