@@ -38,11 +38,12 @@ return {
 		"dgagn/diagflow.nvim",
 		lazy = true,
 		opts = {
-			max_width = 80,
+			max_width = 50,
 			scope = "line",
 			padding_top = 2,
 			padding_right = 6,
 			show_sign = false,
+			toggle_event = { "InsertEnter", "InsertLeave" },
 			severity_colors = {
 				error = "DiagnosticError"
 			},
