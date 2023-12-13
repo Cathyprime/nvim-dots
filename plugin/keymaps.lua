@@ -134,13 +134,12 @@ map({"n", "v"}, "<leader>p", [["+p]])
 map({"n", "v"}, "<leader>P", [["+P]])
 
 -- save
-map("n", "<c-x><c-s>", "<cmd>write<cr>")
-map("n", "<c-x><c-e>", "<cmd>source<cr>")
-map("n", "<c-x><c-x>", "<c-x>")
-map("n", "<c-x><c-c>", function()
+map("n", "ZW", "<cmd>write<cr>")
+map("n", "ZE", "<cmd>source<cr>")
+map("n", "ZZ", function()
 	confirm_save_all("Save buffers? [y/n/q]", "Only [y/n/q]")
 end)
-map("n", "<c-x>c", function()
+map("n", "ZQ", function()
 	confirm_save_cur("Save buffer? [y/n/q]", "Only [y/n/q]")
 end)
 
