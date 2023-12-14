@@ -60,6 +60,10 @@ return {
 			}) end
 		},
 		{
+			"<leader>fF",
+			require("telescope.builtin").resume
+		},
+		{
 			"<leader>fo",
 			function() require("telescope.builtin").oldfiles() end
 		},
