@@ -41,6 +41,15 @@ return {
 					},
 				},
 			},
+			pickers = {
+				buffers = {
+					mappings = {
+						i = {
+							["<c-d>"] = "delete_buffer"
+						}
+					}
+				}
+			}
 		})
 	end,
 	keys = {
@@ -91,17 +100,6 @@ return {
 		{
 			"<c-p>",
 			function() require("util.telescope-config").project_files() end
-		},
-		{
-			"<c-x><c-f>",
-			function() require("telescope.builtin").find_files({
-				file_ignore_patterns = {
-					"node%_modules/*",
-					"venv/*",
-					"%.git/*"
-				},
-				hidden = true,
-			}) end
 		},
 	}
 }
