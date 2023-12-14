@@ -32,12 +32,6 @@ return {
 						["<C-y>"] = function(...)
 							return actions.preview_scrolling_up(...)
 						end,
-						["<C-j>"] = function(...)
-							return actions.move_selection_next(...)
-						end,
-						["<C-k>"] = function(...)
-							return actions.move_selection_previous(...)
-						end,
 					},
 				},
 			},
