@@ -28,10 +28,6 @@ return {
 				"<leader>gg",
 				"<cmd>G<cr>"
 			},
-			{
-				"<leader>gP",
-				"<cmd>G push<cr>"
-			},
 		}
 	},
 }
