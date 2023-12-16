@@ -72,6 +72,10 @@ return {
 			function() require("telescope.builtin").buffers() end
 		},
 		{
+			"<leader>b",
+			function() require("telescope.builtin").buffers() end
+		},
+		{
 			"<leader>fh",
 			function() require("telescope.builtin").help_tags() end,
 		},
