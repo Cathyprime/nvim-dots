@@ -31,7 +31,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		"help",
 		"lspinfo",
 		"man",
-		"fugitive",
 		"tsplayground",
 		"checkhealth",
 	},
