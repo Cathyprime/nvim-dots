@@ -1,4 +1,6 @@
-local groups = {
+local M = {}
+
+M.groups = {
 	"CmpItemKindTypeParameter",
 	"CmpItemKindConstructor",
 	"CmpItemKindEnumMember",
@@ -27,75 +29,70 @@ local groups = {
 	"CmpItemKindEnum",
 }
 
-local function decoder(decimalColor)
-	local red = math.floor((decimalColor / 65536) % 256)
-	local green = math.floor((decimalColor / 256) % 256)
-	local blue = math.floor(decimalColor % 256)
-	local hexColor = string.format("#%02X%02X%02X", red, green, blue)
-	return hexColor
+M.opts = {
+	log = false,
+}
+
+M.darken = function(color, shift)
+	M.log("darkening", color)
+	local const = 0xfefefe
+	color = bit.band(color, const)
+	return bit.rshift(color, shift)
 end
 
-local function darken(hex, factor)
-	local r = tonumber(hex:sub(2, 3), 16)
-	local g = tonumber(hex:sub(4, 5), 16)
-	local b = tonumber(hex:sub(6, 7), 16)
-
-	r = r * factor
-	g = g * factor
-	b = b * factor
-
-	return string.format("#%02X%02X%02X", r, g, b)
-end
-
-local function encoder(hexColor)
-	hexColor = hexColor:gsub("#", "")
-	local red = tonumber(hexColor:sub(1, 2), 16)
-	local green = tonumber(hexColor:sub(3, 4), 16)
-	local blue = tonumber(hexColor:sub(5, 6), 16)
-
-	local decimalColor = (red * 65536) + (green * 256) + blue
-
-	return decimalColor
-end
-
-local function get_colors(hl)
+M.get_colors = function(hl, disable_log)
+	if hl == nil then
+		return
+	end
+	if disable_log ~= nil then
+		M.log("getting", hl)
+	else
+		M.log("still working")
+	end
 	local group = vim.api.nvim_get_hl(0, {name = hl})
 	if group["fg"] ~= nil or group["bg"] ~= nil then
 		return group
 	else
-		return get_colors(group["link"])
+		return M.get_colors(group["link"], true)
 	end
 end
 
-for _, group in ipairs(groups) do
-	local original = get_colors(group)
-	local hex = decoder(original.fg)
-	vim.api.nvim_set_hl(0, group, {
-		bg = original.fg,
-		fg = encoder(darken(hex, 0.60)),
-		standout = true,
+M.log = function(...)
+	if not M.opts.log then
+		return
+	end
+	print(...)
+end
+
+M.run = function(log)
+	if log ~= nil then
+		M.opts.log = log
+	end
+	for _, group in ipairs(M.groups) do
+		M.log(group)
+		local original = M.get_colors(group)
+		if original == nil then
+			if M.opts.log then
+				print("error getting", group)
+			end
+			goto continue
+		end
+		vim.api.nvim_set_hl(0, group, {
+			bg = original.fg,
+			fg = M.darken(original.fg, 1),
+			standout = true,
+		})
+		::continue::
+	end
+end
+
+M.set_autocmd = function()
+	vim.api.nvim_create_autocmd("ColorScheme", {
+		once = false,
+		callback = function()
+			M.run()
+		end
 	})
 end
 
-vim.api.nvim_set_hl(0, "PMenu", {
-	link = "SLBackground"
-})
-
-vim.api.nvim_set_hl(0, "PmenuThumb", {
-	bg = (function()
-		local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-		return encoder(darken(decoder(normal.fg), 0.60))
-	end)(),
-})
-
-vim.api.nvim_set_hl(0, "PmenuSbar", {
-	bg = (function()
-		local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-		return encoder(darken(decoder(normal.fg), 0.20))
-	end)()
-})
-
-vim.api.nvim_set_hl(0, "CmpItemMenu", {
-	fg = "#5000ca",
-	italic = true,
-})
+return M

@@ -11,7 +11,9 @@ return {
 		},
 		config = function()
 			require("yoolayn.config.cmp")
-			require("yoolayn.config.cmp-colors")
+			local colors = require("yoolayn.config.cmp-colors")
+			colors.run(false)
+			colors.set_autocmd()
 		end,
 	},
 }
