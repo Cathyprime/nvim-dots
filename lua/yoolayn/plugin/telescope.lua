@@ -72,7 +72,7 @@ return {
 			function() require("telescope.builtin").buffers() end
 		},
 		{
-			"<leader>b",
+			"<leader><leader>",
 			function() require("telescope.builtin").buffers() end
 		},
 		{
