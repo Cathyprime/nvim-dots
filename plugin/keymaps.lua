@@ -4,6 +4,14 @@ local function map(modes, lhs, rhs, opts)
 	vim.keymap.set(modes, lhs, rhs, options)
 end
 
+local function jump(direction)
+	local ret = ""
+	if vim.v.count > 1 then
+		ret = "m'" .. vim.v.count
+	end
+	return ret .. direction
+end
+
 local function openqf()
 	if vim.b.dispatch_ready then
 		vim.b["dispatch_ready"] = false
@@ -148,6 +156,12 @@ map("n", "X", "0D")
 map("n", "J", [[mzJ`z]])
 map("n", "gp", "`[v`]")
 map("n", "U", "<c-r>")
+map("n", "j", function()
+	return jump("j")
+end, { expr = true })
+map("n", "k", function()
+	return jump("k")
+end, { expr = true })
 
 -- command line
 map("c", "<c-a>", "<home>")
