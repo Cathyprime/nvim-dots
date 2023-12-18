@@ -94,14 +94,14 @@ return {
 					repl_open_cmd = "vertical botright 70 split",
 				},
 				keymaps = {
-					send_motion = "<localleader><localleader>",
-					visual_send = "<localleader><localleader>",
-					send_file = "<localleader><localleader>f",
-					send_line = "<localleader><localleader><localleader>",
-					cr = "<localleader><localleader><cr>",
-					interrupt = "<localleader><localleader><c-c>",
-					exit = "<localleader><localleader><c-d>",
-					clear = "<localleader><localleader><c-l>",
+					send_motion = "<localleader>",
+					visual_send = "<localleader>",
+					send_file = "<localleader>f",
+					send_line = "<localleader><localleader>",
+					cr = "<localleader><cr>",
+					interrupt = "<localleader><c-c>",
+					exit = "<localleader><c-d>",
+					clear = "<localleader><c-l>",
 				}
 			})
 		end
