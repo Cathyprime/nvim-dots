@@ -12,16 +12,28 @@ function! statusline#Mode()
 	elseif mode() ==# '' || mode() ==# 's'
 		hi link SLMode SLVisualBlock
 		return "[ VisBlk ]"
-	elseif mode() ==# 's' || mode() ==# 'S' || mode() ==# ''
+	elseif mode() ==# 'no' || mode() ==# 'nov' || mode() ==# 'noV' || mode() ==# 'no'
+		hi link SLMode SLOperator
+		return "[ OpPend ]"
+	elseif mode() ==# 's'
 		hi link SLMode SLSelect
 		return "--Select--"
+	elseif mode() ==# 'S'
+		hi link SLMode SLSelect
+		return "--SelLin--"
+	elseif mode() ==# ''
+		hi link SLMode SLSelect
+		return "--SelBlk--"
 	elseif mode() ==# 'i' || mode() ==# 'ic' || mode() ==# 'ix'
 		hi link SLMode SLInsert
 		return "--Insert--"
-	elseif mode() ==# 'R' || mode() ==# 'Rc' || mode() ==# 'Rx'
+	elseif mode() ==# 'R' || mode() ==# 'Rc' || mode() ==# 'Rx' || mode() ==# 'r'
 		hi link SLMode SLReplace
 		return "--Replce--"
-	elseif mode() ==# 'c' || mode() ==# 'cv'
+	elseif mode() ==# 'Rv' || mode() ==# 'Rvc' || mode() ==# 'Rvx'
+		hi link SLMode SLReplace
+		return "--RepLin--"
+	elseif mode() ==# 'c' || mode() ==# 'cv' || mode() ==# 'ce'
 		hi link SLMode SLCommand
 		return "--Cmmand--"
 	elseif mode() ==# 't'
