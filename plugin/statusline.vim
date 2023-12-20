@@ -12,6 +12,7 @@ highlight link SLSelect SLLineNumber
 highlight SLReplace guibg=#ce0406 guifg=#181818
 highlight SLCommand guifg=#181818 guibg=#ffa066
 highlight SLTerminal guifg=#e6c384 guibg=#181818
+highlight SLOperator guifg=#181818 guibg=#e6c384
 highlight link SLMode SLNormal
 highlight link SLModified SLFileType
 
