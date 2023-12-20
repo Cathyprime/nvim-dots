@@ -2,6 +2,7 @@ local function augroup(name)
 	return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
 
+-- start minibuffer
 vim.api.nvim_create_autocmd("CmdwinEnter", {
 	once = false,
 	callback = function()
@@ -10,6 +11,20 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 	end
 })
 
+-- save folds
+local save_fold = augroup("Persistent Folds")
+vim.api.nvim_create_autocmd("BufWinLeave", {
+	pattern = "*.*",
+	callback = function() vim.cmd.mkview() end,
+	group = save_fold,
+})
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = "*.*",
+	callback = function() vim.cmd.loadview({ mods = { emsg_silent = true } }) end,
+	group = save_fold,
+})
+
+-- terminal settings
 vim.api.nvim_create_autocmd("TermOpen", {
 	callback = function()
 		vim.opt_local.number = false
@@ -18,6 +33,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end
 })
 
+-- highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
 	callback = function()
@@ -25,6 +41,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- close with q
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {
@@ -45,6 +62,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- create folder in-between
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	group = augroup("auto_create_dir"),
 	callback = function(event)
@@ -56,6 +74,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	end,
 })
 
+-- set filetype c for header and .c files instead of c++
 vim.api.nvim_create_autocmd({"BufRead", "BUfNewFile"}, {
 	once = false,
 	pattern = {"*.c", "*.h"},

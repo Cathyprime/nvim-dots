@@ -21,6 +21,13 @@ options.options = {
 			[[nbsp:\u2423]]
 		},
 	},
+	fillchars = {
+		append = {
+			[[foldclose:>]],
+			[[foldopen:v]],
+			[[foldsep:│]]
+		},
+	},
 	linebreak = true,
 	showbreak = "-> ",
 	path = ".,**",
@@ -28,7 +35,12 @@ options.options = {
 	smartcase = true,
 	incsearch = true,
 	foldlevel = 20,
-	foldexpr = "v:lua.vim.treesitter.foldexpr()",
+	formatoptions = {
+		remove = {
+			"l"
+		}
+	},
+	-- foldexpr = "v:lua.vim.treesitter.foldexpr()",
 	foldtext = (function()
 		if vim.fn.has("nvim-0.10") == 1 then
 			return "v:lua.vim.treesitter.foldtext()"
@@ -36,7 +48,8 @@ options.options = {
 			return "foldtext()"
 		end
 	end)(),
-	foldmethod = "expr",
+	foldmethod = "manual",
+	foldcolumn = "auto",
 	hls = true,
 	cursorline = true,
 	guicursor = "i-ci-ve:block",
