@@ -31,26 +31,6 @@ return {
 		end
 	},
 	{
-		"nvim-pack/nvim-spectre",
-		opts = {},
-		keys = {
-			{
-				"<leader>rr",
-				"<cmd>lua require('spectre').toggle()<cr>"
-			}
-		}
-	},
-	{
-		"cshuaimin/ssr.nvim",
-		config = true,
-		keys = {
-			{
-				"<leader>rs",
-				"<cmd>lua require('ssr').open()<cr>"
-			}
-		}
-	},
-	{
 		"Wansmer/treesj",
 		opts = {
 			use_default_keymaps = false,

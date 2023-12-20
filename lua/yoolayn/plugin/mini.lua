@@ -34,14 +34,4 @@ return {
 			{ "gS", mode = { "n", "x" } },
 		}
 	},
-	{
-		"echasnovski/mini.move",
-		opts = {},
-		keys = {
-			{ "<m-h>", mode = {"n", "x"} },
-			{ "<m-j>", mode = {"n", "x"} },
-			{ "<m-k>", mode = {"n", "x"} },
-			{ "<m-l>", mode = {"n", "x"} },
-		}
-	}
 }
