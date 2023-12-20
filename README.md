@@ -1,9 +1,9 @@
 # Neovim dots
 
-Plugin list in the readme might not be up to date everytime
+Plugin list in the readme might not be up to date every time :3
 ## Install Instructions
 
- > Install requires Neovim 0.9+. Always review the code before installing a configuration.
+ > Install requires Neovim 0.10+ (due to the neorg plugin). Always review the code before installing a configuration.
 
 Clone the repository and install the plugins:
 
@@ -21,93 +21,96 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ## Plugins
 
 ### colorscheme
-+ [rebelot/kanagawa.nvim](https://dotfyle.com/plugins/rebelot/kanagawa.nvim)
+#### main
++ [rebelot/kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
+
+#### additional
++ [catppuccin/nvim](https://github.com/catppuccin/nvim)
++ [rose-pine/neovim](https://github.com/rose-pine/neovim)
++ [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
 
 ### UI
 + [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
 
+### Notes
++ [nvim-neorg/neorg](https://github.com/nvim-neorg/neorg)
+
 ### comment
-+ [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
-+ [JoosepAlviste/nvim-ts-context-commentstring](https://dotfyle.com/plugins/JoosepAlviste/nvim-ts-context-commentstring)
++ [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
 
 ### completion
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
++ [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 #### sources
-+ [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
-+ [cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
-+ [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-+ [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
-+ [cmp-path](https://github.com/hrsh7th/cmp-path)
++ [hrsh7th/mp-buffer](https://github.com/hrsh7th/cmp-buffer)
++ [hrsh7th/mp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
++ [hrsh7th/mp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
++ [hrsh7th/mp-path](https://github.com/hrsh7th/cmp-path)
 
 ### editing-support
-+ [echasnovski/mini.move](https://dotfyle.com/plugins/echasnovski/mini.move)
-+ [echasnovski/mini.operators](https://dotfyle.com/plugins/echasnovski/mini.operators)
-+ [windwp/nvim-autopairs](https://dotfyle.com/plugins/windwp/nvim-autopairs)
-+ [cshuaimin/ssr.nvim](https://dotfyle.com/plugins/cshuaimin/ssr.nvim)
-+ [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)
-+ [Wansmer/treesj](https://dotfyle.com/plugins/Wansmer/treesj)
++ [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
++ [echasnovski/mini.operators](https://github.com/echasnovski/mini.operators)
++ [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
++ [Wansmer/treesj](https://github.com/Wansmer/treesj)
 
 ### files
 + [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)
-+ [ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon)
 
 ### formatting
-+ [echasnovski/mini.align](https://dotfyle.com/plugins/echasnovski/mini.align)
++ [echasnovski/mini.align](https://github.com/echasnovski/mini.align)
 
 ### fuzzy-finder
-+ [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
++ [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 
 ### git
-+ [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
-+ [sindrets/diffview.nvim](https://dotfyle.com/plugins/sindrets/diffview.nvim)
-+ [vim-fugitive](https://github.com/tpope/vim-fugitive)
++ [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
++ [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim)
++ [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
 
 ### indent
-+ [echasnovski/mini.indentscope](https://dotfyle.com/plugins/echasnovski/mini.indentscope)
++ [echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)
 
 ### keybinding
-+ [anuvyklack/hydra.nvim](https://dotfyle.com/plugins/anuvyklack/hydra.nvim)
++ [anuvyklack/hydra.nvim](https://github.com/anuvyklack/hydra.nvim)
 
-### lsp
-+ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-+ [mfussenegger/nvim-lint](https://dotfyle.com/plugins/mfussenegger/nvim-lint)
-+ [scalameta/nvim-metals](https://dotfyle.com/plugins/scalameta/nvim-metals)
-+ [ray-x/lsp_signature.nvim](https://dotfyle.com/plugins/ray-x/lsp_signature.nvim)
-+ [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
-+ [diagflow.nvim](https://github.com/dgagn/diagflow.nvim)
+### lsp and friends
++ [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
++ [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
++ [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
++ [ray-x/lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
++ [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim)
++ [dgagn/diagflow.nvim](https://github.com/dgagn/diagflow.nvim)
 
 ### lsp-installer
-+ [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
-+ [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
++ [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
++ [WhoIsSethDaniel/mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
 
 ### nvim-dev
-+ [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
-+ [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
++ [folke/neodev.nvim](https://github.com/folke/neodev.nvim)
++ [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 
 ### plugin-manager
-+ [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
++ [folke/lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ### programming-languages-support
-+ [julienvincent/nvim-paredit](https://dotfyle.com/plugins/julienvincent/nvim-paredit)
++ [julienvincent/nvim-paredit](https://github.com/julienvincent/nvim-paredit)
 
 ### quickfix
-+ [kevinhwang91/nvim-bqf](https://dotfyle.com/plugins/kevinhwang91/nvim-bqf)
++ [kevinhwang91/nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)
 
 ### snippet
-+ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
++ [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 
-### syntax
-+ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
-+ [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
-+ [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
+### treesitter
++ [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
++ [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 
 ### utility
-+ [kevinhwang91/nvim-fundo](https://dotfyle.com/plugins/kevinhwang91/nvim-fundo)
-+ [undotree](https://github.com/mbbill/undotree)
-+ [vim-eunuch](https://github.com/tpope/vim-eunuch)
-+ [vim-macroeditor](https://github.com/dohsimpson/vim-macroeditor)
-+ [vim-startuptime](https://github.com/dstein64/vim-startuptime)
++ [kevinhwang91/nvim-fundo](https://github.com/kevinhwang91/nvim-fundo)
++ [mbbill/undotree](https://github.com/mbbill/undotree)
++ [tpope/vim-eunuch](https://github.com/tpope/vim-eunuch)
++ [dohsimpson/vim-macroeditor](https://github.com/dohsimpson/vim-macroeditor)
++ [dstein64/vim-startuptime](https://github.com/dstein64/vim-startuptime)
 
 ### compilation
-+ [vim-dispatch](https://github.com/tpope/vim-dispatch)
++ [tpope/vim-dispatch](https://github.com/tpope/vim-dispatch)
