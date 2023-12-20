@@ -88,10 +88,21 @@ return {
 	{
 		"Vigemus/iron.nvim",
 		cmd = "IronRepl",
+		keys = {
+			{ "<leader>is", "<cmd>IronRepl<cr>" },
+			{ "<leader>ih", "<cmd>IronHide<cr>" },
+			{ "<leader>if", "<cmd>IronWatch file<cr>" },
+			{ "<leader>im", "<cmd>IronWatch mark<cr>" },
+		},
 		config = function()
 			require("iron.core").setup({
 				config = {
 					repl_open_cmd = "vertical botright 70 split",
+					repl_definition = {
+						sh = {
+							command = {"zsh"}
+						}
+					}
 				},
 				keymaps = {
 					send_motion = "<localleader>",
@@ -102,6 +113,10 @@ return {
 					interrupt = "<localleader><c-c>",
 					exit = "<localleader><c-d>",
 					clear = "<localleader><c-l>",
+					send_mark = "<localleader>mm",
+					mark_motion = "<localleader>m",
+					mark_visual = "<localleader>m",
+					remove_mark = "<localleader>md",
 				}
 			})
 		end
