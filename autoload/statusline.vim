@@ -26,7 +26,10 @@ function! statusline#Mode()
 		return "--Cmmand--"
 	elseif mode() ==# 't'
 		hi link SLMode SLTerminal
-		return "[ Termnl ]"
+		return "--Termnl--"
+	elseif mode() ==# 'r?'
+		hi link SLMode SLNormal
+		return "--Confrm--"
 	else
 		hi SLMode guibg=black guifg=white
 		return "[???]"
