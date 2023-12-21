@@ -3,7 +3,7 @@ local dapui = require("dapui")
 require("dapui").setup()
 require("dap-go").setup()
 require("mason-nvim-dap").setup()
-require("dap-python").setup("venv/bin/debugpy")
+require("dap-python").setup("venv/bin/python")
 
 require("mason-nvim-dap").setup({
 	ensure_installed = { "js", "delve" }
