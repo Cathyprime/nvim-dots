@@ -123,5 +123,11 @@ return {
 	},
 	{
 		"milisims/nvim-luaref"
+	},
+	{
+		"KaitlynEthylia/Evalua",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		init = function() require("evalua") end,
+		keys = { { "ZE", "<cmd>Evalua<cr>" } }
 	}
 }
