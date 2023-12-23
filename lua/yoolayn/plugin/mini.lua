@@ -23,7 +23,8 @@ return {
 		version = false,
 		opts = {
 			sort = {
-				prefix = "gS"
+				prefix = "",
+				func = nil
 			}
 		},
 		keys = {
@@ -31,7 +32,7 @@ return {
 			{ "gx", mode = { "n", "x" } },
 			{ "gm", mode = { "n", "x" } },
 			{ "gr", mode = { "n", "x" } },
-			{ "gS", mode = { "n", "x" } },
+			-- { "gS", mode = { "n", "x" } },
 		}
 	},
 }
