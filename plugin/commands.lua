@@ -1,11 +1,21 @@
 vim.api.nvim_create_user_command(
 	"Messages",
-	"let output = [] | redir => output | silent messages | redir END | cexpr output",
+	[[let output = [] | redir => output | silent messages | redir END | cexpr output]],
 	{}
 )
 vim.api.nvim_create_user_command(
 	"Scratch",
 	function(opts)
+		local ft
+		if opts.args ~= nil then
+			local args = vim.split(opts.args, " ")[1]
+			ft = args
+		else
+			ft = vim.api.nvim_get_option_value("filetype", {
+				buf = 0,
+			})
+		end
+		print(opts.args)
 		if not opts.bang then
 			vim.cmd(opts.mods .. " split")
 		end
@@ -13,8 +23,12 @@ vim.api.nvim_create_user_command(
 		vim.api.nvim_set_option_value("buftype", "nofile", { buf = 0 })
 		vim.api.nvim_set_option_value("bufhidden", "hide", { buf = 0 })
 		vim.api.nvim_set_option_value("swapfile", false, { buf = 0 })
+		vim.api.nvim_set_option_value("filetype", ft, { buf = 0 })
 	end,
-	{ bang = true }
+	{
+		bang = true,
+		nargs = '?'
+	}
 )
 
 local status = true
