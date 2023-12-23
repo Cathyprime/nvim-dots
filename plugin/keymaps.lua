@@ -55,7 +55,7 @@ local function find_if_modified()
 	local table = vim.api.nvim_list_bufs()
 	for _, x in ipairs(table) do
 		print(x)
-		if vim.api.nvim_buf_get_option(x, 'modified') and vim.api.nvim_buf_is_loaded(x) then
+		if vim.api.nvim_get_option_value("modified", { buf = x }) and vim.api.nvim_buf_is_loaded(x) then
 			return true
 		end
 	end
