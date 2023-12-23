@@ -143,7 +143,7 @@ map({"n", "v"}, "<leader>P", [["+P]])
 
 -- save
 map("n", "ZW", "<cmd>write<cr>")
-map("n", "ZE", "<cmd>source<cr>")
+-- map("n", "ZE", "<cmd>source<cr>")
 map("n", "ZZ", function()
 	confirm_save_all("Save buffers? [y/n/q]", "Only [y/n/q]")
 end)
