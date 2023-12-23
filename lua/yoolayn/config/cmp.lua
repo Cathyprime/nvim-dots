@@ -13,6 +13,7 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 
 ---@diagnostic disable-next-line
 cmp.setup({
+	preselect = cmp.PreselectMode.None,
 	sources = cmp.config.sources({
 		{ name = "path" },
 		{ name = "nvim_lua" },
