@@ -19,22 +19,6 @@ return {
 		}
 	},
 	{
-		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
-		opts = {
-			max_height = 6,
-			doc_lines = 6,
-			floating_window = true,
-			hint_prefix = "",
-			hint_enable = true,
-			hint_inline = function()
-				return false
-			end,
-			toggle_key = "<c-t>",
-		},
-		config = function(_, opts) require "lsp_signature".setup(opts) end
-	},
-	{
 		"dgagn/diagflow.nvim",
 		lazy = true,
 		init = function()

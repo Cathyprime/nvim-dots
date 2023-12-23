@@ -123,5 +123,5 @@ return {
 	},
 	{
 		"milisims/nvim-luaref"
-	}
+	},
 }
