@@ -16,24 +16,27 @@ highlight SLOperator guifg=#181818 guibg=#e6c384
 highlight link SLMode SLNormal
 highlight link SLModified SLFileType
 
-" statusline
+let statusstring = ""
+let statusstring ="\%#SLBackground#"
+let statusstring = statusstring .. "\%#SLMode#"
+let statusstring = statusstring .. "\ %{statusline#Mode()}\ "
+let statusstring = statusstring .. "\%#SLBackground#"
+let statusstring = statusstring .. "\ %f\ %m%r"
+let statusstring = statusstring .. "\%= "
+let statusstring = statusstring .. "\ %S"
+let statusstring = statusstring .. "\ %#SLFileType#"
+let statusstring = statusstring .. "\ %y"
+let statusstring = statusstring .. "\ %#SLLineNumber#"
+let statusstring = statusstring .. "\ (%l\:%c)"
+let statusstring = statusstring .. "\ %#SLBufNumber#"
+let statusstring = statusstring .. "\ [%{winnr()}:%n]\ "
+
 set statusline=
-set statusline=\%#SLBackground#
-set statusline+=\%#SLMode#
-set statusline+=\ %{statusline#Mode()}\ 
-set statusline+=\%#SLBackground#
-set statusline+=\ %f\ %m%r
-set statusline+=\%= " separator
-set statusline+=\ %#SLFileType#
-set statusline+=\ %y
-set statusline+=\ %#SLLineNumber#
-set statusline+=\ (%l\:%c)
-set statusline+=\ %#SLBufNumber#
-set statusline+=\ [%{winnr()}:%n]\ 
+let &statusline=statusstring
 
 augroup StatusLine
 	au!
-	au ModeChanged * redrawstatus!
+	au Filetype qf let &l:statusline = statusstring
 	au ColorScheme * highlight link SLBackground Normal
 				 \ | highlight SLBackground guibg=#181818
 				 \ | highlight SLFileType guibg=#ce0406 guifg=black
