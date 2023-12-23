@@ -3,6 +3,37 @@ vim.api.nvim_create_user_command(
 	[[let output = [] | redir => output | silent messages | redir END | cexpr output]],
 	{}
 )
+
+vim.api.nvim_create_user_command(
+	"Delview",
+	function()
+		local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
+		if path == nil then
+			print("error getting path")
+			return
+		end
+		path = vim.fn.substitute(path, "=", "==", "g")
+		if path == nil then
+			print("substitute error")
+			return
+		end
+		path = vim.fn.substitute(path, "^" .. os.getenv("HOME"), "\\~", "")
+		if path == nil then
+			print("substitute error")
+			return
+		end
+		path = vim.fn.substitute(path, "/", "=+", "g") .. "="
+		local file_path = vim.opt.viewdir:get() .. path
+		local int = vim.fn.delete(file_path)
+		if int == -1 then
+			print("View not found!")
+		else
+			print("deleted view:", file_path)
+		end
+	end,
+	{}
+)
+
 vim.api.nvim_create_user_command(
 	"Scratch",
 	function(opts)
