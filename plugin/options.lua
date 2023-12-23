@@ -53,6 +53,7 @@ options.options = {
 	hls = true,
 	cursorline = true,
 	guicursor = "i-ci-ve:block",
+	showcmdloc = "statusline",
 	showtabline = 1,
 	scrolloff = 8,
 	termguicolors = true,
