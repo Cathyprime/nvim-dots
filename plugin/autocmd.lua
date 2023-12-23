@@ -11,6 +11,14 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 	end
 })
 
+-- Load view
+local load_view = augroup("Load view")
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = "*.*",
+	callback = function() vim.cmd.loadview({ mods = { emsg_silent = true } }) end,
+	group = load_view,
+})
+
 -- terminal settings
 vim.api.nvim_create_autocmd("TermOpen", {
 	callback = function()
