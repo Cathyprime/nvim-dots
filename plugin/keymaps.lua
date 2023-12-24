@@ -171,7 +171,10 @@ map("n", "k", function()
 end, { expr = true })
 map("n", "<leader>oc", "<cmd>e .nvim.lua<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
-map("n", "<leader>td", diagnostic_toggle)
+--
+-- diagnostic
+map("n", "<leader>dt", diagnostic_toggle)
+map("n", "<leader>dq", vim.diagnostic.setqflist)
 
 -- command line
 map("c", "<c-a>", "<home>")
