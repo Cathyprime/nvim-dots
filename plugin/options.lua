@@ -49,7 +49,7 @@ options.options = {
 		end
 	end)(),
 	foldmethod = "manual",
-	foldcolumn = "0",
+	foldcolumn = "auto",
 	hls = true,
 	cursorline = true,
 	guicursor = "i-ci-ve:block",
