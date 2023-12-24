@@ -113,8 +113,9 @@ map("n", "<c-c>d", DispatchWrapper, { expr = true, silent = false })
 map("n", "<c-c>D", DispatchWrapperChange, { expr = true, silent = false })
 map("n", "<c-c>m", MakeWrapper, { expr = true, silent = false })
 
--- macro on lines
+-- macro
 map("x", "@", function () return ":norm @" .. vim.fn.getcharstr() .. "<cr>" end, { expr = true })
+map("n", "gQ", "qqqqq") -- clear q register and start recording (useful for recursive macros)
 
 -- quickfix commands
 map("n", "<leader>q", openqf, { expr = true })
