@@ -15,11 +15,14 @@ highlight SLTerminal guifg=#e6c384 guibg=#181818
 highlight SLOperator guifg=#181818 guibg=#e6c384
 highlight link SLMode SLNormal
 highlight link SLModified SLFileType
+highlight link SLReg SLBufNumber
 
 let statusstring = ""
 let statusstring ="\%#SLBackground#"
 let statusstring = statusstring .. "\%#SLMode#"
 let statusstring = statusstring .. "\ %{statusline#Mode()}\ "
+let statusstring = statusstring .. "\%#SLReg#"
+let statusstring = statusstring .. " %{v:register} "
 let statusstring = statusstring .. "\%#SLBackground#"
 let statusstring = statusstring .. "\ %f\ %m%r"
 let statusstring = statusstring .. "\%= "
