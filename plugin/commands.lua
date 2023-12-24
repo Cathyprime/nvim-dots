@@ -38,7 +38,7 @@ vim.api.nvim_create_user_command(
 	"Scratch",
 	function(opts)
 		local ft
-		if opts.args ~= nil then
+		if opts.args ~= "" then
 			local args = vim.split(opts.args, " ")[1]
 			ft = args
 		else
@@ -46,7 +46,6 @@ vim.api.nvim_create_user_command(
 				buf = 0,
 			})
 		end
-		print(opts.args)
 		if not opts.bang then
 			vim.cmd(opts.mods .. " split")
 		end
@@ -58,7 +57,8 @@ vim.api.nvim_create_user_command(
 	end,
 	{
 		bang = true,
-		nargs = '?'
+		nargs = '?',
+		complete = "filetype"
 	}
 )
 
