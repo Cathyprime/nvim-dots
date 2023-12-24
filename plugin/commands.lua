@@ -38,7 +38,7 @@ vim.api.nvim_create_user_command(
 	"Scratch",
 	function(opts)
 		local ft
-		if opts.args ~= "" then
+		if opts.args ~= nil then
 			local args = vim.split(opts.args, " ")[1]
 			ft = args
 		else
@@ -53,6 +53,9 @@ vim.api.nvim_create_user_command(
 		vim.api.nvim_set_option_value("buftype", "nofile", { buf = 0 })
 		vim.api.nvim_set_option_value("bufhidden", "hide", { buf = 0 })
 		vim.api.nvim_set_option_value("swapfile", false, { buf = 0 })
+		if ft == [[nil]] or ft == [[""]] then
+			return
+		end
 		vim.api.nvim_set_option_value("filetype", ft, { buf = 0 })
 	end,
 	{
