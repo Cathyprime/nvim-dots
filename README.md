@@ -77,9 +77,7 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 + [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
 + [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
-+ [ray-x/lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
 + [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim)
-+ [dgagn/diagflow.nvim](https://github.com/dgagn/diagflow.nvim)
 
 ### lsp-installer
 + [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
