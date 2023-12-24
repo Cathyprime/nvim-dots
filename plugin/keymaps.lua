@@ -105,6 +105,12 @@ local function MakeWrapper()
 	return ":Make! " .. c .. "<cr>"
 end
 
+local diag_active = true
+local function diagnostic_toggle()
+	diag_active = not diag_active
+	vim.diagnostic.config({ virtual_text = diag_active })
+end
+
 -- Compilation
 map("n", "<c-c>s", ":Start ", { silent = false })
 map("n", "<c-c>f", ":Focus ", { silent = false })
@@ -165,6 +171,7 @@ map("n", "k", function()
 end, { expr = true })
 map("n", "<leader>oc", "<cmd>e .nvim.lua<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
+map("n", "<leader>td", diagnostic_toggle)
 
 -- command line
 map("c", "<c-a>", "<home>")
