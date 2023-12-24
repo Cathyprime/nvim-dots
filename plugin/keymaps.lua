@@ -163,6 +163,7 @@ end, { expr = true })
 map("n", "k", function()
 	return jump("k")
 end, { expr = true })
+map("n", "<leader>oc", "<cmd>e .nvim.lua<cr>")
 
 -- command line
 map("c", "<c-a>", "<home>")
