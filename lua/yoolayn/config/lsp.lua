@@ -62,30 +62,28 @@ require("mason-lspconfig").setup({
 	handlers = {
 		default_setup,
 		tsserver = function()
-			if not vim.g.neovide then
-				require("lspconfig").tsserver.setup({
-					on_attach = on_attach,
-					settings = {
-						typescript = {
-							format = {
-								indentSize = vim.o.shiftwidth,
-								convertTabsToSpaces = vim.o.expandtab,
-								tabSize = vim.o.tabstop,
-							},
+			require("lspconfig").tsserver.setup({
+				on_attach = on_attach,
+				settings = {
+					typescript = {
+						format = {
+							indentSize = vim.o.shiftwidth,
+							convertTabsToSpaces = vim.o.expandtab,
+							tabSize = vim.o.tabstop,
 						},
-						javascript = {
-							format = {
-								indentSize = vim.o.shiftwidth,
-								convertTabsToSpaces = vim.o.expandtab,
-								tabSize = vim.o.tabstop,
-							},
+					},
+					javascript = {
+						format = {
+							indentSize = vim.o.shiftwidth,
+							convertTabsToSpaces = vim.o.expandtab,
+							tabSize = vim.o.tabstop,
 						},
-						completions = {
-							completeFunctionCalls = true,
-						},
-					}
-				})
-			end
+					},
+					completions = {
+						completeFunctionCalls = true,
+					},
+				}
+			})
 		end,
 		lua_ls = function()
 			require("lspconfig").lua_ls.setup({
