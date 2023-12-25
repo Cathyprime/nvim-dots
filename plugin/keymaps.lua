@@ -170,6 +170,7 @@ map("n", "k", function()
 	return jump("k")
 end, { expr = true })
 map("n", "<leader>oc", "<cmd>e .nvim.lua<cr>")
+map("n", "<leader>ot", "<cmd>e todo.norg<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
 --
 -- diagnostic
