@@ -177,7 +177,11 @@ map("n", "<leader>dt", diagnostic_toggle)
 map("n", "<leader>dq", vim.diagnostic.setqflist)
 
 -- command line
-map("c", "<c-a>", "<home>")
+map("c", "<c-a>", "<home>", { silent = false })
+
+-- insert
+map("i", "<c-a>", "<home>")
+map("i", "<c-e>", "<end>")
 
 -- quick search and replace keymaps
 map("n", "<leader>s", ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
