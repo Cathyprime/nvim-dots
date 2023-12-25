@@ -77,11 +77,19 @@ M.run = function(log)
 			end
 			goto continue
 		end
-		vim.api.nvim_set_hl(0, group, {
-			bg = original.fg,
-			fg = M.darken(original.fg, 1),
-			standout = true,
-		})
+		if vim.g.neovide then
+			vim.api.nvim_set_hl(0, group, {
+				fg = original.fg,
+				bg = M.darken(original.fg, 1),
+				standout = true,
+			})
+		else
+			vim.api.nvim_set_hl(0, group, {
+				bg = original.fg,
+				fg = M.darken(original.fg, 1),
+				standout = true,
+			})
+		end
 		::continue::
 	end
 end
