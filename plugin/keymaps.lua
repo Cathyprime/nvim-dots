@@ -131,8 +131,8 @@ map("n", "[c", "<cmd>cprev<cr>")
 -- scrolling
 map("n", "<c-b>", "<Nop>")
 map("n", "<c-f>", "<Nop>")
-map("n", "<c-d>", "<c-d>zz")
-map("n", "<c-u>", "<c-u>zz")
+-- map("n", "<c-d>", "<c-d>zz")
+-- map("n", "<c-u>", "<c-u>zz")
 
 -- text objects
 -- inner underscore
