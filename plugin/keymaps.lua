@@ -117,7 +117,7 @@ local function addHarpoon()
 		print("use only registers a-z")
 		return
 	end
-	local cmd = string.format('let @%s = ":e %s\\n"', input, vim.fn.expand("%"))
+	local cmd = string.format('let @%s = ":e %s\\n"', input, vim.fn.expand("%:p:~:."))
 	vim.cmd(cmd)
 end
 
