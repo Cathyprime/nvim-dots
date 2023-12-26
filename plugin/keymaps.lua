@@ -111,6 +111,16 @@ local function diagnostic_toggle()
 	vim.diagnostic.config({ virtual_text = diag_active })
 end
 
+local function addHarpoon()
+	local input = vim.fn.nr2char(vim.fn.getchar())
+	if not input:match("%a") then
+		print("use only registers a-z")
+		return
+	end
+	local cmd = string.format('let @%s = ":e %s\\n"', input, vim.fn.expand("%"))
+	vim.cmd(cmd)
+end
+
 -- Compilation
 map("n", "<c-c>s", ":Start ", { silent = false })
 map("n", "<c-c>f", ":Focus ", { silent = false })
@@ -172,7 +182,8 @@ end, { expr = true })
 map("n", "<leader>oc", "<cmd>e .nvim.lua<cr>")
 map("n", "<leader>ot", "<cmd>e todo.norg<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
---
+map("n", "<leader>a", addHarpoon)
+
 -- diagnostic
 map("n", "<leader>dt", diagnostic_toggle)
 map("n", "<leader>dq", vim.diagnostic.setqflist)
