@@ -168,6 +168,9 @@ map("n", "ZQ", function()
 	confirm_save_cur("Save buffer? [y/n/q]", "Only [y/n/q]")
 end)
 
+-- toggles
+map("n", "<leader>tw", "<cmd>set wrap!<cr>")
+
 -- misc
 map("n", "X", "0D")
 map("n", "J", [[mzJ`z]])
