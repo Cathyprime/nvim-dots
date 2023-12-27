@@ -142,6 +142,7 @@ require("mason-lspconfig").setup({
 		end
 	}
 })
+
 require("mason-tool-installer").setup({
 	ensure_installed = {
 		"eslint_d",
