@@ -88,8 +88,6 @@ config = {
 	options = {
 		icons_enabled = false,
 		theme = "auto",
-		component_separators = "",
-		section_separators = "",
 		disabled_filetypes = {
 			statusline = {},
 			winbar = {},
@@ -110,13 +108,16 @@ config = {
 				color = function()
 					local mode_name = mode.modes[vim.fn.mode()]
 					return mode.colors[mode_name]
-				end
+				end,
+				separator = { right = ""},
 			}
 		},
 		lualine_b = { "branch", "diff" },
 		lualine_c = { { "filename", path = 1 } },
-		lualine_x = { "%S", "diagnostics", "filetype" },
-		lualine_y = { { "location", fmt = function(str) return string.format("(%s)", str) end } },
+		lualine_x = { "%S", "diagnostics" },
+		lualine_y = { "filetype", { "location", fmt = function(str)
+			return string.format("(%s)", str):gsub("%s+", "")
+		end } },
 		lualine_z = { window_component }
 	},
 	inactive_sections = {
