@@ -1,4 +1,7 @@
-let enable = 1
+" TODO: make it detect if lualine is enabled, and then disable itself if it is
+
+let enable = 0
+let set_colors = 0
 
 highlight link SLBackground Normal
 highlight SLBackground guibg=#181818
