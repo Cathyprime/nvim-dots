@@ -110,4 +110,11 @@ return {
 		init = function() require("evalua") end,
 		keys = { { "ZE", "<cmd>Evalua<cr>" } }
 	},
+	{
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			local config = require("yoolayn.config.lualine")
+			require("lualine").setup(config)
+		end
+	},
 }
