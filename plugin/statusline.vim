@@ -1,5 +1,5 @@
 let enable = 0
-let set_colors = 0
+let set_colors = 1
 
 if set_colors
 	highlight link SLBackground Normal

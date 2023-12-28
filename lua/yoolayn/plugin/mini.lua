@@ -38,8 +38,9 @@ return {
 	{
 		"echasnovski/mini.starter",
 		version = false,
-		opts = {
-
-		}
+		config = function()
+			local config = require("yoolayn.config.ministarter")
+			require("mini.starter").setup(config)
+		end
 	}
 }
