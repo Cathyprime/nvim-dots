@@ -66,28 +66,6 @@ return {
 		opts = {}
 	},
 	{
-		"stevearc/oil.nvim",
-		opts = {
-			default_file_explorer = true,
-			columns = {
-				"permissions",
-				"size",
-				"mtime",
-				"icon",
-			},
-			keymaps = {
-				["<c-c>q"] = "actions.close"
-			}
-		},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function(opts)
-			require("oil").setup(opts.opts)
-			vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { silent = true })
-			vim.keymap.set("n", "<leader>fe", "<cmd>split | Oil<cr>", { silent = true })
-			vim.keymap.set("n", "<leader>fE", "<cmd>vert Oil<cr>", { silent = true })
-		end
-	},
-	{
 		"Vigemus/iron.nvim",
 		cmd = "IronRepl",
 		keys = {
