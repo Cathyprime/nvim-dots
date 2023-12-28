@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("DirChanged", {
 -- start minibuffer
 vim.api.nvim_create_autocmd("CmdwinEnter", {
 	once = false,
+	group = augroup("minibuffer"),
 	callback = function()
 		vim.o.laststatus = 0
 		vim.opt_local.filetype = "minibuffer"
@@ -20,15 +21,15 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 })
 
 -- Load view
-local load_view = augroup("Load view")
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*.*",
 	callback = function() vim.cmd.loadview({ mods = { emsg_silent = true } }) end,
-	group = load_view,
+	group = augroup("Load view"),
 })
 
 -- terminal settings
 vim.api.nvim_create_autocmd("TermOpen", {
+	group = augroup("terminal"),
 	callback = function()
 		vim.opt_local.number = false
 		vim.opt_local.relativenumber = false
@@ -79,6 +80,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 -- set filetype c for header and .c files instead of c++
 vim.api.nvim_create_autocmd({"BufRead", "BUfNewFile"}, {
+	group = augroup("c_filetypes"),
 	once = false,
 	pattern = {"*.c", "*.h"},
 	command = "set ft=c",
