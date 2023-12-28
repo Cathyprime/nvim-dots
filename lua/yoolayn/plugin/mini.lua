@@ -35,4 +35,11 @@ return {
 			-- { "gS", mode = { "n", "x" } },
 		}
 	},
+	{
+		"echasnovski/mini.starter",
+		version = false,
+		opts = {
+
+		}
+	}
 }
