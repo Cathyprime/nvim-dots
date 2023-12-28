@@ -2,6 +2,7 @@ local config = {}
 
 local mode = {
 	colors = {
+		-- TODO: set colors to better match the lualine colors so it isn't so jarring
 		["normal"] = { bg = "#571cbd", fg = "#c8c093" },
 		["visual"] = { bg = "#76946a", fg = "#181818" },
 		["vislin"] = { bg = "#ad410e", fg = "#c8c093" },
