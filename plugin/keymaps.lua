@@ -21,7 +21,7 @@ local function openqf()
 	end
 end
 
-local function getChar(question, err_question)
+local function get_char(question, err_question)
 	local char
 	while true do
 	print(question)
@@ -41,7 +41,7 @@ local function confirm_save_cur(question, err)
 		vim.cmd("q")
 		return
 	end
-	local char = getChar(question, err)
+	local char = get_char(question, err)
 	if char == "y" then
 		vim.cmd("wq")
 	elseif char == "n" then
@@ -66,7 +66,7 @@ local function confirm_save_all(question, err)
 	if not find_if_modified() then
 		vim.cmd("qa")
 	end
-	local char = getChar(question, err)
+	local char = get_char(question, err)
 	if char == "y" then
 		vim.cmd("wqa")
 	elseif char == "n" then
@@ -76,7 +76,7 @@ local function confirm_save_all(question, err)
 	end
 end
 
-local function DispatchWrapper()
+local function Dispatch_wrapper()
 	vim.b["dispatch_ready"] = true
 	if vim.b.dispatch then
 		return ":Dispatch!<cr>"
@@ -87,10 +87,10 @@ local function DispatchWrapper()
 	return ":Dispatch!<cr>"
 end
 
-local function DispatchWrapperChange()
+local function Dispatch_wrapper_change()
 	vim.b["dispatch_ready"] = true
 	if not vim.b.dispatch then
-		return DispatchWrapper()
+		return Dispatch_wrapper()
 	end
 	local c = vim.fn.input(":Dispatch ")
 	vim.cmd"redraw"
@@ -98,7 +98,7 @@ local function DispatchWrapperChange()
 	return ":Dispatch!<cr>"
 end
 
-local function MakeWrapper()
+local function make_wrapper()
 	vim.b["dispatch_ready"] = true
 	local c = vim.fn.input(":make ")
 	vim.cmd"redraw"
@@ -111,7 +111,7 @@ local function diagnostic_toggle()
 	vim.diagnostic.config({ virtual_text = diag_active })
 end
 
-local function addHarpoon()
+local function add_harpoon()
 	local input = vim.fn.nr2char(vim.fn.getchar())
 	if not input:match("%a") then
 		print("use only registers a-z")
@@ -125,9 +125,9 @@ end
 map("n", "<c-c>s", ":Start ", { silent = false })
 map("n", "<c-c>f", ":Focus ", { silent = false })
 map("n", "<c-c>F", ":Focus!<cr>")
-map("n", "<c-c>d", DispatchWrapper, { expr = true, silent = false })
-map("n", "<c-c>D", DispatchWrapperChange, { expr = true, silent = false })
-map("n", "<c-c>m", MakeWrapper, { expr = true, silent = false })
+map("n", "<c-c>d", Dispatch_wrapper, { expr = true, silent = false })
+map("n", "<c-c>D", Dispatch_wrapper_change, { expr = true, silent = false })
+map("n", "<c-c>m", make_wrapper, { expr = true, silent = false })
 
 -- macro
 map("x", "@", function () return ":norm @" .. vim.fn.getcharstr() .. "<cr>" end, { expr = true })
@@ -141,8 +141,6 @@ map("n", "[c", "<cmd>cprev<cr>")
 -- scrolling
 map("n", "<c-b>", "<Nop>")
 map("n", "<c-f>", "<Nop>")
--- map("n", "<c-d>", "<c-d>zz")
--- map("n", "<c-u>", "<c-u>zz")
 
 -- text objects
 -- inner underscore
@@ -185,7 +183,7 @@ end, { expr = true })
 map("n", "<leader>oc", "<cmd>e .nvim.lua<cr>")
 map("n", "<leader>ot", "<cmd>e todo.norg<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
-map("n", "<leader>a", addHarpoon)
+map("n", "<leader>a", add_harpoon)
 
 -- diagnostic
 map("n", "<leader>dt", diagnostic_toggle)
