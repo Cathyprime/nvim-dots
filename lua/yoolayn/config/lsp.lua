@@ -6,6 +6,12 @@ vim.cmd([[sign define DiagnosticSignWarn text=]] .. icons.Warning .. [[ texthl=D
 vim.cmd([[sign define DiagnosticSignInfo text=]] .. "🤓" .. [[ texthl=DiagnosticSignInfo linehl= numhl= ]])
 vim.cmd([[sign define DiagnosticSignHint text=]] .. icons.Hint .. [[ texthl=DiagnosticSignHint linehl= numhl= ]])
 
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "⚫︎"
+	}
+})
+
 local function on_attach(client, bufnr)
 	local opts = { buffer = bufnr }
 	vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references,		opts)
