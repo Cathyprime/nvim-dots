@@ -1,4 +1,3 @@
-local cwd = vim.loop.cwd()
 local starter = require("mini.starter")
 
 local config = {
@@ -40,6 +39,7 @@ local config = {
 }
 
 (function()
+	local cwd = vim.loop.cwd()
 	local header = {
 		"NEOVIM",
 		tostring(vim.version()),
