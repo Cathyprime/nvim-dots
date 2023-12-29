@@ -43,16 +43,24 @@ return {
 						display_name = string.format(" %s Symbols ", icons.Function)
 					},
 					{
+						source = "remote",
+						display_name = string.format(" %s Remote ", icons.Web)
+					},
+					{
 						source = "buffers",
 						display_name = string.format(" %s Buffers ", icons.FileAlt2)
 					},
 				},
 			},
-			sources = { "git_status", "document_symbols", "buffers" }
+			sources = { "git_status", "document_symbols", "netman.ui.neo-tree", "buffers" }
 		},
 		keys = {
 			{ "<leader>n", "<cmd>Neotree position=bottom<cr>" }
 		},
 		cmd = { "Neotree" }
+	},
+	{
+		"miversen33/netman.nvim",
+		config = true
 	}
 }
