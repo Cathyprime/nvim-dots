@@ -1,3 +1,4 @@
+local icons = require("util.icons").icons
 return {
 	{
 		"stevearc/oil.nvim",
@@ -35,15 +36,15 @@ return {
 				sources = {
 					{
 						source = "git_status",
-						display_name = " 󰊢 Git "
+						display_name = string.format(" %s Git ", icons.Git)
 					},
 					{
 						source = "document_symbols",
-						display_name = "  Symbols "
+						display_name = string.format(" %s Symbols ", icons.Function)
 					},
 					{
 						source = "buffers",
-						display_name = " 󰈚 Buffers "
+						display_name = string.format(" %s Buffers ", icons.FileAlt2)
 					},
 				},
 			},
