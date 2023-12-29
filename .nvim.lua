@@ -10,7 +10,7 @@ local registers = {
 	}
 }
 
-vim.api.nvim_create_autocmd({ "VimEnter", "BufReadPost" }, {
+vim.api.nvim_create_autocmd("VimEnter", {
 	once = true,
 	callback = function()
 		local str = ""
