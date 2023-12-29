@@ -28,47 +28,47 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [catppuccin/nvim](https://github.com/catppuccin/nvim)
 + [rose-pine/neovim](https://github.com/rose-pine/neovim)
 + [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
++ [neanias/everforest-nvim](https://github.com/neanias/everforest-nvim)
 
 ### UI
 + [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
++ [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
++ [echasnovski/mini.starter](https://github.com/echasnovski/mini.starter)
++ [echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)
 
 ### Notes
 + [nvim-neorg/neorg](https://github.com/nvim-neorg/neorg)
-
-### comment
-+ [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
 
 ### completion
 + [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 #### sources
-+ [hrsh7th/mp-buffer](https://github.com/hrsh7th/cmp-buffer)
-+ [hrsh7th/mp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-+ [hrsh7th/mp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
-+ [hrsh7th/mp-path](https://github.com/hrsh7th/cmp-path)
++ [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
++ [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
++ [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
++ [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
++ [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
 
-### editing-support
-+ [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
+### code editing support
++ [echasnovski/mini.align](https://github.com/echasnovski/mini.align)
 + [echasnovski/mini.operators](https://github.com/echasnovski/mini.operators)
-+ [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
++ [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
 + [Wansmer/treesj](https://github.com/Wansmer/treesj)
++ [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
++ [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
 
 ### files
 + [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)
++ [miversen33/netman.nvim](https://github.com/miversen33/netman.nvim)
++ [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 
-### formatting
-+ [echasnovski/mini.align](https://github.com/echasnovski/mini.align)
-
-### fuzzy-finder
+### fuzzy finder
 + [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 
 ### git
 + [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 + [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim)
 + [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
-
-### indent
-+ [echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)
 
 ### keybinding
 + [anuvyklack/hydra.nvim](https://github.com/anuvyklack/hydra.nvim)
@@ -78,14 +78,24 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
 + [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
 + [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim)
++ [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)
 
-### lsp-installer
+### debugging
++ [jay-babu/mason-nvim-dap.nvim](https://github.com/jay-babu/mason-nvim-dap.nvim)
++ [mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap)
++ [leoluz/nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
++ [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
++ [mfussenegger/nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python)
+
+### coding tool installer
 + [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
 + [WhoIsSethDaniel/mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
 
 ### nvim-dev
 + [folke/neodev.nvim](https://github.com/folke/neodev.nvim)
++ [KaitlynEthylia/Evalua](https://github.com/KaitlynEthylia/Evalua)
 + [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
++ [milisims/nvim-luaref](https://github.com/milisims/nvim-luaref)
 
 ### plugin-manager
 + [folke/lazy.nvim](https://github.com/folke/lazy.nvim)
@@ -109,6 +119,3 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [tpope/vim-eunuch](https://github.com/tpope/vim-eunuch)
 + [dohsimpson/vim-macroeditor](https://github.com/dohsimpson/vim-macroeditor)
 + [dstein64/vim-startuptime](https://github.com/dstein64/vim-startuptime)
-
-### compilation
-+ [tpope/vim-dispatch](https://github.com/tpope/vim-dispatch)
