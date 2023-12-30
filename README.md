@@ -48,6 +48,7 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
 + [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
 + [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
++ [hrsh7th/cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help)
 
 ### code editing support
 + [echasnovski/mini.align](https://github.com/echasnovski/mini.align)
