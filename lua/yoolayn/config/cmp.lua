@@ -15,6 +15,7 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
 	sources = cmp.config.sources({
+		{ name = 'nvim_lsp_signature_help' },
 		{ name = "path" },
 		{ name = "nvim_lua" },
 		{
