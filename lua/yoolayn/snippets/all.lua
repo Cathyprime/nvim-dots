@@ -10,21 +10,21 @@ local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 ls.add_snippets("all", {
-	s(
-	{ trig = "{", wordTrig = false },
-	{ t { "{" }, i(0), t { "}" } },
-	{}
-	),
+    s(
+    { trig = "{", wordTrig = false },
+    { t { "{" }, i(0), t { "}" } },
+    {}
+    ),
 
-	s(
-	{ trig = "(", wordTrig = false },
-	{ t { "(" }, i(0), t { ")" } },
-	{}
-	),
+    s(
+    { trig = "(", wordTrig = false },
+    { t { "(" }, i(0), t { ")" } },
+    {}
+    ),
 
-	s(
-	{ trig = "[", wordTrig = false },
-	{ t { "[" }, i(0), t { "]" } },
-	{}
-	),
+    s(
+    { trig = "[", wordTrig = false },
+    { t { "[" }, i(0), t { "]" } },
+    {}
+    ),
 })
