@@ -1,7 +1,7 @@
 return {
-	{
-		"julienvincent/nvim-paredit",
-		config = true,
-		ft = { "lisp", "fennel", "clojure" }
-	}
+    {
+        "julienvincent/nvim-paredit",
+        config = true,
+        ft = { "lisp", "fennel", "clojure" }
+    }
 }
