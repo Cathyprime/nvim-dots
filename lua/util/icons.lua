@@ -69,4 +69,21 @@ M.icons = {
     Web = "󰖟",
 }
 
+function M:new(opts)
+    opts = opts or {}
+    local obj = {}
+    setmetatable(obj, self)
+    obj.icons = {}
+    for k, v in pairs(M.icons) do
+        if not k:match("Alt$") and not k:match("Alt%d+$") then
+            if opts.alts and opts.alts[k] then
+                obj.icons[k] = M.icons[opts.alts[k]]
+            else
+                obj.icons[k] = v
+            end
+        end
+    end
+    return obj
+end
+
 return M
