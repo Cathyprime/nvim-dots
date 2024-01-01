@@ -192,6 +192,9 @@ map("n", "<leader>dq", vim.diagnostic.setqflist)
 -- command line
 map("c", "<c-a>", "<home>", { silent = false })
 
+-- minibuffer
+map("n", "<a-;>", "q:")
+
 -- insert
 map("i", "<c-a>", "<home>")
 map("i", "<c-e>", "<end>")
