@@ -85,6 +85,14 @@ local function window_component()
     return string.format("[%s:%s]", vim.api.nvim_win_get_number(0), vim.api.nvim_get_current_buf())
 end
 
+local function recording_component()
+    local recording = vim.fn.reg_recording()
+    if recording ~= "" then
+        recording = string.format("  %s", recording)
+    end
+    return string.format("%s%s", vim.v.register, recording)
+end
+
 config = {
     options = {
         icons_enabled = false,
@@ -111,7 +119,16 @@ config = {
                     return mode.colors[mode_name]
                 end,
                 separator = { right = ""},
-            }
+            },
+            {
+                recording_component,
+                color = function()
+                    if vim.fn.reg_recording() ~= "" then
+                        return { bg = "red", fg = "white" }
+                    end
+                end,
+                separator = { right = ""},
+            },
         },
         lualine_b = { "branch", "diff" },
         lualine_c = { { "filename", path = 1 } },
