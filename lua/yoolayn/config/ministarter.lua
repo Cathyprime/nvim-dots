@@ -9,7 +9,7 @@ local config = {
     evaluate_single = true,
     header = "",
     footer = "",
-    query_updaters = [[abcdefghilmoqrstuvwxyz0123456789_-,.ABCDEFGHIJKLMOQRSTUVWXYZ]],
+    query_updaters = [[abcdefghijklmoqrstuvwxyz0123456789_-,.ABCDEFGHIJKLMOQRSTUVWXYZ]],
     items = {
         { action = "Telescope oldfiles",   name = "Old_files",  section = "Telescope"  },
         { action = "Telescope git_files",  name = "Git_files",  section = "Telescope"  },
