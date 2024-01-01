@@ -133,10 +133,21 @@ config = {
         lualine_b = { "branch", "diff" },
         lualine_c = { { "filename", path = 1 } },
         lualine_x = { "%S", "diagnostics" },
-        lualine_y = { "filetype", { "location", fmt = function(str)
+        lualine_y = {
+            {
+                "filetype",
+                fmt = function(str)
+                    if str == "TelescopePrompt" then
+                        return "Telescope"
+                    end
+                    return str
+                end
+            },
+            "progress",
+        },
+        lualine_z = { { "location", fmt = function(str)
             return string.format("(%s)", str):gsub("%s+", "")
-        end } },
-        lualine_z = { window_component }
+        end }, window_component }
     },
     inactive_sections = {
         lualine_a = {},
