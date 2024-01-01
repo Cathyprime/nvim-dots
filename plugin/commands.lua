@@ -38,8 +38,8 @@ vim.api.nvim_create_user_command(
     "Scratch",
     function(opts)
         local ft
-        if opts.args ~= nil then
-            local args = vim.split(opts.args, " ")[1]
+        if #opts.fargs ~= 0 then
+            local args = opts.fargs[1]
             ft = args
         else
             ft = vim.api.nvim_get_option_value("filetype", {
