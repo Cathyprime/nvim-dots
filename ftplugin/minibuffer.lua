@@ -20,7 +20,7 @@ map("i"       , "<c-a>",         "<home>")
 map("n"       , "<esc>", "<cmd>close<cr>")
 map("n"       , "<c-p>",          "<nop>")
 
-vim.api.nvim_win_set_height(0, 5)
+vim.api.nvim_win_set_height(0, 2)
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
 vim.opt_global.laststatus = 0
@@ -28,15 +28,12 @@ vim.opt_local.number = false
 vim.opt_local.relativenumber = false
 vim.opt_local.scrolloff = 0
 vim.opt_local.completeopt = "menu"
-
-local old_height = vim.opt.pumheight
-vim.opt.pumheight = 3
+vim.opt.cmdheight = 0
 
 vim.api.nvim_create_autocmd("CmdwinLeave", {
     once = false,
     callback = function()
         vim.o.laststatus = 3
-        vim.opt.pumheight = old_height
         vim.opt.cmdheight = 1
     end
 })
