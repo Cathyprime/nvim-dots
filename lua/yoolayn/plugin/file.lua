@@ -31,6 +31,12 @@ return {
             "MunifTanjim/nui.nvim",
         },
         opts = {
+            window = {
+                mappings = {
+                    ["<space>"] = "noop",
+                    ["O"] = "toggle_node",
+                }
+            },
             source_selector = {
                 winbar = true,
                 sources = {
