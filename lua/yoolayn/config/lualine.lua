@@ -17,7 +17,7 @@ local mode = {
         ["cmmand"] = { bg = "#ffa066", fg = "#181818" },
         ["termnl"] = { bg = "#181818", fg = "#e6c384" },
         ["confrm"] = { bg = "#571cbd", fg = "#c8c093" },
-        ["unknwn"] = { bg = "black",   fg = "white" },
+        ["unknwn"] = { bg = "black",   fg = "white"   },
     },
     modes = {
         ["n"] = "normal",

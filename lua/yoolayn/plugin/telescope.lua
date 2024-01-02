@@ -59,34 +59,13 @@ return {
                 theme = "dropdown"
             }) end
         },
-        {
-            "<leader>fF",
-            require("telescope.builtin").resume
-        },
-        {
-            "<leader>fo",
-            function() require("telescope.builtin").oldfiles() end
-        },
-        {
-            "<leader>fb",
-            function() require("telescope.builtin").buffers() end
-        },
-        {
-            "<leader><leader>",
-            function() require("telescope.builtin").buffers() end
-        },
-        {
-            "<leader>fh",
-            function() require("telescope.builtin").help_tags() end,
-        },
-        {
-            "<leader>fg",
-            function() require("telescope.builtin").live_grep() end
-        },
-        {
-            "<leader>fp",
-            require("util.telescope-config").change_dir,
-        },
+        { "<leader>fF", require("telescope.builtin").resume },
+        { "<leader>fo", function() require("telescope.builtin").oldfiles() end },
+        { "<leader>fb", function() require("telescope.builtin").buffers() end },
+        { "<leader><leader>", function() require("telescope.builtin").buffers() end },
+        { "<leader>fh", function() require("telescope.builtin").help_tags() end },
+        { "<leader>fg", function() require("telescope.builtin").live_grep() end },
+        { "<leader>fp", require("util.telescope-config").change_dir },
         {
             "<leader>fG",
             function()
@@ -95,13 +74,7 @@ return {
                 })
             end,
         },
-        {
-            "<leader>gs",
-            require("telescope.builtin").git_status,
-        },
-        {
-            "<c-p>",
-            function() require("util.telescope-config").project_files() end
-        },
+        { "<leader>gs", require("telescope.builtin").git_status },
+        { "<c-p>", function() require("util.telescope-config").project_files() end },
     }
 }
