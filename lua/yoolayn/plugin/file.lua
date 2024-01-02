@@ -17,7 +17,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function(opts)
             require("oil").setup(opts.opts)
-            vim.keymap.set("n", "<leader>e", "<cmd>split| Oil<cr>", { silent = true })
+            vim.keymap.set("n", "<leader>e", "<cmd>botright split | Oil<cr>", { silent = true })
             vim.keymap.set("n", "<leader>fe", "<cmd>Oil<cr>", { silent = true })
             vim.keymap.set("n", "<leader>fE", "<cmd>vert Oil<cr>", { silent = true })
         end
