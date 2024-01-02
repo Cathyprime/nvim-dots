@@ -74,7 +74,6 @@ require("nvim-treesitter.configs").setup({
                 ["ia"] = { query = "@parameter.inner", desc = "select inner argument" },
                 ["il"] = { query = "@loop.inner", desc = "select a loop" },
                 ["al"] = { query = "@loop.outer", desc = "select inner loop" },
-                ["at"] = { query = "@comment.outer", desc = "select a comment" },
             },
         },
         move = {
