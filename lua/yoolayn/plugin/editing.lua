@@ -1,10 +1,5 @@
 return {
     {
-        "numToStr/Comment.nvim",
-        event = {"BufEnter", "BufReadPre"},
-        opts = {},
-    },
-    {
         "kylechui/nvim-surround",
         event = { "BufNewFile", "BufReadPost", "InsertEnter" },
         opts = {
