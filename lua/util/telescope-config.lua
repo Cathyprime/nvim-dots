@@ -1,9 +1,9 @@
-local builtin = require("telescope.builtin")
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local sorters = require("telescope.sorters")
-local state = require("telescope.actions.state")
-local actions = require("telescope.actions")
+local builtin = require "telescope.builtin"
+local pickers = require "telescope.pickers"
+local finders = require "telescope.finders"
+local sorters = require "telescope.sorters"
+local state   = require "telescope.actions.state"
+local actions = require "telescope.actions"
 
 local M = {}
 
