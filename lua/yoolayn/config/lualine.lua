@@ -134,7 +134,7 @@ config = {
         },
         lualine_b = { "branch", "diff" },
         lualine_c = { { "filename", path = 1 } },
-        lualine_x = { "%S", "diagnostics" },
+        lualine_x = { "%S", "searchcount", "selectioncount", "diagnostics" },
         lualine_y = {
             {
                 "filetype",
