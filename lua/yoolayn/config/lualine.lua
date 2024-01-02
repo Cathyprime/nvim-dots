@@ -1,5 +1,3 @@
-local config = {}
-
 local mode = {
     colors = {
         -- TODO: set colors to better match the lualine colors so it isn't so jarring
@@ -93,7 +91,7 @@ local function recording_component()
     return string.format("%s%s", vim.v.register, recording)
 end
 
-config = {
+local config = {
     options = {
         icons_enabled = false,
         theme = "auto",
