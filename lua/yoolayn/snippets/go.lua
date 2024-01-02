@@ -37,7 +37,7 @@ return {
 
     s("ok", fmt([[
     if ok {{
-        {body}
+    	{body}
     }}
     ]], {
         body = i(0)
@@ -45,15 +45,15 @@ return {
 
     s("err", fmt([[
     if err != nil {{
-        {body}
+    	{body}
     }}
     ]], {
-        body = i(0)
+        body = i(0, "log.Fatal(err)")
     })),
 
     s("fn", fmt([[
     func{space}{name}({args}) {left}{return_val}{right}{{
-        {body}
+    	{body}
     }}
     ]], {
         space = f(function(name)
