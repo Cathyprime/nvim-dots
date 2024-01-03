@@ -8,17 +8,17 @@ options.options = {
     tabstop = 4,
     shiftwidth = 4,
     smartindent = true,
-    expandtab = false,
+    expandtab = true,
     exrc = true,
     list = true,
     listchars = {
         append = {
             [[trail:-]],
-            [[tab:\u0020\u0020]],
+            [[tab:\u00b7\u0020\u0020]],
             [[precedes:\u2190]],
             [[extends:\u2192]],
-            [[leadmultispace: \u00b7]],
-            [[nbsp:\u2423]]
+            [[leadmultispace: \u0020]],
+            [[nbsp:\u2423]],
         },
     },
     fillchars = {
