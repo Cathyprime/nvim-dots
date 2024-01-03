@@ -6,12 +6,6 @@ return {
         }
     },
     {
-        "dstein64/vim-startuptime",
-        cmd = {
-            "StartupTime"
-        }
-    },
-    {
         "kevinhwang91/nvim-bqf",
         ft = "qf",
         opts = {
