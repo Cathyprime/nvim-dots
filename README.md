@@ -21,14 +21,7 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ## Plugins
 
 ### colorscheme
-#### main
 + [rebelot/kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
-
-#### additional
-+ [catppuccin/nvim](https://github.com/catppuccin/nvim)
-+ [rose-pine/neovim](https://github.com/rose-pine/neovim)
-+ [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
-+ [neanias/everforest-nvim](https://github.com/neanias/everforest-nvim)
 
 ### UI
 + [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
