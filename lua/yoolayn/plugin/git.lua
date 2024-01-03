@@ -12,6 +12,12 @@ return {
                     { desc = "inner hunk", buffer = bufnr}
                 )
                 vim.keymap.set(
+                    { "o", "x" },
+                    "ah",
+                    "<cmd>Gitsigns select_hunk<cr>",
+                    { desc = "a hunk", buffer = bufnr}
+                )
+                vim.keymap.set(
                     { "n" },
                     "<leader>gs",
                     gs.stage_hunk,
