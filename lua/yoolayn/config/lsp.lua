@@ -104,11 +104,18 @@ require("mason-lspconfig").setup({
                                 },
                                 workspace = {
                                     checkThirdParty = false,
-                                    library = {
-                                        vim.env.VIMRUNTIME,
-                                        "${3rd}/luv/library",
-                                        "${3rd}/busted/library",
-                                    },
+                                    library = (function()
+                                        local static = {
+                                            vim.env.VIMRUNTIME,
+                                            "${3rd}/luv/library",
+                                            "${3rd}/busted/library",
+                                        }
+                                        local plugins = vim.split(vim.fn.glob("$HOME/.local/share/nvim/lazy/*/lua"), "\n")
+                                        for _, v in ipairs(static) do
+                                            table.insert(plugins, v)
+                                        end
+                                        return plugins
+                                    end)(),
                                 },
                             },
                         })
