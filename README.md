@@ -86,7 +86,6 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [WhoIsSethDaniel/mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
 
 ### nvim-dev
-+ [folke/neodev.nvim](https://github.com/folke/neodev.nvim)
 + [KaitlynEthylia/Evalua](https://github.com/KaitlynEthylia/Evalua)
 + [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 + [milisims/nvim-luaref](https://github.com/milisims/nvim-luaref)
