@@ -5,7 +5,7 @@ syn match oilW /w/ contained
 syn match oilX /x/ contained
 syn match oilSize /\v\d+%(\.\d+)?[a-z]?/ contained
 
-syn match oilDate /\v%([a-zA-Z]){1}%([a-z]){2}\s%(\d){2}\s%(\d\d:\d\d){1}/
+syn match oilDate /\v%([a-zA-Z]){1}%([a-z]){2}\s%(\d){2}\s%(\d+%(:\d\d)?){1}/
 
 " colors
 hi link oilR Identifier
