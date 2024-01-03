@@ -10,6 +10,10 @@ return {
                     config = {
                         icons = {
                             heading = false,
+                            code_block = {
+                                highlight = "",
+                                spell_check = false,
+                            }
                         }
                     }
                 },
