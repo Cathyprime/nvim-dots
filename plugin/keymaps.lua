@@ -171,7 +171,7 @@ map("n", "<leader>tw", "<cmd>set wrap!<cr>")
 
 -- misc
 map("n", "X", "0D")
-map("n", "J", [[mzJ`z]])
+map("n", "J", [[mmJ`m]])
 map("n", "gp", "`[v`]")
 map("n", "U", "<c-r>")
 map("n", "j", function()
