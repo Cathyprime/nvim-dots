@@ -7,35 +7,39 @@ return {
     },
     config = function()
         local actions = require("telescope.actions")
-        require("telescope").setup({
-            defaults = {
-                layout_strategy = "horizontal",
-                layout_config = {
-                    height = 0.90,
-                    width = 0.90,
-                    preview_cutoff = 120,
-                    horizontal = { preview_width = 0.50 },
-                    vertical = { width = 0.55, height = 0.9, preview_cutoff = 0 },
-                    prompt_position = "bottom",
-                },
-                mappings = {
-                    i = {
-                        ["<C-l>"] = function (...)
-                            return actions.smart_send_to_loclist(...)
-                        end,
-                        ["<C-q>"] = function (...)
-                            return actions.smart_send_to_qflist(...)
-                        end,
-                        ["<C-u>"] = false,
-                        ["<C-e>"] = function(...)
-                            return actions.preview_scrolling_down(...)
-                        end,
-                        ["<C-y>"] = function(...)
-                            return actions.preview_scrolling_up(...)
-                        end,
-                    },
+        local defaults = {
+            borderchars = {
+                prompt  = { "",  "",  "",  "",  "",  "",  "",  ""  },
+                results = { "",  "",  "",  "",  "",  "",  "",  ""  },
+                preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+            },
+            layout_config = {
+                prompt_position = "bottom",
+                height = 14,
+                preview_width = 0.60,
+            },
+            border = true,
+            mappings = {
+                i = {
+                    ["<C-l>"] = function(...)
+                        return actions.smart_send_to_loclist(...)
+                    end,
+                    ["<C-q>"] = function(...)
+                        return actions.smart_send_to_qflist(...)
+                    end,
+                    ["<C-u>"] = false,
+                    ["<C-e>"] = function(...)
+                        return actions.preview_scrolling_down(...)
+                    end,
+                    ["<C-y>"] = function(...)
+                        return actions.preview_scrolling_up(...)
+                    end,
                 },
             },
+        }
+        defaults = vim.tbl_deep_extend("force", require("telescope.themes").get_ivy(), defaults)
+        require("telescope").setup({
+            defaults = defaults,
             pickers = {
                 buffers = {
                     mappings = {
@@ -66,7 +70,6 @@ return {
                     "%.git/*"
                 },
                 hidden = true,
-                theme = "dropdown"
             }) end
         },
         { "<leader>fF", require("telescope.builtin").resume },
@@ -80,11 +83,10 @@ return {
             "<leader>fG",
             function()
                 require("telescope.builtin").live_grep({
-                    search_dirs = { vim.fn.expand("%:p") }
+                    search_dirs = { vim.fn.expand("%:p") },
                 })
             end,
         },
-        { "<leader>gs", require("telescope.builtin").git_status },
         { "<c-p>", function() require("util.telescope-config").project_files() end },
     }
 }

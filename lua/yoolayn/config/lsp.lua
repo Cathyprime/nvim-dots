@@ -12,9 +12,43 @@ vim.diagnostic.config({
     }
 })
 
+local symbol_settings = {
+    sorting_strategy = "ascending",
+    symbols = {
+        "Class",
+        "Function",
+        "Method",
+        "Constructor",
+        "Interface",
+        "Module",
+        "Struct",
+        "Trait",
+        "Field",
+        "Property",
+    },
+}
+
+local function telescope_references()
+    require("telescope.builtin").lsp_references({
+        include_declaration = true,
+        show_line = true,
+        layout_config = {
+            preview_width = 0.45,
+        }
+    })
+end
+
+local function document_symbols()
+    require("telescope.builtin").lsp_document_symbols(symbol_settings)
+end
+
+local function workspace_symbols()
+    require("telescope.builtin").lsp_workspace_symbols(symbol_settings)
+end
+
 local function on_attach(client, bufnr)
     local opts = { buffer = bufnr }
-    vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references,      opts)
+    vim.keymap.set("n", "<leader>fr", telescope_references,                             opts)
     vim.keymap.set("n", "gI",         require("telescope.builtin").lsp_implementations, opts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,                          opts)
     vim.keymap.set("n", "<leader>cc", vim.lsp.buf.rename,                               opts)
@@ -23,23 +57,8 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", "]d",         vim.diagnostic.goto_next,                         opts)
     vim.keymap.set("n", "gd",         vim.lsp.buf.definition,                           opts)
     vim.keymap.set("n", "K",          vim.lsp.buf.hover,                                opts)
-    vim.keymap.set("n", "<leader>fs", function()
-        require("telescope.builtin").lsp_document_symbols({
-            sorting_strategy = "ascending",
-            symbols = {
-                "Class",
-                "Function",
-                "Method",
-                "Constructor",
-                "Interface",
-                "Module",
-                "Struct",
-                "Trait",
-                "Field",
-                "Property",
-            },
-        })
-    end, opts)
+    vim.keymap.set("n", "<leader>fs", document_symbols,                                 opts)
+    vim.keymap.set("n", "<leader>fS", workspace_symbols,                                opts)
 
     vim.api.nvim_set_option_value("completefunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
     if client.server_capabilities.definitionProvider then
@@ -111,9 +130,7 @@ require("mason-lspconfig").setup({
                                             "${3rd}/busted/library",
                                         }
                                         local plugins = vim.split(vim.fn.glob("$HOME/.local/share/nvim/lazy/*/lua"), "\n")
-                                        for _, v in ipairs(static) do
-                                            table.insert(plugins, v)
-                                        end
+                                        plugins = vim.tbl_deep_extend("force", static, plugins)
                                         return plugins
                                     end)(),
                                 },
