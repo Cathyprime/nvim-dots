@@ -7,8 +7,6 @@ local actions = require "telescope.actions"
 
 local M = {}
 
--- We cache the results of "git rev-parse"
--- Process creation is expensive in Windows, so this reduces latency
 local is_inside_work_tree = {}
 
 M.project_files = function()
