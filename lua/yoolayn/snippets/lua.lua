@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 return {
     s("kv", {
         i(1, "key"),
@@ -28,7 +30,9 @@ return {
     s("req", fmt([[local {varname} = require("{path}")]], {
         varname = f(function(import_name)
             local parts = vim.split(import_name[1][1], "%.")
-            return parts[#parts] or ""
+            local str = parts[#parts] or ""
+            str = str:gsub("-", "_") or str
+            return str
         end, {1}),
         path = i(1)
     })),
