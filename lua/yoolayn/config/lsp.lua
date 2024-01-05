@@ -60,7 +60,7 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", "<leader>fs", document_symbols,                                 opts)
     vim.keymap.set("n", "<leader>fS", workspace_symbols,                                opts)
 
-    vim.api.nvim_set_option_value("completefunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+    vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
     if client.server_capabilities.definitionProvider then
         vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
     end

@@ -21,7 +21,10 @@ return {
             require("nvim-autopairs").remove_rule('(')
             require("nvim-autopairs").remove_rule('[')
             require("nvim-autopairs").remove_rule('{')
-            require("yoolayn.config.cmp-pairs")
+            local ok, _ = pcall(require, "cmp")
+            if ok then
+                require("yoolayn.config.cmp-pairs")
+            end
             require("yoolayn.config.pair-customrules")
         end
     },
