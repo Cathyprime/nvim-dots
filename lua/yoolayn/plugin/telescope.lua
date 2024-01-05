@@ -1,3 +1,5 @@
+local telescope_config = require("util.telescope-config")
+
 return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
@@ -8,17 +10,9 @@ return {
     config = function()
         local actions = require("telescope.actions")
         local defaults = {
-            borderchars = {
-                prompt  = { "",  "",  "",  "",  "",  "",  "",  ""  },
-                results = { "",  "",  "",  "",  "",  "",  "",  ""  },
-                preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-            },
-            layout_config = {
-                prompt_position = "bottom",
-                height = 14,
-                preview_width = 0.60,
-            },
-            border = true,
+            borderchars = telescope_config.borderchars,
+            layout_config = telescope_config.layout_config,
+            border = telescope_config.border,
             mappings = {
                 i = {
                     ["<C-l>"] = function(...)
@@ -78,7 +72,7 @@ return {
         { "<leader><leader>", function() require("telescope.builtin").buffers() end },
         { "<leader>fh", function() require("telescope.builtin").help_tags() end },
         { "<leader>fg", function() require("telescope.builtin").live_grep() end },
-        { "<leader>fp", require("util.telescope-config").change_dir },
+        { "<leader>fp", telescope_config.change_dir },
         {
             "<leader>fG",
             function()
@@ -87,6 +81,6 @@ return {
                 })
             end,
         },
-        { "<c-p>", function() require("util.telescope-config").project_files() end },
+        { "<c-p>", function() telescope_config.project_files() end },
     }
 }
