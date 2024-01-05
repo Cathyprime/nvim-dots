@@ -76,7 +76,7 @@ options.options = {
     wildmode = "longest:full,full",
     completeopt = "menu,noselect",
     winminwidth = 5,
-    pumheight = 3,
+    pumheight = 4,
     wrap = true,
 }
 
