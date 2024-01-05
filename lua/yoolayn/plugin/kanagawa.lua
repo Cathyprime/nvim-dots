@@ -11,24 +11,26 @@ return {
             overrides = function(colors)
                 local theme = colors.theme
                 return {
-                    TelescopeTitle = { fg = theme.ui.special, bold = true },
-                    TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+                    TelescopeTitle = {
+                        fg = theme.ui.special,
+                        bg = theme.ui.bg_p1,
+                        bold = true,
+                    },
                     TelescopePromptBorder = {
                         fg = theme.ui.bg_p1,
-                        bg = theme.ui.bg_p1,
+                        bg = "NONE",
                     },
                     TelescopeResultsNormal = {
                         fg = theme.ui.fg_dim,
-                        bg = theme.ui.bg_m1,
+                        bg = "NONE",
                     },
                     TelescopeResultsBorder = {
                         fg = theme.ui.bg_m1,
-                        bg = theme.ui.bg_m1,
+                        bg = "NONE",
                     },
-                    TelescopePreviewNormal = { bg = theme.ui.bg_dim },
                     TelescopePreviewBorder = {
-                        bg = theme.ui.bg_dim,
                         fg = theme.ui.bg_dim,
+                        bg = "NONE",
                     },
                     Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },  -- add `blend = vim.o.pumblend` to enable transparency
                     PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
