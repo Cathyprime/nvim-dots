@@ -5,6 +5,20 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
+    "Terminal",
+    function(opts)
+        vim.cmd(string.format("12sp | exec 'term %s' | startinsert", opts.args))
+        vim.api.nvim_buf_set_name(0, "Terminal")
+        vim.api.nvim_create_autocmd("BufWinLeave", {
+            once = true,
+            buffer = vim.api.nvim_get_current_buf(),
+            command = "wincmd c"
+        })
+    end,
+    { nargs = "*" }
+)
+
+vim.api.nvim_create_user_command(
     "Delview",
     function()
         local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
