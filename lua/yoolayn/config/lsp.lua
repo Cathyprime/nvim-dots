@@ -130,7 +130,7 @@ require("mason-lspconfig").setup({
                                             "${3rd}/busted/library",
                                         }
                                         local plugins = vim.split(vim.fn.glob("$HOME/.local/share/nvim/lazy/*/lua"), "\n")
-                                        plugins = vim.tbl_deep_extend("force", static, plugins)
+                                        plugins = vim.tbl_deep_extend("keep", static, plugins)
                                         return plugins
                                     end)(),
                                 },
