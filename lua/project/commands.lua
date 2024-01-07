@@ -27,6 +27,14 @@ function M.create_completion(self)
 end
 
 function M.func(self, opts)
+    if type(self.map) == "string" or type(self.map) == "function" then
+        if type(self.map) == "string" then
+            vim.cmd(self.map)
+        elseif type(self.map) == "function" then
+            self.map()
+        end
+        return
+    end
     local farg = opts.fargs[1]
     if self.map[farg] and type(self.map[farg]) == "string" then
         vim.cmd(self.map[farg])
@@ -53,10 +61,15 @@ function M.create_cmd(self)
         function(opts)
             self:func(opts)
         end,
-        {
-            nargs = self.nargs,
-            complete = function () return self:create_completion() end
-        }
+        (function()
+            local ret = { nargs = self.nargs }
+            if self.nargs == 1 then
+                ret["complete"] = function()
+                    return self:create_completion()
+                end
+            end
+            return ret
+        end)()
     )
 end
 
