@@ -35,6 +35,11 @@ return {
                 mappings = {
                     ["<space>"] = "noop",
                     ["O"] = "toggle_node",
+                },
+            },
+            filesystem = {
+                follow_current_file = {
+                    enabled = true
                 }
             },
             source_selector = {
