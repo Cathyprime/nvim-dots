@@ -17,7 +17,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function(opts)
             require("oil").setup(opts.opts)
-            vim.keymap.set("n", "<leader>e", "<cmd>botright split | Oil<cr>", { silent = true })
+            vim.keymap.set("n", "<leader>e", "<cmd>botright 15split | Oil<cr>", { silent = true })
             vim.keymap.set("n", "<leader>fe", "<cmd>Oil<cr>", { silent = true })
             vim.keymap.set("n", "<leader>fE", "<cmd>vert Oil<cr>", { silent = true })
         end
@@ -41,8 +41,8 @@ return {
                 winbar = true,
                 sources = {
                     {
-                        source = "git_status",
-                        display_name = string.format(" %s Git ", icons.Git)
+                        source = "filesystem",
+                        display_name = string.format(" %s Files ", icons.Directory)
                     },
                     {
                         source = "document_symbols",
@@ -52,16 +52,12 @@ return {
                         source = "remote",
                         display_name = string.format(" %s Remote ", icons.Web)
                     },
-                    {
-                        source = "buffers",
-                        display_name = string.format(" %s Buffers ", icons.FileAlt2)
-                    },
                 },
             },
-            sources = { "git_status", "document_symbols", "netman.ui.neo-tree", "buffers" }
+            sources = { "filesystem", "git_status", "document_symbols", "netman.ui.neo-tree", "buffers" }
         },
         keys = {
-            { "<leader>n", "<cmd>Neotree position=bottom<cr>" }
+            { "<leader>n", "<cmd>Neotree<cr>" }
         },
         cmd = { "Neotree" }
     },

@@ -12,6 +12,7 @@ M.icons = {
     ConstantAlt = "󰏿",
     Constructor = "",
     Copilot = "",
+    Directory = "󰉓",
     Enum = "",
     EnumAlt = "",
     EnumMember = "",
