@@ -76,11 +76,14 @@ require("mason").setup({})
 require("mason-lspconfig").setup({
     ensure_installed = {
         "bashls",
+        "cssls",
+        "emmet_ls",
         "gopls",
         "jsonls",
         "lua_ls",
         "pylsp",
         "rust_analyzer",
+        "tailwindcss",
         "tsserver",
         "yamlls",
     },
@@ -187,6 +190,7 @@ require("mason-tool-installer").setup({
         "luacheck",
         "mypy",
         "ruff",
+        "stylelint",
         "stylua",
     },
 })
