@@ -3,6 +3,11 @@ local options = {}
 options.options = {
     rnu = true,
     nu = true,
+    cpo = {
+        append = {
+            ">"
+        }
+    },
     spell = true,
     spl = "en_us,en_gb,pl",
     tabstop = 4,
