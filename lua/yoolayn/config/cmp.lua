@@ -57,7 +57,6 @@ cmp.setup({
         ["<c-d>"] = cmp.mapping.scroll_docs(4),
     },
 
-    ---@diagnostic disable-next-line
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function (_, item)
