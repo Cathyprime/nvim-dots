@@ -1,28 +1,6 @@
 local icons = require("util.icons").icons
 return {
     {
-        "stevearc/oil.nvim",
-        opts = {
-            default_file_explorer = true,
-            columns = {
-                "permissions",
-                "size",
-                "mtime",
-                "icon",
-            },
-            keymaps = {
-                ["<c-c>q"] = "actions.close"
-            }
-        },
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function(opts)
-            require("oil").setup(opts.opts)
-            vim.keymap.set("n", "<leader>e", "<cmd>botright 15split | Oil<cr>", { silent = true })
-            vim.keymap.set("n", "<leader>fe", "<cmd>Oil<cr>", { silent = true })
-            vim.keymap.set("n", "<leader>fE", "<cmd>vert Oil<cr>", { silent = true })
-        end
-    },
-    {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = {
@@ -44,6 +22,8 @@ return {
             },
             source_selector = {
                 winbar = true,
+                tabs_layout = "equal",
+                content_layout = "center",
                 sources = {
                     {
                         source = "filesystem",
@@ -62,7 +42,26 @@ return {
             sources = { "filesystem", "git_status", "document_symbols", "netman.ui.neo-tree", "buffers" }
         },
         keys = {
-            { "<leader>n", "<cmd>Neotree<cr>" }
+            { "<leader>e", function()
+                local reveal_file = vim.fn.expand("%:p")
+                require("neo-tree.command").execute({
+                    action = "focus",
+                    source = "filesystem",
+                    position = "bottom",
+                    reveal_file = reveal_file,
+                    reveal_force_cwd = true,
+                })
+            end},
+            { "<leader>fe", function()
+                local reveal_file = vim.fn.expand("%:p")
+                require("neo-tree.command").execute({
+                    action = "focus",
+                    source = "filesystem",
+                    position = "current",
+                    reveal_file = reveal_file,
+                    reveal_force_cwd = true,
+                })
+            end},
         },
         cmd = { "Neotree" }
     },
