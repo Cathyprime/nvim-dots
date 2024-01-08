@@ -15,6 +15,7 @@ M.project_files = function()
             "node%_modules/*",
             "venv/*",
             "%.mypy_cache/",
+            "%.git/*",
         }
     }
 
