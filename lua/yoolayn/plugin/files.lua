@@ -50,12 +50,12 @@ return {
                         display_name = string.format(" %s Files ", icons.Directory)
                     },
                     {
-                        source = "document_symbols",
-                        display_name = string.format(" %s Symbols ", icons.Function)
-                    },
-                    {
                         source = "remote",
                         display_name = string.format(" %s Remote ", icons.Web)
+                    },
+                    {
+                        source = "document_symbols",
+                        display_name = string.format(" %s Symbols ", icons.Function)
                     },
                 },
             },
