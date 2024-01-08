@@ -143,6 +143,7 @@ local config = {
                     return str
                 end
             },
+            "fileformat",
             "progress",
         },
         lualine_z = { { "location", fmt = function(str)
