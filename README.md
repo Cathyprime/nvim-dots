@@ -41,7 +41,6 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
 + [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
 + [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
-+ [hrsh7th/cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help)
 
 ### code editing support
 + [echasnovski/mini.align](https://github.com/echasnovski/mini.align)
@@ -52,7 +51,6 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
 
 ### files
-+ [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)
 + [miversen33/netman.nvim](https://github.com/miversen33/netman.nvim)
 + [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 
@@ -69,10 +67,9 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 
 ### lsp and friends
 + [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-+ [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
++ [nvimtools/none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 + [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
 + [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim)
-+ [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)
 
 ### debugging
 + [jay-babu/mason-nvim-dap.nvim](https://github.com/jay-babu/mason-nvim-dap.nvim)
