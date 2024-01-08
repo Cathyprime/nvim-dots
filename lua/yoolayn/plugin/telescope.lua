@@ -61,7 +61,8 @@ return {
                 file_ignore_patterns = {
                     "node%_modules/*",
                     "venv/*",
-                    "%.git/*"
+                    "%.git/*",
+                    "%.mypy_cache/",
                 },
                 hidden = true,
             }) end
