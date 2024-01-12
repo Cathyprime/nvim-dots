@@ -37,6 +37,15 @@ cmp.setup({
             border = "none",
             side_padding = 0,
             col_offset = -3,
+        },
+        documentation = {
+            border = "rounded",
+            col_offset = 0,
+            scrollbar = true,
+            scrolloff = 0,
+            side_padding = 1,
+            winhighlight = "FloatNormal:Float,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+            zindex = 1001
         }
     },
 
