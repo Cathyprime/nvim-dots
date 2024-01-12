@@ -11,6 +11,7 @@ return {
             overrides = function(colors)
                 local theme = colors.theme
                 return {
+                    -- Normal = { bg = "#16161d" },
                     TelescopeTitle = {
                         fg = theme.ui.special,
                         bg = theme.ui.bg_p1,
@@ -32,7 +33,7 @@ return {
                         fg = theme.ui.bg_dim,
                         bg = "NONE",
                     },
-                    Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },  -- add `blend = vim.o.pumblend` to enable transparency
+                    Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
                     PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
                     PmenuSbar = { bg = theme.ui.bg_m1 },
                     PmenuThumb = { bg = theme.ui.bg_p2 },
