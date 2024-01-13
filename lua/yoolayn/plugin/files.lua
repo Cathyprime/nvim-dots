@@ -13,6 +13,8 @@ return {
                 mappings = {
                     ["<space>"] = "noop",
                     ["O"] = "toggle_node",
+                    ["E"] = "expand_all_nodes",
+                    ["/"] = "noop",
                 },
             },
             filesystem = {
@@ -39,7 +41,7 @@ return {
                     },
                 },
             },
-            sources = { "filesystem", "git_status", "document_symbols", "netman.ui.neo-tree", "buffers" }
+            sources = { "filesystem", "document_symbols", "netman.ui.neo-tree" }
         },
         keys = {
             { "<leader>e", function()
