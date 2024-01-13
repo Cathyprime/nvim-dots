@@ -106,6 +106,5 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ### utility
 + [kevinhwang91/nvim-fundo](https://github.com/kevinhwang91/nvim-fundo)
 + [mbbill/undotree](https://github.com/mbbill/undotree)
-+ [tpope/vim-eunuch](https://github.com/tpope/vim-eunuch)
 + [dohsimpson/vim-macroeditor](https://github.com/dohsimpson/vim-macroeditor)
 + [dstein64/vim-startuptime](https://github.com/dstein64/vim-startuptime)
