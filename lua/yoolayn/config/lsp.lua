@@ -1,10 +1,10 @@
 local lspconfig = require "lspconfig"
 local icons = require("util.icons").icons
 
-vim.cmd([[sign define DiagnosticSignError text=]] .. icons.Error .. [[ texthl=DiagnosticSignError linehl= numhl= ]])
-vim.cmd([[sign define DiagnosticSignWarn text=]] .. icons.Warning .. [[ texthl=DiagnosticSignWarn linehl= numhl= ]])
-vim.cmd([[sign define DiagnosticSignInfo text=]] .. "🤓" .. [[ texthl=DiagnosticSignInfo linehl= numhl= ]])
-vim.cmd([[sign define DiagnosticSignHint text=]] .. icons.Hint .. [[ texthl=DiagnosticSignHint linehl= numhl= ]])
+vim.cmd([[sign define DiagnosticSignError text=]] .. icons.Error   .. [[ texthl=DiagnosticSignError linehl= numhl= ]])
+vim.cmd([[sign define DiagnosticSignWarn text=]]  .. icons.Warning .. [[ texthl=DiagnosticSignWarn linehl= numhl= ]])
+vim.cmd([[sign define DiagnosticSignInfo text=]]  .. "🤓"          .. [[ texthl=DiagnosticSignInfo linehl= numhl= ]])
+vim.cmd([[sign define DiagnosticSignHint text=]]  .. icons.Hint    .. [[ texthl=DiagnosticSignHint linehl= numhl= ]])
 
 vim.diagnostic.config({
     virtual_text = {
