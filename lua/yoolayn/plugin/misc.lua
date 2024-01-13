@@ -2,8 +2,8 @@ return {
     {
         "mbbill/undotree",
         keys = {
-            { "<leader>u", "<cmd>UndotreeToggle | UndotreeFocus<cr>" }
-        }
+            { "<leader>u", "<cmd>UndotreeToggle | UndotreeFocus<cr>" },
+        },
     },
     {
         "kevinhwang91/nvim-bqf",
@@ -38,11 +38,11 @@ return {
                 filter = "zn",
                 filterr = "zN",
                 fzffilter = "",
-            }
-        }
+            },
+        },
     },
     {
-        "anuvyklack/hydra.nvim" ,
+        "anuvyklack/hydra.nvim",
     },
     {
         "dohsimpson/vim-macroeditor",
@@ -70,9 +70,9 @@ return {
                     repl_open_cmd = "vertical botright 70 split",
                     repl_definition = {
                         sh = {
-                            command = {"zsh"}
-                        }
-                    }
+                            command = { "zsh" },
+                        },
+                    },
                 },
                 keymaps = {
                     send_motion = "<localleader>",
@@ -87,17 +87,15 @@ return {
                     mark_motion = "<localleader>m",
                     mark_visual = "<localleader>m",
                     remove_mark = "<localleader>md",
-                }
+                },
             })
-        end
+        end,
     },
     {
-        "milisims/nvim-luaref"
+        "milisims/nvim-luaref",
     },
     {
         "KaitlynEthylia/Evalua",
         dependencies = "nvim-treesitter/nvim-treesitter",
-        init = function() require("evalua") end,
-        keys = { { "ZE", "<cmd>Evalua<cr>" } }
     },
 }
