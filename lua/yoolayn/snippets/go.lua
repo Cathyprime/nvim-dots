@@ -73,7 +73,7 @@ return {
 
     s("m", fmt([[
     func ({self}{receiver}) {name}({args}) {left}{return_val}{right}{{
-        {body}
+    	{body}
     }}
     ]], {
         name = i(1, "name"),
