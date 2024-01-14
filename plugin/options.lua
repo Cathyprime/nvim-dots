@@ -22,7 +22,7 @@ options.options = {
             [[tab:\u00b7\u0020\u0020]],
             [[precedes:\u2190]],
             [[extends:\u2192]],
-            [[leadmultispace: \u0020]],
+            [[leadmultispace:\u00b7]],
             [[nbsp:\u2423]],
         },
     },

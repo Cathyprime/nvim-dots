@@ -3,7 +3,7 @@ return {
         "rebelot/kanagawa.nvim",
         config = function()
             require("kanagawa").setup({
-                transparent = true,
+                transparent = false,
                 colors = {
                     theme = {
                         all = { ui = { bg_gutter = "none" } },
@@ -13,6 +13,10 @@ return {
                     local theme = colors.theme
                     return {
                         Normal = { bg = "#16161d" },
+                        Whitespace = {
+                            bg = "none",
+                            fg = "#1e1e28"
+                        },
                         TelescopeTitle = {
                             fg = theme.ui.special,
                             bg = theme.ui.bg_p1,
