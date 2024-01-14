@@ -39,6 +39,9 @@ return {
                 filterr = "zN",
                 fzffilter = "",
             },
+            preview = {
+                auto_preview = false
+            }
         },
     },
     {
