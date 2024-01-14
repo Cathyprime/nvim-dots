@@ -6,6 +6,15 @@ return {
             keymaps = {
                 insert = "<c-s>",
                 insert_line = "<c-s><c-s>",
+                normal = "s",
+                normal_cur = "ss",
+                normal_line = "S",
+                normal_cur_line = "SS",
+                visual = "s",
+                visual_line = "S",
+                delete = "ds",
+                change = "cs",
+                change_line = "cS",
             }
         }
     },
@@ -14,7 +23,7 @@ return {
         event = "InsertEnter",
         dependencies = "hrsh7th/nvim-cmp",
         config = function()
-            require("nvim-autopairs").setup({})
+            require("nvim-autopairs").setup()
             require("nvim-autopairs").remove_rule('"')
             require("nvim-autopairs").remove_rule("'")
             require("nvim-autopairs").remove_rule('`')
