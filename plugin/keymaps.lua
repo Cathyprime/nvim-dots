@@ -222,3 +222,8 @@ for _, v in ipairs({"<c-w>t", "<c-w>T"}) do
         end
     end)
 end
+
+-- neovide specific
+if vim.g.neovide then
+    map("n", "<c-z>", "<Nop>")
+end
