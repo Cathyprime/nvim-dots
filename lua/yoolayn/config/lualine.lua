@@ -86,9 +86,11 @@ end
 local function recording_component()
     local recording = vim.fn.reg_recording()
     if recording ~= "" then
-        recording = string.format("  %s", recording)
+        recording = string.format("   -> %s", recording)
     end
-    return string.format("%s%s", vim.v.register, recording)
+    local register = vim.v.register
+    if register == "%" then register = "%%" end
+    return string.format("%s%s", register, recording)
 end
 
 local config = {
