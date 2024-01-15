@@ -75,7 +75,7 @@ options.options = {
         append = "c",
     },
     showmode = false,
-    laststatus = 3,
+    laststatus = 2,
     undofile = true,
     undodir = os.getenv("HOME") .. "/.config/nvim/undo",
     wildmode = "longest:full,full",

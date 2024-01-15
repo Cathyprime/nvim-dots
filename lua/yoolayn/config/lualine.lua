@@ -1,3 +1,9 @@
+local auto_colors = require("lualine.themes.auto")
+
+auto_colors.inactive.a.bg = auto_colors.normal.a.bg
+auto_colors.inactive.b.bg = auto_colors.normal.b.bg
+auto_colors.inactive.c.bg = auto_colors.normal.c.bg
+
 local mode = {
     colors = {
         -- TODO: set colors to better match the lualine colors so it isn't so jarring
@@ -15,7 +21,7 @@ local mode = {
         ["cmmand"] = { bg = "#ffa066", fg = "#181818" },
         ["termnl"] = { bg = "#181818", fg = "#e6c384" },
         ["confrm"] = { bg = "#571cbd", fg = "#c8c093" },
-        ["unknwn"] = { bg = "black",   fg = "white"   },
+        ["unknwn"] = { bg = "black", fg = "white" },
     },
     modes = {
         ["n"] = "normal",
@@ -89,28 +95,54 @@ local function recording_component()
         recording = string.format("   -> %s", recording)
     end
     local register = vim.v.register
-    if register == "%" then register = "%%" end
+    if register == "%" then
+        register = "%%"
+    end
     return string.format("%s%s", register, recording)
+end
+
+local function get_cb(arg)
+    if type(arg) == "function" then
+        return arg
+    else
+        return function(_)
+            return ""
+        end
+    end
+end
+
+local function hide_on_vert(str, cb)
+    local func = get_cb(cb)
+    local cols = vim.opt.columns:get()
+    local win_cols = vim.api.nvim_win_get_width(0)
+    if win_cols < cols then
+        str = func(str)
+    end
+    return str
+end
+
+local function location_fmt(str)
+    return string.format("(%s)", str):gsub("%s+", "")
 end
 
 local config = {
     options = {
         icons_enabled = false,
-        theme = "auto",
-        component_separators = { left = "", right = ""},
-        section_separators = { left = "", right = ""},
+        theme = auto_colors,
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {
             statusline = {},
             winbar = {},
         },
         ignore_focus = {},
         always_divide_middle = true,
-        globalstatus = true,
+        globalstatus = false,
         refresh = {
             statusline = 100,
             tabline = 1000,
             winbar = 1000,
-        }
+        },
     },
     sections = {
         lualine_a = {
@@ -120,7 +152,7 @@ local config = {
                     local mode_name = mode.modes[vim.fn.mode()]
                     return mode.colors[mode_name]
                 end,
-                separator = { right = ""},
+                separator = { right = "" },
             },
             {
                 recording_component,
@@ -129,12 +161,28 @@ local config = {
                         return { bg = "red", fg = "white" }
                     end
                 end,
-                separator = { right = ""},
+                separator = { right = "" },
             },
         },
         lualine_b = { "branch", "diff" },
-        lualine_c = { { "filename", path = 1 } },
-        lualine_x = { "%S", "searchcount", "selectioncount", "diagnostics" },
+        lualine_c = {
+            {
+                "filename",
+                path = 1,
+                fmt = function(str)
+                    return hide_on_vert(str, function(_)
+                        local split = vim.split(str, "/", {})
+                        return split[#split]
+                    end)
+                end,
+            },
+        },
+        lualine_x = {
+            "%S",
+            "searchcount",
+            "selectioncount",
+            "diagnostics",
+        },
         lualine_y = {
             {
                 "filetype",
@@ -142,28 +190,30 @@ local config = {
                     if str == "TelescopePrompt" then
                         return "Telescope"
                     end
+                    str = hide_on_vert(str)
                     return str
-                end
+                end,
             },
-            "fileformat",
+            { "fileformat", fmt = hide_on_vert },
             "progress",
         },
-        lualine_z = { { "location", fmt = function(str)
-            return string.format("(%s)", str):gsub("%s+", "")
-        end }, window_component }
+        lualine_z = {
+            { "location", fmt = location_fmt },
+            window_component,
+        },
     },
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = {"filename"},
-        lualine_x = {"location"},
-        lualine_y = {},
-        lualine_z = {}
+        lualine_c = { { "filename", path = 1 } },
+        lualine_x = { { "location", fmt = location_fmt } },
+        lualine_y = { window_component },
+        lualine_z = {},
     },
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = {}
+    extensions = {},
 }
 
 return config
