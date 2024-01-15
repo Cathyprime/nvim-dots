@@ -84,8 +84,8 @@ cmp.setup({
         comparators = {
             cmp.config.compare.recently_used,
             function(entry1, entry2)
-                local kind1 = entry1.completion_item.kind
-                local kind2 = entry2.completion_item.kind
+                local kind1 = entry1:get_kind()
+                local kind2 = entry2:get_kind()
                 local node = ts_utils.get_node_at_cursor()
 
                 if node and node:type() == "argument" then
@@ -105,13 +105,7 @@ cmp.setup({
                 end
             end,
             cmp.config.compare.exact,
-            function (entry1, entry2)
-                local kind1 = kind_mapper[entry1:get_kind()]
-                local kind2 = kind_mapper[entry2:get_kind()]
-                if kind1 < kind2 then
-                    return true
-                end
-            end
+            cmp.config.compare.kind
         }
     },
 })
