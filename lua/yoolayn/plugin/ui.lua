@@ -19,6 +19,7 @@ return {
     },
     {
         "nvim-lualine/lualine.nvim",
+        dependencies = "rebelot/kanagawa.nvim",
         config = function()
             local config = require("yoolayn.config.lualine")
             require("lualine").setup(config)
