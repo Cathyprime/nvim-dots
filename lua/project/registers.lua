@@ -32,7 +32,7 @@ function M.on_enter(self)
     for reg, cmd in pairs(self.registers.new) do
         regs = string.format("%s%s", regs, reg)
         self.registers.old[reg] = vim.fn.getreg(reg)
-        vim.fn.setreg(reg, cmd)
+        vim.fn.setreg(reg, vim.api.nvim_replace_termcodes(cmd, true, true, true))
     end
     vim.keymap.set("n", "<leader>h", string.format("<cmd>reg %s<cr>", regs), { silent = true })
 end
