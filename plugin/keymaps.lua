@@ -184,6 +184,14 @@ map("n", "<leader>oc", "<cmd>e .nvim.lua<cr>")
 map("n", "<leader>ot", "<cmd>e todo.norg<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
 map("n", "<leader>a", add_harpoon)
+map("n", "<leader>gl", function()
+    vim.cmd "24sp | exec 'term lazygit -ucf ~/.config/nvim/lazygit/config.yml' | startinsert"
+    vim.api.nvim_create_autocmd("TermClose", {
+        once = true,
+        buffer = vim.api.nvim_get_current_buf(),
+        command = "close"
+    })
+end)
 
 -- diagnostic
 map("n", "<leader>dt", diagnostic_toggle)
