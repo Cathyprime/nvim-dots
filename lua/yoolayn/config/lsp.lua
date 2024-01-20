@@ -12,6 +12,17 @@ vim.diagnostic.config({
     }
 })
 
+local border = {
+      {"🭽", "FloatBorder"},
+      {"▔", "FloatBorder"},
+      {"🭾", "FloatBorder"},
+      {"▕", "FloatBorder"},
+      {"🭿", "FloatBorder"},
+      {"▁", "FloatBorder"},
+      {"🭼", "FloatBorder"},
+      {"▏", "FloatBorder"},
+}
+
 local symbol_settings = {
     sorting_strategy = "ascending",
     symbols = {
@@ -64,6 +75,13 @@ local function on_attach(client, bufnr)
     if client.server_capabilities.definitionProvider then
         vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
     end
+end
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
 local default_setup = function(server)
