@@ -99,4 +99,22 @@ return {
         body = i(0),
     })),
 
+    s("ginerr", fmt([[
+    log.{lvl}({err}, {mess1}, {mess2})
+    c.AbortWithStatusJSON({code}, respError{{
+    	Code: {codeRep},
+    	Error: {errorType}.Error(),
+    	Content: {mess3},
+    }})
+    ]], {
+        lvl = i(1, "Error"),
+        err = i(2, "ErrMess"),
+        mess1 = i(3, "key"),
+        mess2 = i(4, "value"),
+        mess3 = i(5, "response"),
+        code = i(6, "http.StatusBadRequest"),
+        codeRep = rep(6),
+        errorType = rep(2),
+    })),
+
 }
