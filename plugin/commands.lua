@@ -7,7 +7,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
     "Terminal",
     function(opts)
-        vim.cmd(string.format("botright 12sp | exec 'term %s' | startinsert", opts.args))
+        vim.cmd(string.format("botright " .. opts.count .. "sp | exec 'term %s' | startinsert", opts.args))
         vim.api.nvim_buf_set_name(0, "Terminal")
         vim.api.nvim_create_autocmd("TermClose", {
             once = true,
@@ -15,7 +15,10 @@ vim.api.nvim_create_user_command(
             command = "bd"
         })
     end,
-    { nargs = "*" }
+    {
+        nargs = "*",
+        count = 12
+    }
 )
 
 vim.api.nvim_create_user_command(
