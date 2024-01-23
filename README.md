@@ -48,7 +48,7 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
 + [Wansmer/treesj](https://github.com/Wansmer/treesj)
 + [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-+ [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
++ [echasnovski/mini.comment](https://github.com/echasnovski/mini.comment)
 
 ### files
 + [miversen33/netman.nvim](https://github.com/miversen33/netman.nvim)
@@ -107,4 +107,3 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [kevinhwang91/nvim-fundo](https://github.com/kevinhwang91/nvim-fundo)
 + [mbbill/undotree](https://github.com/mbbill/undotree)
 + [dohsimpson/vim-macroeditor](https://github.com/dohsimpson/vim-macroeditor)
-+ [dstein64/vim-startuptime](https://github.com/dstein64/vim-startuptime)
