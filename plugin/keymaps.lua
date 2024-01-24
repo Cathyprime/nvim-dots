@@ -111,6 +111,21 @@ local function diagnostic_toggle()
     vim.diagnostic.config({ virtual_text = diag_active })
 end
 
+local scroll
+vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function()
+        scroll = vim.opt.scrolloff
+    end
+})
+local function scrolloff_toggle()
+    if vim.o.scrolloff == 0 then
+        vim.opt["scrolloff"] = scroll
+    else
+        vim.o.scrolloff = 0
+    end
+end
+
 local function add_harpoon()
     local input = vim.fn.nr2char(vim.fn.getchar())
     if not input:match("%a") then
@@ -168,6 +183,7 @@ end)
 
 -- toggles
 map("n", "<leader>tw", "<cmd>set wrap!<cr>")
+map("n", "<leader>ts", scrolloff_toggle)
 
 -- misc
 map("n", "X", "0D")
