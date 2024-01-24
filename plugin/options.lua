@@ -66,6 +66,7 @@ options.options = {
     inccommand = "split",
     splitright = true,
     splitbelow = true,
+    splitkeep = "screen",
     timeout = false,
     updatetime = 50,
     swapfile = true,

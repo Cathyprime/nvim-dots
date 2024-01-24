@@ -31,12 +31,15 @@ vim.opt_local.completeopt = "menu"
 vim.opt.cmdheight = 0
 
 vim.api.nvim_create_autocmd("CmdwinLeave", {
-    once = false,
+    buffer = vim.api.nvim_get_current_buf(),
+    once = true,
     callback = function()
         vim.o.laststatus = 3
         vim.opt.cmdheight = 1
     end
 })
+
+vim.api.nvim_win_set_cursor(0, { vim.fn.line('$'), 0 })
 
 local has_words_before = function()
     unpack = unpack or table.unpack
