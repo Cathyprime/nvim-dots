@@ -15,6 +15,7 @@ return {
                     ["O"] = "toggle_node",
                     ["E"] = "expand_all_nodes",
                     ["/"] = "noop",
+                    ["w"] = "noop",
                 },
             },
             filesystem = {
