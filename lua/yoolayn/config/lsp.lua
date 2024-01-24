@@ -1,5 +1,6 @@
 local lspconfig = require "lspconfig"
 local icons = require("util.icons").icons
+local telescope = require("telescope.builtin")
 
 vim.cmd([[sign define DiagnosticSignError text=]] .. icons.Error   .. [[ texthl=DiagnosticSignError linehl= numhl= ]])
 vim.cmd([[sign define DiagnosticSignWarn text=]]  .. icons.Warning .. [[ texthl=DiagnosticSignWarn linehl= numhl= ]])
@@ -49,14 +50,6 @@ local function telescope_references()
     })
 end
 
-local function document_symbols()
-    require("telescope.builtin").lsp_document_symbols(symbol_settings)
-end
-
-local function workspace_symbols()
-    require("telescope.builtin").lsp_workspace_symbols(symbol_settings)
-end
-
 local function on_attach(client, bufnr)
     local opts = { buffer = bufnr }
     vim.keymap.set("n", "<leader>fr", telescope_references,                             opts)
@@ -68,8 +61,8 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", "]d",         vim.diagnostic.goto_next,                         opts)
     vim.keymap.set("n", "gd",         vim.lsp.buf.definition,                           opts)
     vim.keymap.set("n", "K",          vim.lsp.buf.hover,                                opts)
-    vim.keymap.set("n", "<leader>fs", document_symbols,                                 opts)
-    vim.keymap.set("n", "<leader>fS", workspace_symbols,                                opts)
+    vim.keymap.set("n", "<leader>fs", telescope.lsp_document_symbols,                   opts)
+    vim.keymap.set("n", "<leader>fS", telescope.lsp_workspace_symbols,                  opts)
 
     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
     if client.server_capabilities.definitionProvider then
