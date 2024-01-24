@@ -117,4 +117,12 @@ return {
         errorType = rep(2),
     })),
 
+    s("ctx", fmt([[
+    ctx, cancel := context.WithTimeout(context.Background(), time.{unit}*{amount})
+    defer cancel()
+    ]], {
+        unit = i(1, "Millisecond"),
+        amount = i(2, "200")
+    }))
+
 }
