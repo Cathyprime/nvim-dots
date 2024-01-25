@@ -50,7 +50,7 @@ return {
                 require("neo-tree.command").execute({
                     action = "focus",
                     source = "filesystem",
-                    position = "bottom",
+                    position = "left",
                     reveal_file = reveal_file,
                     reveal_force_cwd = true,
                 })
