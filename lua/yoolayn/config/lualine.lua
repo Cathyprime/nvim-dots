@@ -153,6 +153,12 @@ local config = {
                     return mode.colors[mode_name]
                 end,
                 separator = { right = "" },
+                fmt = function(str)
+                    if vim.o.filetype == "neo-tree" then
+                        return nil
+                    end
+                    return str
+                end
             },
             {
                 recording_component,
@@ -162,6 +168,12 @@ local config = {
                     end
                 end,
                 separator = { right = "" },
+                fmt = function(str)
+                    if vim.o.filetype == "neotree" then
+                        return nil
+                    end
+                    return str
+                end
             },
         },
         lualine_b = { "branch", "diff" },
@@ -170,6 +182,9 @@ local config = {
                 "filename",
                 path = 1,
                 fmt = function(str)
+                    if vim.o.filetype == "neo-tree" then
+                        return nil
+                    end
                     return hide_on_vert(str, function(_)
                         local split = vim.split(str, "/", {})
                         return split[#split]
@@ -205,8 +220,25 @@ local config = {
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { { "filename", path = 1 } },
-        lualine_x = { { "location", fmt = location_fmt } },
+        lualine_c = {
+            {
+                "filename",
+                path = 1,
+                fmt = function(str)
+                    if vim.o.filetype == "neo-tree" then
+                        return nil
+                    end
+                    return str
+                end
+            },
+        },
+        lualine_x = {
+            "progress",
+            {
+                "location",
+                fmt = location_fmt,
+            },
+        },
         lualine_y = { window_component },
         lualine_z = {},
     },
