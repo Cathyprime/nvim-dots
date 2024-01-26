@@ -81,7 +81,12 @@ local function Dispatch_wrapper()
     if vim.b.dispatch then
         return ":Dispatch!<cr>"
     end
-    local c = vim.fn.input(":Dispatch ")
+    local c = vim.fn.input({
+        prompt = ":Dispatch ",
+        default = vim.b.dispatch or "",
+        cancelreturn = -99,
+    })
+    if c == -99 then return "" end
     vim.cmd"redraw"
     vim.b["dispatch"] = c
     return ":Dispatch!<cr>"
@@ -92,7 +97,12 @@ local function Dispatch_wrapper_change()
     if not vim.b.dispatch then
         return Dispatch_wrapper()
     end
-    local c = vim.fn.input(":Dispatch ")
+    local c = vim.fn.input({
+        prompt = ":Dispatch ",
+        default = vim.b.dispatch or "",
+        cancelreturn = -99,
+    })
+    if c == -99 then return "" end
     vim.cmd"redraw"
     vim.b["dispatch"] = c
     return ":Dispatch!<cr>"
