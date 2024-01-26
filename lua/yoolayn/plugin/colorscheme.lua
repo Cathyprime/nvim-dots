@@ -40,6 +40,12 @@ return {
                         ["@diff.minus.diff"] = {
                             fg = theme.vcs.removed
                         },
+                        ["@variable.parameter.gitcommit"] = {
+                            link = "@parameter",
+                        },
+                        ["@markup.heading.gitcommit"] = {
+                            link = "Function",
+                        },
                         TelescopePreviewBorder = {
                             fg = theme.ui.bg_dim,
                             bg = "NONE",
@@ -59,6 +65,7 @@ return {
     --     -- opts = {},
     --     config = function(_, opts)
     --         require("midnight").setup(opts)
+    --         vim.cmd.colorscheme "midnight"
     --     end
     -- },
 }

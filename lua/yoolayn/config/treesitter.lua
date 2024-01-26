@@ -3,6 +3,16 @@ require("nvim-treesitter.configs").setup({
     auto_install = true,
     context_commentstring = { enabled = true },
     sync_install = false,
+    ensure_installed = {
+        "gitcommit",
+        "diff",
+        "git_rebase",
+        "vimdoc",
+        "lua",
+        "go",
+        "javascript",
+        "typescript",
+    },
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,

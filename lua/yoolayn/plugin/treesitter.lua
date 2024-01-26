@@ -3,7 +3,6 @@ return {
     event = {"BufNewFile", "BufReadPost", "InsertEnter" },
     build = ":TSUpdate",
     cmd = { "TSUpdate", "TSUpdateSync", "TSToggle" },
-    -- commit = "07c8c3d84f67b1530f636dcad31971f569a3df5f", -- last commit with working gitcommit parser
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         {
