@@ -239,23 +239,8 @@ map("n", "<leader>S", ":s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent 
 map("v", "<leader>s", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 map("v", "<leader>S", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 
--- splits
-for _, v in ipairs({"<c-w>t", "<c-w>T"}) do
-    map("n", v, function()
-        if vim.v.count == 0 then
-            vim.cmd("split")
-        else
-            local height = vim.api.nvim_win_get_height(0) - vim.v.count - 1
-            local cmd
-            if v == "<c-w>t" then
-                cmd = ""
-            else
-                cmd = "above"
-            end
-            vim.cmd(cmd .. height .. "split")
-        end
-    end)
-end
+-- terminal
+map("n", "<c-w>t", "<cmd>12Terminal<cr>")
 
 -- neovide specific
 if vim.g.neovide then

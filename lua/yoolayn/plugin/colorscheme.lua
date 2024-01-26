@@ -34,6 +34,12 @@ return {
                             fg = theme.ui.bg_m1,
                             bg = "NONE",
                         },
+                        ["@diff.plus.diff"] = {
+                            fg = theme.vcs.added
+                        },
+                        ["@diff.minus.diff"] = {
+                            fg = theme.vcs.removed
+                        },
                         TelescopePreviewBorder = {
                             fg = theme.ui.bg_dim,
                             bg = "NONE",
