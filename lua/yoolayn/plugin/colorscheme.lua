@@ -34,18 +34,6 @@ return {
                             fg = theme.ui.bg_m1,
                             bg = "NONE",
                         },
-                        ["@diff.plus.diff"] = {
-                            fg = theme.vcs.added
-                        },
-                        ["@diff.minus.diff"] = {
-                            fg = theme.vcs.removed
-                        },
-                        ["@variable.parameter.gitcommit"] = {
-                            link = "@parameter",
-                        },
-                        ["@markup.heading.gitcommit"] = {
-                            link = "Function",
-                        },
                         TelescopePreviewBorder = {
                             fg = theme.ui.bg_dim,
                             bg = "NONE",
@@ -54,6 +42,25 @@ return {
                         PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
                         PmenuSbar = { bg = theme.ui.bg_m1 },
                         PmenuThumb = { bg = theme.ui.bg_p2 },
+                        ["@string.regexp"] = { link = "@string.regex" },
+                        ["@variable.parameter"] = { link = "@parameter" },
+                        ["@exception"] = { link = "@exception" },
+                        ["@string.special.symbol"] = { link = "@symbol" },
+                        ["@markup.strong"] = { link = "@text.strong" },
+                        ["@markup.italic"] = { link = "@text.emphasis" },
+                        ["@markup.heading"] = { link = "@text.title" },
+                        ["@markup.raw"] = { link = "@text.literal" },
+                        ["@markup.quote"] = { link = "@text.quote" },
+                        ["@markup.math"] = { link = "@text.math" },
+                        ["@markup.environment"] = { link = "@text.environment" },
+                        ["@markup.environment.name"] = { link = "@text.environment.name" },
+                        ["@markup.link.url"] = { link = "Special" },
+                        ["@markup.link.label"] = { link = "Identifier" },
+                        ["@comment.note"] = { link = "@text.note" },
+                        ["@comment.warning"] = { link = "@text.warning" },
+                        ["@comment.danger"] = { link = "@text.danger" },
+                        ["@diff.plus"] = { link = "@text.diff.add" },
+                        ["@diff.minus"] = { link = "@text.diff.delete" },
                     }
                 end,
             })
