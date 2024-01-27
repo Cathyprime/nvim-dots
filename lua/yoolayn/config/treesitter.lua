@@ -4,14 +4,15 @@ require("nvim-treesitter.configs").setup({
     context_commentstring = { enabled = true },
     sync_install = false,
     ensure_installed = {
-        "gitcommit",
         "diff",
+        "gitcommit",
         "git_rebase",
-        "vimdoc",
-        "lua",
         "go",
         "javascript",
+        "lua",
+        "luadoc",
         "typescript",
+        "vimdoc",
     },
     highlight = {
         enable = true,
