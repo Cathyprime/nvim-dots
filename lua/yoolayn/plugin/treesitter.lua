@@ -6,6 +6,7 @@ return {
     -- commit = "07c8c3d84f67b1530f636dcad31971f569a3df5f",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/nvim-treesitter-context",
         {
             "JoosepAlviste/nvim-ts-context-commentstring",
             lazy = true,
