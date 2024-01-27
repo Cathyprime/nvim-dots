@@ -61,6 +61,12 @@ return {
                         ["@comment.danger"] = { link = "@text.danger" },
                         ["@diff.plus"] = { link = "@text.diff.add" },
                         ["@diff.minus"] = { link = "@text.diff.delete" },
+                        ["@keyword.import.go"] = { link = "@keyword.return" },
+                        ["@module.go"] = { link = "Identifier" },
+                        ["@property.go"] = { link = "Identifier" },
+                        ["@field.go"] = { link = "Identifier" },
+                        ["@namespace.go"] = { link = "Identifier" },
+                        ["@variable.member.go"] = { link = "Identifier" },
                     }
                 end,
             })
