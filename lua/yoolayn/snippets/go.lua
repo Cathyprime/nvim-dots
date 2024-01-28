@@ -29,6 +29,25 @@ return {
         args = i(1, "args"),
     })),
 
+    s("cjson", fmt([[
+		c.AbortWithStatusJSON(msgs.ReportError(
+			msgs.{err},
+			"{content}",{info}{info2}
+		))
+		return
+    ]], {
+        err = i(1, "ErrInternal"),
+        content = i(2, "content"),
+        info = d(3, function(content)
+            if content[1][1] ~= "" then
+                return sn(nil, t{"", "\t"})
+            else
+                return sn(nil, t"")
+            end
+        end, { 4 }),
+        info2 = i(4)
+    })),
+
     s("pf", fmt([[
     fmt.Printf({args})
     ]], {
@@ -97,24 +116,6 @@ return {
         left = f(left, { 4 }),
         right = f(right, { 4 }),
         body = i(0),
-    })),
-
-    s("ginerr", fmt([[
-    log.{lvl}({err}, {mess1}, {mess2})
-    c.AbortWithStatusJSON({code}, respError{{
-    	Code: {codeRep},
-    	Error: {errorType}.Error(),
-    	Content: {mess3},
-    }})
-    ]], {
-        lvl = i(1, "Error"),
-        err = i(2, "ErrMess"),
-        mess1 = i(3, "key"),
-        mess2 = i(4, "value"),
-        mess3 = i(5, "response"),
-        code = i(6, "http.StatusBadRequest"),
-        codeRep = rep(6),
-        errorType = rep(2),
     })),
 
     s("ctx", fmt([[
