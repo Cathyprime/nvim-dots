@@ -105,4 +105,29 @@ return {
         end,
         keys = { { "ZE", "<cmd>Evalua<cr>" } },
     },
+    {
+        "jellydn/hurl.nvim",
+        dependencies = { "MunifTanjim/nui.nvim" },
+        ft = "hurl",
+        opts = {
+            debug = false,
+            show_notification = false,
+            mode = "split",
+            auto_close = false,
+            formatters = {
+                json = { 'jq' },
+                html = {
+                    'prettier',
+                    '--parser',
+                    'html',
+                },
+            },
+        },
+        keys = {
+            -- Run API request
+            { "<c-c>H", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
+            { "<c-c>h", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
+            { "<leader>th", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
+        },
+    }
 }
