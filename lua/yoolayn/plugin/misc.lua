@@ -113,7 +113,8 @@ return {
             debug = false,
             show_notification = false,
             mode = "split",
-            auto_close = false,
+            split_position = "bottom",
+            split_size = "30%",
             formatters = {
                 json = { 'jq' },
                 html = {
@@ -124,10 +125,10 @@ return {
             },
         },
         keys = {
-            -- Run API request
-            { "<c-c>H", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
-            { "<c-c>h", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
-            { "<leader>th", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
+            { "<c-c>H",     "<cmd>HurlRunner<cr>",     desc = "Run All requests" },
+            { "<c-c>h",     "<cmd>HurlRunnerAt<cr>",   desc = "Run Api request" },
+            { "<leader>th", "<cmd>HurlToggleMode<cr>", desc = "Hurl Toggle Mode" },
+            { "<c-c>h",     ":HurlRunner<cr>",         desc = "Hurl Runner", mode = "v" },
         },
     }
 }
