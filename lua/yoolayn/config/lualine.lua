@@ -115,7 +115,7 @@ local function hide_on_vert(str, cb)
     local func = get_cb(cb)
     local cols = vim.opt.columns:get()
     local win_cols = vim.api.nvim_win_get_width(0)
-    if win_cols < cols then
+    if win_cols < cols * 0.7 then
         str = func(str)
     end
     return str
@@ -193,7 +193,15 @@ local config = {
             },
         },
         lualine_x = {
-            "%S",
+            {
+                "%S",
+                fmt = function(str)
+                    if vim.o.filetype == "neo-tree" then
+                        return nil
+                    end
+                    return str
+                end
+            },
             "searchcount",
             "selectioncount",
             "diagnostics",
@@ -210,7 +218,15 @@ local config = {
                 end,
             },
             { "fileformat", fmt = hide_on_vert },
-            "progress",
+            {
+                "progress",
+                fmt = function(str)
+                    if vim.o.filetype == "neo-tree" then
+                        return nil
+                    end
+                    return str
+                end
+            },
         },
         lualine_z = {
             { "location", fmt = location_fmt },
@@ -233,7 +249,15 @@ local config = {
             },
         },
         lualine_x = {
-            "progress",
+            {
+                "progress",
+                fmt = function(str)
+                    if vim.o.filetype == "neo-tree" then
+                        return nil
+                    end
+                    return str
+                end
+            },
             {
                 "location",
                 fmt = location_fmt,
