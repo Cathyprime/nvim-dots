@@ -196,7 +196,7 @@ require("mason-lspconfig").setup({
 require("mason-tool-installer").setup({
     ensure_installed = {
         "black",
-        "eslint_d",
+        "eslint",
         "golangci-lint",
         "luacheck",
         "mypy",
