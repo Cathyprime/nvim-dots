@@ -24,22 +24,6 @@ local border = {
       {"▏", "FloatBorder"},
 }
 
-local symbol_settings = {
-    sorting_strategy = "ascending",
-    symbols = {
-        "Class",
-        "Function",
-        "Method",
-        "Constructor",
-        "Interface",
-        "Module",
-        "Struct",
-        "Trait",
-        "Field",
-        "Property",
-    },
-}
-
 local function telescope_references()
     require("telescope.builtin").lsp_references({
         include_declaration = true,
