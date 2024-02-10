@@ -18,11 +18,6 @@ return {
                     ["w"] = "noop",
                 },
             },
-            filesystem = {
-                follow_current_file = {
-                    enabled = true
-                }
-            },
             source_selector = {
                 winbar = true,
                 tabs_layout = "equal",
