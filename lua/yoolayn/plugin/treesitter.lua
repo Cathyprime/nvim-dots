@@ -1,21 +1,17 @@
-return {
-    "nvim-treesitter/nvim-treesitter",
-    event = {"BufNewFile", "BufReadPost", "InsertEnter" },
-    build = ":TSUpdate",
-    cmd = { "TSUpdate", "TSUpdateSync", "TSToggle" },
-    -- commit = "07c8c3d84f67b1530f636dcad31971f569a3df5f",
-    dependencies = {
+require("mini.deps").add({
+    source = "nvim-treesitter/nvim-treesitter",
+    depends = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-context",
-        {
-            "JoosepAlviste/nvim-ts-context-commentstring",
-            lazy = true,
-            opts = {
-                enable_autocmd = false,
-            },
-        }
+        "JoosepAlviste/nvim-ts-context-commentstring",
     },
-    config = function()
-        require("yoolayn.config.treesitter")
-    end
-}
+    hooks = {
+        post_checkout = function()
+            vim.cmd("TSUpdate")
+        end
+    }
+})
+require("yoolayn.config.treesitter")
+
+---@diagnostic disable-next-line
+require("ts_context_commentstring").setup({ enable_autocmd = false })

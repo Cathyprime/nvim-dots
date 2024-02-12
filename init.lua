@@ -1,4 +1,4 @@
 vim.g.mapleader = " "
 vim.g.localleader = "\\"
-require("yoolayn.lazy")
+require("yoolayn.minideps")
 require("yoolayn.globals")
