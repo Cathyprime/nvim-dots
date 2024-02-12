@@ -1,58 +1,35 @@
-return {
-    {
-        "echasnovski/mini.indentscope",
-        event = { "BufReadPost", "BufNewFile" },
-        version = false,
-        opts = {
-            symbol = "",
+local md = require("mini.deps")
+
+md.add("echasnovski/mini.indentscope")
+md.add("echasnovski/mini.align")
+md.add("echasnovski/mini.operators")
+md.add("echasnovski/mini.starter")
+md.add("echasnovski/mini.comment")
+
+md.now(function()
+    local config = require("yoolayn.config.ministarter")
+    require("mini.starter").setup(config)
+end)
+
+md.later(function()
+    require("mini.indentscope").setup({symbol = ""})
+    require("mini.align").setup({
+        mappings = {
+            start = "",
+            start_with_preview = "ga",
         },
-    },
-    {
-        "echasnovski/mini.align",
-        -- keys = { { "ga" } },
-        version = false,
-        opts = {
-            mappings = {
-                start = "",
-                start_with_preview = "ga",
-            },
-        },
-    },
-    {
-        "echasnovski/mini.operators",
-        version = false,
-        opts = {
-            sort = {
-                prefix = "",
-                func = nil
-            }
-        },
-        keys = {
-            { "g=", mode = { "n", "x" } },
-            { "gx", mode = { "n", "x" } },
-            { "gm", mode = { "n", "x" } },
-            { "gr", mode = { "n", "x" } },
-            -- { "gS", mode = { "n", "x" } },
+    })
+    require("mini.operators").setup({
+        sort = {
+            prefix = "",
+            func = nil
         }
-    },
-    {
-        "echasnovski/mini.starter",
-        version = false,
-        config = function()
-            local config = require("yoolayn.config.ministarter")
-            require("mini.starter").setup(config)
-        end
-    },
-    {
-        "echasnovski/mini.comment",
-        version = false,
-        event = "VeryLazy",
-        opts = {
-            options = {
-                custom_commentstring = function()
-                    return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-                end,
-            },
+    })
+    require("mini.comment").setup({
+        options = {
+            custom_commentstring = function()
+                return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+            end,
         },
-    }
-}
+    })
+end)

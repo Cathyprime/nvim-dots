@@ -1,134 +1,122 @@
-return {
-    {
-        "mbbill/undotree",
-        keys = {
-            { "<leader>u", "<cmd>UndotreeToggle | UndotreeFocus<cr>" },
-        },
+local add   = require("mini.deps").add
+local later = require("mini.deps").later
+
+add("mbbill/undotree")
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle | UndotreeFocus<cr>")
+
+add("kevinhwang91/nvim-bqf")
+---@diagnostic disable-next-line
+require("bqf").setup({
+    func_map = {
+        open = "<CR>",
+        openc = "o",
+        drop = "",
+        tabdrop = "",
+        tab = "",
+        tabb = "",
+        tabc = "",
+        split = "",
+        vsplit = "",
+        prevfile = "",
+        nextfile = "",
+        prevhist = "<",
+        nexthist = ">",
+        lastleave = "",
+        stoggleup = "",
+        stoggledown = "<Tab>",
+        stogglevm = "<Tab>",
+        stogglebuf = "",
+        sclear = "z<Tab>",
+        pscrollup = "",
+        pscrolldown = "",
+        pscrollorig = "",
+        ptogglemode = "P",
+        ptoggleitem = "",
+        ptoggleauto = "p",
+        filter = "zn",
+        filterr = "zN",
+        fzffilter = "",
     },
-    {
-        "kevinhwang91/nvim-bqf",
-        ft = "qf",
-        opts = {
-            func_map = {
-                open = "<CR>",
-                openc = "o",
-                drop = "",
-                tabdrop = "",
-                tab = "",
-                tabb = "",
-                tabc = "",
-                split = "",
-                vsplit = "",
-                prevfile = "",
-                nextfile = "",
-                prevhist = "<",
-                nexthist = ">",
-                lastleave = "",
-                stoggleup = "",
-                stoggledown = "<Tab>",
-                stogglevm = "<Tab>",
-                stogglebuf = "",
-                sclear = "z<Tab>",
-                pscrollup = "",
-                pscrolldown = "",
-                pscrollorig = "",
-                ptogglemode = "P",
-                ptoggleitem = "",
-                ptoggleauto = "p",
-                filter = "zn",
-                filterr = "zN",
-                fzffilter = "",
-            },
-            preview = {
-                auto_preview = false
-            }
-        },
+    ---@diagnostic disable-next-line
+    preview = {
+        auto_preview = false,
     },
-    {
-        "anuvyklack/hydra.nvim",
-    },
-    {
-        "dohsimpson/vim-macroeditor",
-        cmd = "MacroEdit",
-    },
-    {
-        "kevinhwang91/nvim-fundo",
-        dependencies = "kevinhwang91/promise-async",
-        config = function()
-            require("fundo").install()
-        end,
-    },
-    {
-        "Vigemus/iron.nvim",
-        cmd = "IronRepl",
-        keys = {
-            { "<leader>is", "<cmd>IronRepl<cr>" },
-            { "<leader>ih", "<cmd>IronHide<cr>" },
-            { "<leader>if", "<cmd>IronWatch file<cr>" },
-            { "<leader>im", "<cmd>IronWatch mark<cr>" },
-        },
-        config = function()
-            require("iron.core").setup({
-                config = {
-                    repl_open_cmd = "vertical botright 70 split",
-                    repl_definition = {
-                        sh = {
-                            command = { "zsh" },
-                        },
-                    },
-                },
-                keymaps = {
-                    send_motion = "<localleader>",
-                    visual_send = "<localleader>",
-                    send_file = "<localleader>f",
-                    send_line = "<localleader><localleader>",
-                    cr = "<localleader><cr>",
-                    interrupt = "<localleader><c-c>",
-                    exit = "<localleader><c-d>",
-                    clear = "<localleader><c-l>",
-                    send_mark = "<localleader>mm",
-                    mark_motion = "<localleader>m",
-                    mark_visual = "<localleader>m",
-                    remove_mark = "<localleader>md",
-                },
-            })
-        end,
-    },
-    {
-        "milisims/nvim-luaref",
-    },
-    {
-        "KaitlynEthylia/Evalua",
-        dependencies = "nvim-treesitter/nvim-treesitter",
-        init = function()
-            require("evalua")
-        end,
-        keys = { { "ZE", "<cmd>Evalua<cr>" } },
-    },
-    {
-        "jellydn/hurl.nvim",
-        dependencies = { "MunifTanjim/nui.nvim" },
-        ft = "hurl",
-        opts = {
-            debug = false,
-            show_notification = false,
-            mode = "split",
-            split_position = "bottom",
-            split_size = "30%",
-            formatters = {
-                json = { 'jq' },
-                html = {
-                    'prettier',
-                    '--parser',
-                    'html',
+})
+
+add("dohsimpson/vim-macroeditor")
+
+add({
+    source = "kevinhwang91/nvim-fundo",
+    depends = {"kevinhwang91/promise-async"},
+})
+require("fundo").install()
+
+add("Vigemus/iron.nvim")
+later(function()
+    require("iron.core").setup({
+        config = {
+            repl_open_cmd = "vertical botright 70 split",
+            repl_definition = {
+                sh = {
+                    command = { "zsh" },
                 },
             },
         },
-        keys = {
-            { "<c-c>H",     "<cmd>HurlRunner<cr>",     desc = "Run All requests" },
-            { "<c-c>h",     "<cmd>HurlRunnerAt<cr>",   desc = "Run Api request" },
-            { "<leader>th", "<cmd>HurlToggleMode<cr>", desc = "Hurl Toggle Mode" },
-            { "<c-c>h",     ":HurlRunner<cr>",         desc = "Hurl Runner", mode = "v" },
+        keymaps = {
+            send_motion = "<localleader>",
+            visual_send = "<localleader>",
+            send_file = "<localleader>f",
+            send_line = "<localleader><localleader>",
+            cr = "<localleader><cr>",
+            interrupt = "<localleader><c-c>",
+            exit = "<localleader><c-d>",
+            clear = "<localleader><c-l>",
+            send_mark = "<localleader>mm",
+            mark_motion = "<localleader>m",
+            mark_visual = "<localleader>m",
+            remove_mark = "<localleader>md",
         },
-    }
-}
+    })
+    vim.keymap.set("n", "<leader>is", "<cmd>IronRepl<cr>")
+    vim.keymap.set("n", "<leader>ih", "<cmd>IronHide<cr>")
+    vim.keymap.set("n", "<leader>if", "<cmd>IronWatch file<cr>")
+    vim.keymap.set("n", "<leader>im", "<cmd>IronWatch mark<cr>")
+end)
+
+add("milisims/nvim-luaref")
+add({
+    source = "KaitlynEthylia/Evalua",
+    depends = {"nvim-treesitter/nvim-treesitter"},
+})
+
+later(function()
+    require("evalua")
+    vim.keymap.set("n", "ZE", "<cmd>Evalua<cr>")
+end)
+
+add({
+    source = "jellydn/hurl.nvim",
+    depends = {"MunifTanjim/nui.nvim"},
+})
+
+later(function()
+    require("hurl").setup({
+        debug = false,
+        show_notification = false,
+        mode = "split",
+        split_position = "bottom",
+        split_size = "30%",
+        formatters = {
+            json = { "jq" },
+            html = {
+                "prettier",
+                "--parser",
+                "html",
+            },
+        },
+    })
+    vim.keymap.set("n", "<c-c>H", "<cmd>HurlRunner<cr>")
+    vim.keymap.set("n", "<c-c>h", "<cmd>HurlRunnerAt<cr>")
+    vim.keymap.set("n", "<leader>th", "<cmd>HurlToggleMode<cr>")
+    vim.keymap.set("v", "<c-c>h", ":HurlRunner<cr>")
+end)
