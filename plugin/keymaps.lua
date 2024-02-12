@@ -24,7 +24,7 @@ end
 local function get_char(question, err_question)
     local char
     while true do
-    print(question)
+        print(question)
         char = vim.fn.nr2char(vim.fn.getchar())
         if char == "y" or char == "n" or char == "q" then
             break
@@ -87,7 +87,7 @@ local function Dispatch_wrapper()
         cancelreturn = -99,
     })
     if c == -99 then return "" end
-    vim.cmd"redraw"
+    vim.cmd("redraw")
     vim.b["dispatch"] = c
     return ":Dispatch!<cr>"
 end
@@ -102,8 +102,10 @@ local function Dispatch_wrapper_change()
         default = vim.b.dispatch or "",
         cancelreturn = -99,
     })
-    if c == -99 then return "" end
-    vim.cmd"redraw"
+    if c == -99 then
+        return ""
+    end
+    vim.cmd("redraw")
     vim.b["dispatch"] = c
     return ":Dispatch!<cr>"
 end
@@ -111,7 +113,7 @@ end
 local function make_wrapper()
     vim.b["dispatch_ready"] = true
     local c = vim.fn.input(":make ")
-    vim.cmd"redraw"
+    vim.cmd("redraw")
     return ":Make! " .. c .. "<cr>"
 end
 
@@ -126,7 +128,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     once = true,
     callback = function()
         scroll = vim.opt.scrolloff
-    end
+    end,
 })
 local function scrolloff_toggle()
     if vim.o.scrolloff == 0 then
@@ -155,7 +157,33 @@ map("n", "<c-c>D", Dispatch_wrapper_change, { expr = true, silent = false })
 map("n", "<c-c>m", make_wrapper, { expr = true, silent = false })
 
 -- macro
-map("x", "@", function () return ":norm @" .. vim.fn.getcharstr() .. "<cr>" end, { expr = true })
+-- map("x", "@", function()
+--     return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
+-- end, { expr = true })
+map("x", "@", function()
+    local ns = vim.api.nvim_create_namespace("macro_player")
+    local function pop(reg)
+        local marks = vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, {})
+        if #marks == 0 then
+            return
+        end
+        local x = marks[1]
+        local cmd = string.format("%dnormal! @%s", x[2] + 1, reg)
+        vim.fn.execute(cmd)
+        vim.api.nvim_buf_del_extmark(0, ns, x[1])
+        pop(reg)
+    end
+    local start = vim.fn.getpos("v")[2]
+    local last = vim.fn.getpos(".")[2]
+    local s = start > last and last or start
+    local e = start > last and start or last
+    for line = s, e do
+        vim.api.nvim_buf_set_extmark(0, ns, line - 1, 0, {})
+    end
+    local macro_register = vim.fn.nr2char(vim.fn.getchar())
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "V", true)
+    pop(macro_register)
+end)
 map("n", "gQ", "qqqqq") -- clear q register and start recording (useful for recursive macros)
 
 -- quickfix commands
@@ -176,10 +204,10 @@ map("o", "a_", ":<c-u>norm! F_vf><cr>")
 map("x", "a_", ":<c-u>norm! F_vf_<cr>")
 
 -- clipboard
-map({"n", "v"}, "<leader>y", [["+y]])
-map({"n", "v"}, "<leader>Y", [["+y$]])
-map({"n", "v"}, "<leader>p", [["+p]])
-map({"n", "v"}, "<leader>P", [["+P]])
+map({ "n", "v" }, "<leader>y", [["+y]])
+map({ "n", "v" }, "<leader>Y", [["+y$]])
+map({ "n", "v" }, "<leader>p", [["+p]])
+map({ "n", "v" }, "<leader>P", [["+P]])
 
 -- save
 map("n", "ZW", "<cmd>write<cr>")
@@ -211,11 +239,11 @@ map("n", "<leader>ot", "<cmd>e todo.norg<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
 map("n", "<leader>a", add_harpoon)
 map("n", "<leader>gl", function()
-    vim.cmd "24sp | exec 'term lazygit -ucf ~/.config/nvim/lazygit/config.yml' | startinsert"
+    vim.cmd("24sp | exec 'term lazygit -ucf ~/.config/nvim/lazygit/config.yml' | startinsert")
     vim.api.nvim_create_autocmd("TermClose", {
         once = true,
         buffer = vim.api.nvim_get_current_buf(),
-        command = "close"
+        command = "close",
     })
 end)
 
