@@ -202,7 +202,6 @@ return {
             }, "$PARENT_INDENT\t")
         }),
         fn = c(4, {
-            sn(nil, fmt([[command = "{}"]], { i(1, "command") })),
             isn(nil, fmt([[
             callback = function({args})
                 {body}
@@ -210,7 +209,8 @@ return {
             ]], {
                 args = i(1),
                 body = i(2),
-            }), "$PARENT_INDENT\t")
+            }), "$PARENT_INDENT\t"),
+            sn(nil, fmt([[command = "{}"]], { i(1, "command") })),
         }),
     }))
 
