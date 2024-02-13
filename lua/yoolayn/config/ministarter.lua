@@ -15,7 +15,7 @@ local config = {
         { action = "Telescope git_files",  name = "Git_files",  section = "Telescope"  },
         { action = "Telescope find_files", name = "Find_files", section = "Telescope"  },
         { action = "G",                    name = "Fugitive",   section = "Misc"       },
-        { action = "Lazy",                 name = "Lazy",       section = "Misc"       },
+        { action = "DepsUpdate",           name = "DepsUpdate", section = "Misc"       },
         starter.sections.recent_files(5, true, function(path_str)
             path_str = path_str:sub(#cwd + 1)
             local path = {}
