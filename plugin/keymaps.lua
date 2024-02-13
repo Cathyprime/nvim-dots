@@ -157,33 +157,9 @@ map("n", "<c-c>D", Dispatch_wrapper_change, { expr = true, silent = false })
 map("n", "<c-c>m", make_wrapper, { expr = true, silent = false })
 
 -- macro
--- map("x", "@", function()
---     return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
--- end, { expr = true })
 map("x", "@", function()
-    local ns = vim.api.nvim_create_namespace("macro_player")
-    local function pop(reg)
-        local marks = vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, {})
-        if #marks == 0 then
-            return
-        end
-        local x = marks[1]
-        local cmd = string.format("%dnormal! @%s", x[2] + 1, reg)
-        vim.fn.execute(cmd)
-        vim.api.nvim_buf_del_extmark(0, ns, x[1])
-        pop(reg)
-    end
-    local start = vim.fn.getpos("v")[2]
-    local last = vim.fn.getpos(".")[2]
-    local s = start > last and last or start
-    local e = start > last and start or last
-    for line = s, e do
-        vim.api.nvim_buf_set_extmark(0, ns, line - 1, 0, {})
-    end
-    local macro_register = vim.fn.nr2char(vim.fn.getchar())
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "V", true)
-    pop(macro_register)
-end)
+    return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
+end, { expr = true })
 map("n", "gQ", "qqqqq") -- clear q register and start recording (useful for recursive macros)
 
 -- quickfix commands
