@@ -8,6 +8,21 @@ local diagGroups = {
     "DiagnosticFloatingInfo"
 }
 
+local banned_ft = {
+    "TelescopePrompt",
+    "gitcommit",
+    "neo-tree",
+}
+
+local function is_banned(ft)
+    for _, filetype in ipairs(banned_ft) do
+        if filetype == ft then
+            return true
+        end
+    end
+    return false
+end
+
 local function get_id()
     for _, match in ipairs(vim.fn.getmatches()) do
         if match.group == "TrailingWhitespace" then return match.id end
@@ -25,7 +40,9 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     once = false,
     callback = function()
         if get_id() ~= nil then return end
-        vim.fn.matchadd("TrailingWhitespace", [[\s\+$]])
+        if not is_banned(vim.o.filetype) then
+            vim.fn.matchadd("TrailingWhitespace", [[\s\+$]])
+        end
     end
 })
 
