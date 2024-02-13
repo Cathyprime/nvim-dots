@@ -154,7 +154,7 @@ local config = {
                 end,
                 separator = { right = "" },
                 fmt = function(str)
-                    if vim.o.filetype == "neo-tree" then
+                    if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
                     return str
@@ -182,7 +182,7 @@ local config = {
                 "filename",
                 path = 1,
                 fmt = function(str)
-                    if vim.o.filetype == "neo-tree" then
+                    if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
                     return hide_on_vert(str, function(_)
@@ -196,7 +196,7 @@ local config = {
             {
                 "%S",
                 fmt = function(str)
-                    if vim.o.filetype == "neo-tree" then
+                    if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
                     return str
@@ -221,7 +221,7 @@ local config = {
             {
                 "progress",
                 fmt = function(str)
-                    if vim.o.filetype == "neo-tree" then
+                    if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
                     return str
@@ -241,7 +241,7 @@ local config = {
                 "filename",
                 path = 1,
                 fmt = function(str)
-                    if vim.o.filetype == "neo-tree" then
+                    if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
                     return str
@@ -252,7 +252,7 @@ local config = {
             {
                 "progress",
                 fmt = function(str)
-                    if vim.o.filetype == "neo-tree" then
+                    if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
                     return str
