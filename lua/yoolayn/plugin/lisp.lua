@@ -1,5 +1,10 @@
 require("mini.deps").add("julienvincent/nvim-paredit")
 
-require("mini.deps").later(function()
-    require("nvim-paredit").setup()
-end)
+vim.api.nvim_create_autocmd("filetype", {
+    once = false,
+    group = vim.api.nvim_create_augroup("lisp", { clear = true }),
+    pattern = { "clojure", "lisp", "fennel" },
+    callback = function()
+        require("nvim-paredit").setup()
+    end
+})
