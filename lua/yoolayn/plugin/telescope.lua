@@ -1,4 +1,5 @@
 local telescope_config = require("util.telescope-config")
+local telescope_utils = require("util.telescope-utils")
 
 require("mini.deps").add({
     source = "nvim-telescope/telescope.nvim",
@@ -85,7 +86,7 @@ vim.keymap.set( "n", "<leader>fG", function()
     })
 end)
 
--- require("mini.deps").later(function()
---     vim.keymap.set("n", "<c-p>", function() telescope_config.project_files() end)
---     vim.keymap.set("n", "<leader>fp", telescope_config.change_dir)
--- end)
+require("mini.deps").later(function()
+    vim.keymap.set("n", "<c-p>",      telescope_utils.project_files)
+    vim.keymap.set("n", "<leader>fp", telescope_utils.change_dir)
+end)
