@@ -48,6 +48,6 @@ return {
   treesj = "60e27280030f9cd8dfb6ceb335922c6ff76682cc",
   undotree = "9dbbf3b7d19dda0d22ceca461818e4739ad8154d",
   ["vim-dispatch"] = "b84d00f11567abfcfec82a6838c7d41dfa49a447",
-  ["vim-fugitive"] = "9f92ff14d9d1169e08f197a2250fcaea88e9c767",
+  ["vim-fugitive"] = "011cf4fcb93a9649ffc6dcdff56ef948f5d0f7cc",
   ["vim-macroeditor"] = "25fd58a712f58ed16ebe924c4f92c9999e455e95"
 }
