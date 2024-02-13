@@ -53,7 +53,6 @@ vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
         vim.api.nvim_set_hl(0, "TrailingWhitespace", {
             bg = (function()
                 local color = vim.api.nvim_get_hl(0, { name = "@keyword.return" })
-                print(vim.inspect(color))
                 return color.fg
             end)()
         })

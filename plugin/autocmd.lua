@@ -4,14 +4,6 @@ local function augroup(name)
     return vim.api.nvim_create_augroup("yoolayn_" .. name, { clear = true })
 end
 
-vim.api.nvim_create_autocmd("DirChanged", {
-    callback = function()
-        if vim.fn.filereadable(".nvim.lua") == 1 then
-            vim.cmd"so .nvim.lua"
-        end
-    end
-})
-
 -- start minibuffer
 vim.api.nvim_create_autocmd("CmdwinEnter", {
     once = false,
