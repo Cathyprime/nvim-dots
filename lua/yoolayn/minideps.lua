@@ -24,8 +24,8 @@ require("yoolayn.plugin.nonels")
 
 require("yoolayn.plugin.misc")
 require("yoolayn.plugin.treesitter")
-require("yoolayn.plugin.tpope")
 require("yoolayn.plugin.editing")
+require("yoolayn.plugin.compile")
 require("yoolayn.plugin.files")
 require("yoolayn.plugin.git")
 
