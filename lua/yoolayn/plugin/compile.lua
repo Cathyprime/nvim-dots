@@ -23,7 +23,7 @@ require("mini.deps").later(function()
         local compile_cmd = vim.b.compile
         if not new and compile_cmd then
             local cmd = vim.fn.expandcmd(compile_cmd)
-            vim.cmd(string.format("AsyncRun %s", cmd))
+            vim.cmd(string.format("AsyncRun -rows=10 %s", cmd))
             cope(compile_cmd or "")
             return
         end
@@ -33,7 +33,9 @@ require("mini.deps").later(function()
             cancelreturn = -99,
         })
         if not ok or c == -99 then
-            if new then compile_cmd = nil end
+            if new and c == - 99 then
+                vim.b.compile = nil
+            end
             return
         end
         vim.cmd("redraw")
