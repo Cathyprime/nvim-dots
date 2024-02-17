@@ -1,4 +1,26 @@
 local auto_colors = require("lualine.themes.auto")
+local separators = {
+    component = {
+        left = "│",
+        right = "│"
+    },
+    section = {
+        left = "",
+        right = ""
+    }
+}
+
+-- default
+-- local separators = {
+--     component = {
+--         left = "",
+--         right = ""
+--     },
+--     section = {
+--         left = "",
+--         right = ""
+--     }
+-- }
 
 auto_colors.inactive.a.bg = auto_colors.normal.a.bg
 auto_colors.inactive.b.bg = auto_colors.normal.b.bg
@@ -129,8 +151,8 @@ local config = {
     options = {
         icons_enabled = false,
         theme = auto_colors,
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+        component_separators = separators.component,
+        section_separators = separators.section,
         disabled_filetypes = {
             statusline = {},
             winbar = {},
@@ -152,7 +174,7 @@ local config = {
                     local mode_name = mode.modes[vim.fn.mode()]
                     return mode.colors[mode_name]
                 end,
-                separator = { right = "" },
+                separator = { right = separators.section.left },
                 fmt = function(str)
                     if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
@@ -167,7 +189,7 @@ local config = {
                         return { bg = "red", fg = "white" }
                     end
                 end,
-                separator = { right = "" },
+                separator = { right = separators.section.left },
                 fmt = function(str)
                     if vim.o.filetype == "neotree" then
                         return nil
