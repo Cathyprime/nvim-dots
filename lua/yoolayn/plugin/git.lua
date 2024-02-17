@@ -1,7 +1,12 @@
 local md = require("mini.deps")
 
+md.add("tpope/vim-fugitive")
 md.add("lewis6991/gitsigns.nvim")
 md.add("sindrets/diffview.nvim")
+
+md.later(function()
+    vim.keymap.set("n", "<leader>gg", "<cmd>G<cr>")
+end)
 
 md.later(function()
     require("gitsigns").setup({
