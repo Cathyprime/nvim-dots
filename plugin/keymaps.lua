@@ -12,15 +12,6 @@ local function jump(direction)
     return ret .. direction
 end
 
-local function openqf()
-    if vim.b.dispatch_ready then
-        vim.b["dispatch_ready"] = false
-        return "<cmd>Cope<cr>"
-    else
-        return "<cmd>botright cope<cr>"
-    end
-end
-
 local function get_char(question, err_question)
     local char
     while true do
@@ -76,47 +67,6 @@ local function confirm_save_all(question, err)
     end
 end
 
-local function Dispatch_wrapper()
-    vim.b["dispatch_ready"] = true
-    if vim.b.dispatch then
-        return ":Dispatch!<cr>"
-    end
-    local c = vim.fn.input({
-        prompt = ":Dispatch ",
-        default = vim.b.dispatch or "",
-        cancelreturn = -99,
-    })
-    if c == -99 then return "" end
-    vim.cmd("redraw")
-    vim.b["dispatch"] = c
-    return ":Dispatch!<cr>"
-end
-
-local function Dispatch_wrapper_change()
-    vim.b["dispatch_ready"] = true
-    if not vim.b.dispatch then
-        return Dispatch_wrapper()
-    end
-    local c = vim.fn.input({
-        prompt = ":Dispatch ",
-        default = vim.b.dispatch or "",
-        cancelreturn = -99,
-    })
-    if c == -99 then
-        return ""
-    end
-    vim.cmd("redraw")
-    vim.b["dispatch"] = c
-    return ":Dispatch!<cr>"
-end
-
-local function make_wrapper()
-    vim.b["dispatch_ready"] = true
-    local c = vim.fn.input(":make ")
-    vim.cmd("redraw")
-    return ":Make! " .. c .. "<cr>"
-end
-
 local diag_active = true
 local function diagnostic_toggle()
     diag_active = not diag_active
@@ -148,14 +98,6 @@ local function add_harpoon()
     vim.cmd(cmd)
 end
 
--- Compilation
-map("n", "<c-c>s", ":Start ", { silent = false })
-map("n", "<c-c>f", ":Focus ", { silent = false })
-map("n", "<c-c>F", ":Focus!<cr>")
-map("n", "<c-c>d", Dispatch_wrapper, { expr = true, silent = false })
-map("n", "<c-c>D", Dispatch_wrapper_change, { expr = true, silent = false })
-map("n", "<c-c>m", make_wrapper, { expr = true, silent = false })
-
 -- macro
 map("x", "@", function()
     return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
@@ -163,7 +105,7 @@ end, { expr = true })
 map("n", "gQ", "qqqqq") -- clear q register and start recording (useful for recursive macros)
 
 -- quickfix commands
-map("n", "<leader>q", openqf, { expr = true })
+map("n", "<leader>q", "<cmd>botright cope<cr>")
 map("n", "]c", "<cmd>cnext<cr>")
 map("n", "[c", "<cmd>cprev<cr>")
 
