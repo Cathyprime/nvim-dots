@@ -29,10 +29,11 @@ require("yoolayn.plugin.compile")
 require("yoolayn.plugin.files")
 require("yoolayn.plugin.git")
 
-require("yoolayn.plugin.neorg")
-require("yoolayn.plugin.lisp")
-require("yoolayn.plugin.metals")
-
 require("yoolayn.plugin.telescope")
 require("yoolayn.plugin.colorscheme")
 require("yoolayn.plugin.ui")
+
+require("yoolayn.plugin.neorg")
+require("yoolayn.plugin.golang")
+require("yoolayn.plugin.lisp")
+require("yoolayn.plugin.metals")
