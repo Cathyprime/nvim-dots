@@ -52,7 +52,7 @@ add("dohsimpson/vim-macroeditor")
 
 add({
     source = "kevinhwang91/nvim-fundo",
-    depends = {"kevinhwang91/promise-async"},
+    depends = { "kevinhwang91/promise-async" },
 })
 require("fundo").install()
 

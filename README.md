@@ -56,27 +56,18 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 
 ### fuzzy finder
 + [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
++ [nvim-telescope/telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 
 ### git
 + [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 + [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim)
 + [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
 
-### keybinding
-+ [anuvyklack/hydra.nvim](https://github.com/anuvyklack/hydra.nvim)
-
 ### lsp and friends
 + [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 + [nvimtools/none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 + [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
 + [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim)
-
-### debugging
-+ [jay-babu/mason-nvim-dap.nvim](https://github.com/jay-babu/mason-nvim-dap.nvim)
-+ [mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap)
-+ [leoluz/nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
-+ [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
-+ [mfussenegger/nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python)
 
 ### coding tool installer
 + [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
@@ -88,10 +79,13 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [milisims/nvim-luaref](https://github.com/milisims/nvim-luaref)
 
 ### plugin-manager
-+ [folke/lazy.nvim](https://github.com/folke/lazy.nvim)
++ [echasnovski/mini.deps](https://github.com/echasnovski/mini.deps)
 
 ### programming-languages-support
 + [julienvincent/nvim-paredit](https://github.com/julienvincent/nvim-paredit)
+
+### compilation
++ [skywind3000/asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
 
 ### quickfix
 + [kevinhwang91/nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)
@@ -102,8 +96,10 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ### treesitter
 + [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 + [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
++ [nvim-treesitter/nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
 
 ### utility
 + [kevinhwang91/nvim-fundo](https://github.com/kevinhwang91/nvim-fundo)
 + [mbbill/undotree](https://github.com/mbbill/undotree)
 + [dohsimpson/vim-macroeditor](https://github.com/dohsimpson/vim-macroeditor)
++ [hjellydn/url.nvim](https://github.com/jellydn/hurl.nvim)
