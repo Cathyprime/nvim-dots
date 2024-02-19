@@ -125,3 +125,8 @@ later(function()
     vim.keymap.set("n", "<leader>th", "<cmd>HurlToggleMode<cr>")
     vim.keymap.set("v", "<c-c>h", ":HurlRunner<cr>")
 end)
+
+add("folke/todo-comments.nvim")
+later(function()
+    require("todo-comments").setup()
+end)
