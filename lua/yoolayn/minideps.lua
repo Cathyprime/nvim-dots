@@ -35,5 +35,4 @@ require("yoolayn.plugin.ui")
 
 require("yoolayn.plugin.neorg")
 require("yoolayn.plugin.golang")
-require("yoolayn.plugin.lisp")
 require("yoolayn.plugin.metals")
