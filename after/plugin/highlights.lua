@@ -50,12 +50,14 @@ vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
     once = false,
     group = augroup,
     callback = function()
-        vim.api.nvim_set_hl(0, "TrailingWhitespace", {
-            bg = (function()
-                local color = vim.api.nvim_get_hl(0, { name = "@keyword.return" })
-                return color.fg
-            end)()
-        })
+        vim.api.nvim_set_hl(0, "TrailingWhitespace", (function()
+            local color = vim.api.nvim_get_hl(0, { name = "@keyword.return" })
+            return {
+                bg = color.fg,
+                fg = color.fg
+            }
+        end)()
+        )
         vim.api.nvim_set_hl(0, "PortalOrange", {
             fg = "#fd6600"
         })
