@@ -1,4 +1,5 @@
 -- cmp
+---@diagnostic disable-next-line
 local cmp = require("cmp")
 local types = require("cmp.types")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }

@@ -29,6 +29,7 @@ require("cathy.plugin.compile")
 require("cathy.plugin.files")
 require("cathy.plugin.git")
 
+---@diagnostic disable-next-line
 require("cathy.plugin.telescope")
 require("cathy.plugin.colorscheme")
 require("cathy.plugin.ui")
