@@ -14,14 +14,14 @@ vim.diagnostic.config({
 })
 
 local border = {
-      {"🭽", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {"🭿", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {"🭼", "FloatBorder"},
-      {"▏", "FloatBorder"},
+    {"🭽", "FloatBorder"},
+    {"▔", "FloatBorder"},
+    {"🭾", "FloatBorder"},
+    {"▕", "FloatBorder"},
+    {"🭿", "FloatBorder"},
+    {"▁", "FloatBorder"},
+    {"🭼", "FloatBorder"},
+    {"▏", "FloatBorder"},
 }
 
 local function telescope_references()
@@ -133,7 +133,7 @@ require("mason-lspconfig").setup({
                                             "${3rd}/busted/library",
                                             "$HOME/.config/nvim/lua/",
                                         }
-                                        local plugins = vim.split(vim.fn.glob("$HOME/.local/share/nvim/lazy/*/lua"), "\n")
+                                        local plugins = vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n")
                                         plugins = vim.tbl_deep_extend("keep", static, plugins)
                                         return plugins
                                     end)(),
