@@ -12,12 +12,6 @@ require("mini.deps").add({
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
     },
-    hooks = {
-        post_install = function()
-            require("gopher").setup(setup)
-            vim.cmd("GoInstallDeps")
-        end
-    }
 })
 
 require("mini.deps").later(function()
