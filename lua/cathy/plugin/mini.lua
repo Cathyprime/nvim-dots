@@ -7,7 +7,7 @@ md.add("echasnovski/mini.starter")
 md.add("echasnovski/mini.comment")
 
 md.now(function()
-    local config = require("yoolayn.config.ministarter")
+    local config = require("cathy.config.ministarter")
     require("mini.starter").setup(config)
 end)
 

@@ -32,4 +32,4 @@ ls.config.setup({
     },
 })
 
-require("luasnip.loaders.from_lua").lazy_load({paths = "./lua/yoolayn/snippets"})
+require("luasnip.loaders.from_lua").lazy_load({paths = "./lua/cathy/snippets"})

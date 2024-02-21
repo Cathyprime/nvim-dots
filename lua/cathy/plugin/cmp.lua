@@ -10,8 +10,8 @@ require("mini.deps").add({
 })
 
 require("mini.deps").later(function()
-    require("yoolayn.config.cmp")
-    local colors = require("yoolayn.config.cmp-colors")
+    require("cathy.config.cmp")
+    local colors = require("cathy.config.cmp-colors")
     colors.run(false)
     colors.set_autocmd()
 end)

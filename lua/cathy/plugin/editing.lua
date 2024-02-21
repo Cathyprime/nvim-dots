@@ -44,7 +44,7 @@ later(function()
     require("nvim-autopairs").remove_rule('{')
     local ok, _ = pcall(require, "cmp")
     if ok then
-        require("yoolayn.config.cmp-pairs")
+        require("cathy.config.cmp-pairs")
     end
-    require("yoolayn.config.pair-customrules")
+    require("cathy.config.pair-customrules")
 end)

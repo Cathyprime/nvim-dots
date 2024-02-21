@@ -10,5 +10,5 @@ require("mini.deps").add({
 })
 
 require("mini.deps").later(function()
-    require("yoolayn.config.lsp")
+    require("cathy.config.lsp")
 end)

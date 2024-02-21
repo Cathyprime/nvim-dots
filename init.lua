@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
 vim.g.localleader = "\\"
-require("yoolayn.config.options")
-require("yoolayn.minideps")
-require("yoolayn.globals")
+require("cathy.config.options")
+require("cathy.minideps")
+require("cathy.globals")

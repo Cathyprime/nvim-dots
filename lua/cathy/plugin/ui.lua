@@ -37,6 +37,6 @@ require("mini.deps").add({
 })
 
 require("mini.deps").now(function()
-    local config = require("yoolayn.config.lualine")
+    local config = require("cathy.config.lualine")
     require("lualine").setup(config)
 end)

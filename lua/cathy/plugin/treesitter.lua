@@ -11,7 +11,7 @@ require("mini.deps").add({
         end
     }
 })
-require("yoolayn.config.treesitter")
+require("cathy.config.treesitter")
 
 ---@diagnostic disable-next-line
 require("ts_context_commentstring").setup({ enable_autocmd = false })
