@@ -3,7 +3,6 @@ local cmp = require("cmp")
 local types = require("cmp.types")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local icons = require("util.icons").icons
-local kind_mapper = require("cmp.types").lsp.CompletionItemKind
 local ts_utils = require("nvim-treesitter.ts_utils")
 -- local has_words_before = function()
 --  unpack = unpack or table.unpack

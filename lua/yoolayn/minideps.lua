@@ -32,6 +32,7 @@ require("yoolayn.plugin.git")
 require("yoolayn.plugin.telescope")
 require("yoolayn.plugin.colorscheme")
 require("yoolayn.plugin.ui")
+require("yoolayn.plugin.quickfix")
 
 require("yoolayn.plugin.neorg")
 require("yoolayn.plugin.golang")

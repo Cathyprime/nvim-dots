@@ -9,45 +9,6 @@ vim.g.undotree_SetFocusWhenToggle = 1
 vim.g.undotree_DiffCommand = [[diff]]
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 
-add("kevinhwang91/nvim-bqf")
----@diagnostic disable-next-line
-require("bqf").setup({
-    func_map = {
-        open = "<CR>",
-        openc = "o",
-        drop = "",
-        tabdrop = "",
-        tab = "",
-        tabb = "",
-        tabc = "",
-        split = "",
-        vsplit = "",
-        prevfile = "",
-        nextfile = "",
-        prevhist = "<",
-        nexthist = ">",
-        lastleave = "",
-        stoggleup = "",
-        stoggledown = "<Tab>",
-        stogglevm = "<Tab>",
-        stogglebuf = "",
-        sclear = "z<Tab>",
-        pscrollup = "",
-        pscrolldown = "",
-        pscrollorig = "",
-        ptogglemode = "P",
-        ptoggleitem = "",
-        ptoggleauto = "p",
-        filter = "zn",
-        filterr = "zN",
-        fzffilter = "",
-    },
-    ---@diagnostic disable-next-line
-    preview = {
-        auto_preview = false,
-    },
-})
-
 add("dohsimpson/vim-macroeditor")
 
 add({
