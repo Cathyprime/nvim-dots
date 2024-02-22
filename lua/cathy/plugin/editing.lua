@@ -2,10 +2,6 @@ local add   = require("mini.deps").add
 local later = require("mini.deps").later
 
 add("kylechui/nvim-surround")
-add({
-    source = "windwp/nvim-autopairs",
-    depends = { "hrsh7th/nvim-cmp", }
-})
 add("Wansmer/treesj")
 
 later(function()
@@ -32,19 +28,4 @@ later(function()
     vim.keymap.set("n", "gs", function()
         require("treesj").toggle()
     end)
-end)
-
-later(function()
-    require("nvim-autopairs").setup()
-    require("nvim-autopairs").remove_rule('"')
-    require("nvim-autopairs").remove_rule("'")
-    require("nvim-autopairs").remove_rule('`')
-    require("nvim-autopairs").remove_rule('(')
-    require("nvim-autopairs").remove_rule('[')
-    require("nvim-autopairs").remove_rule('{')
-    local ok, _ = pcall(require, "cmp")
-    if ok then
-        require("cathy.config.cmp-pairs")
-    end
-    require("cathy.config.pair-customrules")
 end)
