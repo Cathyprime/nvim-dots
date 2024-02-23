@@ -12,7 +12,7 @@ vim.api.nvim_create_user_command(
         vim.api.nvim_create_autocmd("TermClose", {
             once = true,
             buffer = vim.api.nvim_get_current_buf(),
-            command = "bd"
+            command = "bd!"
         })
     end,
     {
