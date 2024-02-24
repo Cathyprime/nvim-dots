@@ -253,10 +253,6 @@ local config = {
         lualine_z = {
             { "location", fmt = location_fmt },
             window_component,
-            {
-                "datetime",
-                style = "%Hh%Mm"
-            }
         },
     },
     inactive_sections = {
