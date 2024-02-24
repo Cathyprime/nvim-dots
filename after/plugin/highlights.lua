@@ -12,6 +12,7 @@ local banned_ft = {
     "TelescopePrompt",
     "gitcommit",
     "neo-tree",
+    "help",
 }
 
 local function is_banned(ft)
