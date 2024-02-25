@@ -13,6 +13,7 @@ local banned_ft = {
     "gitcommit",
     "neo-tree",
     "help",
+    "mason",
 }
 
 local function is_banned(ft)

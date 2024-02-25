@@ -45,7 +45,7 @@ require("mini.deps").later(function()
         vim.cmd(string.format("AsyncRun %s", cmd))
     end
 
-    vim.keymap.set("n", "<c-c>d", function() run_wrap(false) end, { silent = false })
-    vim.keymap.set("n", "<c-c>D", function() run_wrap(true) end, { silent = false })
-    vim.keymap.set("n", "<c-c><c-c>", "<cmd>AsyncStop<cr>")
+    vim.keymap.set("n", "Zd", function() run_wrap(false) end, { silent = false })
+    vim.keymap.set("n", "ZD", function() run_wrap(true) end, { silent = false })
+    vim.keymap.set("n", "ZC", "<cmd>AsyncStop<cr>")
 end)
