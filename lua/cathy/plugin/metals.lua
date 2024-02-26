@@ -5,25 +5,21 @@ require("mini.deps").add({
     }
 })
 
-require("mini.deps").later(function()
-    local metals = require("metals")
-    local metals_config = metals.bare_config()
-    metals_config.settings = {
-        showImplicitArguments = true,
-    }
-    metals_config.init_options.statusBarProvider = "on"
-    metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+local metals = require("metals")
+local metals_config = metals.bare_config()
+metals_config.settings = {
+    showImplicitArguments = true,
+}
+metals_config.init_options.statusBarProvider = "on"
 
-    vim.keymap.set("n", "<leader>lmc", function()
-        require("telescope").extensions.metals.commands()
-    end)
-
-    local nvim_metals_group = vim.api.nvim_create_augroup("metals", { clear = true })
-    vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "scala", "sbt", "java" },
-        callback = function()
-            metals.initialize_or_attach(metals_config)
-        end,
-        group = nvim_metals_group,
-    })
+vim.keymap.set("n", "<leader>lmc", function()
+    require("telescope").extensions.metals.commands()
 end)
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "scala", "sbt", "java" },
+    callback = function()
+        metals.initialize_or_attach(metals_config)
+    end,
+    group = vim.api.nvim_create_augroup("nvim-metals", { clear = true }),
+})
