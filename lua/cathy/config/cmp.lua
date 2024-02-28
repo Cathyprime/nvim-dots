@@ -62,8 +62,21 @@ cmp.setup({
         ["<c-cr>"] = cmp.mapping.confirm({ select = false}),
         ["<c-e>"] = cmp.mapping.abort(),
         ["<c-x>c"] = cmp.mapping.complete(),
+        ["<c-g>"] = cmp.mapping(function()
+            if cmp.visible_docs() then
+                cmp.close_docs()
+            else
+                cmp.open_docs()
+            end
+        end),
         ["<c-u>"] = cmp.mapping.scroll_docs(-4),
         ["<c-d>"] = cmp.mapping.scroll_docs(4),
+    },
+
+    view = {
+        docs = {
+            auto_open = false
+        }
     },
 
     formatting = {
