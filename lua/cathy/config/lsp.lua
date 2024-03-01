@@ -128,15 +128,16 @@ require("mason-lspconfig").setup({
                                 workspace = {
                                     checkThirdParty = false,
                                     library = (function()
-                                        local static = {
-                                            vim.env.VIMRUNTIME,
-                                            "${3rd}/luv/library",
-                                            "${3rd}/busted/library",
-                                            "$HOME/.config/nvim/lua/",
-                                        }
-                                        local plugins = vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n")
-                                        plugins = vim.tbl_deep_extend("keep", static, plugins)
-                                        return plugins
+                                        return vim.tbl_deep_extend(
+                                            "keep",
+                                            {
+                                                vim.env.VIMRUNTIME,
+                                                "${3rd}/luv/library",
+                                                "${3rd}/busted/library",
+                                                "$HOME/.config/nvim/lua/",
+                                            },
+                                            vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n")
+                                        )
                                     end)(),
                                 },
                             },
