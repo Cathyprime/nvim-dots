@@ -8,10 +8,10 @@ require("mini.deps").later(function()
             null_ls.builtins.formatting.gofumpt,
             null_ls.builtins.formatting.prettierd,
             null_ls.builtins.formatting.stylua,
+            null_ls.builtins.formatting.black,
 
             null_ls.builtins.diagnostics.golangci_lint,
             null_ls.builtins.diagnostics.mypy,
-            null_ls.builtins.diagnostics.ruff,
             null_ls.builtins.diagnostics.stylelint,
         },
     })

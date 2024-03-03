@@ -186,7 +186,7 @@ require("mason-tool-installer").setup({
         "golangci-lint",
         "luacheck",
         "mypy",
-        "ruff",
+        "black",
         "stylelint",
         "stylua",
     },
