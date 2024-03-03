@@ -185,7 +185,6 @@ require("mason-tool-installer").setup({
         "eslint",
         "golangci-lint",
         "luacheck",
-        "mypy",
         "black",
         "stylelint",
         "stylua",
