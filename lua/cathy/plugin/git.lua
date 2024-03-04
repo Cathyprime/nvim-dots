@@ -5,10 +5,6 @@ md.add("lewis6991/gitsigns.nvim")
 md.add("sindrets/diffview.nvim")
 
 md.later(function()
-    vim.keymap.set("n", "<leader>gg", "<cmd>G<cr>")
-end)
-
-md.later(function()
     require("gitsigns").setup({
         on_attach = function(bufnr)
             local gs = package.loaded.gitsigns
