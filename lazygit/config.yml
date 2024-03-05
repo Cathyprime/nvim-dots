@@ -1,2 +1,4 @@
 gui:
   border: "hidden"
+git:
+  mainBranches: [main, master, mistress]
