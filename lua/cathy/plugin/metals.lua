@@ -9,6 +9,7 @@ local metals = require("metals")
 local metals_config = metals.bare_config()
 metals_config.settings = {
     showImplicitArguments = true,
+    enableSemanticHighlighting = false,
 }
 metals_config.init_options.statusBarProvider = "on"
 
