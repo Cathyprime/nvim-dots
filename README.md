@@ -20,14 +20,15 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 
 ## Plugins
 
+### Mini
++ [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim)
+
 ### colorscheme
 + [rebelot/kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
 
 ### UI
 + [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
 + [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-+ [echasnovski/mini.starter](https://github.com/echasnovski/mini.starter)
-+ [echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)
 
 ### Notes
 + [nvim-neorg/neorg](https://github.com/nvim-neorg/neorg)
@@ -36,19 +37,14 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 #### sources
-+ [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 + [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
 + [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-+ [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
-+ [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
++ [hrsh7th/cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help)
 
 ### code editing support
-+ [echasnovski/mini.align](https://github.com/echasnovski/mini.align)
-+ [echasnovski/mini.operators](https://github.com/echasnovski/mini.operators)
 + [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
 + [Wansmer/treesj](https://github.com/Wansmer/treesj)
 + [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
-+ [echasnovski/mini.comment](https://github.com/echasnovski/mini.comment)
 
 ### files
 + [miversen33/netman.nvim](https://github.com/miversen33/netman.nvim)
@@ -82,13 +78,14 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [echasnovski/mini.deps](https://github.com/echasnovski/mini.deps)
 
 ### programming-languages-support
-+ [julienvincent/nvim-paredit](https://github.com/julienvincent/nvim-paredit)
++ [olexsmir/gopher.nvim](https://github.com/olexsmir/gopher.nvim)
 
 ### compilation
 + [skywind3000/asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
 
 ### quickfix
 + [kevinhwang91/nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)
++ [yorickpeterse/nvim-pqf](https://github.com/yorickpeterse/nvim-pqf)
 
 ### snippet
 + [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
