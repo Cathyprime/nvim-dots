@@ -1,30 +1,31 @@
-local md = require("mini.deps")
+local now = require("mini.deps").now
+local later = require("mini.deps").later
 
-md.add("echasnovski/mini.indentscope")
-md.add("echasnovski/mini.align")
-md.add("echasnovski/mini.operators")
-md.add("echasnovski/mini.starter")
-md.add("echasnovski/mini.comment")
-
-md.now(function()
+now(function()
     local config = require("cathy.config.ministarter")
     require("mini.starter").setup(config)
 end)
 
-md.later(function()
-    require("mini.indentscope").setup({symbol = ""})
+later(function()
+
+    require("mini.indentscope").setup({
+        symbol = "",
+    })
+
     require("mini.align").setup({
         mappings = {
             start = "",
             start_with_preview = "ga",
         },
     })
+
     require("mini.operators").setup({
         sort = {
             prefix = "",
             func = nil
         }
     })
+
     require("mini.comment").setup({
         options = {
             custom_commentstring = function()
@@ -32,4 +33,5 @@ md.later(function()
             end,
         },
     })
+
 end)
