@@ -22,7 +22,7 @@ later(function()
     require("mini.operators").setup({
         sort = {
             prefix = "",
-            func = nil
+            func = nil,
         }
     })
 
@@ -35,4 +35,18 @@ later(function()
     })
 
     require("mini.trailspace").setup()
+
+    require("mini.move").setup({
+        mappings = {
+            left = "<",
+            right = ">",
+            down = "<m-j>",
+            up = "<m-k>",
+
+            line_left = "",
+            line_right = "",
+            line_down = "<m-j>",
+            line_up = "<m-k>",
+        }
+    })
 end)
