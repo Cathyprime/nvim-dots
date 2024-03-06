@@ -89,6 +89,9 @@ options.options = {
     winminwidth = 5,
     pumheight = 4,
     wrap = true,
+    indentkeys = {
+        remove = ":"
+    }
 }
 
 options.prg = {
