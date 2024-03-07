@@ -1,3 +1,7 @@
+<a href="https://dotfyle.com/Yoolayn/nvim-dots"><img src="https://dotfyle.com/Yoolayn/nvim-dots/badges/plugins?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/Yoolayn/nvim-dots"><img src="https://dotfyle.com/Yoolayn/nvim-dots/badges/leaderkey?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/Yoolayn/nvim-dots"><img src="https://dotfyle.com/Yoolayn/nvim-dots/badges/plugin-manager?style=for-the-badge" /></a>
+
 # Neovim dots
 
 Plugin list in the readme might not be up to date every time :3
@@ -9,7 +13,7 @@ Clone the repository and install the plugins:
 
 ```sh
 git clone git@github.com:Yoolayn/nvim-dots ~/.config/Yoolayn/nvim-dots
-NVIM_APPNAME=Yoolayn/nvim-dots/ nvim --headless +"Lazy! sync" +qa
+NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ```
 
 Open Neovim with this config:
