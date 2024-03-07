@@ -37,5 +37,5 @@ require("cathy.plugin.ui")
 require("cathy.plugin.quickfix")
 
 require("cathy.plugin.neorg")
-require("cathy.plugin.golang")
+require("cathy.plugin.gopher")
 require("cathy.plugin.metals")
