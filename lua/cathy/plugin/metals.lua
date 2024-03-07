@@ -9,8 +9,12 @@ local metals = require("metals")
 local metals_config = metals.bare_config()
 metals_config.settings = {
     showImplicitArguments = true,
-    enableSemanticHighlighting = false,
 }
+
+if vim.fn.hostname() == "juno" then
+    metals_config.settings["enableSemanticHighlighting"] = false
+end
+
 metals_config.init_options.statusBarProvider = "on"
 
 vim.keymap.set("n", "<leader>lmc", function()
