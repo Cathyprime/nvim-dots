@@ -49,4 +49,21 @@ later(function()
             line_up = "<m-k>",
         }
     })
+
+    require("mini.clue").setup({
+        triggers = {
+            { mode = "n", keys = "<leader>z" }
+        },
+        clues = {
+            { mode = "n", keys = "<leader>z<cr>", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zB", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zl", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zi", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zo", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zO", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zu", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zs" },
+            { mode = "n", keys = "<leader>zC", postkeys = "<leader>z" },
+        }
+    })
 end)

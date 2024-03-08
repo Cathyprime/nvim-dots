@@ -15,11 +15,5 @@ require("mini.deps").add({
 })
 
 require("mini.deps").later(function()
-    vim.api.nvim_create_autocmd("Filetype", {
-        pattern = "go",
-        once = false,
-        callback = function()
-            require("gopher").setup(setup)
-        end
-    })
+    require("gopher").setup(setup)
 end)

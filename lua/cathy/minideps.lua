@@ -36,6 +36,7 @@ require("cathy.plugin.colorscheme")
 require("cathy.plugin.ui")
 require("cathy.plugin.quickfix")
 
+require("cathy.plugin.dap")
 require("cathy.plugin.neorg")
 require("cathy.plugin.gopher")
 require("cathy.plugin.metals")
