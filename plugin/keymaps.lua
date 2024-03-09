@@ -180,13 +180,13 @@ map("i", "<c-a>", "<home>")
 map("i", "<c-e>", "<end>")
 
 -- quick search and replace keymaps
-map("n", "<leader>s", ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
-map("n", "<leader>S", ":s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
-map("v", "<leader>s", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
-map("v", "<leader>S", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
+map("n", "<leader>s", ":s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
+map("n", "<leader>S", ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
+map("v", "<leader>s", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
+map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 
 -- terminal
-map("n", "<c-w>t", "<cmd>12Terminal<cr>")
+map("n", "<c-w>t", "<cmd>12Terminal<cr>", { desc = "open terminal" })
 
 -- neovide specific
 if vim.g.neovide then
