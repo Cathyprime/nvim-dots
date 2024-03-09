@@ -100,8 +100,6 @@ options.prg = {
 
 options.globals = {
     markdown_recommended_style = 0,
-    loaded_netrw = 1,
-    loaded_netrwPlugin = 1,
 }
 
 local function set_option(name, opts)

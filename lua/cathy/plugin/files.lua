@@ -53,4 +53,6 @@ require("mini.deps").later(function()
             reveal_force_cwd = true,
         })
     end)
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
 end)
