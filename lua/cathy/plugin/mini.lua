@@ -50,9 +50,12 @@ later(function()
         }
     })
 
-    require("mini.clue").setup({
+    local clue = require("mini.clue")
+    clue.setup({
         triggers = {
-            { mode = "n", keys = "<leader>z" }
+            { mode = "n", keys = "<leader>z" },
+            { mode = "n", keys = "<c-w>" },
+            { mode = "i", keys = "<c-x>" },
         },
         clues = {
             { mode = "n", keys = "<leader>z<cr>", postkeys = "<leader>z" },
@@ -64,6 +67,14 @@ later(function()
             { mode = "n", keys = "<leader>zu", postkeys = "<leader>z" },
             { mode = "n", keys = "<leader>zs" },
             { mode = "n", keys = "<leader>zC", postkeys = "<leader>z" },
+            { mode = "n", keys = "<c-w><", postkeys = "<c-w>", desc = "decrease width" },
+            { mode = "n", keys = "<c-w>>", postkeys = "<c-w>", desc = "increase width" },
+            { mode = "n", keys = "<c-w>-", postkeys = "<c-w>", desc = "decrease height" },
+            { mode = "n", keys = "<c-w>+", postkeys = "<c-w>", desc = "increase height" },
+            { mode = "n", keys = "<c-w>=", postkeys = "<c-w>", desc = "resize" },
+            clue.gen_clues.builtin_completion(),
         }
     })
+
+    require("mini.misc").setup()
 end)
