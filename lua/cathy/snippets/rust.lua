@@ -35,7 +35,7 @@ return {
         funame = i(1, "name"),
         arg = i(2, "arg"),
         retype = i(3, "RetType"),
-        body = i(0, "unimplemented!;")
+        body = i(0, "unimplemented!();")
     })),
 
     s("p", fmt([[println!({});]], {i(0)})),
@@ -49,7 +49,7 @@ return {
             t"",
             sn(nil, {t"-> ", i(1, "RetType"), t" "})
         }),
-        i(0, "unimplemented!"),
+        i(0, "unimplemented!()"),
     })),
 
     s("var", fmt([[let {mut}{name}: {type} = {value};]], {
