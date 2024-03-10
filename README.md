@@ -47,7 +47,6 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 
 ### code editing support
 + [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
-+ [Wansmer/treesj](https://github.com/Wansmer/treesj)
 + [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 
 ### files

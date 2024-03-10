@@ -6,7 +6,6 @@ add({
     source = "windwp/nvim-autopairs",
     depends = { "hrsh7th/nvim-cmp", }
 })
-add("Wansmer/treesj")
 
 later(function()
     ---@diagnostic disable-next-line
@@ -25,13 +24,6 @@ later(function()
             change_line = "cS",
         }
     })
-    require("treesj").setup({
-        use_default_keymaps = false,
-        max_join_length = 160,
-    })
-    vim.keymap.set("n", "gs", function()
-        require("treesj").toggle()
-    end)
 end)
 
 later(function()

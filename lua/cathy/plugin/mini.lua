@@ -77,4 +77,10 @@ later(function()
     })
 
     require("mini.misc").setup()
+
+    require("mini.splitjoin").setup({
+        mappings = {
+            toggle = "gs",
+        }
+    })
 end)
