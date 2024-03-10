@@ -24,8 +24,25 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 
 ## Plugins
 
+### plugin-manager
++ [echasnovski/mini.deps](https://github.com/echasnovski/mini.deps)
+
 ### Mini
 + [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim)
+
+#### enabled minis:
++ [echasnovski/mini.ai](https://github.com/echasnovski/mini.ai)
++ [echasnovski/mini.align](https://github.com/echasnovski/mini.align)
++ [echasnovski/mini.clue](https://github.com/echasnovski/mini.clue)
++ [echasnovski/mini.comment](https://github.com/echasnovski/mini.comment)
++ [echasnovski/mini.deps](https://github.com/echasnovski/mini.deps)
++ [echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)
++ [echasnovski/mini.misc](https://github.com/echasnovski/mini.misc)
++ [echasnovski/mini.move](https://github.com/echasnovski/mini.move)
++ [echasnovski/mini.operators](https://github.com/echasnovski/mini.operators)
++ [echasnovski/mini.splitjoin](https://github.com/echasnovski/mini.splitjoin)
++ [echasnovski/mini.starter](https://github.com/echasnovski/mini.starter)
++ [echasnovski/mini.trailspace](https://github.com/echasnovski/mini.trailspace)
 
 ### colorscheme
 + [rebelot/kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
@@ -65,7 +82,6 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ### lsp and friends
 + [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 + [nvimtools/none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
-+ [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
 + [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim)
 
 ### coding tool installer
@@ -77,11 +93,9 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 + [milisims/nvim-luaref](https://github.com/milisims/nvim-luaref)
 
-### plugin-manager
-+ [echasnovski/mini.deps](https://github.com/echasnovski/mini.deps)
-
 ### programming-languages-support
 + [olexsmir/gopher.nvim](https://github.com/olexsmir/gopher.nvim)
++ [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
 
 ### compilation
 + [skywind3000/asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
@@ -102,4 +116,4 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [kevinhwang91/nvim-fundo](https://github.com/kevinhwang91/nvim-fundo)
 + [mbbill/undotree](https://github.com/mbbill/undotree)
 + [dohsimpson/vim-macroeditor](https://github.com/dohsimpson/vim-macroeditor)
-+ [hjellydn/url.nvim](https://github.com/jellydn/hurl.nvim)
++ [hjellydn/hurl.nvim](https://github.com/jellydn/hurl.nvim)

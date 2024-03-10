@@ -17,7 +17,7 @@ return {
   ["mason-lspconfig.nvim"] = "55716a879568a498fa236593c8119789054a3b8e",
   ["mason-tool-installer.nvim"] = "1212fb6082b7177dde17ea65e429e027835aeb40",
   ["mason.nvim"] = "3b5068f0fc565f337d67a2d315d935f574848ee7",
-  ["mini.nvim"] = "9f309fb0c57e4092ecb2eeb490bf160efc4ba0cc",
+  ["mini.nvim"] = "d7d079d6f99c95218d6059e0eaf83997990b2e0e",
   ["neo-tree.nvim"] = "230e9383c664061bdf3517c998ed1bf6ed409c59",
   neorg = "086891d396ac9fccd91faf1520f563b6eb9eb942",
   ["netman.nvim"] = "d0ec9d4ca195b2c87bf46ab050130a2c806310c4",
