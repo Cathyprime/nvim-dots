@@ -5,26 +5,22 @@ require("mini.deps").add({
     }
 })
 
-local metals = require("metals")
-local metals_config = metals.bare_config()
+local metals_config = require("metals").bare_config()
+metals_config.init_options.statusBarProvider = "on"
 metals_config.settings = {
     showImplicitArguments = true,
+    excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
 }
-
-if vim.fn.hostname() == "juno" then
-    metals_config.settings["enableSemanticHighlighting"] = false
+metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+metals_config.on_attach = function(client, bufnr)
+    require("metals").setup_dap()
 end
 
-metals_config.init_options.statusBarProvider = "on"
-
-vim.keymap.set("n", "<leader>lmc", function()
-    require("telescope").extensions.metals.commands()
-end)
-
+local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "scala", "sbt", "java" },
+    pattern = { "scala", "sbt" },
     callback = function()
-        metals.initialize_or_attach(metals_config)
+        require("metals").initialize_or_attach(metals_config)
     end,
-    group = vim.api.nvim_create_augroup("nvim-metals", { clear = true }),
+    group = nvim_metals_group,
 })
