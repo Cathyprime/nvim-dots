@@ -1,6 +1,6 @@
 vim.api.nvim_create_user_command(
     "Messages",
-    [[let output = [] | redir => output | silent messages | redir END | cexpr output]],
+    [[let output = [] | redir => output | silent messages | redir END | silent cexpr output | silent cope]],
     {}
 )
 
