@@ -187,8 +187,4 @@ map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = fa
 
 -- terminal
 map("n", "<c-w>t", "<cmd>12Terminal<cr>", { desc = "open terminal" })
-
--- neovide specific
-if vim.g.neovide then
-    map("n", "<c-z>", "<Nop>")
-end
+map("n", "<c-z>", "<Nop>")
