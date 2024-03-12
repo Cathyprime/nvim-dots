@@ -2,7 +2,8 @@ vim.g.mapleader = " "
 vim.g.localleader = "\\"
 
 SWITCHES = {
-    files = false
+    files = false,
+    dap = true,
 }
 
 require("cathy.config.options")
