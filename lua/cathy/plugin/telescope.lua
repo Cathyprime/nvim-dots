@@ -1,12 +1,12 @@
-local telescope_config = require("util.telescope-config")
-local telescope_utils = require("util.telescope-utils")
-
 require("mini.deps").add({
     source = "nvim-telescope/telescope.nvim",
     depends = {
         "nvim-lua/plenary.nvim",
     }
 })
+
+local telescope_config = require("util.telescope-config")
+local telescope_utils = require("util.telescope-utils")
 
 require("mini.deps").add({
     source = "nvim-telescope/telescope-fzf-native.nvim",
