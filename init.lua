@@ -8,6 +8,6 @@ SWITCHES = {
     go = true,
 }
 
+pcall(require, "cathy.minideps")
+pcall(require, "cathy.globals")
 require("cathy.config.options")
-require("cathy.minideps")
-require("cathy.globals")
