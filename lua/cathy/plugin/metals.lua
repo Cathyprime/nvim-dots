@@ -20,6 +20,7 @@ metals_config.on_attach = function(client, bufnr)
     if not SWITCHES.dap then
         require("metals").setup_dap()
     end
+    require("cathy.config.lsp-funcs").on_attach(client, bufnr)
 end
 
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })

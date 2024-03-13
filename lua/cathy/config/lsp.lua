@@ -1,6 +1,6 @@
 local lspconfig = require "lspconfig"
 local icons = require("util.icons").icons
-local telescope = require("telescope.builtin")
+local lsp_funcs = require("cathy.config.lsp-funcs")
 
 vim.cmd([[sign define DiagnosticSignError text=]] .. icons.Error   .. [[ texthl=DiagnosticSignError linehl= numhl= ]])
 vim.cmd([[sign define DiagnosticSignWarn text=]]  .. icons.Warning .. [[ texthl=DiagnosticSignWarn linehl= numhl= ]])
@@ -24,36 +24,6 @@ local border = {
     {"▏", "FloatBorder"},
 }
 
-local function telescope_references()
-    require("telescope.builtin").lsp_references({
-        include_declaration = true,
-        show_line = true,
-        layout_config = {
-            preview_width = 0.45,
-        }
-    })
-end
-
-local function on_attach(client, bufnr)
-    local opts = { buffer = bufnr }
-    vim.keymap.set("n", "<leader>fr", telescope_references,                             opts)
-    vim.keymap.set("n", "gI",         require("telescope.builtin").lsp_implementations, opts)
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,                          opts)
-    vim.keymap.set("n", "<leader>cc", vim.lsp.buf.rename,                               opts)
-    vim.keymap.set("i", "<c-h>",      vim.lsp.buf.signature_help,                       opts)
-    vim.keymap.set("n", "[d",         vim.diagnostic.goto_prev,                         opts)
-    vim.keymap.set("n", "]d",         vim.diagnostic.goto_next,                         opts)
-    vim.keymap.set("n", "gd",         vim.lsp.buf.definition,                           opts)
-    vim.keymap.set("n", "K",          vim.lsp.buf.hover,                                opts)
-    vim.keymap.set("n", "<leader>fs", telescope.lsp_document_symbols,                   opts)
-    vim.keymap.set("n", "<leader>fS", telescope.lsp_workspace_symbols,                  opts)
-
-    vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
-    if client.server_capabilities.definitionProvider then
-        vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
-    end
-end
-
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
@@ -63,7 +33,7 @@ end
 
 local default_setup = function(server)
     lspconfig[server].setup({
-        on_attach = on_attach,
+        on_attach = lsp_funcs.on_attach,
         capabilities = vim.tbl_deep_extend(
             "force",
             {},
@@ -94,7 +64,7 @@ require("mason-lspconfig").setup({
         metals = nil,
         tsserver = function()
             require("lspconfig").tsserver.setup({
-                on_attach = on_attach,
+                on_attach = lsp_funcs.on_attach,
                 settings = {
                     typescript = {
                         format = {
@@ -118,7 +88,7 @@ require("mason-lspconfig").setup({
         end,
         lua_ls = function()
             require("lspconfig").lua_ls.setup({
-                on_attach = on_attach,
+                on_attach = lsp_funcs.on_attach,
                 on_init = function(client)
                     local path
                     if client.workspace_folders and client.workspace_folders[1] then
@@ -158,7 +128,7 @@ require("mason-lspconfig").setup({
         end,
         rust_analyzer = function()
             require("lspconfig").rust_analyzer.setup({
-                on_attach = on_attach,
+                on_attach = lsp_funcs.on_attach,
                 settings = {
                     ["rust-analyzer"] = {
                         cargo = {
