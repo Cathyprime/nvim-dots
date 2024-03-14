@@ -19,7 +19,7 @@ require("mini.deps").now(function()
     require("dressing").setup({
         input = {
             insert_only = false,
-            start_in_insert = false,
+            start_in_insert = true,
         },
         select = {
             telescope = (function()
