@@ -61,6 +61,7 @@ require("mini.deps").later(function()
     map("O", function() dap.step_out() end, "step out")
     map("u", function() dapui.toggle() end, "toggle ui")
     map("s", function() dap.continue() end, "continue")
+    map("z", function() dap.continue() end, "continue")
     map("C", function() dap.run_to_cursor() end, "run to cursor")
 
     vim.fn.sign_define("DapBreakpoint", {text="", texthl="Error", linehl="", numhl=""})
