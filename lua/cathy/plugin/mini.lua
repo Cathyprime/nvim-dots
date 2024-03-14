@@ -56,6 +56,7 @@ later(function()
             { mode = "n", keys = "<leader>z" },
             { mode = "n", keys = "<c-w>" },
             { mode = "i", keys = "<c-x>" },
+            { mode = "n", keys = "z" },
         },
         clues = {
             { mode = "n", keys = "<leader>z<cr>", postkeys = "<leader>z" },
@@ -72,6 +73,8 @@ later(function()
             { mode = "n", keys = "<c-w>-", postkeys = "<c-w>", desc = "decrease height" },
             { mode = "n", keys = "<c-w>+", postkeys = "<c-w>", desc = "increase height" },
             { mode = "n", keys = "<c-w>=", postkeys = "<c-w>", desc = "resize" },
+            { mode = "n", keys = "zl", postkeys = "z", desc = "move right" },
+            { mode = "n", keys = "zh", postkeys = "z", desc = "move left" },
             clue.gen_clues.builtin_completion(),
         }
     })
