@@ -16,12 +16,7 @@ end
 require('mini.deps').setup({ path = { package = path_package } })
 
 require("cathy.plugin.mini")
-
 require("cathy.plugin.luasnip")
-require("cathy.plugin.cmp")
-require("cathy.plugin.lsp")
-require("cathy.plugin.lsp-misc")
-require("cathy.plugin.nonels")
 
 require("cathy.plugin.misc")
 require("cathy.plugin.treesitter")
@@ -36,6 +31,11 @@ require("cathy.plugin.colorscheme")
 require("cathy.plugin.ui")
 require("cathy.plugin.quickfix")
 
+require("cathy.plugin.cmp")
+require("cathy.plugin.java")
+require("cathy.plugin.lsp")
+require("cathy.plugin.lsp-misc")
+require("cathy.plugin.nonels")
 require("cathy.plugin.dap")
 require("cathy.plugin.neorg")
 require("cathy.plugin.gopher")
