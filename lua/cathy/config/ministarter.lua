@@ -14,9 +14,9 @@ local config = {
         { action = "Telescope oldfiles",   name = "Old_files",  section = "Telescope"  },
         { action = "Telescope git_files",  name = "Git_files",  section = "Telescope"  },
         { action = "Telescope find_files", name = "Find_files", section = "Telescope"  },
-        { action = "Neogit",               name = "Neogit",     section = "Git"        },
-        { action = "DepsUpdate",           name = "DepsUpdate", section = "Deps"       },
-        { action = "DepsClean",            name = "DepsClean",  section = "Deps"       },
+        { action = "DepsUpdate",           name = "Update",     section = "Deps"       },
+        { action = "DepsClean",            name = "Clean",      section = "Deps"       },
+        { action = "DepsSnapLoad",         name = "Load",       section = "Deps"       },
         starter.sections.recent_files(5, true, function(path_str)
             path_str = path_str:sub(#cwd + 1)
             local path = {}
