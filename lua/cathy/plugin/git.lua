@@ -1,8 +1,8 @@
 local md = require("mini.deps")
 
-md.add("tpope/vim-fugitive")
 md.add("lewis6991/gitsigns.nvim")
 md.add("sindrets/diffview.nvim")
+md.add("NeogitOrg/neogit")
 
 md.later(function()
     require("gitsigns").setup({
@@ -40,6 +40,7 @@ md.later(function()
             )
         end,
     })
+
     require("diffview").setup({
         keymaps = {
             file_panel = {
@@ -66,6 +67,19 @@ md.later(function()
             },
         }
     })
+
     vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>")
     vim.keymap.set("n", "<leader>gc", "<cmd>DiffviewClose<cr>")
+end)
+
+md.later(function()
+    local neogit = require("neogit")
+    neogit.setup({
+        commit_editor = {
+            kind = "split",
+        },
+        commit_select_view = {
+            kind = "tab",
+        },
+    })
 end)
