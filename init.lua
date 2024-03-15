@@ -4,7 +4,6 @@ vim.g.localleader = "\\"
 SWITCHES = {
     files = false,
     scala = true,
-    java = true,
     dap = true,
     go = true,
 }

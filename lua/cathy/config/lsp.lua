@@ -44,17 +44,7 @@ local default_setup = function(server)
     })
 end
 
-if not SWITCHES.java then
-    require("mason").setup({
-        registries = {
-          'github:nvim-java/mason-registry',
-          'github:mason-org/mason-registry',
-        },
-    })
-    require("java").setup()
-else
-    require("mason").setup()
-end
+require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
         "bashls",
