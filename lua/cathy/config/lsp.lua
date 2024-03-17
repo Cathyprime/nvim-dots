@@ -51,7 +51,7 @@ require("mason-lspconfig").setup({
         "cssls",
         "emmet_ls",
         "gopls",
-        "java_language_server",
+        "jdtls",
         "jsonls",
         "lua_ls",
         "pylsp",
@@ -62,6 +62,9 @@ require("mason-lspconfig").setup({
     },
     handlers = {
         default_setup,
+        jdtls = function()
+            return true
+        end,
         tsserver = function()
             require("lspconfig").tsserver.setup({
                 on_attach = lsp_funcs.on_attach,
