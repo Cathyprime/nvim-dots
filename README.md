@@ -77,7 +77,7 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ### git
 + [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 + [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim)
-+ [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
++ [NeogitOrg/neogit](https://github.com/NeogitOrg/neogit)
 
 ### lsp and friends
 + [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
@@ -96,6 +96,7 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 ### programming-languages-support
 + [olexsmir/gopher.nvim](https://github.com/olexsmir/gopher.nvim)
 + [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
++ [mfussenegger/nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
 
 ### compilation
 + [skywind3000/asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
