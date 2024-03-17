@@ -16,6 +16,7 @@ return {
         vim.keymap.set("n", "<leader>fr", telescope_references,            opts)
         vim.keymap.set("n", "gI",         telescope.lsp_implementations,   opts)
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,         opts)
+        vim.keymap.set("n", "<leader>cr", vim.lsp.codelens.run,            opts)
         vim.keymap.set("n", "<leader>cc", vim.lsp.buf.rename,              opts)
         vim.keymap.set("i", "<c-h>",      vim.lsp.buf.signature_help,      opts)
         vim.keymap.set("n", "[d",         vim.diagnostic.goto_prev,        opts)
