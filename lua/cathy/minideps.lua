@@ -36,8 +36,10 @@ require("cathy.plugin.quickfix")
 require("cathy.plugin.neorg")
 
 
-if SWITCHES.files then
+if SWITCHES.files == "neotree" then
     require("cathy.plugin.files")
+elseif SWITCHES.files == "oil" then
+    require("cathy.plugin.oil")
 end
 if SWITCHES.dap then
     require("cathy.plugin.dap")

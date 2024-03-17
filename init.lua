@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 vim.g.localleader = "\\"
 
 SWITCHES = {
-    files = false,
+    files = "oil",
     scala = true,
     java  = true,
     dap   = true,
