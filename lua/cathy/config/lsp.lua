@@ -62,7 +62,6 @@ require("mason-lspconfig").setup({
     },
     handlers = {
         default_setup,
-        metals = nil,
         tsserver = function()
             require("lspconfig").tsserver.setup({
                 on_attach = lsp_funcs.on_attach,
