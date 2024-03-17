@@ -1,7 +1,3 @@
-if not SWITCHES.dap then
-    return false
-end
-
 ---@diagnostic disable: undefined-field
 require("mini.deps").add("mfussenegger/nvim-dap")
 require("mini.deps").add("rcarriga/nvim-dap-ui")

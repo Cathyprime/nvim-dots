@@ -4,8 +4,8 @@ vim.g.localleader = "\\"
 SWITCHES = {
     files = false,
     scala = true,
-    dap = true,
-    go = true,
+    dap   = true,
+    go    = true,
 }
 
 pcall(require, "cathy.minideps")

@@ -1,7 +1,3 @@
-if not SWITCHES.go then
-    return
-end
-
 local setup = {
     go = "go",
     gomodifytags = "gomodifytags",

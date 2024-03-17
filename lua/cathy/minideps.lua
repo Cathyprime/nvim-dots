@@ -21,7 +21,6 @@ require("cathy.plugin.misc")
 require("cathy.plugin.treesitter")
 require("cathy.plugin.editing")
 require("cathy.plugin.compile")
-require("cathy.plugin.files")
 require("cathy.plugin.git")
 
 require("cathy.plugin.luasnip")
@@ -29,13 +28,23 @@ require("cathy.plugin.cmp")
 require("cathy.plugin.lsp")
 require("cathy.plugin.lsp-misc")
 require("cathy.plugin.nonels")
-require("cathy.plugin.dap")
 
 require("cathy.plugin.telescope")
 require("cathy.plugin.colorscheme")
 require("cathy.plugin.ui")
 require("cathy.plugin.quickfix")
-
 require("cathy.plugin.neorg")
-require("cathy.plugin.gopher")
-require("cathy.plugin.metals")
+
+
+if SWITCHES.files then
+    require("cathy.plugin.files")
+end
+if SWITCHES.dap then
+    require("cathy.plugin.dap")
+end
+if SWITCHES.go then
+    require("cathy.plugin.gopher")
+end
+if SWITCHES.scala then
+    require("cathy.plugin.metals")
+end

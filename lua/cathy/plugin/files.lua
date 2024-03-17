@@ -1,8 +1,3 @@
-if not SWITCHES.files then
-    print("no files")
-    return false
-end
-
 local icons = require("util.icons").icons
 
 require("mini.deps").add({

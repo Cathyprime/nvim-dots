@@ -1,7 +1,3 @@
-if not SWITCHES.scala then
-    return
-end
-
 require("mini.deps").add({
     source = "scalameta/nvim-metals",
     depends = {
