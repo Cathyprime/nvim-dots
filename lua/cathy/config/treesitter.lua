@@ -1,3 +1,7 @@
+require("treesitter-context").setup({
+    max_lines = 3
+})
+
 ---@diagnostic disable-next-line
 require("nvim-treesitter.configs").setup({
     auto_install = true,
