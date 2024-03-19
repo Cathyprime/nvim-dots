@@ -82,4 +82,5 @@ md.later(function()
             kind = "tab",
         },
     })
+    vim.keymap.set("n", "<leader>gg", function() neogit.open({ kind = "split" }) end)
 end)
