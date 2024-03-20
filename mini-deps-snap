@@ -5,6 +5,7 @@ return {
   ["cmp-cmdline"] = "8ee981b4a91f536f52add291594e89fb6645e451",
   ["cmp-nvim-lsp"] = "5af77f54de1b16c34b23cba810150689a3a90312",
   ["cmp-nvim-lsp-signature-help"] = "3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1",
+  ["dial.nvim"] = "27eb570085db2ef44bff4f620d3806039184651c",
   ["diffview.nvim"] = "3dc498c9777fe79156f3d32dddd483b8b3dbd95f",
   ["dressing.nvim"] = "18e5beb3845f085b6a33c24112b37988f3f93c06",
   ["fidget.nvim"] = "ebb8e44d6c37337e3b4f9bce31842573fa96bf8d",
