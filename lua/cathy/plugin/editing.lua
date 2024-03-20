@@ -50,6 +50,7 @@ later(function()
             augend.integer.alias.binary,
             augend.integer.alias.decimal,
             augend.integer.alias.hex,
+            augend.constant.alias.bool,
             augend.case.new{
                 types = {
                     "camelCase",
@@ -62,8 +63,6 @@ later(function()
             augend.date.alias["%d/%m/%Y"],
             augend.constant.new({ elements = { "&&", "||" }, word = false, cyclic = true }),
             augend.constant.new({ elements = { "and", "or" } }),
-            augend.constant.new({ elements = { "true", "false" } }),
-            augend.constant.new({ elements = { "True", "False" } }),
         }
     })
 
