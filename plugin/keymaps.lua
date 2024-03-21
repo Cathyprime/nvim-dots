@@ -175,10 +175,6 @@ map("c", "<c-a>", "<home>", { silent = false })
 -- minibuffer
 map("n", "<a-;>", "q:")
 
--- insert
-map("i", "<c-a>", "<home>")
-map("i", "<c-e>", "<end>")
-
 -- quick search and replace keymaps
 map("n", "<leader>s", ":s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
 map("n", "<leader>S", ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
