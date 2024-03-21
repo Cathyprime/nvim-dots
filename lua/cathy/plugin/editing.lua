@@ -2,11 +2,6 @@ local add   = require("mini.deps").add
 local later = require("mini.deps").later
 
 add("kylechui/nvim-surround")
-add({
-    source = "windwp/nvim-autopairs",
-    depends = { "hrsh7th/nvim-cmp", }
-})
-add("monaqa/dial.nvim")
 
 later(function()
     ---@diagnostic disable-next-line
@@ -27,6 +22,10 @@ later(function()
     })
 end)
 
+add({
+    source = "windwp/nvim-autopairs",
+    depends = { "hrsh7th/nvim-cmp", }
+})
 later(function()
     require("nvim-autopairs").setup()
     require("nvim-autopairs").remove_rule('"')
@@ -42,8 +41,8 @@ later(function()
     require("cathy.config.pair-customrules")
 end)
 
+add("monaqa/dial.nvim")
 later(function()
-
     local augend = require("dial.augend")
     require("dial.config").augends:register_group({
         default = {
@@ -74,4 +73,15 @@ later(function()
     vim.keymap.set("v", "<C-x>",  function() require("dial.map").manipulate("decrement", "visual") end)
     vim.keymap.set("v", "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end)
     vim.keymap.set("v", "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end)
+end)
+
+add("chrisgrieser/nvim-spider")
+later(function()
+    local function map(key)
+        vim.keymap.set({ "n", "o", "x" }, key, function() require("spider").motion(key) end)
+    end
+    map("w")
+    map("e")
+    map("b")
+    map("ge")
 end)
