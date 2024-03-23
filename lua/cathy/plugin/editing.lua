@@ -74,3 +74,18 @@ later(function()
     vim.keymap.set("v", "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end)
     vim.keymap.set("v", "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end)
 end)
+
+add("chrisgrieser/nvim-spider")
+later(function()
+    local function nop(key)
+        vim.keymap.set({ "n", "o", "x" }, key, "<nop>")
+    end
+    local function map(key)
+        vim.keymap.set({ "n", "o", "x" }, "g"..key, key, { noremap = true })
+        vim.keymap.set({ "n", "o", "x" }, key, function() require("spider").motion(key) end)
+    end
+
+    nop("gw")
+    map("w")
+    map("b")
+end)
