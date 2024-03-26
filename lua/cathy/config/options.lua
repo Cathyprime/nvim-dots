@@ -91,7 +91,7 @@ options.options = {
     pumheight = 4,
     wrap = true,
     indentkeys = {
-        remove = ":"
+        remove = ":,<>>"
     }
 }
 
