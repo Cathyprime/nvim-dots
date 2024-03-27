@@ -74,6 +74,7 @@ vim.api.nvim_create_user_command(
             return
         end
         vim.api.nvim_set_option_value("filetype", ft, { buf = 0 })
+        vim.cmd("LspStart")
     end,
     {
         bang = true,
