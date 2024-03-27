@@ -26,6 +26,7 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 
 ### plugin-manager
 + [echasnovski/mini.deps](https://github.com/echasnovski/mini.deps)
++ [nvim-neorocks/rocks.nvim](https://github.com/nvim-neorocks/rocks.nvim)
 
 ### Mini
 + [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim)
