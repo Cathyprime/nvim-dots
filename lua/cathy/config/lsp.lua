@@ -118,7 +118,8 @@ require("mason-lspconfig").setup({
                                                 "$HOME/.config/nvim/lua/",
                                             },
                                             vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n"),
-                                            vim.split(vim.fn.glob(vim.g.rocks_nvim.rocks_path .. "/share/lua/5.1/**"), "\n")
+                                            vim.split(vim.fn.glob(vim.g.rocks_nvim.rocks_path .. "/share/lua/5.1/**"), "\n"),
+                                            vim.split(vim.fn.glob(vim.g.rocks_nvim.rocks_path .. "lib/luarocks/rocks-5.1/**"), "\n")
                                         )
                                     end)(),
                                 },
