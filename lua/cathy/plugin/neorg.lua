@@ -1,8 +1,3 @@
-require("mini.deps").add({
-    source = "nvim-neorg/neorg",
-    depends = { "nvim-lua/plenary.nvim" },
-})
-
 require("mini.deps").later(function()
     require("neorg").setup({
         load = {
