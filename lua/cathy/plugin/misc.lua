@@ -81,10 +81,10 @@ later(function()
             },
         },
     })
-    vim.keymap.set("n", "<c-c>H", "<cmd>HurlRunner<cr>")
-    vim.keymap.set("n", "<c-c>h", "<cmd>HurlRunnerAt<cr>")
+    vim.keymap.set("n", "ZH", "<cmd>HurlRunner<cr>")
+    vim.keymap.set("n", "Zh", "<cmd>HurlRunnerAt<cr>")
     vim.keymap.set("n", "<leader>th", "<cmd>HurlToggleMode<cr>")
-    vim.keymap.set("v", "<c-c>h", ":HurlRunner<cr>")
+    vim.keymap.set("v", "Zh", ":HurlRunner<cr>")
 end)
 
 add("folke/todo-comments.nvim")
