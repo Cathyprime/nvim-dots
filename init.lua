@@ -23,16 +23,22 @@ if vim.fn.executable("luarocks") == 1 then
 
     vim.opt.runtimepath:append(vim.fs.joinpath(rocks_config.rocks_path, "lib", "luarocks", "rocks-5.1", "rocks.nvim", "*"))
 
-    if not vim.fn.exists("Rocks") then
+    if not vim.loop.fs_stat(vim.g.rocks_nvim.rocks_path) then
         vim.system({
-            "luarocks",
-            "--lua-version=5.1",
-            "--tree",
-            vim.g.rocks_nvim.rocks_path,
-            "--server='https://nvim-neorocks.github.io/rocks-binaries/'",
-            "install",
-            "rocks.nvim"
-        })
+                "luarocks",
+                "--lua-version=5.1",
+                "--tree",
+                vim.g.rocks_nvim.rocks_path,
+                "--server='https://nvim-neorocks.github.io/rocks-binaries/'",
+                "install",
+                "rocks.nvim"
+            },
+            nil,
+            vim.schedule_wrap(function()
+                require("rocks.commands").create_commands()
+                vim.cmd("Rocks sync")
+            end)
+        )
     end
 end
 
