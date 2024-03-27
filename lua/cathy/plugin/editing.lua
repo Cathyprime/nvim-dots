@@ -64,6 +64,11 @@ later(function()
             augend.constant.new({ elements = { "and", "or" } }),
         }
     })
+	require("dial.config").augends:on_filetype({
+        python = {
+            augend.constant.new({ elements = { "True", "False" } }),
+        }
+    })
 
     vim.keymap.set("n", "<C-a>",  function() require("dial.map").manipulate("increment", "normal") end)
     vim.keymap.set("n", "<C-x>",  function() require("dial.map").manipulate("decrement", "normal") end)
