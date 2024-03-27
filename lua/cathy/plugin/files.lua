@@ -3,7 +3,7 @@ local icons = require("util.icons").icons
 require("mini.deps").add({
     source = "nvim-neo-tree/neo-tree.nvim",
     depends = {
-        "nvim-lua/plenary.nvim",
+        -- "nvim-lua/plenary.nvim", installed by lua rocks
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
         "miversen33/netman.nvim",

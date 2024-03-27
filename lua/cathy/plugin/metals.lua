@@ -1,10 +1,3 @@
-require("mini.deps").add({
-    source = "scalameta/nvim-metals",
-    depends = {
-        "nvim-lua/plenary.nvim",
-    }
-})
-
 local metals_config = require("metals").bare_config()
 metals_config.init_options.statusBarProvider = "on"
 metals_config.settings = {

@@ -1,7 +1,7 @@
 require("mini.deps").add({
     source = "nvim-telescope/telescope.nvim",
     depends = {
-        "nvim-lua/plenary.nvim",
+        -- "nvim-lua/plenary.nvim", installed by lua rocks
         "nvim-tree/nvim-web-devicons",
     }
 })

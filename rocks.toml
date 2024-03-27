@@ -11,6 +11,7 @@
 # List of Neovim plugins to install alongside their versions.
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
-"rocks.nvim" = "2.19.0" # rocks.nvim can also manage itself :D
+"rocks.nvim" = "2.19.1"
 neorg = "8.2.0"
-nvim-nio = "1.8.1"
+"plenary.nvim" = "scm"
+nvim-metals = "0.8.x"
