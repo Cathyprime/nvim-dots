@@ -13,3 +13,4 @@
 [plugins]
 "rocks.nvim" = "2.19.0" # rocks.nvim can also manage itself :D
 neorg = "8.2.0"
+nvim-nio = "1.8.1"

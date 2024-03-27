@@ -3,7 +3,6 @@ require("mini.deps").add({
     source = "rcarriga/nvim-dap-ui",
     depends = {
         "mfussenegger/nvim-dap",
-        "nvim-neotest/nvim-nio",
     }
 })
 
