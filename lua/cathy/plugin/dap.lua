@@ -65,9 +65,4 @@ require("mini.deps").later(function()
     map("C", function() dap.run_to_cursor() end, "run to cursor")
 
     vim.fn.sign_define("DapBreakpoint", {text="", texthl="Error", linehl="", numhl=""})
-
-    local ok, go = pcall(require, "gopher.dap")
-    if ok then
-        go.setup()
-    end
 end)
