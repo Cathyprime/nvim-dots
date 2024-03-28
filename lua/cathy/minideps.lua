@@ -47,9 +47,6 @@ end
 if SWITCHES.go then
     require("cathy.plugin.gopher")
 end
-if SWITCHES.scala then
-    require("cathy.plugin.metals")
-end
 if SWITCHES.java then
     require("cathy.plugin.java")
 end
