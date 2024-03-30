@@ -13,8 +13,6 @@ local telescope_config = {
     border = true
 }
 
-require("mini.deps").add("stevearc/dressing.nvim")
-
 require("mini.deps").now(function()
     require("dressing").setup({
         input = {

@@ -1,5 +1,3 @@
-require("mini.deps").add("j-hui/fidget.nvim")
-
 require("mini.deps").later(function()
     require("fidget").setup({
         progress = {
