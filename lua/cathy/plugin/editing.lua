@@ -1,8 +1,6 @@
 local add   = require("mini.deps").add
 local later = require("mini.deps").later
 
-add("kylechui/nvim-surround")
-
 later(function()
     ---@diagnostic disable-next-line
     require("nvim-surround").setup({
@@ -22,10 +20,6 @@ later(function()
     })
 end)
 
-add({
-    source = "windwp/nvim-autopairs",
-    depends = { "hrsh7th/nvim-cmp", }
-})
 later(function()
     require("nvim-autopairs").setup()
     require("nvim-autopairs").remove_rule('"')

@@ -12,8 +12,10 @@
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
 "rocks.nvim" = "2.19.1"
-neorg = "8.2.0"
+neorg = "8.2.1"
 "plenary.nvim" = "scm"
 nvim-metals = "0.8.x"
 "telescope.nvim" = "scm"
 nvim-web-devicons = "0.99"
+nvim-surround = "2.1.5"
+nvim-autopairs = "scm"
