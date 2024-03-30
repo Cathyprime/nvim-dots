@@ -2,7 +2,6 @@ local md = require("mini.deps")
 
 md.add("lewis6991/gitsigns.nvim")
 md.add("sindrets/diffview.nvim")
-md.add("NeogitOrg/neogit")
 
 md.later(function()
     require("gitsigns").setup({
