@@ -30,4 +30,5 @@ require("mini.deps").later(function()
             }
         }
     })
+    vim.keymap.set("n", "<leader>n", "<cmd>Neorg<cr>")
 end)
