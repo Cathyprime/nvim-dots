@@ -15,3 +15,5 @@
 neorg = "8.2.0"
 "plenary.nvim" = "scm"
 nvim-metals = "0.8.x"
+"telescope.nvim" = "scm"
+nvim-web-devicons = "0.99"

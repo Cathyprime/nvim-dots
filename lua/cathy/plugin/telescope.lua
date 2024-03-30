@@ -1,11 +1,3 @@
-require("mini.deps").add({
-    source = "nvim-telescope/telescope.nvim",
-    depends = {
-        -- "nvim-lua/plenary.nvim", installed by lua rocks
-        "nvim-tree/nvim-web-devicons",
-    }
-})
-
 local telescope_config = require("util.telescope-config")
 local telescope_utils = require("util.telescope-utils")
 

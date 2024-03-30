@@ -5,7 +5,6 @@ require("mini.deps").add({
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         "j-hui/fidget.nvim",
-        "nvim-telescope/telescope.nvim",
         "hrsh7th/nvim-cmp",
     }
 })
