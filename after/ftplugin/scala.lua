@@ -19,4 +19,12 @@ metals_config.on_attach = function(client, bufnr)
     require("cathy.config.lsp-funcs").on_attach(client, bufnr)
 end
 
+vim.api.nvim_create_autocmd("BufEnter", {
+    once = true,
+    callback = function()
+        vim.opt.indentkeys:remove("<>>")
+        vim.opt.indentkeys:remove("=case")
+    end
+})
+
 require("metals").initialize_or_attach(metals_config)
