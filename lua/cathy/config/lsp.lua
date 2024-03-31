@@ -1,5 +1,5 @@
-local lspconfig = require "lspconfig"
-local icons = require("util.icons").icons
+local lspconfig = require("lspconfig")
+local icons     = require("util.icons").icons
 local lsp_funcs = require("cathy.config.lsp-funcs")
 
 vim.cmd([[sign define DiagnosticSignError text=]] .. icons.Error   .. [[ texthl=DiagnosticSignError linehl= numhl= ]])
@@ -45,6 +45,10 @@ local default_setup = function(server)
     })
 end
 
+local function disabled()
+    return true
+end
+
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
@@ -63,9 +67,8 @@ require("mason-lspconfig").setup({
     },
     handlers = {
         default_setup,
-        jdtls = function()
-            return true
-        end,
+        jdtls = disabled,
+        rust_analyzer = disabled,
         tsserver = function()
             require("lspconfig").tsserver.setup({
                 on_attach = lsp_funcs.on_attach,
@@ -117,8 +120,8 @@ require("mason-lspconfig").setup({
                                                 "${3rd}/busted/library",
                                                 "$HOME/.config/nvim/lua/",
                                             },
-                                            vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n"),
-                                            vim.split(vim.fn.glob(vim.g.rocks_nvim.rocks_path .. "/share/lua/5.1/**"), "\n")
+                                            vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n")
+                                            -- vim.split(vim.fn.glob(vim.g.rocks_nvim.rocks_path .. "/share/lua/5.1/**"), "\n")
                                         )
                                     end)(),
                                 },
@@ -131,33 +134,6 @@ require("mason-lspconfig").setup({
                 end
             })
         end,
-        rust_analyzer = function()
-            require("lspconfig").rust_analyzer.setup({
-                on_attach = lsp_funcs.on_attach,
-                settings = {
-                    ["rust-analyzer"] = {
-                        cargo = {
-                            allFeatures = true,
-                            loadOutDirsFromCheck = true,
-                            runBuildScripts = true,
-                        },
-                        checkOnSave = {
-                            allFeatures = true,
-                            command = "clippy",
-                            extraArgs = { "--no-deps" },
-                        },
-                        procMacro = {
-                            enable = true,
-                            ignored = {
-                                ["async-trait"] = { "async_trait" },
-                                ["napi-derive"] = { "napi" },
-                                ["async-recursion"] = { "async_recursion" },
-                            },
-                        },
-                    },
-                },
-            })
-        end
     }
 })
 
