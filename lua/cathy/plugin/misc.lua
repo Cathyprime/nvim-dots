@@ -91,3 +91,22 @@ add("folke/todo-comments.nvim")
 later(function()
     require("todo-comments").setup()
 end)
+
+later(function()
+    require("zen-mode").setup({
+        plugins = {
+            options = {
+                enabled = true,
+                ruler = false,
+                showcmd = false,
+                laststatus = 0,
+            },
+            twilight = { enabled = true },
+            gitsigns = { enabled = true },
+            wezterm = {
+                enabled = false,
+                font = "+4",
+            },
+        },
+    })
+end)
