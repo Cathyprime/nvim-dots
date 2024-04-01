@@ -104,8 +104,8 @@ later(function()
             twilight = { enabled = true },
             gitsigns = { enabled = true },
             wezterm = {
-                enabled = false,
-                font = "+4",
+                enabled = true,
+                font = 4,
             },
         },
     })
