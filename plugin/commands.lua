@@ -74,7 +74,11 @@ vim.api.nvim_create_user_command(
             return
         end
         vim.api.nvim_set_option_value("filetype", ft, { buf = 0 })
-        vim.cmd("LspStart")
+        if ft == "sh" then
+            vim.keymap.set("n", "<cr>", "mm<cmd>.!sh<cr>u`m", { buffer = true })
+        else
+            vim.cmd("LspStart")
+        end
     end,
     {
         bang = true,
