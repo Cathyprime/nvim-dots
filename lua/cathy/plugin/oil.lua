@@ -13,6 +13,10 @@ require("mini.deps").later(function()
             "mtime",
             "icon",
         },
+        keymaps = {
+            ["gx"] = "",
+            ["<a-cr>"] = "actions.open_external",
+        },
     })
     vim.keymap.set("n", "-", "<cmd>Oil<cr>")
 end)
