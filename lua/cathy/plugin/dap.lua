@@ -1,11 +1,3 @@
----@diagnostic disable: undefined-field
-require("mini.deps").add({
-    source = "rcarriga/nvim-dap-ui",
-    depends = {
-        "mfussenegger/nvim-dap",
-    }
-})
-
 local dap_ft = {
     "go",
 }
