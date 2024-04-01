@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig")
 local icons     = require("util.icons").icons
 local lsp_funcs = require("cathy.config.lsp-funcs")
 
@@ -32,19 +31,6 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-local default_setup = function(server)
-    lspconfig[server].setup({
-        on_attach = lsp_funcs.on_attach,
-        capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            require("cmp_nvim_lsp").default_capabilities(),
-            lspconfig[server].capabilities or {}
-        )
-    })
-end
-
 local function disabled()
     return true
 end
@@ -66,7 +52,7 @@ require("mason-lspconfig").setup({
         "yamlls",
     },
     handlers = {
-        default_setup,
+        lsp_funcs.default_setup,
         jdtls = disabled,
         rust_analyzer = disabled,
         tsserver = function()
