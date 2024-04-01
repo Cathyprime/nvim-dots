@@ -9,16 +9,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
 })
 
-local ok, go = pcall(require, "gopher")
+local ok, go = pcall(require, "go")
 if ok then
     go.setup({
-        go = "go",
-        gomodifytags = "gomodifytags",
-        gotests = "gotests",
-        impl = "impl",
-        iferr = "iferr",
+        dap_debug = true
     })
-
-    require("gopher.dap").setup()
+    local o, d = pcall(require, "dap-go")
+    if o then
+        d.setup()
+    end
 end
-
