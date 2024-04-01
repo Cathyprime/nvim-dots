@@ -48,7 +48,13 @@ SWITCHES = {
     java  = true,
     dap   = true,
     go    = true,
+
 }
+
+if SWITCHES.files ~= nil then
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+end
 
 pcall(require, "cathy.minideps")
 pcall(require, "cathy.globals")

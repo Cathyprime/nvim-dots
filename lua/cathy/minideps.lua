@@ -35,7 +35,6 @@ require("cathy.plugin.ui")
 require("cathy.plugin.quickfix")
 require("cathy.plugin.neorg")
 
-
 if SWITCHES.files == "neotree" then
     require("cathy.plugin.files")
 elseif SWITCHES.files == "oil" then

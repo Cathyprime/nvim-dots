@@ -15,6 +15,4 @@ require("mini.deps").later(function()
         },
     })
     vim.keymap.set("n", "-", "<cmd>Oil<cr>")
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
 end)
