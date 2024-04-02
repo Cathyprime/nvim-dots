@@ -110,3 +110,7 @@ later(function()
         },
     })
 end)
+
+later(function()
+    require("2048").setup()
+end)
