@@ -121,6 +121,8 @@ later(function()
     vim.api.nvim_set_hl(0, "MiniDiffSignDelete", {
         link = "diffDeleted",
     })
-    vim.keymap.set("n", "<leader>tg", MiniDiff.toggle_overlay)
+    vim.keymap.set("n", "<leader>tg", function()
+        pcall(MiniDiff.toggle_overlay)
+    end)
 
 end)
