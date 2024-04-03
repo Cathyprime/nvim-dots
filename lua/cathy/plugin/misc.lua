@@ -2,12 +2,14 @@ local add   = require("mini.deps").add
 local later = require("mini.deps").later
 
 add("mbbill/undotree")
-vim.g.undotree_WindowLayout = 2
-vim.g.undotree_ShortIndicators = 0
-vim.g.undotree_SplitWidth = 40
-vim.g.undotree_SetFocusWhenToggle = 1
-vim.g.undotree_DiffCommand = [[diff]]
-vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
+later(function()
+    vim.g.undotree_WindowLayout = 2
+    vim.g.undotree_ShortIndicators = 0
+    vim.g.undotree_SplitWidth = 40
+    vim.g.undotree_SetFocusWhenToggle = 1
+    vim.g.undotree_DiffCommand = [[diff]]
+    vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
+end)
 
 add("dohsimpson/vim-macroeditor")
 
