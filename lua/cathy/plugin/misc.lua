@@ -92,6 +92,13 @@ later(function()
     require("todo-comments").setup()
 end)
 
+add({
+    source = "folke/zen-mode.nvim",
+    depends = {
+        "folke/twilight.nvim",
+    },
+})
+
 later(function()
     require("zen-mode").setup({
         plugins = {
