@@ -1,8 +1,8 @@
 require("mini.deps").add({
     source = "stevearc/oil.nvim",
-    depends = {
-        "nvim-tree/nvim-web-devicons"
-    }
+    -- depends = {
+    --     "nvim-tree/nvim-web-devicons", -- installed by lua rocks
+    -- }
 })
 require("mini.deps").later(function()
     require("oil").setup({

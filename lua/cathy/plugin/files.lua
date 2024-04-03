@@ -4,8 +4,8 @@ require("mini.deps").add({
     source = "nvim-neo-tree/neo-tree.nvim",
     depends = {
         -- "nvim-lua/plenary.nvim", installed by lua rocks
-        "nvim-tree/nvim-web-devicons",
-        "MunifTanjim/nui.nvim",
+        -- "nvim-tree/nvim-web-devicons", installed by lua rocks
+        -- "MunifTanjim/nui.nvim", installed by lua rocks
         "miversen33/netman.nvim",
     },
 })

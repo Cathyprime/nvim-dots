@@ -62,7 +62,7 @@ end)
 
 add({
     source = "jellydn/hurl.nvim",
-    depends = {"MunifTanjim/nui.nvim"},
+    -- depends = {"MunifTanjim/nui.nvim"}, installed by lua rocks
 })
 
 later(function()
