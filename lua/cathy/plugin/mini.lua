@@ -102,4 +102,24 @@ later(function()
         search_method = "cover_or_next"
     })
 
+    require("mini.diff").setup({
+        view = {
+            style = "sign",
+            signs = {
+                add    = "┃",
+                change = "┃",
+                delete = "┃",
+            },
+        },
+    })
+    vim.api.nvim_set_hl(0, "MiniDiffSignAdd", {
+        link = "diffAdded",
+    })
+    vim.api.nvim_set_hl(0, "MiniDiffSignChange", {
+        link = "diffChanged",
+    })
+    vim.api.nvim_set_hl(0, "MiniDiffSignDelete", {
+        link = "diffDeleted",
+    })
+
 end)
