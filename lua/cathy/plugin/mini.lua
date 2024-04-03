@@ -11,6 +11,16 @@ later(function()
     require("mini.indentscope").setup({
         symbol = "",
     })
+    vim.api.nvim_create_autocmd("BufEnter", {
+        group = vim.api.nvim_create_augroup("CathyIndentScope", { clear = true }),
+        callback = function()
+            if vim.opt.shiftwidth:get() == 2 and vim.opt.tabstop:get() == 2 then
+                vim.b.miniindentscope_config = {
+                    symbol = "│"
+                }
+            end
+        end
+    })
 
     require("mini.align").setup({
         mappings = {
