@@ -82,5 +82,5 @@ md.later(function()
             kind = "tab",
         },
     })
-    vim.keymap.set("n", "<leader>gg", function() neogit.open({ kind = "tab" }) end)
+    vim.keymap.set("n", "ZG", function() neogit.open({ kind = "tab" }) end)
 end)
