@@ -1,6 +1,7 @@
 local md = require("mini.deps")
 
 md.add("sindrets/diffview.nvim")
+md.add("FabijanZulj/blame.nvim")
 
 md.later(function()
     require("diffview").setup()
@@ -20,4 +21,8 @@ md.later(function()
         },
     })
     vim.keymap.set("n", "ZG", function() neogit.open({ kind = "tab" }) end)
+end)
+
+md.later(function()
+    vim.keymap.set("n", "<leader>gb", "<cmd>ToggleBlame<cr>")
 end)
