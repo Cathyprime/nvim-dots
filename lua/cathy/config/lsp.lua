@@ -35,6 +35,7 @@ local function disabled()
     return true
 end
 
+vim.lsp.log.set_level(vim.log.levels.ERROR)
 require("mini.deps").add("folke/neodev.nvim")
 require("neodev").setup()
 
