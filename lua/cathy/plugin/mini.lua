@@ -1,4 +1,4 @@
-local now = require("mini.deps").now
+local now   = require("mini.deps").now
 local later = require("mini.deps").later
 
 now(function()

@@ -40,12 +40,3 @@ if SWITCHES.files == "neotree" then
 elseif SWITCHES.files == "oil" then
     require("cathy.plugin.oil")
 end
-if SWITCHES.dap then
-    require("cathy.plugin.dap")
-end
-if SWITCHES.go then
-    require("cathy.plugin.gopher")
-end
-if SWITCHES.java then
-    require("cathy.plugin.java")
-end

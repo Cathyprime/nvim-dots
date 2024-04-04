@@ -44,10 +44,6 @@ end
 
 SWITCHES = {
     files = "oil",
-    scala = true,
-    java  = true,
-    dap   = true,
-    go    = true,
 
 }
 
