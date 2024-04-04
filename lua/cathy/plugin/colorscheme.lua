@@ -27,6 +27,8 @@ require("mini.deps").now(function()
                 ["@markup.italic.markdown_inline"] = { link = "Exception" }, -- *italic*
                 ["@markup.raw.markdown_inline"] = { link = "String" }, -- `code`
                 ["@markup.list.markdown"] = { link = "Function" }, -- + list
+                ["@field"] = { link = "@variable.member" },
+                ["@include"] = { link = "@keyword.import" },
             }
         end,
     })

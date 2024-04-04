@@ -52,7 +52,6 @@ later(function()
             right = "<m-l>",
             down = "<m-j>",
             up = "<m-k>",
-
             line_left = "",
             line_right = "",
             line_down = "<m-j>",
