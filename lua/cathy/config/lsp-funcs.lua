@@ -45,5 +45,69 @@ return {
                 lspconfig[server].capabilities or {}
             )
         })
-    end
+    end,
+    lua_ls = function()
+        require("lspconfig").lua_ls.setup({
+            on_attach = attach,
+            on_init = function(client)
+                local path
+                if client.workspace_folders and client.workspace_folders[1] then
+                    path = client.workspace_folders[1].name
+                else
+                    path = vim.loop.cwd()
+                end
+                if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+                    client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
+                        Lua = {
+                            runtime = {
+                                version = "LuaJIT",
+                            },
+                            workspace = {
+                                checkThirdParty = false,
+                                library = (function()
+                                    return vim.tbl_deep_extend(
+                                        "keep",
+                                        {
+                                            vim.env.VIMRUNTIME,
+                                            "${3rd}/luv/library",
+                                            "${3rd}/busted/library",
+                                            "$HOME/.config/nvim/lua/",
+                                        },
+                                        vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n")
+                                    )
+                                end)(),
+                            },
+                        },
+                    })
+
+                    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+                end
+                return true
+            end
+        })
+    end,
+    tsserver = function()
+        require("lspconfig").tsserver.setup({
+            on_attach = attach,
+            settings = {
+                typescript = {
+                    format = {
+                        indentSize = vim.o.shiftwidth,
+                        convertTabsToSpaces = vim.o.expandtab,
+                        tabSize = vim.o.tabstop,
+                    },
+                },
+                javascript = {
+                    format = {
+                        indentSize = vim.o.shiftwidth,
+                        convertTabsToSpaces = vim.o.expandtab,
+                        tabSize = vim.o.tabstop,
+                    },
+                },
+                completions = {
+                    completeFunctionCalls = true,
+                },
+            }
+        })
+    end,
 }
