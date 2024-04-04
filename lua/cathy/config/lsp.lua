@@ -35,6 +35,8 @@ local function disabled()
     return true
 end
 
+require("mini.deps").add("folke/neodev.nvim")
+require("neodev").setup()
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
