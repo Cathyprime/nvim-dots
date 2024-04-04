@@ -113,6 +113,10 @@ later(function()
     })
 
     require("mini.diff").setup({
+        mappings = {
+            apply = "",
+            reset = "",
+        },
         view = {
             style = "sign",
             signs = {
