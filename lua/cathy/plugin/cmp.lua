@@ -2,7 +2,6 @@ require("mini.deps").add({
     source = "hrsh7th/nvim-cmp",
     depends = {
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lsp-signature-help",
         "hrsh7th/cmp-cmdline",
     }
 })
