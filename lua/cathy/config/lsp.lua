@@ -63,15 +63,3 @@ require("mason-lspconfig").setup({
         -- lua_ls = lsp_funcs.lua_ls,
     }
 })
-
-require("mason-tool-installer").setup({
-    ensure_installed = {
-        "black",
-        "eslint",
-        "golangci-lint",
-        "luacheck",
-        "prettierd",
-        "stylelint",
-        "stylua",
-    },
-})
