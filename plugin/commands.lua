@@ -89,6 +89,7 @@ vim.api.nvim_create_user_command(
 
 local status = true
 
+local old_font = vim.opt.guifont
 vim.api.nvim_create_user_command(
     "Presentation",
     function()
@@ -110,7 +111,7 @@ vim.api.nvim_create_user_command(
             vim.opt.nu = true
             vim.opt.rnu = true
             if vim.g.neovide then
-                vim.opt.guifont = "JetBrainsMono NFM:h14"
+                vim.opt.guifont = old_font
             else
                 vim.fn.system("tmux set -g status off")
             end
