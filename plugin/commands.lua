@@ -22,10 +22,25 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
+    "SpotifyToggle",
+    function()
+        if vim.fn.executable("spt") ~= 1 then
+            vim.notify("spt not found!", vim.log.levels.ERROR, nil)
+            return
+        end
+        vim.system({
+            "spt",
+            "playback",
+            "--toggle"
+        })
+    end,
+    {}
+)
+
+vim.api.nvim_create_user_command(
     "Spotify",
     function()
-        local spt = vim.fn.executable("spt")
-        if spt ~= 1 then
+        if vim.fn.executable("spt") ~= 1 then
             vim.notify("spt not found!", vim.log.levels.ERROR, nil)
             return
         end
