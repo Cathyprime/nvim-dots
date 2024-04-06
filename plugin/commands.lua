@@ -22,6 +22,25 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
+    "Spotify",
+    function()
+        local spt = vim.fn.executable("spt")
+        if spt ~= 1 then
+            vim.notify("spt not found!", vim.log.levels.ERROR, nil)
+            return
+        end
+        vim.cmd("tabnew | exec 'term spt' | startinsert")
+        vim.api.nvim_buf_set_name(0, "Spotify")
+        vim.api.nvim_create_autocmd("TermClose", {
+            once = true,
+            buffer = vim.api.nvim_get_current_buf(),
+            command = "bd!",
+        })
+    end,
+    {}
+)
+
+vim.api.nvim_create_user_command(
     "Delview",
     function()
         local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
