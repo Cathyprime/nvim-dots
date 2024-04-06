@@ -9,6 +9,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
 })
 
+if not SWITCHES.go then
+    return
+end
+
 local ok, go = pcall(require, "go")
 if ok then
     go.setup({
