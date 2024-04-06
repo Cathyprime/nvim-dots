@@ -11,31 +11,15 @@ local config = {
     footer = "",
     query_updaters = [[abcdefghijklmnopqrstuvwxyz0123456789_-,.ABCDEFGHIJKLMNOPQRSTUVWXYZ]],
     items = {
-        { action = "Telescope oldfiles",   name = "Old_files",  section = "Telescope"  },
-        { action = "Telescope git_files",  name = "Git_files",  section = "Telescope"  },
-        { action = "Telescope find_files", name = "Find_files", section = "Telescope"  },
-        { action = "DepsUpdate",           name = "Update",     section = "Deps"       },
-        { action = "DepsClean",            name = "Clean",      section = "Deps"       },
-        { action = "DepsSnapLoad",         name = "Load",       section = "Deps"       },
-        starter.sections.recent_files(5, true, function(path_str)
-            path_str = path_str:sub(#cwd + 1)
-            local path = {}
-            for component in path_str:gmatch("[^/]+") do
-                table.insert(path, component)
-            end
-            local total = #path
-            for idx, part in ipairs(path) do
-                if idx == total then
-                    table.remove(path, idx)
-                    break
-                end
-                path[idx] = part:sub(1, 3)
-            end
-            if #path == 0 then
-                return ""
-            end
-            return string.format(" (%s)", table.concat(path, "/"))
-        end),
+        { action = "Telescope oldfiles",   name = "Old files",   section = "Telescope" },
+        { action = "Telescope git_files",  name = "Git files",   section = "Telescope" },
+        { action = "Telescope find_files", name = "Find files",  section = "Telescope" },
+        { action = "Neogit",               name = "Neogit",      section = "Neogit"    },
+        { action = "DepsUpdate",           name = "Update",  section = "Plugins"   },
+        { action = "DepsClean",            name = "Clean",   section = "Plugins"   },
+        { action = "DepsSnapLoad",         name = "Load",    section = "Plugins"   },
+        { action = "Rocks sync",           name = "Sync",   section = "Plugins"   },
+        { action = "Rocks edit",           name = "Edit",   section = "Plugins"   },
         starter.sections.builtin_actions(),
     },
 }
