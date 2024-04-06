@@ -4,8 +4,8 @@ local telescope_utils = require("util.telescope-utils")
 require("mini.deps").add({
     source = "nvim-telescope/telescope-fzf-native.nvim",
     hooks = {
-        post_checkout = function()
-            vim.fn.system("make")
+        post_checkout = function(opts)
+            vim.system({ "make" }, { cwd = opts.path })
             require("telescope").load_extension("fzf")
         end
     }
@@ -67,18 +67,18 @@ vim.keymap.set("n", "<leader>ff", function()
         hidden = true,
     })
 end)
-vim.keymap.set("n", "<leader>fF", require("telescope.builtin").resume)
-vim.keymap.set("n", "<leader>fo", function() require("telescope.builtin").oldfiles() end)
-vim.keymap.set("n", "<leader>fb", function() require("telescope.builtin").buffers() end)
-vim.keymap.set("n", "<leader>fh", function() require("telescope.builtin").help_tags() end)
-vim.keymap.set("n", "<leader>fg", function() require("telescope.builtin").live_grep() end)
-vim.keymap.set( "n", "<leader>fG", function()
+vim.keymap.set("n", "<leader>fF",       require("telescope.builtin").resume)
+vim.keymap.set("n", "<leader><leader>", require("telescope.builtin").buffers)
+vim.keymap.set("n", "<leader>fo",       require("telescope.builtin").oldfiles)
+vim.keymap.set("n", "<leader>fh",       require("telescope.builtin").help_tags)
+vim.keymap.set("n", "<leader>fg",       require("telescope.builtin").live_grep)
+vim.keymap.set("n", "<leader>fG", function()
     require("telescope.builtin").live_grep( {
         search_dirs = { vim.fn.expand("%:p") },
     })
 end)
 
 require("mini.deps").later(function()
-    vim.keymap.set("n", "<leader><leader>", telescope_utils.project_files)
-    vim.keymap.set("n", "<leader>fp",       telescope_utils.change_dir)
+    vim.keymap.set("n", "<c-p>",      telescope_utils.project_files)
+    vim.keymap.set("n", "<leader>fp", telescope_utils.change_dir)
 end)
