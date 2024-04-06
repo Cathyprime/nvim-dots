@@ -67,9 +67,17 @@ local function confirm_save_all(question, err)
 end
 
 local diag_active = true
-local function diagnostic_toggle()
+local function diag_text_toggle()
     diag_active = not diag_active
     vim.diagnostic.config({ virtual_text = diag_active })
+end
+
+local function toggle_diagnostics()
+    if vim.diagnostic.is_disabled() then
+        vim.diagnostic.enable()
+    else
+        vim.diagnostic.disable()
+    end
 end
 
 local scroll
@@ -166,7 +174,8 @@ map("n", "<leader>gl", function()
 end)
 
 -- diagnostic
-map("n", "<leader>dt", diagnostic_toggle)
+map("n", "<leader>dl", diag_text_toggle)
+map("n", "<leader>dt", toggle_diagnostics)
 map("n", "<leader>dq", vim.diagnostic.setqflist)
 
 -- command line
