@@ -31,7 +31,7 @@ vim.api.nvim_create_user_command(
         end
         path = vim.fn.substitute(path, "=", "==", "g")
         if path == nil then
-            print("substitute error")
+            print("error doubling equal signs")
             return
         end
         path = vim.fn.substitute(path, "^" .. os.getenv("HOME"), "\\~", "")
