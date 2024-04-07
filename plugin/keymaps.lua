@@ -95,15 +95,15 @@ local function scrolloff_toggle()
     end
 end
 
-local function add_harpoon()
-    local input = vim.fn.nr2char(vim.fn.getchar())
-    if not input:match("%a") then
-        print("use only registers a-z")
-        return
-    end
-    local cmd = string.format('let @%s = ":e %s\\n"', input, vim.fn.expand("%:p:~:."))
-    vim.cmd(cmd)
-end
+-- local function add_harpoon()
+--     local input = vim.fn.nr2char(vim.fn.getchar())
+--     if not input:match("%a") then
+--         print("use only registers a-z")
+--         return
+--     end
+--     local cmd = string.format('let @%s = ":e %s\\n"', input, vim.fn.expand("%:p:~:."))
+--     vim.cmd(cmd)
+-- end
 
 -- macro
 map("x", "@", function()
@@ -166,7 +166,7 @@ map("n", "<leader>oc", "<cmd>e .nvim.lua<cr>")
 map("n", "<leader>ot", "<cmd>e todo.norg<cr>")
 map("n", "<leader>os", "<cmd>Scratch sh<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
-map("n", "<leader>a", add_harpoon)
+-- map("n", "<leader>a", add_harpoon)
 map("n", "<leader>gl", function()
     vim.cmd("24sp | exec 'term lazygit -ucf ~/.config/nvim/lazygit/config.yml' | startinsert")
     vim.api.nvim_create_autocmd("TermClose", {
