@@ -77,7 +77,7 @@ end
 
 vim.keymap.set("n", "<leader>fF",       builtin.resume)
 vim.keymap.set("n", "<leader><leader>", builtin.buffers)
-vim.keymap.set("n", "<leader>fc",       builtin.commands)
+vim.keymap.set("n", "<m-x>",            builtin.commands)
 vim.keymap.set("n", "<leader>fo",       builtin.oldfiles)
 vim.keymap.set("n", "<leader>fh",       builtin.help_tags)
 vim.keymap.set("n", "<leader>fg",       builtin.live_grep)
