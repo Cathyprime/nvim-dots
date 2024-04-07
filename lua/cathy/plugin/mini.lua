@@ -144,7 +144,9 @@ later(function()
         },
     })
     vim.notify = require("mini.notify").make_notify({
-        ERROR = { duration = 5000 },
+        ERROR  = { duration = 5000 },
+        WARN   = { duration = 4000 },
+        INFO   = { duration = 3000 },
     })
 
 end)
