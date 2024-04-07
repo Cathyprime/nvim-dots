@@ -1,12 +1,16 @@
 local on = true
 local root_cache = {}
 local root_names = {
+    "build",
     "build.sbt",
     "Cargo.toml",
     ".git",
     "go.mod",
+    "gradlew",
     "lua",
     "Makefile",
+    "obj",
+    "package.json",
 }
 
 local function set_root()
@@ -24,7 +28,7 @@ local function set_root()
     end
 
     local old = vim.fn.getcwd()
-    if old ~= root and root ~= "." then
+    if old ~= root and root ~= "." and root ~= "/" then
         vim.notify(string.format("cwd: %s", root), vim.log.levels.INFO)
         vim.fn.chdir(root)
     end
