@@ -1,8 +1,3 @@
-P = function(v)
-    print(vim.inspect(v))
-    return v
-end
-
 RELOAD = function(...)
     local ok, plenary_reload = pcall(require, "plenary.reload")
     if ok then

@@ -72,9 +72,7 @@ M.run = function(log)
         M.log(group)
         local original = M.get_colors(group)
         if original == nil then
-            if M.opts.log then
-                print("error getting", group)
-            end
+            M.log("error getting", group)
             goto continue
         end
         if vim.g.neovide then
