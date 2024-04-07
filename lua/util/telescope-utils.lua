@@ -35,12 +35,17 @@ end
 M.change_dir = function()
     local function enter(prompt_bufnr)
         local selected = state.get_selected_entry()
-        local cmd = string.format("%s %s", "cd", selected[1])
-        vim.cmd(cmd)
         actions.close(prompt_bufnr)
+        require("telescope.builtin").find_files({
+            cwd = selected[1]
+        })
     end
 
-    local input = { os.getenv("HOME") .. "/.local/bin/tmux-workspace", "list" }
+    local input = {
+        os.getenv("SHELL"),
+        "-C",
+        os.getenv("HOME") .. "/.config/wezterm/workspace.sh"
+    }
 
     local opts = {
         finder = finders.new_oneshot_job(input, {}),

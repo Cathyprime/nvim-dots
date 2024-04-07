@@ -12,6 +12,7 @@ require("mini.deps").add({
 })
 
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 local defaults = {
     borderchars = telescope_config.borderchars,
     layout_config = telescope_config.layout_config,
@@ -67,11 +68,19 @@ vim.keymap.set("n", "<leader>ff", function()
         hidden = true,
     })
 end)
-vim.keymap.set("n", "<leader>fF",       require("telescope.builtin").resume)
-vim.keymap.set("n", "<leader><leader>", require("telescope.builtin").buffers)
-vim.keymap.set("n", "<leader>fo",       require("telescope.builtin").oldfiles)
-vim.keymap.set("n", "<leader>fh",       require("telescope.builtin").help_tags)
-vim.keymap.set("n", "<leader>fg",       require("telescope.builtin").live_grep)
+
+local function get_nvim()
+    require("telescope.builtin").find_files({
+        cwd = "~/.config/nvim"
+    })
+end
+
+vim.keymap.set("n", "<leader>fF",       builtin.resume)
+vim.keymap.set("n", "<leader><leader>", builtin.buffers)
+vim.keymap.set("n", "<leader>fo",       builtin.oldfiles)
+vim.keymap.set("n", "<leader>fh",       builtin.help_tags)
+vim.keymap.set("n", "<leader>fg",       builtin.live_grep)
+vim.keymap.set("n", "<leader>fn",       get_nvim)
 vim.keymap.set("n", "<leader>fG", function()
     require("telescope.builtin").live_grep( {
         search_dirs = { vim.fn.expand("%:p") },
