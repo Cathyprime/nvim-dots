@@ -120,7 +120,7 @@ later(function()
             style = "sign",
             signs = {
                 add    = "┃",
-                change = "┃",
+                change = "~",
                 delete = "▁",
             },
         },
