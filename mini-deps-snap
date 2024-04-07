@@ -25,7 +25,7 @@ return {
   ["nvim-luaref"] = "9cd3ed50d5752ffd56d88dd9e395ddd3dc2c7127",
   ["nvim-pqf"] = "ba0e291cb5c0249838132e197dac082777bdc7d6",
   ["nvim-surround"] = "84a26afce16cffa7e3322cfa80a42cddf60616eb",
-  ["nvim-treesitter"] = "a2d6678bb21052013d0dd7cb35dffbac13846c98",
+  ["nvim-treesitter"] = "11a3584b81c3249d2b6279305aee1c7ad273985a",
   ["nvim-treesitter-context"] = "f19766163c18515fb4d3c12d572bf9cba6cdb990",
   ["nvim-treesitter-textobjects"] = "f5183cea0fda26126e22e789382c208e7b1120f4",
   ["nvim-ts-context-commentstring"] = "734ebad31c81c6198dfe102aa23280937c937c42",
