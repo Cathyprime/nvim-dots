@@ -1,6 +1,4 @@
 local function augroup(name)
--- picks up the wrong nvim_create_augroup
----@diagnostic disable-next-line: redundant-parameter
     return vim.api.nvim_create_augroup("cathy_" .. name, { clear = true })
 end
 
