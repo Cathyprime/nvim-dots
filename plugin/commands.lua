@@ -25,7 +25,7 @@ vim.api.nvim_create_user_command(
     "SpotifyToggle",
     function()
         if vim.fn.executable("spt") ~= 1 then
-            vim.notify("spt not found!", vim.log.levels.ERROR, nil)
+            vim.notify("spt not found!", vim.log.levels.ERROR)
             return
         end
         vim.system({
@@ -41,7 +41,7 @@ vim.api.nvim_create_user_command(
     "Spotify",
     function()
         if vim.fn.executable("spt") ~= 1 then
-            vim.notify("spt not found!", vim.log.levels.ERROR, nil)
+            vim.notify("spt not found!", vim.log.levels.ERROR)
             return
         end
         vim.cmd("tabnew | exec 'term spt' | startinsert")
@@ -60,26 +60,26 @@ vim.api.nvim_create_user_command(
     function()
         local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
         if path == nil then
-            print("error getting path")
+            vim.notify("error getting path", vim.log.levels.ERROR)
             return
         end
         path = vim.fn.substitute(path, "=", "==", "g")
         if path == nil then
-            print("error doubling equal signs")
+            vim.notify("error doubling equal signs", vim.log.levels.ERROR)
             return
         end
         path = vim.fn.substitute(path, "^" .. os.getenv("HOME"), "\\~", "")
         if path == nil then
-            print("substitute error")
+            vim.notify("substitute error", vim.log.levels.ERROR)
             return
         end
         path = vim.fn.substitute(path, "/", "=+", "g") .. "="
         local file_path = vim.opt.viewdir:get() .. path
         local int = vim.fn.delete(file_path)
         if int == -1 then
-            print("View not found!")
+            vim.notify("View not found!", vim.log.levels.ERROR)
         else
-            print("deleted view:", file_path)
+            vim.notify(string.format("deleted view: %s", file_path), vim.log.levels.INFO)
         end
     end,
     {}

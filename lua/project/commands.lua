@@ -43,7 +43,7 @@ function M.func(self, opts)
         self.map[farg]()
         return
     end
-    print(string.format("ERROR: unknown argument %s", farg))
+    vim.notify(string.format("ERROR: unknown argument %s", farg), vim.log.levels.ERROR)
 end
 
 function M.setup(self)

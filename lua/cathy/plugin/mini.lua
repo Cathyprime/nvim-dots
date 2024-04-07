@@ -138,4 +138,13 @@ later(function()
         pcall(MiniDiff.toggle_overlay)
     end)
 
+    require("mini.notify").setup({
+        lsp_progress = {
+            enable = false
+        },
+    })
+    vim.notify = require("mini.notify").make_notify({
+        ERROR = { duration = 5000 },
+    })
+
 end)
