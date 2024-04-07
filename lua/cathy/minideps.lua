@@ -16,7 +16,6 @@ end
 require("mini.deps").setup({ path = { package = path_package } })
 
 require("cathy.plugin.mini")
-require("cathy.plugin.rooter")
 
 require("cathy.plugin.misc")
 require("cathy.plugin.treesitter")
