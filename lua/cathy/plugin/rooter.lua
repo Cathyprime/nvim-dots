@@ -13,7 +13,19 @@ local root_names = {
     "package.json",
 }
 
+local disabled_filetype = {
+    "help",
+}
+
+local function isOk(ft)
+    for _, v in ipairs(disabled_filetype) do
+        if v == ft then return false end
+    end
+    return true
+end
+
 local function set_root()
+    if isOk(vim.o.filetype) then return end
     if not on then return end
     local path = vim.api.nvim_buf_get_name(0)
     if path == "" then return end
