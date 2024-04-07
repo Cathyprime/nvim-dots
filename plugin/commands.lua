@@ -21,21 +21,25 @@ vim.api.nvim_create_user_command(
     }
 )
 
-vim.api.nvim_create_user_command(
-    "SpotifyToggle",
-    function()
-        if vim.fn.executable("spt") ~= 1 then
-            vim.notify("spt not found!", vim.log.levels.ERROR)
-            return
-        end
-        vim.system({
-            "spt",
-            "playback",
-            "--toggle"
-        })
-    end,
-    {}
-)
+local function create_command(cmd, argument, desc)
+    vim.api.nvim_create_user_command(
+        cmd,
+        function()
+            if vim.fn.executable("spt") ~= 1 then
+                vim.notify("spt not found!", vim.log.levels.ERROR)
+                return
+            end
+            vim.system({
+                "spt",
+                "playback",
+                argument,
+            })
+        end,
+        {
+            desc = desc,
+        }
+    )
+end
 
 vim.api.nvim_create_user_command(
     "Spotify",
@@ -52,8 +56,17 @@ vim.api.nvim_create_user_command(
             command = "bd!",
         })
     end,
-    {}
+    {
+        desc = "Open spotify"
+    }
 )
+
+create_command("SpotifyRepeat",  "--repeat",   "toggle repeat mode")
+create_command("SpotifyPP",      "--toggle",   "play/pause the music")
+create_command("SpotifyLike",    "--like",     "like the current song")
+create_command("SpotifyDisLike", "--dislike",  "dislike the current song")
+create_command("SpotifyNext",    "--next",     "switch to the next track")
+create_command("SpotifyPrev",    "--previous", "switch to the previous track")
 
 vim.api.nvim_create_user_command(
     "Delview",
