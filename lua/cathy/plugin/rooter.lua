@@ -18,16 +18,17 @@ local disabled_filetype = {
 }
 
 local function isBanned(ft)
+    if ft == "" then return true end
     for _, v in ipairs(disabled_filetype) do
         if v == ft then
-            return false
+            return true
         end
     end
-    return true
+    return false
 end
 
 local function set_root()
-    if not isBanned(vim.o.filetype) then return end
+    if isBanned(vim.o.filetype) then return end
     if not on then return end
     local path = vim.api.nvim_buf_get_name(0)
     if path == "" then return end
