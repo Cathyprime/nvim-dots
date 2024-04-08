@@ -81,6 +81,7 @@ vim.keymap.set("n", "<m-x>",            builtin.commands)
 vim.keymap.set("n", "<leader>fo",       builtin.oldfiles)
 vim.keymap.set("n", "<leader>fh",       builtin.help_tags)
 vim.keymap.set("n", "<leader>fg",       builtin.live_grep)
+vim.keymap.set("n", "z=",               builtin.spell_suggest)
 vim.keymap.set("n", "<leader>fn",       get_nvim)
 vim.keymap.set("n", "<leader>fG", function()
     require("telescope.builtin").live_grep( {
