@@ -137,7 +137,7 @@ later(function()
     vim.keymap.set("n", "<c-g>", "<cmd>Grapple select index=1<cr>")
     vim.keymap.set("n", "<c-h>", "<cmd>Grapple select index=2<cr>")
     vim.keymap.set("n", "<c-n>", "<cmd>Grapple select index=3<cr>")
-    vim.keymap.set("n", "<c-m>", "<cmd>Grapple select index=4<cr>")
+    vim.keymap.set("n", "<c-j>", "<cmd>Grapple select index=4<cr>")
 
     vim.keymap.set("n", "<c-f>", "<cmd>Grapple cycle_tags next<cr>")
     vim.keymap.set("n", "<c-s>", "<cmd>Grapple cycle_tags prev<cr>")
