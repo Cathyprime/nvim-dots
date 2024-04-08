@@ -79,3 +79,5 @@ later(function()
     vim.keymap.set("v", "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end)
     vim.keymap.set("v", "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end)
 end)
+
+add("github/copilot.vim")
