@@ -29,4 +29,5 @@ end)
 
 md.later(function()
     vim.keymap.set("n", "<leader>gb", "<cmd>ToggleBlame<cr>")
+    vim.keymap.set("n", "<leader>gB", "<cmd>ToggleBlame virtual<cr>")
 end)
