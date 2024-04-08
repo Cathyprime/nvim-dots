@@ -142,3 +142,20 @@ later(function()
     vim.keymap.set("n", "<c-f>", "<cmd>Grapple cycle_tags next<cr>")
     vim.keymap.set("n", "<c-s>", "<cmd>Grapple cycle_tags prev<cr>")
 end)
+
+add({
+    source = "mistricky/codesnap.nvim",
+    hooks = {
+        post_install = function(opts)
+            vim.system({ "make" }, {
+                cwd = opts.path,
+            })
+        end
+    }
+})
+later(function()
+    require("codesnap").setup({
+        has_breadcrumbs = true,
+        watermark = "Worst code - By Magda"
+    })
+end)
