@@ -30,8 +30,11 @@ local attach = function(client, bufnr)
     if client.server_capabilities.definitionProvider then
         vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
     end
+    -- omnisharp being stoopid
+    if client.name == "omnisharp" then return end
     if client.server_capabilities.codeLensProvider then
         vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+            group = vim.api.nvim_create_augroup("codeLens", { clear = false }),
             buffer = bufnr,
             callback = function()
                 vim.lsp.codelens.refresh({ bufnr = bufnr })
