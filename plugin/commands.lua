@@ -42,6 +42,26 @@ local function create_command(cmd, argument, desc)
 end
 
 vim.api.nvim_create_user_command(
+    "Docker",
+    function ()
+        if vim.fn.executable("lazydocker") ~= 1 then
+            vim.notify("lazydocker not found!", vim.log.levels.ERROR)
+            return
+        end
+        vim.cmd("tabnew | exec 'term lazydocker' | startinsert")
+        vim.api.nvim_buf_set_name(0, "LazyDocker")
+        vim.api.nvim_create_autocmd("TermClose", {
+            once = true,
+            buffer = vim.api.nvim_get_current_buf(),
+            command = "bd!",
+        })
+    end,
+    {
+        desc = "Open lazydocker"
+    }
+)
+
+vim.api.nvim_create_user_command(
     "Spotify",
     function()
         if vim.fn.executable("spt") ~= 1 then
