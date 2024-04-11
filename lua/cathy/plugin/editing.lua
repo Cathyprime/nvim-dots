@@ -95,3 +95,6 @@ later(function()
 end)
 
 add("github/copilot.vim")
+later(function()
+    vim.cmd("Copilot disable")
+end)
