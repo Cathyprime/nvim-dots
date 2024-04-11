@@ -18,7 +18,7 @@ md.later(function()
     local neogit = require("neogit")
     neogit.setup({
         commit_editor = {
-            kind = "split",
+            kind = "tab",
         },
         commit_select_view = {
             kind = "tab",
