@@ -37,7 +37,7 @@ local config = {
                 return "Good Morning"
             end
             return "haaiii :3"
-        end)(), os.getenv("USER")),
+        end)(), os.getenv("USER"):gsub("^%l", string.upper)),
         "How are you doing?",
         os.date()
     }
