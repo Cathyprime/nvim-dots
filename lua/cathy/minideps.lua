@@ -28,6 +28,7 @@ require("cathy.plugin.cmp")
 require("cathy.plugin.lsp")
 require("cathy.plugin.lsp-misc")
 require("cathy.plugin.nonels")
+require("cathy.plugin.dap")
 
 require("cathy.plugin.telescope")
 require("cathy.plugin.colorscheme")
