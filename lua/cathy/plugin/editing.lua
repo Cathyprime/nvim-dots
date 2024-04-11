@@ -66,7 +66,21 @@ later(function()
     })
 	require("dial.config").augends:on_filetype({
         python = {
+            augend.integer.alias.binary,
+            augend.integer.alias.decimal,
+            augend.integer.alias.hex,
             augend.constant.new({ elements = { "True", "False" } }),
+            augend.case.new{
+                types = {
+                    "camelCase",
+                    "PascalCase",
+                    "snake_case",
+                    "SCREAMING_SNAKE_CASE",
+                },
+                cyclic = true,
+            },
+            augend.date.alias["%d/%m/%Y"],
+            augend.constant.new({ elements = { "and", "or" } }),
         }
     })
 
