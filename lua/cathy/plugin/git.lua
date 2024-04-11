@@ -4,7 +4,7 @@ md.add("sindrets/diffview.nvim")
 md.add("FabijanZulj/blame.nvim")
 md.add({
     source = "NeogitOrg/neogit",
-    checkout = "nightly"
+    checkout = "8e489a043981e59fb93f9630cb1bf35d1bc635a8"
 })
 
 md.later(function()
@@ -18,7 +18,7 @@ md.later(function()
     local neogit = require("neogit")
     neogit.setup({
         commit_editor = {
-            kind = "tab",
+            kind = "split",
         },
         commit_select_view = {
             kind = "tab",
