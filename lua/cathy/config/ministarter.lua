@@ -1,5 +1,5 @@
 local starter = require("mini.starter")
-local cwd = vim.loop.cwd()
+local utils = require("util.telescope-utils")
 
 local config = {
     content_hooks = {
@@ -11,15 +11,16 @@ local config = {
     footer = "",
     query_updaters = [[abcdefghijklmnopqrstuvwxyz0123456789_-,.ABCDEFGHIJKLMNOPQRSTUVWXYZ]],
     items = {
-        { action = "Telescope oldfiles",   name = "Old files",   section = "Telescope" },
-        { action = "Telescope git_files",  name = "Git files",   section = "Telescope" },
-        { action = "Telescope find_files", name = "Find files",  section = "Telescope" },
-        { action = "Neogit",               name = "Neogit",      section = "Neogit"    },
-        { action = "DepsUpdate",           name = "Update",  section = "Plugins"   },
-        { action = "DepsClean",            name = "Clean",   section = "Plugins"   },
-        { action = "DepsSnapLoad",         name = "Load",    section = "Plugins"   },
-        { action = "Rocks sync",           name = "Sync",   section = "Plugins"   },
-        { action = "Rocks edit",           name = "Edit",   section = "Plugins"   },
+        { action = "Telescope oldfiles",   name = "Old files",  section = "Telescope" },
+        { action = "Telescope git_files",  name = "Git files",  section = "Telescope" },
+        { action = "Telescope find_files", name = "Find files", section = "Telescope" },
+        { action = utils.get_nvim,         name = "Init Files", section = "Telescope" },
+        { action = "Neogit",               name = "Neogit",     section = "Neogit"    },
+        { action = "DepsUpdate",           name = "Update",     section = "Plugins"   },
+        { action = "DepsClean",            name = "Clean",      section = "Plugins"   },
+        { action = "DepsSnapLoad",         name = "Load",       section = "Plugins"   },
+        { action = "Rocks sync",           name = "Sync",       section = "Plugins"   },
+        { action = "Rocks edit",           name = "Edit",       section = "Plugins"   },
         starter.sections.builtin_actions(),
     },
 }
