@@ -1,5 +1,6 @@
 local dap_ft = {
     "go",
+    "rust",
 }
 
 local function isSetup(ft)
