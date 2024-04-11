@@ -69,8 +69,8 @@ vim.keymap.set("n", "<leader>ff", function()
     })
 end)
 
-local function get_nvim()
-    require("telescope.builtin").find_files({
+local get_nvim = function()
+    builtin.find_files({
         cwd = "~/.config/nvim"
     })
 end

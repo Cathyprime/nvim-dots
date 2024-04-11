@@ -62,4 +62,10 @@ M.change_dir = function()
     picker:find()
 end
 
+M.get_nvim = function()
+    builtin.find_files({
+        cwd = "~/.config/nvim"
+    })
+end
+
 return M
