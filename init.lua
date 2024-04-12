@@ -46,6 +46,7 @@ SWITCHES = {
     files = "oil",
     scala = true,
     go    = true,
+    dap   = true,
 }
 
 if SWITCHES.files ~= nil then

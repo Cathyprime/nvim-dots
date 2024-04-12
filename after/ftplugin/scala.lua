@@ -13,8 +13,28 @@ metals_config.settings = {
 }
 metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 metals_config.on_attach = function(client, bufnr)
-    if not SWITCHES.dap then
+    if SWITCHES.dap then
         require("metals").setup_dap()
+        local dap = require("dap")
+
+        dap.configurations.scala = {
+            {
+                type = "scala",
+                request = "launch",
+                name = "Run or Test Target",
+                metals = {
+                    runType = "runOrTestFile",
+                },
+            },
+            {
+                type = "scala",
+                request = "launch",
+                name = "Test Target",
+                metals = {
+                    runType = "testTarget",
+                },
+            },
+        }
     end
     require("cathy.config.lsp-funcs").on_attach(client, bufnr)
 end

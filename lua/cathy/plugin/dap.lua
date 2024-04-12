@@ -1,6 +1,7 @@
 local dap_ft = {
-    "go",
+    "scala",
     "rust",
+    "go",
 }
 
 local function isSetup(ft)
@@ -55,7 +56,9 @@ require("mini.deps").later(function()
     map("u", function() dapui.toggle() end, "toggle ui")
     map("s", function() dap.continue() end, "continue")
     map("z", function() dap.continue() end, "continue")
-    map("C", function() dap.run_to_cursor() end, "run to cursor")
+    map("C", function() dap.close() end, "close")
+    map("r", function() dap.reverse_continue() end, "reverse")
+    map("c", function() dap.run_to_cursor() end, "run to cursor")
 
     vim.fn.sign_define("DapBreakpoint", {text="", texthl="Error", linehl="", numhl=""})
 end)

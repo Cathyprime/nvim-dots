@@ -48,14 +48,14 @@ later(function()
 
     require("mini.move").setup({
         mappings = {
-            left = "<m-h>",
-            right = "<m-l>",
-            down = "<m-j>",
-            up = "<m-k>",
-            line_left = "",
+            left       = "<m-h>",
+            right      = "<m-l>",
+            down       = "<m-j>",
+            up         = "<m-k>",
+            line_left  = "",
             line_right = "",
-            line_down = "<m-j>",
-            line_up = "<m-k>",
+            line_down  = "<m-j>",
+            line_up    = "<m-k>",
         }
     })
 
@@ -76,7 +76,8 @@ later(function()
             { mode = "n", keys = "<leader>zO", postkeys = "<leader>z" },
             { mode = "n", keys = "<leader>zu", postkeys = "<leader>z" },
             { mode = "n", keys = "<leader>zs", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zC", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zc", postkeys = "<leader>z" },
+            { mode = "n", keys = "<leader>zr", postkeys = "<leader>z" },
             { mode = "n", keys = "<c-w><", postkeys = "<c-w>", desc = "decrease width" },
             { mode = "n", keys = "<c-w>>", postkeys = "<c-w>", desc = "increase width" },
             { mode = "n", keys = "<c-w>-", postkeys = "<c-w>", desc = "decrease height" },
