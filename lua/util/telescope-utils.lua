@@ -37,7 +37,14 @@ M.change_dir = function()
         local selected = state.get_selected_entry()
         actions.close(prompt_bufnr)
         require("telescope.builtin").find_files({
-            cwd = selected[1]
+            cwd = selected[1],
+            hidden = true,
+            file_ignore_patterns = {
+                "node%_modules/*",
+                "venv/*",
+                "%.git/*",
+                "%.mypy_cache/",
+            },
         })
     end
 
