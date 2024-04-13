@@ -46,4 +46,6 @@ if ok then
         cmd = { require("mason-core.path").bin_prefix() .. "/jdtls" },
         root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
     })
+else
+    vim.notify("jdtls not found: " .. jdtls, vim.log.levels.WARN)
 end
