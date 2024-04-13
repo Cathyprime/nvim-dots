@@ -159,3 +159,22 @@ later(function()
         watermark = "Worst code - By Magda"
     })
 end)
+
+add("justinhj/battery.nvim")
+later(function()
+    if vim.g.neovide then
+        if vim.fn.executable("acpi") ~= 1 then
+            vim.notify("executable `acpi` is not installed", vim.log.levels.ERROR)
+        else
+            require("battery").setup({
+                update_rate_seconds = 30,
+                show_status_when_no_battery = false,
+                show_plugged_icon = true,
+                show_unplugged_icon = false,
+                show_percent = true,
+                vertical_icons = true,
+                multiple_battery_selection = 1,
+            })
+        end
+    end
+end)

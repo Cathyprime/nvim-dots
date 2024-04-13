@@ -123,6 +123,14 @@ local function recording_component()
     return string.format("%s%s", register, recording)
 end
 
+local function battery_component_gen()
+    if vim.g.neovide then
+        return require("battery").get_status_line
+    else
+        return nil
+    end
+end
+
 local function get_cb(arg)
     if type(arg) == "function" then
         return arg
@@ -254,6 +262,7 @@ local config = {
         lualine_z = {
             { "location", fmt = location_fmt },
             window_component,
+            battery_component_gen(),
         },
     },
     inactive_sections = {
