@@ -4,7 +4,7 @@ local sn = ls.snippet_node
 local isn = ls.indent_snippet_node
 local t = ls.text_node
 local i = ls.insert_node
--- local f = ls.function_node
+local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
 -- local r = ls.restore_node
@@ -28,29 +28,24 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 return {
     s("fn", fmt([[
-    fn {funame}({arg}) -> {retype} {{
+    fn {funame}({arg}){arrow}{retype} {{
         {body}
     }}
     ]], {
         funame = i(1, "name"),
-        arg = i(2, "arg"),
-        retype = i(3, "RetType"),
+        arg = i(2),
+        retype = i(3),
+        arrow = f(function(args)
+            if args and args[1] and args[1][1] ~= "" then
+                return " -> "
+            else
+                return ""
+            end
+        end, { 3 }),
         body = i(0, "unimplemented!();")
     })),
 
     s("p", fmt([[println!({});]], {i(0)})),
-
-    s("main", fmt([[
-    fn main() {}{{
-        {}
-    }}
-    ]], {
-        c(1, {
-            t"",
-            sn(nil, {t"-> ", i(1, "RetType"), t" "})
-        }),
-        i(0, "unimplemented!()"),
-    })),
 
     s("var", fmt([[let {mut}{name}: {type} = {value};]], {
         mut = c(1, {t "", t "mut "}),
