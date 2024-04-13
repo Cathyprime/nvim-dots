@@ -35,6 +35,7 @@ require("cathy.plugin.colorscheme")
 require("cathy.plugin.ui")
 require("cathy.plugin.quickfix")
 require("cathy.plugin.neorg")
+require("cathy.plugin.test")
 
 if SWITCHES.files == "neotree" then
     require("cathy.plugin.files")
