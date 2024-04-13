@@ -215,8 +215,8 @@ local config = {
                     if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
-                    return hide_on_vert(str, function(_)
-                        local split = vim.split(str, "/", {})
+                    return hide_on_vert(str, function(stri)
+                        local split = vim.split(stri, "/", {})
                         return split[#split]
                     end)
                 end,
@@ -226,6 +226,7 @@ local config = {
             {
                 "%S",
                 fmt = function(str)
+                    str = hide_on_vert(str)
                     if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
@@ -237,7 +238,10 @@ local config = {
             "diagnostics",
         },
         lualine_y = {
-            "grapple",
+            {
+                "grapple",
+                fmt = hide_on_vert,
+            },
             {
                 "filetype",
                 fmt = function(str)
@@ -262,7 +266,14 @@ local config = {
         lualine_z = {
             { "location", fmt = location_fmt },
             window_component,
-            battery_component_gen(),
+            {
+                battery_component_gen(),
+                fmt = function(str)
+                    return hide_on_vert(str, function()
+                        return str:sub(6)
+                    end)
+                end
+            },
         },
     },
     inactive_sections = {
