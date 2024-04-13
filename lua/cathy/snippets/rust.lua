@@ -45,6 +45,16 @@ return {
         body = i(0, "unimplemented!();")
     })),
 
+    s("test", fmt([[
+    #[test]
+    fn {funame}() {{
+        {body}
+    }}
+    ]], {
+        funame = i(1, "name"),
+        body = i(0, "unimplemented!();")
+    })),
+
     s("p", fmt([[println!({});]], {i(0)})),
 
     s("var", fmt([[let {mut}{name}: {type} = {value};]], {
