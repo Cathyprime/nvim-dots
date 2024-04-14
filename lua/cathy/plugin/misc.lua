@@ -162,7 +162,7 @@ end)
 
 add("justinhj/battery.nvim")
 later(function()
-    if vim.g.neovide then
+    if vim.g.neovide and vim.fn.hostname() ~= "luna" then
         if vim.fn.executable("acpi") ~= 1 then
             vim.notify("executable `acpi` is not installed", vim.log.levels.ERROR)
         else

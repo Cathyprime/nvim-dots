@@ -124,7 +124,7 @@ local function recording_component()
 end
 
 local function battery_component_gen()
-    if vim.g.neovide then
+    if vim.g.neovide and vim.fn.hostname() ~= "luna" then
         return require("battery").get_status_line
     else
         return nil
