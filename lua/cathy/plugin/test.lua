@@ -8,6 +8,7 @@ if ok then
             require("neotest-go")
         }
     })
+    require("cathy.config.test")
 else
     vim.notify("neotest not found", vim.log.levels.WARN)
 end

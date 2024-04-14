@@ -10,4 +10,3 @@ vim.g.rustaceanvim = {
         end
     }
 }
-require("cathy.config.test")
