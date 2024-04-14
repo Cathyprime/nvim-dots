@@ -1,5 +1,4 @@
 -- cmp
----@diagnostic disable-next-line
 local cmp = require("cmp")
 local types = require("cmp.types")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -54,7 +53,6 @@ cmp.setup({
         ["<c-n>"] = cmp.mapping.select_next_item(cmp_select),
         ["<c-p>"] = cmp.mapping.select_prev_item(cmp_select),
         ["<c-y>"] = cmp.mapping.confirm({ select = false}),
-        -- ["<c-cr>"] = cmp.mapping.confirm({ select = false}),
         ["<c-e>"] = cmp.mapping.abort(),
         ["<c-x>c"] = cmp.mapping.complete(),
         ["<c-g>"] = cmp.mapping(function()
@@ -66,6 +64,10 @@ cmp.setup({
         end),
         ["<c-u>"] = cmp.mapping.scroll_docs(-4),
         ["<c-d>"] = cmp.mapping.scroll_docs(4),
+    },
+
+    experimental = {
+        ghost_text = true,
     },
 
     view = {
