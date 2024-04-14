@@ -16,14 +16,7 @@ end)
 
 md.later(function()
     local neogit = require("neogit")
-    neogit.setup({
-        -- commit_editor = {
-        --     kind = "split",
-        -- },
-        -- commit_select_view = {
-        --     kind = "tab",
-        -- },
-    })
+    neogit.setup({})
     vim.keymap.set("n", "ZG", function() neogit.open({ kind = "tab" }) end)
 end)
 
