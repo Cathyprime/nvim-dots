@@ -48,17 +48,7 @@ options.options = {
         }
     },
     -- foldexpr = "v:lua.vim.treesitter.foldexpr()",
-    foldtext = (function()
-        if vim.fn.has("nvim-0.10") == 1 then
-            require("cathy.globals")
-            if _G.treesitter_foldtext ~= nil then
-                return "v:lua.treesitter_foldtext()"
-            end
-            return "v:lua.vim.treesitter.foldtext()"
-        else
-            return "foldtext()"
-        end
-    end)(),
+    foldtext = "",
     foldmethod = "manual",
     foldcolumn = "auto",
     hls = true,
