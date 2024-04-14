@@ -5,8 +5,8 @@ vim.g.rustaceanvim = {
     server = {
         on_attach = function(client, bufnr)
             require("cathy.config.lsp-funcs").on_attach(client, bufnr)
-            vim.keymap.set("n", "J", "<cmd>RustLsp joinLines<cr>", { silent = true })
-            vim.keymap.set("v", "J", ":RustLsp joinLines<cr>", { silent = true })
+            vim.keymap.set("n", "J", "<cmd>RustLsp joinLines<cr>", { silent = true, buffer = true })
+            vim.keymap.set("v", "J", ":RustLsp joinLines<cr>", { silent = true, buffer = true })
         end
     }
 }
