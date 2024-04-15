@@ -156,7 +156,7 @@ add({
 later(function()
     require("codesnap").setup({
         has_breadcrumbs = true,
-        watermark = "Worst code - By Magda"
+        watermark = "Yippiee"
     })
 end)
 
@@ -177,4 +177,8 @@ later(function()
             })
         end
     end
+end)
+
+require("mini.deps").now(function()
+    require("flatten").setup()
 end)
