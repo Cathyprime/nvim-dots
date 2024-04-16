@@ -1,6 +1,6 @@
+---@diagnostic disable: missing-fields
 -- cmp
 local cmp = require("cmp")
-local types = require("cmp.types")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local icons = require("util.icons").icons
 local ts_utils = require("nvim-treesitter.ts_utils")
@@ -14,15 +14,8 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 cmp.setup({
     preselect = cmp.PreselectMode.None,
     sources = cmp.config.sources({
-        {
-            name = "nvim_lsp",
-            entry_filter = function(entry, _)
-                local check_text = types.lsp.CompletionItemKind[entry:get_kind()]
-                if check_text == "Text" then return false end
-
-                return true
-            end
-        },
+        { name = "nvim_lsp", },
+        { name = "cmdline" },
     }),
 
     window = {
