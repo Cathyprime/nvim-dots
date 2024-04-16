@@ -42,3 +42,7 @@ if SWITCHES.files == "neotree" then
 elseif SWITCHES.files == "oil" then
     require("cathy.plugin.oil")
 end
+
+if SWITCHES.rust then
+    require("cathy.config.rust")
+end

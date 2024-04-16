@@ -47,6 +47,7 @@ SWITCHES = {
     scala = true,
     go    = true,
     dap   = true,
+    rust  = true,
 }
 
 if SWITCHES.files ~= nil then
