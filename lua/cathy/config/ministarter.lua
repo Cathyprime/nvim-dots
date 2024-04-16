@@ -13,7 +13,7 @@ local config = {
     items = {
         { action = "Telescope oldfiles",   name = "Old files",  section = "Telescope" },
         { action = "Telescope git_files",  name = "Git files",  section = "Telescope" },
-        { action = "Telescope find_files", name = "Find files", section = "Telescope" },
+        { action = utils.hidden,           name = "Find files", section = "Telescope" },
         { action = utils.get_nvim,         name = "Init Files", section = "Telescope" },
         { action = "Neogit",               name = "Neogit",     section = "Neogit"    },
         { action = "DepsUpdate",           name = "Update",     section = "Plugins"   },

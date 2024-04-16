@@ -75,4 +75,16 @@ M.get_nvim = function()
     })
 end
 
+M.hidden = function()
+    require("telescope.builtin").find_files({
+        file_ignore_patterns = {
+            "node%_modules/*",
+            "venv/*",
+            "%.git/*",
+            "%.mypy_cache/",
+        },
+        hidden = true,
+    })
+end
+
 return M
