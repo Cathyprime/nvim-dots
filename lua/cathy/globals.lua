@@ -10,11 +10,3 @@ R = function(name)
     RELOAD(name)
     return require(name)
 end
-
-function _G.treesitter_foldtext()
-    -- vim.treesitter.foldtext() will be removed at a later date
-    local text = vim.treesitter.foldtext()
-    ---@diagnostic disable-next-line
-    table.insert(text, { " ...", {} })
-    return text
-end
