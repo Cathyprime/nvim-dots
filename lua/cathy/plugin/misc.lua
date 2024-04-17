@@ -1,8 +1,9 @@
 local add   = require("mini.deps").add
 local later = require("mini.deps").later
+local now   = require("mini.deps").now
 
 add("mbbill/undotree")
-later(function()
+now(function()
     vim.g.undotree_WindowLayout = 2
     vim.g.undotree_ShortIndicators = 0
     vim.g.undotree_SplitWidth = 40
@@ -131,7 +132,7 @@ later(function()
     vim.keymap.set("n", "gl", "<cmd>Browse<cr>")
 end)
 
-later(function()
+now(function()
     vim.keymap.set("n", "<leader>a", require("grapple").toggle)
     vim.keymap.set("n", "<leader>e", require("grapple").toggle_tags)
     vim.keymap.set("n", "<c-g>", "<cmd>Grapple select index=1<cr>")
@@ -161,7 +162,7 @@ later(function()
 end)
 
 add("justinhj/battery.nvim")
-later(function()
+now(function()
     if vim.g.neovide and vim.fn.hostname() ~= "luna" then
         if vim.fn.executable("acpi") ~= 1 then
             vim.notify("executable `acpi` is not installed", vim.log.levels.ERROR)
@@ -184,6 +185,6 @@ require("mini.deps").now(function()
 end)
 
 add("andweeb/presence.nvim")
-require("mini.deps").now(function()
-    require("presence").setup()
+now(function()
+    require("presence").setup({})
 end)

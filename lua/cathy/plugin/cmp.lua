@@ -6,7 +6,7 @@ require("mini.deps").add({
     }
 })
 
-require("mini.deps").later(function()
+require("mini.deps").now(function()
     require("cathy.config.cmp")
     local colors = require("cathy.config.cmp-colors")
     colors.run(false)

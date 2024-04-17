@@ -1,9 +1,10 @@
 local add   = require("mini.deps").add
 local later = require("mini.deps").later
+local now   = require("mini.deps").now
 
 add("kylechui/nvim-surround")
 
-later(function()
+now(function()
     ---@diagnostic disable-next-line
     require("nvim-surround").setup({
         keymaps = {
@@ -26,7 +27,7 @@ add({
     source = "windwp/nvim-autopairs",
     depends = { "hrsh7th/nvim-cmp", }
 })
-later(function()
+now(function()
     require("nvim-autopairs").setup()
     require("nvim-autopairs").remove_rule('"')
     require("nvim-autopairs").remove_rule("'")

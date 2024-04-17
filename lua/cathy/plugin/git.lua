@@ -14,7 +14,7 @@ md.later(function()
     vim.keymap.set("n", "<leader>gc", "<cmd>DiffviewClose<cr>")
 end)
 
-md.later(function()
+md.now(function()
     local neogit = require("neogit")
     neogit.setup({})
     vim.keymap.set("n", "ZG", function() neogit.open({ kind = "tab" }) end)

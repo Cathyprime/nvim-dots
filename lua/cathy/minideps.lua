@@ -16,6 +16,7 @@ end
 require("mini.deps").setup({ path = { package = path_package } })
 
 require("cathy.plugin.mini")
+require("cathy.plugin.colorscheme")
 
 require("cathy.plugin.misc")
 require("cathy.plugin.treesitter")
@@ -31,7 +32,6 @@ require("cathy.plugin.nonels")
 require("cathy.plugin.dap")
 
 require("cathy.plugin.telescope")
-require("cathy.plugin.colorscheme")
 require("cathy.plugin.ui")
 require("cathy.plugin.quickfix")
 require("cathy.plugin.neorg")
