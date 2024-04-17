@@ -182,3 +182,8 @@ end)
 require("mini.deps").now(function()
     require("flatten").setup()
 end)
+
+add("andweeb/presence.nvim")
+require("mini.deps").now(function()
+    require("presence").setup()
+end)
