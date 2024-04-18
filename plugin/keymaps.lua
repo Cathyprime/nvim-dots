@@ -95,16 +95,6 @@ local function scrolloff_toggle()
     end
 end
 
--- local function add_harpoon()
---     local input = vim.fn.nr2char(vim.fn.getchar())
---     if not input:match("%a") then
---         print("use only registers a-z")
---         return
---     end
---     local cmd = string.format('let @%s = ":e %s\\n"', input, vim.fn.expand("%:p:~:."))
---     vim.cmd(cmd)
--- end
-
 -- macro
 map("x", "@", function()
     return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
@@ -118,7 +108,6 @@ map("n", "[c", "<cmd>cprev<cr>")
 
 -- scrolling
 map("n", "<c-b>", "<Nop>")
-map("n", "<c-f>", "<Nop>")
 
 -- text objects
 -- inner underscore
