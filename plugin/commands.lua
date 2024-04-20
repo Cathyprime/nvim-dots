@@ -1,4 +1,17 @@
 vim.api.nvim_create_user_command(
+    "Trim",
+    function()
+        local ok, ts = pcall(require, "mini.trailspace")
+        if ok then
+            ts.trim()
+        end
+    end,
+    {
+        desc = "Trim whitespace from current buffer"
+    }
+)
+
+vim.api.nvim_create_user_command(
     "Messages",
     [[let output = [] | redir => output | silent messages | redir END | silent cexpr output | silent cope]],
     {}
