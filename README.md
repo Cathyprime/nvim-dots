@@ -37,9 +37,11 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [echasnovski/mini.clue](https://github.com/echasnovski/mini.clue)
 + [echasnovski/mini.comment](https://github.com/echasnovski/mini.comment)
 + [echasnovski/mini.deps](https://github.com/echasnovski/mini.deps)
++ [echasnovski/mini.diff](https://github.com/echasnovski/mini.diff)
 + [echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)
 + [echasnovski/mini.misc](https://github.com/echasnovski/mini.misc)
 + [echasnovski/mini.move](https://github.com/echasnovski/mini.move)
++ [echasnovski/mini.notify](https://github.com/echasnovski/mini.notify)
 + [echasnovski/mini.operators](https://github.com/echasnovski/mini.operators)
 + [echasnovski/mini.splitjoin](https://github.com/echasnovski/mini.splitjoin)
 + [echasnovski/mini.starter](https://github.com/echasnovski/mini.starter)
@@ -59,17 +61,14 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 + [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 #### sources
-+ [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
 + [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-+ [hrsh7th/cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help)
 
 ### code editing support
 + [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
 + [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 
 ### files
-+ [miversen33/netman.nvim](https://github.com/miversen33/netman.nvim)
-+ [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
++ [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim)
 
 ### fuzzy finder
 + [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
@@ -87,17 +86,16 @@ NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
 
 ### coding tool installer
 + [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
-+ [WhoIsSethDaniel/mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
 
 ### nvim-dev
-+ [KaitlynEthylia/Evalua](https://github.com/KaitlynEthylia/Evalua)
 + [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 + [milisims/nvim-luaref](https://github.com/milisims/nvim-luaref)
 
 ### programming-languages-support
-+ [olexsmir/gopher.nvim](https://github.com/olexsmir/gopher.nvim)
++ [ray-x/go.nvim](https://github.com/ray-x/go.nvim)
 + [scalameta/nvim-metals](https://github.com/scalameta/nvim-metals)
 + [mfussenegger/nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
++ [mrcjkb/rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
 
 ### compilation
 + [skywind3000/asyncrun.vim](https://github.com/skywind3000/asyncrun.vim)
