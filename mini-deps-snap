@@ -1,5 +1,4 @@
 return {
-  Evalua = "aae8c5648e4cdf48e17af77deb827239ec30ef58",
   ["asyncrun.vim"] = "014e2e2fe51ad4b1a774cffa0f12887767d952eb",
   ["battery.nvim"] = "007d7943e28d1fc8c49a46c3a9c3b3f34975a0c2",
   ["blame.nvim"] = "b713e4a9679164027e7f4d2131a0d0e62cfa4a36",

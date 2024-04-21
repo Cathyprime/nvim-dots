@@ -53,19 +53,13 @@ later(function()
 end)
 
 add("milisims/nvim-luaref")
-add({
-    source = "KaitlynEthylia/Evalua",
-    depends = {"nvim-treesitter/nvim-treesitter"},
-})
-
-later(function()
-    require("evalua")
-    vim.keymap.set("n", "ZE", "<cmd>Evalua<cr>")
-end)
 
 add({
     source = "jellydn/hurl.nvim",
-    -- depends = {"MunifTanjim/nui.nvim"}, installed by lua rocks
+    depends = {
+    --     "MunifTanjim/nui.nvim", installed by lua rocks
+        "nvim-treesitter/nvim-treesitter"
+    }
 })
 
 later(function()
