@@ -53,7 +53,14 @@ return {
                 "force",
                 {},
                 vim.lsp.protocol.make_client_capabilities(),
-                require("cmp_nvim_lsp").default_capabilities(),
+                (function()
+                    local ok, cmp = pcall(require, "cmp_nvim_lsp")
+                    if ok then
+                        return cmp.default_capabilities()
+                    else
+                        return {}
+                    end
+                end)(),
                 lspconfig[server].capabilities or {}
             )
         })
