@@ -13,9 +13,9 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 ---@diagnostic disable-next-line
 cmp.setup({
     preselect = cmp.PreselectMode.None,
+
     sources = cmp.config.sources({
-        { name = "nvim_lsp", },
-        { name = "cmdline" },
+        { name = "nvim_lsp" },
     }),
 
     window = {
@@ -45,7 +45,7 @@ cmp.setup({
     mapping = {
         ["<c-n>"] = cmp.mapping.select_next_item(cmp_select),
         ["<c-p>"] = cmp.mapping.select_prev_item(cmp_select),
-        ["<c-y>"] = cmp.mapping.confirm({ select = false}),
+        ["<c-y>"] = cmp.mapping.confirm({ select = false }),
         ["<c-e>"] = cmp.mapping.abort(),
         ["<c-x>c"] = cmp.mapping.complete(),
         ["<c-g>"] = cmp.mapping(function()
@@ -71,7 +71,7 @@ cmp.setup({
 
     formatting = {
         fields = { "kind", "abbr", "menu" },
-        format = function (_, item)
+        format = function(_, item)
             local kind = item.kind or ""
 
             item.kind = " " .. (icons[kind] or icons["Unknown"]) .. " "
