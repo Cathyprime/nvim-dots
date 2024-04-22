@@ -35,7 +35,6 @@ require("cathy.plugin.telescope")
 require("cathy.plugin.ui")
 require("cathy.plugin.quickfix")
 require("cathy.plugin.neorg")
-require("cathy.plugin.test")
 
 if SWITCHES.files == "neotree" then
     require("cathy.plugin.files")
@@ -46,3 +45,5 @@ end
 if SWITCHES.rust then
     require("cathy.config.rust")
 end
+
+require("cathy.plugin.test")
