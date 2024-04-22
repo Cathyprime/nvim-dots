@@ -30,7 +30,7 @@ return {
     s("p", fmt([[System.out.println({});]], {i(0)})),
 
     s("fn", fmt([[
-    {scope}{type} {name} ({args}) {{
+    {scope}{type} {name}({args}) {{
         {body}
     }}]], {
         scope = c(1, {
