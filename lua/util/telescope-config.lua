@@ -14,4 +14,12 @@ M.layout_config = {
 
 M.border = true
 
+M.ignores = {
+    "node%_modules/*",
+    "venv/*",
+    "%.git/*",
+    "%.mypy_cache/",
+    ".*class",
+}
+
 return M

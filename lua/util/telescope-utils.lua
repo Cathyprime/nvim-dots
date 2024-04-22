@@ -4,6 +4,7 @@ local finders = require "telescope.finders"
 local sorters = require "telescope.sorters"
 local state   = require "telescope.actions.state"
 local actions = require "telescope.actions"
+local config  = require "util.telescope-config"
 
 local M = {}
 
@@ -11,12 +12,7 @@ local is_inside_work_tree = {}
 
 M.project_files = function()
     local opts = {
-        file_ignore_patterns = {
-            "node%_modules/*",
-            "venv/*",
-            "%.mypy_cache/",
-            "%.git/*",
-        }
+        file_ignore_patterns = config.ignores
     }
 
     local cwd = vim.fn.getcwd()
@@ -39,12 +35,7 @@ M.change_dir = function()
         require("telescope.builtin").find_files({
             cwd = selected[1],
             hidden = true,
-            file_ignore_patterns = {
-                "node%_modules/*",
-                "venv/*",
-                "%.git/*",
-                "%.mypy_cache/",
-            },
+            file_ignore_patterns = config.ignores,
         })
     end
 
@@ -77,12 +68,7 @@ end
 
 M.hidden = function()
     require("telescope.builtin").find_files({
-        file_ignore_patterns = {
-            "node%_modules/*",
-            "venv/*",
-            "%.git/*",
-            "%.mypy_cache/",
-        },
+        file_ignore_patterns = config.ignores,
         hidden = true,
     })
 end

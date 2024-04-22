@@ -59,12 +59,7 @@ require("telescope").setup({
 
 vim.keymap.set("n", "<leader>ff", function()
     require("telescope.builtin").find_files({
-        file_ignore_patterns = {
-            "node%_modules/*",
-            "venv/*",
-            "%.git/*",
-            "%.mypy_cache/",
-        },
+        file_ignore_patterns = telescope_config.ignores,
         hidden = true,
     })
 end)
