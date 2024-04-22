@@ -20,6 +20,10 @@ M.ignores = {
     "%.git/*",
     "%.mypy_cache/",
     ".*class",
+    ".*bin",
+    ".*tar",
+    ".*zip",
+    ".*jar",
 }
 
 return M
