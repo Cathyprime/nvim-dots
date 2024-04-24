@@ -34,7 +34,7 @@ local attach = function(client, bufnr, alt_keys)
     if client.name == "omnisharp" then return end
     if client.name == "gopls" then return end
     if client.server_capabilities.codeLensProvider then
-        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
             group = vim.api.nvim_create_augroup("codeLens", { clear = false }),
             buffer = bufnr,
             callback = function()
