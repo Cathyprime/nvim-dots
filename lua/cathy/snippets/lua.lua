@@ -179,8 +179,8 @@ return {
 
     s("autocmd", fmt([[
     vim.api.nvim_create_autocmd({event}, {{
-        once = {once},{pattern}
-        {fn}
+        once = {once},
+        {fn},
     }})
     ]], {
         event = c(1, {
@@ -191,17 +191,7 @@ return {
             t"false",
             t"true",
         }),
-        pattern = c(3, {
-            t"",
-            isn(nil, {
-                t{ "", "pattern = " },
-                c(1, {
-                    sn(nil, fmt([["{}",]], { i(1, "pattern") })),
-                    sn(nil, fmt("{<>},", { i(1, "patterns") }, { delimiters = "<>" })),
-                })
-            }, "$PARENT_INDENT\t")
-        }),
-        fn = c(4, {
+        fn = c(3, {
             isn(nil, fmt([[
             callback = function({args})
                 {body}
