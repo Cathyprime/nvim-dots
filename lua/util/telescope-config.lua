@@ -19,11 +19,11 @@ M.ignores = {
     "venv/*",
     "%.git/*",
     "%.mypy_cache/",
-    ".*class",
-    ".*bin",
-    ".*tar",
-    ".*zip",
-    ".*jar",
+    ".*class$",
+    ".*bin$",
+    ".*tar$",
+    ".*zip$",
+    ".*jar$",
 }
 
 return M
