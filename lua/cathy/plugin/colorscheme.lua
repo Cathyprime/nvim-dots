@@ -29,6 +29,7 @@ require("mini.deps").now(function()
                 ["@markup.list.markdown"] = { link = "Function" }, -- + list
                 ["@field"] = { link = "@variable.member" },
                 ["@include"] = { link = "@keyword.import" },
+                ["@function.method"] = { link = "@function" },
             }
         end,
     })
