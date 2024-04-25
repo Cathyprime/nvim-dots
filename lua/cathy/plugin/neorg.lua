@@ -1,4 +1,4 @@
-require("mini.deps").later(function()
+vim.keymap.set("n", "<leader>n", function()
     require("neorg").setup({
         load = {
             ["core.defaults"] = {},
@@ -31,4 +31,5 @@ require("mini.deps").later(function()
         }
     })
     vim.keymap.set("n", "<leader>n", "<cmd>Neorg<cr>")
+    vim.cmd("Neorg")
 end)
