@@ -95,7 +95,21 @@ later(function()
     vim.keymap.set("v", "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end)
 end)
 
-add("github/copilot.vim")
+add("zbirenbaum/copilot.lua")
 later(function()
-    vim.cmd("Copilot disable")
+    vim.api.nvim_create_autocmd("InsertEnter", {
+        once = true,
+        callback = function()
+            require("copilot").setup({
+                panel = {
+                    auto_trigger = true,
+                    keymap = {
+                        jump_next = "<M-j>",
+                        jump_prev = "<M-k>",
+                        refresh = "<leader>r",
+                    }
+                }
+            })
+        end
+    })
 end)
