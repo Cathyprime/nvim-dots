@@ -73,4 +73,8 @@ M.hidden = function()
     })
 end
 
+M.get_word = function()
+    builtin.grep_string({ search = vim.fn.expand("<cword>") })
+end
+
 return M

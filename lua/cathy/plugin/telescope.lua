@@ -70,6 +70,11 @@ local get_nvim = function()
     })
 end
 
+local get_word = function()
+    builtin.grep_string({ search = vim.fn.expand("<cword>") })
+end
+
+vim.keymap.set("n", "<leader>fw",       get_word)
 vim.keymap.set("n", "<leader>fF",       builtin.resume)
 vim.keymap.set("n", "<leader><leader>", builtin.buffers)
 vim.keymap.set("n", "<m-x>",            builtin.commands)
