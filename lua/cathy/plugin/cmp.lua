@@ -5,9 +5,12 @@ require("mini.deps").add({
     }
 })
 
-require("mini.deps").now(function()
-    require("cathy.config.cmp")
-    local colors = require("cathy.config.cmp-colors")
-    colors.run(false)
-    colors.set_autocmd()
-end)
+vim.api.nvim_create_autocmd("InsertEnter", {
+    once = true,
+    callback = function()
+        require("cathy.config.cmp")
+        local colors = require("cathy.config.cmp-colors")
+        colors.run(false)
+        colors.set_autocmd()
+    end,
+})
