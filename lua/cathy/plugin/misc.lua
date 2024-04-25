@@ -2,6 +2,21 @@ local add   = require("mini.deps").add
 local later = require("mini.deps").later
 local now   = require("mini.deps").now
 
+local function keymap(lhs, rhs, config, opts, mode)
+    mode = mode or "n"
+    opts = opts or {}
+    vim.keymap.set(mode, lhs, function()
+        config()
+        vim.keymap.set(mode, lhs, rhs, opts)
+        if type(rhs) == "function" then
+            rhs()
+        else
+            local str = rhs:gsub("%<.-%>", "")
+            vim.cmd(str)
+        end
+    end, opts)
+end
+
 add("mbbill/undotree")
 now(function()
     vim.g.undotree_WindowLayout = 2
@@ -21,7 +36,7 @@ add({
 require("fundo").install()
 
 add("Vigemus/iron.nvim")
-later(function()
+local iron_setup = function()
     require("iron.core").setup({
         config = {
             repl_open_cmd = "vertical botright 70 split",
@@ -46,11 +61,11 @@ later(function()
             remove_mark = "<localleader>md",
         },
     })
-    vim.keymap.set("n", "<leader>is", "<cmd>IronRepl<cr>")
-    vim.keymap.set("n", "<leader>ih", "<cmd>IronHide<cr>")
-    vim.keymap.set("n", "<leader>if", "<cmd>IronWatch file<cr>")
-    vim.keymap.set("n", "<leader>im", "<cmd>IronWatch mark<cr>")
-end)
+end
+keymap("<leader>is", "<cmd>IronRepl<cr>", iron_setup)
+keymap("<leader>ih", "<cmd>IronHide<cr>", iron_setup)
+keymap("<leader>if", "<cmd>IronWatch file<cr>", iron_setup)
+keymap("<leader>im", "<cmd>IronWatch mark<cr>", iron_setup)
 
 add("milisims/nvim-luaref")
 
@@ -115,10 +130,6 @@ later(function()
     })
 end)
 
-later(function()
-    require("2048").setup()
-end)
-
 add("chrishrb/gx.nvim")
 later(function()
     ---@diagnostic disable-next-line: missing-parameter
@@ -151,7 +162,7 @@ add({
 later(function()
     require("codesnap").setup({
         has_breadcrumbs = true,
-        watermark = "Yippiee"
+        watermark = "Magda :3"
     })
 end)
 
