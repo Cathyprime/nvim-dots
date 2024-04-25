@@ -4,7 +4,8 @@ require("mini.deps").add({
     --     "nvim-tree/nvim-web-devicons", -- installed by lua rocks
     -- }
 })
-require("mini.deps").later(function()
+
+require("mini.deps").now(function()
     require("oil").setup({
         default_file_explorer = true,
         columns = {
