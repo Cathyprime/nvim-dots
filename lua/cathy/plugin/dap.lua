@@ -24,7 +24,7 @@ require("mini.deps").later(function()
     end
 
     vim.api.nvim_create_autocmd("BufAdd", {
-        group = vim.api.nvim_create_augroup("CathyDap", { clear = true }),
+        group = vim.api.nvim_create_augroup("cathy_dap", { clear = true }),
         pattern = {
             "*scala",
             "*rs",

@@ -12,7 +12,7 @@ later(function()
         symbol = "",
     })
     vim.api.nvim_create_autocmd("BufEnter", {
-        group = vim.api.nvim_create_augroup("CathyIndentScope", { clear = true }),
+        group = vim.api.nvim_create_augroup("cathy_indent_scope", { clear = true }),
         callback = function()
             if vim.opt.shiftwidth:get() == 2 and vim.opt.tabstop:get() == 2 then
                 vim.b.miniindentscope_config = {
