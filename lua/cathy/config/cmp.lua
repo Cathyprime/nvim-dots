@@ -15,7 +15,16 @@ cmp.setup({
     preselect = cmp.PreselectMode.None,
 
     sources = cmp.config.sources({
-        { name = "nvim_lsp" },
+        {
+            name = "nvim_lsp",
+            entry_filter = function(entry)
+                if entry:get_kind() == 1 then
+                    return false
+                end
+
+                return true
+            end
+        },
     }),
 
     window = {
