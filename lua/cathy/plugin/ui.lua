@@ -1,4 +1,3 @@
--- local telescope_config = require("util.telescope-config")
 local telescope_config = {
     borderchars = {
         prompt  = { "",  "",  "",  "",  "",  "",  "",  ""  },
