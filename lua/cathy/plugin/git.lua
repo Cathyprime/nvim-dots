@@ -18,6 +18,12 @@ md.now(function()
     local neogit = require("neogit")
     neogit.setup({})
     vim.keymap.set("n", "ZG", function() neogit.open({ kind = "tab" }) end)
+
+    vim.api.nvim_create_autocmd("Filetype", {
+        group = vim.api.nvim_create_augroup("cathy_neogit", { clear = true }),
+        pattern = "NeogitStatus",
+        command = "setlocal foldcolumn=0"
+    })
 end)
 
 md.later(function()
