@@ -6,6 +6,6 @@ require("mini.deps").add({
     },
 })
 
-require("mini.deps").later(function()
+require("mini.deps").now(function()
     require("cathy.config.lsp")
 end)
