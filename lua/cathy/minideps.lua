@@ -24,17 +24,17 @@ require("cathy.plugin.editing")
 require("cathy.plugin.compile")
 require("cathy.plugin.git")
 
+require("cathy.plugin.telescope")
+require("cathy.plugin.ui")
+require("cathy.plugin.quickfix")
+require("cathy.plugin.neorg")
+
 require("cathy.plugin.luasnip")
 require("cathy.plugin.cmp")
 require("cathy.plugin.lsp")
 require("cathy.plugin.lsp-misc")
 require("cathy.plugin.nonels")
 require("cathy.plugin.dap")
-
-require("cathy.plugin.telescope")
-require("cathy.plugin.ui")
-require("cathy.plugin.quickfix")
-require("cathy.plugin.neorg")
 
 if SWITCHES.files == "neotree" then
     require("cathy.plugin.files")
