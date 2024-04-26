@@ -52,11 +52,6 @@ local cmp = require("cmp")
 ---@diagnostic disable-next-line
 cmp.setup.buffer({
     sources = cmp.config.sources({
-        { name = "path" },
-        { name = "cmdline" },
-    }, {
-        { name = "buffer" },
-    }, {
         { name = "nvim_lua" },
     }),
 
