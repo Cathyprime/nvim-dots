@@ -97,16 +97,21 @@ end)
 
 add("zbirenbaum/copilot.lua")
 later(function()
-    vim.api.nvim_create_autocmd("InsertEnter", {
+    vim.api.nvim_create_autocmd({"InsertEnter", "CmdlineEnter"}, {
         once = true,
         callback = function()
             require("copilot").setup({
-                panel = {
-                    auto_trigger = true,
+                panel = { enabled = false },
+                suggestion = {
+                    enabled = true,
+                    auto_trigger = false,
                     keymap = {
-                        jump_next = "<M-j>",
-                        jump_prev = "<M-k>",
-                        refresh = "<leader>r",
+                        accept = "<m-y>",
+                        accept_word = "<m-w>",
+                        accept_line = "<m-l>",
+                        next = "<m-n>",
+                        prev = "<m-p>",
+                        dismiss = "<m-e>",
                     }
                 }
             })
