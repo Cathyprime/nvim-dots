@@ -123,6 +123,14 @@ local function recording_component()
     return string.format("%s%s", register, recording)
 end
 
+local function venn_component()
+    if vim.b.venn_enabled ~= nil then
+        return "v"
+    else
+        return ""
+    end
+end
+
 local function battery_component_gen()
     if vim.g.neovide and vim.fn.hostname() ~= "luna" then
         return require("battery").get_status_line
@@ -206,7 +214,7 @@ local config = {
                 end
             },
         },
-        lualine_b = { "branch", "diff" },
+        lualine_b = { venn_component, "branch", "diff" },
         lualine_c = {
             {
                 "filename",
