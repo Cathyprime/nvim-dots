@@ -12,21 +12,21 @@
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
 "rocks.nvim" = "2.25.1"
-neorg = "8.4.0"
+neorg = { version = "8.4.0", opt = true }
 "plenary.nvim" = "scm"
-nvim-metals = "0.8.x"
+nvim-metals = { version = "0.8.x", opt = true }
 "telescope.nvim" = "scm"
 nvim-web-devicons = "0.99"
-luasnip = "2.3.0"
+luasnip = { version = "2.3.0", opt = true }
 "fidget.nvim" = "1.1.0"
 "dressing.nvim" = "2.2.0"
-rustaceanvim = "4.22.6"
-nvim-jdtls = "0.2.0"
-"go.nvim" = "0.2.1"
-nvim-dap-ui = "4.0.0"
-nvim-dap-go = "scm"
+rustaceanvim = { version = "4.22.6", opt = true }
+nvim-jdtls = { version = "0.2.0", opt = true }
+"go.nvim" = { version = "0.2.1", opt = true }
+nvim-dap-ui = { version = "4.0.0", opt = true }
+nvim-dap-go = { version = "scm", opt = true }
 "grapple.nvim" = "0.28.2"
-neotest = "4.2.0"
+neotest = { version = "4.2.0", opt = true }
 "flatten.nvim" = "0.5.1"
-"none-ls-extras.nvim" = "scm"
+"none-ls-extras.nvim" = { version = "scm", opt = true }
 "venn.nvim" = "scm"

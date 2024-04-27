@@ -1,4 +1,5 @@
 vim.keymap.set("n", "<leader>n", function()
+    vim.cmd.packadd("neorg")
     require("neorg").setup({
         load = {
             ["core.defaults"] = {},

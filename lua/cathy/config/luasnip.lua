@@ -1,4 +1,5 @@
 ---@diagnostic disable-next-line
+vim.cmd.packadd("luasnip")
 local ls = require "luasnip"
 
 vim.keymap.set({"i"}, "<c-x>l", function() ls.expand() end, {silent = true})

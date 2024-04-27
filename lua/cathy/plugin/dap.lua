@@ -1,3 +1,6 @@
+vim.cmd.packadd("nvim-dap-ui")
+vim.cmd.packadd("nvim-dap-go")
+
 local function map(lhs, rhs, description, skip)
     local prefix = "<leader>z"
     if skip ~= nil then

@@ -18,7 +18,7 @@ local function keymap(lhs, rhs, config, opts, mode)
 end
 
 add("mbbill/undotree")
-now(function()
+later(function()
     vim.g.undotree_WindowLayout = 2
     vim.g.undotree_ShortIndicators = 0
     vim.g.undotree_SplitWidth = 40
@@ -137,7 +137,7 @@ later(function()
     vim.keymap.set("n", "gl", "<cmd>Browse<cr>")
 end)
 
-now(function()
+later(function()
     vim.keymap.set("n", "<leader>a", require("grapple").toggle)
     vim.keymap.set("n", "<leader>e", require("grapple").toggle_tags)
     vim.keymap.set("n", "<c-g>", "<cmd>Grapple select index=1<cr>")
@@ -185,7 +185,7 @@ now(function()
     end
 end)
 
-require("mini.deps").now(function()
+now(function()
     require("flatten").setup()
 end)
 

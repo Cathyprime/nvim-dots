@@ -34,36 +34,35 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end,
 })
 
+require("cathy.plugin.lsp")
+require("cathy.plugin.nonels")
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
     once = true,
     callback = function()
-        require("cathy.plugin.nonels")
-        require("cathy.plugin.lsp")
-        require("cathy.plugin.lsp-misc")
         require("cathy.plugin.dap")
     end
 })
 
+require("cathy.plugin.cmp")
 vim.api.nvim_create_autocmd("InsertEnter", {
     once = true,
     callback = function()
-        require("cathy.plugin.cmp")
-        require("cathy.plugin.luasnip")
+        require("cathy.config.cmp")
+        require("cathy.config.luasnip")
+        local colors = require("cathy.config.cmp-colors")
+        colors.run(false)
+        colors.set_autocmd()
     end,
 })
 
 if SWITCHES.rust then
-    require("cathy.config.rust")
+    pcall(require, "cathy.config.rust")
 end
 
-vim.api.nvim_create_autocmd("VimEnter", {
-    once = true,
-    callback = function()
-        if SWITCHES.files == "neotree" then
-            require("cathy.plugin.files")
-        elseif SWITCHES.files == "oil" then
-            require("cathy.plugin.oil")
-        end
-        require("cathy.plugin.test")
-    end,
-})
+if SWITCHES.files == "neotree" then
+    require("cathy.plugin.files")
+elseif SWITCHES.files == "oil" then
+    require("cathy.plugin.oil")
+end
+
+require("cathy.plugin.test")
