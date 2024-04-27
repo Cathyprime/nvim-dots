@@ -147,9 +147,55 @@ later(function()
         },
     })
     vim.notify = require("mini.notify").make_notify({
-        ERROR  = { duration = 5000 },
-        WARN   = { duration = 4000 },
-        INFO   = { duration = 3000 },
+        ERROR = { duration = 5000 },
+        WARN  = { duration = 4000 },
+        INFO  = { duration = 3000 },
     })
+    vim.api.nvim_create_user_command(
+        "Notify",
+        function(opts)
+            local trans = {
+                ["Off"]   = 5,
+                ["Error"] = 4,
+                ["Warn"]  = 3,
+                ["Info"]  = 2,
+                ["Debug"] = 1,
+                ["Trace"] = 0
+            }
+            local level = trans[opts.fargs[1]]
+            local levels = vim.iter({
+                ERROR = { duration = 5000 },
+                WARN  = { duration = 4000 },
+                INFO  = { duration = 3000 },
+                DEBUG = { duration = 2000 },
+                TRACE = { duration = 1000 },
+            })
+                :fold({}, function(acc, key, value)
+                if vim.log.levels[key] < level then
+                    value["duration"] = 0
+                end
+                acc[key] = value
+                return acc
+            end)
+            vim.notify = require("mini.notify").make_notify(levels)
+        end,
+        {
+            nargs = 1,
+            complete = function(arg_lead)
+                return vim.iter({
+                    "off",
+                    "error",
+                    "warn",
+                    "info",
+                    "debug",
+                    "trace"
+                })
+                    :filter(function(value)
+                        return value:sub(1, #arg_lead) == arg_lead:lower()
+                    end)
+                    :totable()
+            end
+        }
+    )
 
 end)
