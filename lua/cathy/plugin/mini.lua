@@ -155,14 +155,14 @@ later(function()
         "Notify",
         function(opts)
             local trans = {
-                ["Off"]   = 5,
-                ["Error"] = 4,
-                ["Warn"]  = 3,
-                ["Info"]  = 2,
-                ["Debug"] = 1,
-                ["Trace"] = 0
+                ["off"]   = 5,
+                ["error"] = 4,
+                ["warn"]  = 3,
+                ["info"]  = 2,
+                ["debug"] = 1,
+                ["trace"] = 0
             }
-            local level = trans[opts.fargs[1]]
+            local level = trans[opts.fargs[1]:lower()]
             local levels = vim.iter({
                 ERROR = { duration = 5000 },
                 WARN  = { duration = 4000 },
