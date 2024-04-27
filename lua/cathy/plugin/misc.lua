@@ -72,7 +72,7 @@ add("milisims/nvim-luaref")
 add({
     source = "jellydn/hurl.nvim",
     depends = {
-        --     "MunifTanjim/nui.nvim", installed by lua rocks
+        -- "MunifTanjim/nui.nvim", installed by lua rocks
         "nvim-treesitter/nvim-treesitter"
     }
 })

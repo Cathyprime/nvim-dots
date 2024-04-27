@@ -6,9 +6,4 @@ require("mini.deps").add({
     },
 })
 
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
-    once = true,
-    callback = function()
-        require("cathy.config.lsp")
-    end
-})
+require("cathy.config.lsp")

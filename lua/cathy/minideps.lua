@@ -24,26 +24,46 @@ require("cathy.plugin.editing")
 require("cathy.plugin.compile")
 require("cathy.plugin.git")
 
-require("cathy.plugin.telescope")
-require("cathy.plugin.ui")
-require("cathy.plugin.quickfix")
-require("cathy.plugin.neorg")
+vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function()
+        require("cathy.plugin.telescope")
+        require("cathy.plugin.ui")
+        require("cathy.plugin.quickfix")
+        require("cathy.plugin.neorg")
+    end,
+})
 
-require("cathy.plugin.luasnip")
-require("cathy.plugin.cmp")
-require("cathy.plugin.lsp")
-require("cathy.plugin.lsp-misc")
-require("cathy.plugin.nonels")
-require("cathy.plugin.dap")
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
+    once = true,
+    callback = function()
+        require("cathy.plugin.nonels")
+        require("cathy.plugin.lsp")
+        require("cathy.plugin.lsp-misc")
+        require("cathy.plugin.dap")
+    end
+})
 
-if SWITCHES.files == "neotree" then
-    require("cathy.plugin.files")
-elseif SWITCHES.files == "oil" then
-    require("cathy.plugin.oil")
-end
+vim.api.nvim_create_autocmd("InsertEnter", {
+    once = true,
+    callback = function()
+        require("cathy.plugin.cmp")
+        require("cathy.plugin.luasnip")
+    end,
+})
 
 if SWITCHES.rust then
     require("cathy.config.rust")
 end
 
-require("cathy.plugin.test")
+vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function()
+        if SWITCHES.files == "neotree" then
+            require("cathy.plugin.files")
+        elseif SWITCHES.files == "oil" then
+            require("cathy.plugin.oil")
+        end
+        require("cathy.plugin.test")
+    end,
+})
