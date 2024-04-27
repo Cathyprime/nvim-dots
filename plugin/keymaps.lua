@@ -177,3 +177,6 @@ map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = fa
 
 -- terminal
 map("n", "<c-w>t", "<cmd>12Terminal<cr>", { desc = "open terminal" })
+
+-- defaults
+vim.keymap.del("v", "crr")
