@@ -32,16 +32,17 @@ vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
         vim.api.nvim_set_hl(0, "Folded", {
             fg = "None"
         })
-        for _, group in ipairs(diagGroups) do
-            local old
+        vim.iter(diagGroups):map(function(group)
             if group == "DiagnosticFloatingError" then
-                old = vim.api.nvim_get_hl(0, { name = "DiagnosticError" })
+                return { name = group, colors = vim.api.nvim_get_hl(0, { name = "DiagnosticError" }) }
             else
-                old = vim.api.nvim_get_hl(0, { name = group })
+                return { name = group, colors = vim.api.nvim_get_hl(0, { name = group }) }
             end
-            vim.api.nvim_set_hl(0, group, {
-                fg = old.fg
+        end)
+            :each(function(group)
+                vim.api.nvim_set_hl(0, group.name, {
+                fg = group.colors.fg
             })
-        end
+            end)
     end
 })

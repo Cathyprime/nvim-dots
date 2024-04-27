@@ -32,11 +32,11 @@ npairs.add_rules {
     end)
 }
 
-for _, bracket in pairs(brackets) do
+vim.iter(brackets):each(function(bracket)
     npairs.add_rules {
         Rule(bracket[1], bracket[2])
-        :with_pair(cond.none())
-        :with_del(function() return true end)
-        :with_cr(cond.none())
+            :with_pair(cond.none())
+            :with_del(function() return true end)
+            :with_cr(cond.none())
     }
-end
+end)

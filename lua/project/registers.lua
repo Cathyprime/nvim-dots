@@ -28,12 +28,12 @@ function M.start(self)
 end
 
 function M.on_enter(self)
-    local regs = ""
-    for reg, cmd in pairs(self.registers.new) do
-        regs = string.format("%s%s", regs, reg)
-        self.registers.old[reg] = vim.fn.getreg(reg)
-        vim.fn.setreg(reg, vim.api.nvim_replace_termcodes(cmd, true, true, true))
-    end
+    local regs = vim.iter(self.registers.new)
+        :fold("", function(acc, reg, cmd)
+            self.registers.old[reg] = vim.fn.getreg(reg)
+            vim.fn.setreg(reg, vim.api.nvim_replace_termcodes(cmd, true, true, true))
+            return string.format("%s%s", acc, reg)
+        end)
     vim.keymap.set("n", "<leader>h", string.format("<cmd>reg %s<cr>", regs), { silent = true })
 end
 
@@ -41,9 +41,9 @@ function M.on_leave(self)
     vim.api.nvim_create_autocmd("VimLeavePre", {
         once = true,
         callback = function()
-            for reg, content in pairs(self.registers.old) do
+            vim.iter(self.registers.old):each(function(reg, content)
                 vim.fn.setreg(reg, content)
-            end
+            end)
         end
     })
 end

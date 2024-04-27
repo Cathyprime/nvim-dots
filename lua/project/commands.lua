@@ -19,11 +19,10 @@ function M.enable(opts)
 end
 
 function M.create_completion(self)
-    local completion = {}
-    for i, _ in pairs(self.map) do
-        table.insert(completion, i)
-    end
-    return completion
+    return vim.iter(self.map):fold({}, function(acc, item)
+        table.insert(acc, item)
+        return acc
+    end)
 end
 
 function M.func(self, opts)

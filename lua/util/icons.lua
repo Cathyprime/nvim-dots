@@ -70,19 +70,26 @@ M.icons = {
     Web = "󰖟",
 }
 
-function M:new(opts)
+function M.new(opts)
     opts = opts or {}
     local obj = {}
-    setmetatable(obj, self)
-    obj.icons = {}
-    for k, v in pairs(M.icons) do
-        if not k:match("Alt$") and not k:match("Alt%d+$") then
-            if opts.alts and opts.alts[k] then
-                obj.icons[k] = M.icons[opts.alts[k]]
+    if not opts.alts then
+        obj.icons = vim.iter(M.icons):filter(function(key)
+            return not key:match("Alt$") and not key:match("Alt$d+$")
+        end)
+        :totable()
+    else
+        obj.icons = vim.iter(M.icons):filter(function(key)
+            return not key:match("Alt$") and not key:match("Alt$d+$")
+        end)
+            :fold({}, function(acc, key, value)
+            if opts.alts[key] then
+                acc[key] = M.icons[opts.alts[key]]
             else
-                obj.icons[k] = v
+                acc[key] = value
             end
-        end
+            return acc
+        end)
     end
     return obj
 end

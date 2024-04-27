@@ -209,25 +209,20 @@ return {
         {assign}{body}
     ]], {
         args = i(1),
-        assign = d(2, function (args)
+        assign = d(2, function(args)
             local args_str = args[1][1]
             args_str = args_str:gsub(', ', ',')
             args_str = args_str:sub(2) or ""
             if args_str == "" then
                 return sn(nil, {t("")})
             end
-            local args_split = vim.split(args_str, ',')
-            local nodes = {}
-
-            for _, arg in ipairs(args_split) do
-                local trimmed = vim.split(arg, "=")[1] or arg
-                local name = vim.split(trimmed, ":")[1] or ""
-                local type = vim.split(trimmed, ":")[2] or ""
-                if type ~= "" then
-                    type = ": " .. type
-                end
-                table.insert(nodes, "self." .. name .. type .. " = " .. name)
-            end
+            local nodes = vim.iter(vim.split(args_str, ','))
+                    :map(function(arg)
+                        local trimmed = vim.split(arg, "=")[1] or arg
+                        local name = vim.split(trimmed, ":")[1] or ""
+                        return "self." .. name .. " = " .. name
+                    end)
+                    :totable()
             return isn(nil, t(nodes), "$PARENT_INDENT\t")
         end, { 1 }),
         body = i(0)

@@ -43,13 +43,9 @@ local function confirm_save_cur(question, err)
 end
 
 local function find_if_modified()
-    local table = vim.api.nvim_list_bufs()
-    for _, x in ipairs(table) do
-        if vim.api.nvim_get_option_value("modified", { buf = x }) and vim.api.nvim_buf_is_loaded(x) then
-            return true
-        end
-    end
-    return false
+    return vim.iter(vim.api.nvim_list_bufs()):any(function(buffer)
+        return vim.api.nvim_get_option_value("modified", { buf = buffer }) and vim.api.nvim_buf_is_loaded(buffer)
+    end)
 end
 
 local function confirm_save_all(question, err)

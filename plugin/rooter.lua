@@ -17,12 +17,9 @@ local disabled_filetype = {
 
 local function isBanned(ft)
     if ft == "" then return true end
-    for _, v in ipairs(disabled_filetype) do
-        if v == ft then
-            return true
-        end
-    end
-    return false
+    return vim.iter(disabled_filetype):any(function(v)
+        return v == ft
+    end)
 end
 
 local function set_root()
@@ -32,14 +29,9 @@ local function set_root()
     if path == "" then return end
 
     local root = vim.fs.root(0, function(name)
-        local found = false
-        for _, value in ipairs(root_names) do
-            found = value == name or name:match('%.csproj$')
-            if found then
-                break
-            end
-        end
-        return found
+        return vim.iter(root_names):any(function(value)
+            return value == name or name:match('%.csproj$')
+        end)
     end)
 
     local old = vim.fn.getcwd()

@@ -68,28 +68,28 @@ M.run = function(log)
     if log ~= nil then
         M.opts.log = log
     end
-    for _, group in ipairs(M.groups) do
-        M.log(group)
-        local original = M.get_colors(group)
-        if original == nil then
-            M.log("error getting", group)
-            goto continue
-        end
-        if vim.g.neovide then
-            vim.api.nvim_set_hl(0, group, {
-                fg = original.fg,
-                bg = M.darken(original.fg, 1),
-                standout = true,
-            })
-        else
-            vim.api.nvim_set_hl(0, group, {
-                bg = original.fg,
-                fg = M.darken(original.fg, 1),
-                standout = true,
-            })
-        end
-        ::continue::
-    end
+    vim.iter(M.groups)
+        :map(function(group)
+            return { name = group, colors = M.get_colors(group) }
+        end)
+        :filter(function(group)
+            return group["colors"] ~= nil
+        end)
+        :each(function(group)
+            if vim.g.neovide then
+                vim.api.nvim_set_hl(0, group.name, {
+                    bg = M.darken(group.colors.fg, 1),
+                    fg = group.colors.fg,
+                    standout = true,
+                })
+            else
+                vim.api.nvim_set_hl(0, group.name, {
+                    bg = group.colors.fg,
+                    fg = M.darken(group.colors.fg, 1),
+                    standout = true,
+                })
+            end
+        end)
 end
 
 M.set_autocmd = function()

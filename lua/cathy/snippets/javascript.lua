@@ -226,12 +226,10 @@ return {
             if args_str == "" then
                 return sn(nil, {t("")})
             end
-            local args_split = vim.split(args_str, ',')
-            local nodes = {}
-
-            for _, arg in ipairs(args_split) do
-                table.insert(nodes, "this." .. arg .. " = " .. arg .. ";")
-            end
+            local nodes = vim.iter(vim.split(args_str, ',')):fold({}, function(acc, arg)
+                table.insert(acc, "this." .. arg .. " = " .. arg .. ";")
+                return acc
+            end)
             return isn(nil, t(nodes), "$PARENT_INDENT\t")
         end, { 1 }),
         body = i(0)

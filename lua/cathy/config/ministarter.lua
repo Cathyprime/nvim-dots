@@ -42,21 +42,22 @@ local config = {
         "How are you doing?",
         os.date()
     }
-    local longest
-    for _, content in ipairs(header) do
-        longest = math.max(#content, longest or 0)
-    end
-    for idx, content in ipairs(header) do
-        if content == "" then goto continue end
-        local len_diff = longest - #content
+    local longest = vim.iter(header):fold(0, function(acc, value)
+        return math.max(#value, acc or 0)
+    end)
+    header = vim.iter(ipairs(header)):filter(function(value)
+        return value ~= ""
+    end)
+        :fold({}, function(acc, index, value)
+        local len_diff = longest - #value
         local pad = math.floor(len_diff / 2)
-        header[idx] = string.format(
+        acc[index] = string.format(
             "%s%s",
             string.rep(" ", pad),
-            content
+            value
         )
-        ::continue::
-    end
+        return acc
+    end)
     config.footer = table.remove(header, #header)
     config.header = table.concat(header, "\n")
 end)()
