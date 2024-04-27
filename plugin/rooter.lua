@@ -1,7 +1,5 @@
 local on = true
-local root_cache = {}
 local root_names = {
-    "build",
     "build.sbt",
     "Cargo.toml",
     ".git",
@@ -9,8 +7,8 @@ local root_names = {
     "gradlew",
     "lua",
     "Makefile",
-    "obj",
     "package.json",
+    "%.csproj$"
 }
 
 local disabled_filetype = {
@@ -33,17 +31,19 @@ local function set_root()
     local path = vim.api.nvim_buf_get_name(0)
     if path == "" then return end
 
-    path = vim.fs.dirname(path)
-    local root = root_cache[path]
-    if root == nil then
-        local root_file = vim.fs.find(root_names, { path = path, upward = true })[1]
-        if root_file == nil then return end
-        root = vim.fs.dirname(root_file)
-        root_cache[path] = root
-    end
+    local root = vim.fs.root(0, function(name)
+        local found = false
+        for _, value in ipairs(root_names) do
+            found = value == name or name:match('%.csproj$')
+            if found then
+                break
+            end
+        end
+        return found
+    end)
 
     local old = vim.fn.getcwd()
-    if old ~= root and root ~= "." and root ~= "/" then
+    if old ~= root and root ~= "." and root ~= "/" and root ~= nil then
         vim.notify(string.format("cwd: %s", root), vim.log.levels.INFO)
         vim.fn.chdir(root)
     end
