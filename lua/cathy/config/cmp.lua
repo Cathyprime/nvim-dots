@@ -12,9 +12,6 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 
 ---@diagnostic disable-next-line
 cmp.setup({
-    completion = {
-        completeopt = "menuone"
-    },
 
     preselect = cmp.PreselectMode.None,
 
