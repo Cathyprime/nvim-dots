@@ -31,6 +31,7 @@ require("mini.deps").later(function()
             prompt = "Compile command: ",
             default = compile_cmd or "",
             cancelreturn = -99,
+            completion = "custom,v:lua.CustomFilesystemCompletion"
         })
         if not ok or c == -99 then
             if new and c == - 99 then
