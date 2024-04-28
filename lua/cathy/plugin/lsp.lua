@@ -3,7 +3,6 @@ require("mini.deps").add({
     depends = {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
-        "folke/neodev.nvim",
     },
 })
 

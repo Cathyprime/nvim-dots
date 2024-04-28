@@ -25,7 +25,6 @@ local function disabled()
 end
 
 vim.lsp.log.set_level(vim.log.levels.ERROR)
-require("neodev").setup()
 
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -48,6 +47,6 @@ require("mason-lspconfig").setup({
         jdtls = disabled,
         rust_analyzer = disabled,
         -- tsserver = lsp_funcs.tsserver,
-        -- lua_ls = lsp_funcs.lua_ls,
+        lua_ls = lsp_funcs.lua_ls,
     }
 })

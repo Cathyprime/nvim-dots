@@ -81,34 +81,36 @@ return {
                 else
                     path = vim.loop.cwd()
                 end
-                if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-                    client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-                        Lua = {
-                            runtime = {
-                                version = "LuaJIT",
-                            },
-                            workspace = {
-                                checkThirdParty = false,
-                                library = (function()
-                                    return vim.tbl_deep_extend(
-                                        "keep",
-                                        {
-                                            vim.env.VIMRUNTIME,
-                                            "${3rd}/luv/library",
-                                            "${3rd}/busted/library",
-                                            "$HOME/.config/nvim/lua/",
-                                        },
-                                        vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n")
-                                    )
-                                end)(),
-                            },
-                        },
-                    })
-
-                    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+                if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+                    return
                 end
-                return true
-            end
+
+                client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+                    runtime = {
+                        version = 'LuaJIT'
+                    },
+                    workspace = {
+                        checkThirdParty = false,
+                        library = (function()
+                            return vim.tbl_deep_extend(
+                                "keep",
+                                {
+                                    vim.env.VIMRUNTIME,
+                                    "${3rd}/luv/library",
+                                    "${3rd}/busted/library",
+                                    "$HOME/.config/nvim/lua/",
+                                    vim.g.rocks_nvim.rocks_path .. "/share/lua/5.1/",
+                                },
+                                vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n")
+                            )
+                        end)(),
+                    }
+                })
+                client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+            end,
+            settings = {
+                Lua = {}
+            }
         })
     end,
     tsserver = function()
