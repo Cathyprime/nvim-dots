@@ -13,10 +13,9 @@ vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
     group = augroup,
     callback = function()
         vim.api.nvim_set_hl(0, "MiniTrailspace", (function()
-            local color = vim.api.nvim_get_hl(0, { name = "@keyword.return" })
             return {
-                bg = color.fg,
-                fg = color.fg
+                bg = "#ff5d62",
+                fg = "#ff5d62"
             }
         end)()
         )
