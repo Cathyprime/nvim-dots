@@ -62,7 +62,7 @@ vim.keymap.set("n", "<leader>ff", function()
         file_ignore_patterns = telescope_config.ignores,
         hidden = true,
     })
-end)
+end, { desc = "files" })
 
 local get_nvim = function()
     builtin.find_files({
@@ -74,22 +74,22 @@ local get_word = function()
     builtin.grep_string({ search = vim.fn.expand("<cword>") })
 end
 
-vim.keymap.set("n", "<leader>fw",       get_word)
-vim.keymap.set("n", "<leader>fF",       builtin.resume)
-vim.keymap.set("n", "<leader><leader>", builtin.buffers)
-vim.keymap.set("n", "<m-x>",            builtin.commands)
-vim.keymap.set("n", "<leader>fo",       builtin.oldfiles)
-vim.keymap.set("n", "<leader>fh",       builtin.help_tags)
-vim.keymap.set("n", "<leader>fg",       builtin.live_grep)
-vim.keymap.set("n", "z=",               builtin.spell_suggest)
-vim.keymap.set("n", "<leader>fn",       get_nvim)
+vim.keymap.set("n", "<leader>fw",       get_word, { desc = "cursor grep" })
+vim.keymap.set("n", "<leader>fF",       builtin.resume, { desc = "resume" })
+vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "buffers" })
+vim.keymap.set("n", "<m-x>",            builtin.commands, { desc = "commands" })
+vim.keymap.set("n", "<leader>fo",       builtin.oldfiles, { desc = "oldfiles" })
+vim.keymap.set("n", "<leader>fh",       builtin.help_tags, { desc = "help" })
+vim.keymap.set("n", "<leader>fg",       builtin.live_grep, { desc = "grep" })
+vim.keymap.set("n", "z=",               builtin.spell_suggest, { desc = "spell suggestion" })
+vim.keymap.set("n", "<leader>fn",       get_nvim, { desc = "config files" })
 vim.keymap.set("n", "<leader>fG", function()
     require("telescope.builtin").live_grep( {
         search_dirs = { vim.fn.expand("%:p") },
     })
-end)
+end, { desc = "grep current file" })
 
 require("mini.deps").later(function()
-    vim.keymap.set("n", "<c-p>",      telescope_utils.project_files)
-    vim.keymap.set("n", "<leader>fp", telescope_utils.change_dir)
+    vim.keymap.set("n", "<c-p>",      telescope_utils.project_files, { desc = "project files" })
+    vim.keymap.set("n", "<leader>fp", telescope_utils.change_dir, { desc = "projects" })
 end)

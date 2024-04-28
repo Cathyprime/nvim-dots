@@ -13,7 +13,10 @@ end
 
 local attach = function(client, bufnr, alt_keys)
     local opts = { buffer = bufnr }
-    vim.keymap.set("n", "<leader>fr", alt_keys and alt_keys.telescope_references  or telescope_references,            opts)
+    local frop = vim.tbl_deep_extend("force", { desc = "references" }, opts)
+    local fsop = vim.tbl_deep_extend("force", { desc = "document symbols" }, opts)
+    local fSop = vim.tbl_deep_extend("force", { desc = "workspace symbols" }, opts)
+    vim.keymap.set("n", "<leader>fr", alt_keys and alt_keys.telescope_references  or telescope_references,            frop)
     vim.keymap.set("n", "gI",         alt_keys and alt_keys.lsp_implementations   or telescope.lsp_implementations,   opts)
     vim.keymap.set("n", "<leader>ca", alt_keys and alt_keys.code_action           or vim.lsp.buf.code_action,         opts)
     vim.keymap.set("n", "<leader>cr", alt_keys and alt_keys.codelens_run          or vim.lsp.codelens.run,            opts)
@@ -23,8 +26,8 @@ local attach = function(client, bufnr, alt_keys)
     vim.keymap.set("n", "]d",         alt_keys and alt_keys.diagnostic_goto_next  or vim.diagnostic.goto_next,        opts)
     vim.keymap.set("n", "gd",         alt_keys and alt_keys.definition            or vim.lsp.buf.definition,          opts)
     vim.keymap.set("n", "K",          alt_keys and alt_keys.hover                 or vim.lsp.buf.hover,               opts)
-    vim.keymap.set("n", "<leader>fs", alt_keys and alt_keys.lsp_document_symbols  or telescope.lsp_document_symbols,  opts)
-    vim.keymap.set("n", "<leader>fS", alt_keys and alt_keys.lsp_workspace_symbols or telescope.lsp_workspace_symbols, opts)
+    vim.keymap.set("n", "<leader>fs", alt_keys and alt_keys.lsp_document_symbols  or telescope.lsp_document_symbols,  fsop)
+    vim.keymap.set("n", "<leader>fS", alt_keys and alt_keys.lsp_workspace_symbols or telescope.lsp_workspace_symbols, fSop)
 
     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
     if client.server_capabilities.definitionProvider then

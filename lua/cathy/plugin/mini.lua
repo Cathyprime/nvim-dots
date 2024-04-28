@@ -63,6 +63,7 @@ later(function()
     clue.setup({
         triggers = {
             { mode = "n", keys = "<leader>m" },
+            { mode = "n", keys = "<leader>f" },
             { mode = "i", keys = "<c-x>" },
         },
         clues = {
