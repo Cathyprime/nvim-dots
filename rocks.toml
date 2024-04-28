@@ -13,7 +13,6 @@
 [plugins]
 "rocks.nvim" = "2.26.0"
 neorg = { version = "8.4.0", opt = true }
-"plenary.nvim" = "scm"
 nvim-metals = { version = "0.8.x", opt = true }
 "telescope.nvim" = "scm"
 nvim-web-devicons = "0.99"
@@ -30,3 +29,4 @@ neotest = { version = "4.2.0", opt = true }
 "flatten.nvim" = "0.5.1"
 "none-ls-extras.nvim" = { version = "scm", opt = true }
 "venn.nvim" = "scm"
+"hydra.nvim" = "1.0.2"

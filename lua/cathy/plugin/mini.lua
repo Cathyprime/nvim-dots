@@ -64,9 +64,7 @@ later(function()
         triggers = {
             { mode = "n", keys = "<leader>z" },
             { mode = "n", keys = "<leader>m" },
-            { mode = "n", keys = "<c-w>" },
             { mode = "i", keys = "<c-x>" },
-            { mode = "n", keys = "z" },
         },
         clues = {
             { mode = "n", keys = "<leader>zB" },
@@ -79,15 +77,6 @@ later(function()
             { mode = "n", keys = "<leader>zs", postkeys = "<leader>z" },
             { mode = "n", keys = "<leader>zc", postkeys = "<leader>z" },
             { mode = "n", keys = "<leader>zr", postkeys = "<leader>z" },
-            { mode = "n", keys = "<c-w><", postkeys = "<c-w>", desc = "decrease width" },
-            { mode = "n", keys = "<c-w>>", postkeys = "<c-w>", desc = "increase width" },
-            { mode = "n", keys = "<c-w>-", postkeys = "<c-w>", desc = "decrease height" },
-            { mode = "n", keys = "<c-w>+", postkeys = "<c-w>", desc = "increase height" },
-            { mode = "n", keys = "<c-w>=", postkeys = "<c-w>", desc = "resize" },
-            { mode = "n", keys = "zl", postkeys = "z", desc = "move right" },
-            { mode = "n", keys = "zh", postkeys = "z", desc = "move left" },
-            { mode = "n", keys = "zL", postkeys = "z", desc = "move right half a screen" },
-            { mode = "n", keys = "zH", postkeys = "z", desc = "move left half a screen" },
             clue.gen_clues.builtin_completion(),
         }
     })
