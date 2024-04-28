@@ -14,7 +14,9 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
     "Messages",
     [[let output = [] | redir => output | silent messages | redir END | silent cexpr output | silent cope]],
-    {}
+    {
+        desc = "Copy messages to quickfix list"
+    }
 )
 
 vim.api.nvim_create_user_command(
@@ -47,7 +49,8 @@ vim.api.nvim_create_user_command(
     end,
     {
         nargs = "*",
-        count = 12
+        count = 12,
+        desc = "Open terminal in split"
     }
 )
 
@@ -145,7 +148,9 @@ vim.api.nvim_create_user_command(
             vim.notify(string.format("deleted view: %s", file_path), vim.log.levels.INFO)
         end
     end,
-    {}
+    {
+        desc = "Delete saved view"
+    }
 )
 
 vim.api.nvim_create_user_command(
@@ -181,7 +186,8 @@ vim.api.nvim_create_user_command(
     {
         bang = true,
         nargs = '?',
-        complete = "filetype"
+        complete = "filetype",
+        desc = "Open a scratch buffer"
     }
 )
 
@@ -215,5 +221,8 @@ vim.api.nvim_create_user_command(
             end
         end
     end,
-    { nargs = 0 }
+    {
+        nargs = 0,
+        desc = "Open Presentation view"
+    }
 )
