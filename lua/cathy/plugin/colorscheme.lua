@@ -1,4 +1,6 @@
 require("mini.deps").add("rebelot/kanagawa.nvim")
+require("mini.deps").add("catppuccin/nvim")
+require("cathy.config.options")
 
 require("mini.deps").now(function()
     require("kanagawa").setup({
@@ -33,7 +35,11 @@ require("mini.deps").now(function()
             }
         end,
     })
-    vim.cmd.colorscheme "kanagawa"
+    if vim.o.background == "light" then
+        vim.cmd.colorscheme "catppuccin-latte"
+    else
+        vim.cmd.colorscheme "kanagawa"
+    end
 end)
 
 -- {

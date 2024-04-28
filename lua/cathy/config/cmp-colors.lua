@@ -40,6 +40,13 @@ M.darken = function(color, shift)
     return bit.rshift(color, shift)
 end
 
+M.lighten = function(color, shift)
+    M.log("lightening", color)
+    local const = 0x7f7f7f
+    color = bit.band(color, const)
+    return bit.lshift(color, shift)
+end
+
 M.get_colors = function(hl, disable_log)
     if hl == nil then
         return
@@ -76,16 +83,26 @@ M.run = function(log)
             return group["colors"] ~= nil
         end)
         :each(function(group)
+            local colorize1 = M.darken
+            local colorize2 = function(a, _)
+                return a
+            end
+            if vim.o.background == "light" then
+                colorize1 = function(a, _)
+                    return a
+                end
+                colorize2 = M.lighten
+            end
             if vim.g.neovide then
                 vim.api.nvim_set_hl(0, group.name, {
-                    bg = M.darken(group.colors.fg, 1),
-                    fg = group.colors.fg,
+                    bg = colorize1(group.colors.fg, 1),
+                    fg = colorize2(group.colors.fg, 2),
                     standout = true,
                 })
             else
                 vim.api.nvim_set_hl(0, group.name, {
-                    bg = group.colors.fg,
-                    fg = M.darken(group.colors.fg, 1),
+                    bg = colorize2(group.colors.fg, 1),
+                    fg = colorize1(group.colors.fg, 1),
                     standout = true,
                 })
             end

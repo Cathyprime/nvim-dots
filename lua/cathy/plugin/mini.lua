@@ -107,14 +107,20 @@ later(function()
             },
         },
     })
-    vim.api.nvim_set_hl(0, "MiniDiffSignAdd", {
-        link = "diffAdded",
-    })
-    vim.api.nvim_set_hl(0, "MiniDiffSignChange", {
-        link = "diffChanged",
-    })
-    vim.api.nvim_set_hl(0, "MiniDiffSignDelete", {
-        link = "diffDeleted",
+    local set = function()
+        vim.api.nvim_set_hl(0, "MiniDiffSignAdd", {
+            link = "diffAdded",
+        })
+        vim.api.nvim_set_hl(0, "MiniDiffSignChange", {
+            link = "diffChanged",
+        })
+        vim.api.nvim_set_hl(0, "MiniDiffSignDelete", {
+            link = "diffDeleted",
+        })
+    end
+    set()
+    vim.api.nvim_create_autocmd("Colorscheme", {
+        callback = set
     })
     vim.keymap.set("n", "<leader>tg", function()
         pcall(MiniDiff.toggle_overlay)

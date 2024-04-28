@@ -18,6 +18,22 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
+    "SwitchTheme",
+    function()
+        if vim.o.background == "light" then
+            vim.o.background = "dark"
+            vim.cmd.colorscheme "kanagawa"
+        else
+            vim.o.background = "light"
+            vim.cmd.colorscheme "catppuccin-latte"
+        end
+    end,
+    {
+        desc = "Switch theme from dark to light or another way",
+    }
+)
+
+vim.api.nvim_create_user_command(
     "Terminal",
     function(opts)
         opts.mods = opts.mods or "botright"
