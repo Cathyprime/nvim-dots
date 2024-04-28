@@ -62,21 +62,10 @@ later(function()
     local clue = require("mini.clue")
     clue.setup({
         triggers = {
-            { mode = "n", keys = "<leader>z" },
             { mode = "n", keys = "<leader>m" },
             { mode = "i", keys = "<c-x>" },
         },
         clues = {
-            { mode = "n", keys = "<leader>zB" },
-            { mode = "n", keys = "<leader>z<cr>", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zl", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zi", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zo", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zO", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zu", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zs", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zc", postkeys = "<leader>z" },
-            { mode = "n", keys = "<leader>zr", postkeys = "<leader>z" },
             clue.gen_clues.builtin_completion(),
         }
     })

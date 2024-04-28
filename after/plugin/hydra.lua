@@ -13,22 +13,6 @@ Hydra({
 })
 
 Hydra({
-    name = "Change window",
-    mode = "n",
-    body = "<C-w>",
-    heads = {
-        { "<C-h>", "<C-w>h" },
-        { "<C-j>", "<C-w>j" },
-        { "<C-k>", "<C-w>k" },
-        { "<C-l>", "<C-w>l" },
-        { "C", "<C-w>c" },
-    },
-    config = {
-        timout = 500,
-    },
-})
-
-Hydra({
     name = "resize window",
     mode = "n",
     body = "<C-w>",
