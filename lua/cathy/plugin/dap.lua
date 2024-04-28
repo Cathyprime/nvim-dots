@@ -10,11 +10,28 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
 end
 
+dap.adapters.coreclr = {
+    type = "executable",
+    command = require("mason-core.path").bin_prefix() .."/netcoredbg",
+    args = { "--interpreter=vscode" }
+}
+
+dap.configurations.cs = {
+    {
+        type = "coreclr",
+        name = "launch - netcoredbg",
+        request = "launch",
+        program = function()
+            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+        end,
+    },
+}
+
 local hint = [[
- _n_: step over   _z_: Continue/Start   _<cr>_: Breakpoint
+ _n_: step over   _C_: Continue/Start   _<cr>_: Breakpoint
  _i_: step into   _X_: Quit               _B_:  Condition breakpoint
  _o_: step out    _K_: Hover              _L_:  Log breakpoint
- _C_: to cursor   _u_: Close UI
+ _J_: to cursor   _u_: Close UI
  ^
  ^ ^            _<esc>_: exit
 ]]
@@ -51,9 +68,9 @@ require("hydra")({
                 vim.notify("no active session", vim.log.levels.INFO)
             end
         end, { silent = false }},
-        {"z", function() dap.continue() end, { silent = false }},
+        {"C", function() dap.continue() end, { silent = false }},
         {"K", function() require("dap.ui.widgets").hover() end, { silent = false }},
-        {"C", function() dap.run_to_cursor() end, { silent = false }},
+        {"J", function() dap.run_to_cursor() end, { silent = false }},
         {"X", function() dap.disconnect({ terminateDebuggee = false }) end, { silent = false }},
         {"<esc>", nil, { exit = true,  silent = false  }},
     }
