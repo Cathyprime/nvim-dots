@@ -7,7 +7,6 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
     once = false,
     group = augroup("minibuffer"),
     callback = function()
-        vim.o.laststatus = 0
         vim.opt_local.filetype = "minibuffer"
     end
 })

@@ -20,10 +20,11 @@ map("i"       , "<c-a>",         "<home>")
 map("n"       , "<esc>", "<cmd>close<cr>")
 map("n"       , "<c-p>",          "<nop>")
 
+local old_status = vim.opt.laststatus
 vim.api.nvim_win_set_height(0, 2)
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
-vim.opt_global.laststatus = 0
+vim.opt.laststatus = 0
 vim.opt_local.number = false
 vim.opt_local.relativenumber = false
 vim.opt_local.scrolloff = 0
@@ -34,7 +35,7 @@ vim.api.nvim_create_autocmd("CmdwinLeave", {
     buffer = vim.api.nvim_get_current_buf(),
     once = true,
     callback = function()
-        vim.o.laststatus = 3
+        vim.opt.laststatus = old_status
         vim.opt.cmdheight = 1
     end
 })
