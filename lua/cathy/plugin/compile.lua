@@ -1,52 +1,66 @@
-require("mini.deps").add("skywind3000/asyncrun.vim")
+require("mini.deps").add("tpope/vim-dispatch")
 
 require("mini.deps").later(function()
-    vim.g.asyncrun_open = 10
-    vim.g.asyncrun_trim = 0
-
-    local function cope(s)
-        local split = vim.split(s, " ")
-        local found = false
-        for _, v in ipairs(split) do
-            if v:sub(1, 1) ~= "-" then break end
-            if v == "-mode=term" then
-                found = true
-            end
-        end
-        if found then
-            return
-        end
-        vim.cmd("cope")
-    end
-
-    local function run_wrap(new)
-        local compile_cmd = vim.b.compile
-        if not new and compile_cmd then
-            local cmd = vim.fn.expandcmd(compile_cmd)
-            vim.cmd(string.format("AsyncRun -rows=10 %s", cmd))
-            cope(compile_cmd or "")
-            return
+    local function Dispatch_wrapper()
+        vim.b["dispatch_ready"] = true
+        if vim.b.dispatch then
+            return ":Dispatch<cr>"
         end
         local ok, c = pcall(vim.fn.input, {
-            prompt = "Compile command: ",
-            default = compile_cmd or "",
+            prompt = ":Compile command ",
+            default = vim.b.dispatch or "",
+            cancelreturn = -99,
+            completion = "custom,v:lua.CustomFilesystemCompletion"
+        })
+        if c == -99 or not ok then return "" end
+        vim.cmd("redraw")
+        vim.b["dispatch"] = c
+        return ":Dispatch<cr>"
+    end
+
+    local function Dispatch_wrapper_change()
+        vim.b["dispatch_ready"] = true
+        if not vim.b.dispatch then
+            return Dispatch_wrapper()
+        end
+        local ok, c = pcall(vim.fn.input, {
+            prompt = ":Compile command ",
+            default = vim.b.dispatch or "",
             cancelreturn = -99,
             completion = "custom,v:lua.CustomFilesystemCompletion"
         })
         if not ok or c == -99 then
-            if new and c == - 99 then
-                vim.b.compile = nil
-            end
-            return
+            return ""
         end
         vim.cmd("redraw")
-        vim.b["compile"] = c
-        local cmd = vim.fn.expandcmd(c)
-        cope(c or "")
-        vim.cmd(string.format("AsyncRun %s", cmd))
+        vim.b["dispatch"] = c
+        return ":Dispatch<cr>"
     end
 
-    vim.keymap.set("n", "Zd", function() run_wrap(false) end, { silent = false })
-    vim.keymap.set("n", "ZD", function() run_wrap(true) end, { silent = false })
-    vim.keymap.set("n", "ZC", "<cmd>AsyncStop<cr>")
+    local function make_wrapper()
+        vim.b["dispatch_ready"] = true
+        local ok, c = pcall(vim.fn.input, {
+            prompt = ":make ",
+            default = vim.b.dispatch or "",
+            cancelreturn = -99,
+        })
+        vim.cmd("redraw")
+        if not ok or c == -99 then return "" end
+        return ":Make! " .. c .. "<cr>"
+    end
+    local function openqf()
+        if vim.b.dispatch_ready then
+            vim.b["dispatch_ready"] = false
+            return "<cmd>botright Cope<cr>"
+        else
+            return "<cmd>botright cope<cr>"
+        end
+    end
+    vim.keymap.set("n", "ZS",        ":Start ",               { silent = false                })
+    vim.keymap.set("n", "Zf",        ":Focus ",               { silent = false                })
+    vim.keymap.set("n", "ZF",        ":Focus!<cr>",           { silent = true                 })
+    vim.keymap.set("n", "ZD",        Dispatch_wrapper_change, { expr = true, silent = false   })
+    vim.keymap.set("n", "Zd",        Dispatch_wrapper,        { expr = true, silent = false   })
+    vim.keymap.set("n", "ZM",        make_wrapper,            { expr = true, silent = false   })
+    vim.keymap.set("n", "<leader>q", openqf,                  { expr = true, silent = true    })
 end)
