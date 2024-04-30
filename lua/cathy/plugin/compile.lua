@@ -1,7 +1,7 @@
 require("mini.deps").add("tpope/vim-dispatch")
 
 require("mini.deps").later(function()
-    local function Dispatch_wrapper()
+    local function dispatch_wrapper()
         vim.b["dispatch_ready"] = true
         if vim.b.dispatch then
             return ":Dispatch!<cr>"
@@ -18,10 +18,10 @@ require("mini.deps").later(function()
         return ":Dispatch!<cr>"
     end
 
-    local function Dispatch_wrapper_change()
+    local function dispatch_wrapper_change()
         vim.b["dispatch_ready"] = true
         if not vim.b.dispatch then
-            return Dispatch_wrapper()
+            return dispatch_wrapper()
         end
         local ok, c = pcall(vim.fn.input, {
             prompt = ":Compile command ",
@@ -59,8 +59,8 @@ require("mini.deps").later(function()
     vim.keymap.set("n", "ZS",        ":Start ",               { silent = false                })
     vim.keymap.set("n", "Zf",        ":Focus ",               { silent = false                })
     vim.keymap.set("n", "ZF",        ":Focus!<cr>",           { silent = true                 })
-    vim.keymap.set("n", "ZD",        Dispatch_wrapper_change, { expr = true, silent = false   })
-    vim.keymap.set("n", "Zd",        Dispatch_wrapper,        { expr = true, silent = false   })
-    vim.keymap.set("n", "ZM",        make_wrapper,            { expr = true, silent = false   })
-    vim.keymap.set("n", "<leader>q", openqf,                  { expr = true, silent = true    })
+    vim.keymap.set("n", "ZD",        dispatch_wrapper_change, { silent = false, expr = true   })
+    vim.keymap.set("n", "Zd",        dispatch_wrapper,        { silent = false, expr = true   })
+    vim.keymap.set("n", "ZM",        make_wrapper,            { silent = false, expr = true   })
+    vim.keymap.set("n", "<leader>q", openqf,                  { silent = false, expr = true   })
 end)
