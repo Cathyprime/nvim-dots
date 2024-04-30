@@ -49,22 +49,28 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_user_command(
     "Rooter",
     function(opts)
+        local notif = function(msg, level)
+            vim.notify(msg, level)
+        end
+        if opts.smods.silent then
+            notif = function() end
+        end
         if opts.args == "" then
             on = not on
             if on then
-                vim.notify("Rooter: on", vim.log.levels.INFO)
+                notif("Rooter: on", vim.log.levels.INFO)
             else
-                vim.notify("Rooter: off", vim.log.levels.INFO)
+                notif("Rooter: off", vim.log.levels.INFO)
             end
         else
             if opts.args == "enable" then
                 on = true
-                vim.notify("Rooter: on", vim.log.levels.INFO)
+                notif("Rooter: on", vim.log.levels.INFO)
             elseif opts.args == "disable" then
                 on = false
-                vim.notify("Rooter: off", vim.log.levels.INFO)
+                notif("Rooter: off", vim.log.levels.INFO)
             else
-                vim.notify("Rooter: unknown command", vim.log.levels.ERROR)
+                notif("Rooter: unknown command", vim.log.levels.ERROR)
             end
         end
     end,
