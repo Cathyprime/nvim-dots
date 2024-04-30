@@ -55,6 +55,7 @@ if ok then
     ---@diagnostic disable-next-line
     jdtls.start_or_attach({
         on_attach= function()
+            ---@diagnostic disable-next-line: missing-fields
             jdtls.setup_dap({ hotcodereplace = "auto" })
             require("jdtls.dap").setup_dap_main_class_configs()
         end,
