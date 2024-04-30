@@ -4,7 +4,7 @@ require("mini.deps").later(function()
     local function Dispatch_wrapper()
         vim.b["dispatch_ready"] = true
         if vim.b.dispatch then
-            return ":Dispatch<cr>"
+            return ":Dispatch!<cr>"
         end
         local ok, c = pcall(vim.fn.input, {
             prompt = ":Compile command ",
@@ -15,7 +15,7 @@ require("mini.deps").later(function()
         if c == -99 or not ok then return "" end
         vim.cmd("redraw")
         vim.b["dispatch"] = c
-        return ":Dispatch<cr>"
+        return ":Dispatch!<cr>"
     end
 
     local function Dispatch_wrapper_change()
@@ -34,7 +34,7 @@ require("mini.deps").later(function()
         end
         vim.cmd("redraw")
         vim.b["dispatch"] = c
-        return ":Dispatch<cr>"
+        return ":Dispatch!<cr>"
     end
 
     local function make_wrapper()
