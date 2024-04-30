@@ -99,11 +99,6 @@ later(function()
     vim.keymap.set("v", "Zh", ":HurlRunner<cr>")
 end)
 
-add("folke/todo-comments.nvim")
-later(function()
-    require("todo-comments").setup()
-end)
-
 add({
     source = "folke/zen-mode.nvim",
     depends = {
