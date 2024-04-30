@@ -9,6 +9,9 @@ vim.cmd([[sign define DiagnosticSignHint text=]]  .. icons.Hint    .. [[ texthl=
 vim.diagnostic.config({
     virtual_text = {
         prefix = "⚫︎"
+    },
+    float = {
+        border = "rounded"
     }
 })
 
