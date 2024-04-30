@@ -18,11 +18,14 @@ function M.enable(opts)
     end
 end
 
-function M.create_completion(self)
-    return vim.iter(self.map):fold({}, function(acc, item)
+function M.create_completion(self, arg_lead)
+    local t = vim.iter(self.map):fold({}, function(acc, item)
         table.insert(acc, item)
         return acc
     end)
+    return vim.iter(t):filter(function(el)
+        return el:match("^" .. arg_lead)
+    end):totable()
 end
 
 function M.func(self, opts)
@@ -63,8 +66,8 @@ function M.create_cmd(self)
         (function()
             local ret = { nargs = self.nargs }
             if self.nargs == 1 then
-                ret["complete"] = function()
-                    return self:create_completion()
+                ret["complete"] = function(arg_lead)
+                    return self:create_completion(arg_lead)
                 end
             end
             return ret
