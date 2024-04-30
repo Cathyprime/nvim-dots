@@ -7,7 +7,17 @@ local dapui = require("dapui")
 dapui.setup()
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
+    vim.cmd("silent Rooter disable")
     dapui.open()
+end
+
+dap.listeners.before.event_terminated["dapui_config"] = function()
+    vim.cmd("silent Rooter enable")
+    dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+    vim.cmd("silent Rooter enable")
+    dapui.close()
 end
 
 dap.adapters.coreclr = {
