@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
         vim.opt_local.relativenumber = false
         vim.opt_local.spell = false
         vim.opt_local.signcolumn = "no"
+        vim.opt_local.scrolloff = 0
         vim.keymap.set("t", "<esc><esc>", [[<c-\><c-n>]], { buffer = true })
     end
 })
