@@ -41,6 +41,7 @@ vim.api.nvim_create_user_command(
         opts.mods = opts.mods or "botright"
         vim.cmd(string.format("%s %ssp | exec 'term %s' | startinsert", opts.mods, opts.count, opts.args))
         vim.api.nvim_buf_set_name(0, "Terminal")
+        vim.wo.winfixheight = true
         vim.api.nvim_create_autocmd("TermClose", {
             once = true,
             buffer = vim.api.nvim_get_current_buf(),
