@@ -1,7 +1,7 @@
 vim.cmd.packadd("go.nvim")
 vim.opt_local.expandtab = false
-vim.opt_local.shiftwidth = 8
-vim.opt_local.tabstop = 8
+vim.opt_local.shiftwidth = 4
+vim.opt_local.tabstop = 4
 vim.api.nvim_create_autocmd("BufEnter", {
     once = true,
     callback = function()
