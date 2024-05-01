@@ -44,13 +44,13 @@ local attach = function(client, bufnr, alt_keys)
     local is_stoopid = function(elem)
         return client.name == elem
     end
-    if vim.iter({"omnisharp", "gopls"}):any(is_stoopid) then
+    if vim.iter({ "omnisharp", "gopls" }):any(is_stoopid) then
         return
     end
 
     if client.server_capabilities.codeLensProvider then
         vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
-            group = vim.api.nvim_create_augroup("codeLens", { clear = false }),
+            group = vim.api.nvim_create_augroup("code_lens", { clear = false }),
             buffer = bufnr,
             callback = function()
                 vim.lsp.codelens.refresh({ bufnr = bufnr })
