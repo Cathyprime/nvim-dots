@@ -182,6 +182,16 @@ later(function()
             end
         }
     )
+    vim.api.nvim_create_user_command(
+        "MessHistory",
+        function()
+            MiniNotify.show_history()
+        end,
+        {
+            desc = "show message history",
+            nargs = 0
+        }
+    )
 
    require("mini.hipatterns").setup({
        highlighters = {
