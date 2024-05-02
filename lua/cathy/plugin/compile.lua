@@ -1,9 +1,41 @@
 require("mini.deps").add("tpope/vim-dispatch")
 
 require("mini.deps").later(function()
+    local function start_wrapper()
+        if vim.b["start_compile"] then
+            return ":Start " .. vim.b["start_compile"] .. "<cr>"
+        end
+        local ok, c = pcall(vim.fn.input, {
+            prompt = ":Start ",
+            default = vim.b["start_compile"] or "",
+            cancelreturn = -99,
+            completion = "custom,v:lua.CustomFilesystemCompletion"
+        })
+        if c == -99 or not ok then return "" end
+        vim.cmd("redraw")
+        vim.b["start_compile"] = c
+        return ":Start " .. vim.b["start_compile"] .. "<cr>"
+    end
+
+    local function start_wrapper_change()
+        if not vim.b["start_compile"] then
+            return start_wrapper()
+        end
+        local ok, c = pcall(vim.fn.input, {
+            prompt = ":Start ",
+            default = vim.b["start_compile"] or "",
+            cancelreturn = -99,
+            completion = "custom,v:lua.CustomFilesystemCompletion"
+        })
+        if not ok or c == -99 then return "" end
+        vim.cmd("redraw")
+        vim.b["start_compile"] = c
+        return ":Start " .. c .. "<cr>"
+    end
+
     local function dispatch_wrapper()
         vim.b["dispatch_ready"] = true
-        if vim.b.dispatch then
+        if vim.b["dispatch"] then
             return ":Dispatch!<cr>"
         end
         local ok, c = pcall(vim.fn.input, {
@@ -29,9 +61,7 @@ require("mini.deps").later(function()
             cancelreturn = -99,
             completion = "custom,v:lua.CustomFilesystemCompletion"
         })
-        if not ok or c == -99 then
-            return ""
-        end
+        if not ok or c == -99 then return "" end
         vim.cmd("redraw")
         vim.b["dispatch"] = c
         return ":Dispatch!<cr>"
@@ -56,9 +86,11 @@ require("mini.deps").later(function()
             return "<cmd>botright cope<cr>"
         end
     end
-    vim.keymap.set("n", "ZS",        ":Start ",               { silent = false                })
+
     vim.keymap.set("n", "Zf",        ":Focus ",               { silent = false                })
     vim.keymap.set("n", "ZF",        ":Focus!<cr>",           { silent = true                 })
+    vim.keymap.set("n", "ZS",        start_wrapper_change,    { silent = false, expr = true   })
+    vim.keymap.set("n", "Zs",        start_wrapper,           { silent = false, expr = true   })
     vim.keymap.set("n", "ZD",        dispatch_wrapper_change, { silent = false, expr = true   })
     vim.keymap.set("n", "Zd",        dispatch_wrapper,        { silent = false, expr = true   })
     vim.keymap.set("n", "ZM",        make_wrapper,            { silent = false, expr = true   })
