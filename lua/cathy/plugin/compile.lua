@@ -3,7 +3,7 @@ require("mini.deps").add("tpope/vim-dispatch")
 require("mini.deps").later(function()
     local function start_wrapper()
         if vim.b["start_compile"] then
-            return ":Start " .. vim.b["start_compile"] .. "<cr>"
+            return ":Start -wait=always " .. vim.b["start_compile"] .. "<cr>"
         end
         local ok, c = pcall(vim.fn.input, {
             prompt = ":Start ",
@@ -14,7 +14,7 @@ require("mini.deps").later(function()
         if c == -99 or not ok then return "" end
         vim.cmd("redraw")
         vim.b["start_compile"] = c
-        return ":Start " .. vim.b["start_compile"] .. "<cr>"
+        return ":Start -wait=always " .. vim.b["start_compile"] .. "<cr>"
     end
 
     local function start_wrapper_change()
@@ -30,7 +30,7 @@ require("mini.deps").later(function()
         if not ok or c == -99 then return "" end
         vim.cmd("redraw")
         vim.b["start_compile"] = c
-        return ":Start " .. c .. "<cr>"
+        return ":Start -wait=always " .. c .. "<cr>"
     end
 
     local function dispatch_wrapper()
