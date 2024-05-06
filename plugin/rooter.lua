@@ -5,7 +5,7 @@ local root_names = {
     ".git",
     "go.mod",
     "gradlew",
-    "lua",
+    "/lua",
     "Makefile",
     "package.json",
     "%.csproj$"
@@ -30,7 +30,7 @@ local function set_root()
 
     local root = vim.fs.root(0, function(name)
         return vim.iter(root_names):any(function(value)
-            return value == name or name:match('%.csproj$')
+            return name:match(value)
         end)
     end)
 
