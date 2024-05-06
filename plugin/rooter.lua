@@ -1,14 +1,15 @@
 local on = true
 local root_names = {
+    "%.csproj$",
+    "docker%-compose.yml",
     "build.sbt",
     "Cargo.toml",
-    ".git",
     "go.mod",
     "gradlew",
     "/lua",
     "Makefile",
     "package.json",
-    "%.csproj$"
+    ".git",
 }
 
 local disabled_filetype = {
