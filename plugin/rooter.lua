@@ -14,12 +14,13 @@ local root_names = {
 
 local disabled_filetype = {
     "help",
+    "Neogit.*",
 }
 
 local function isBanned(ft)
     if ft == "" then return true end
     return vim.iter(disabled_filetype):any(function(v)
-        return v == ft
+        return ft:match(v)
     end)
 end
 
