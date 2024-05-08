@@ -9,7 +9,7 @@ local root_names = {
     "/lua",
     "Makefile",
     "package.json",
-    ".git",
+    "%.git",
 }
 
 local disabled_filetype = {
