@@ -87,6 +87,8 @@ require("mini.deps").later(function()
         end
     end
 
+    vim.keymap.set("n", "Zc",        ":AbortDispatch<cr>",    { silent = true                 })
+    vim.keymap.set("n", "ZC",        ":AbortDispatch<cr>",    { silent = true                 })
     vim.keymap.set("n", "Zf",        ":Focus ",               { silent = false                })
     vim.keymap.set("n", "ZF",        ":Focus!<cr>",           { silent = true                 })
     vim.keymap.set("n", "ZS",        start_wrapper_change,    { silent = false, expr = true   })
