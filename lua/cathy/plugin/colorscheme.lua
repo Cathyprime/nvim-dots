@@ -1,5 +1,6 @@
 require("mini.deps").add("rebelot/kanagawa.nvim")
 require("mini.deps").add("catppuccin/nvim")
+require("mini.deps").add("blazkowolf/gruber-darker.nvim")
 require("cathy.config.options")
 
 require("mini.deps").now(function()
