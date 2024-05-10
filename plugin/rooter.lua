@@ -1,14 +1,14 @@
 local on = true
 local root_names = {
     "%.csproj$",
-    "docker%-compose.yml",
-    "build.sbt",
-    "Cargo.toml",
-    "go.mod",
+    "docker%-compose%.yml",
+    "build%.sbt",
+    "Cargo%.toml",
+    "go%.mod",
     "gradlew",
     "/lua",
     "Makefile",
-    "package.json",
+    "package%.json",
     "%.git",
 }
 
