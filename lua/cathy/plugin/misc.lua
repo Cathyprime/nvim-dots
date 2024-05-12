@@ -95,7 +95,6 @@ later(function()
     })
     vim.keymap.set("n", "ZH", "<cmd>HurlRunner<cr>")
     vim.keymap.set("n", "Zh", "<cmd>HurlRunnerAt<cr>")
-    vim.keymap.set("n", "<leader>th", "<cmd>HurlToggleMode<cr>")
     vim.keymap.set("v", "Zh", ":HurlRunner<cr>")
 end)
 
