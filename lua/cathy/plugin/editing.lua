@@ -27,30 +27,6 @@ later(function()
     })
 end)
 
-add({
-    source = "windwp/nvim-autopairs",
-    depends = { "hrsh7th/nvim-cmp" },
-})
-later(function()
-    vim.api.nvim_create_autocmd("InsertEnter", {
-        once = true,
-        callback = function()
-            require("nvim-autopairs").setup()
-            require("nvim-autopairs").remove_rule('"')
-            require("nvim-autopairs").remove_rule("'")
-            require("nvim-autopairs").remove_rule("`")
-            require("nvim-autopairs").remove_rule("(")
-            require("nvim-autopairs").remove_rule("[")
-            require("nvim-autopairs").remove_rule("{")
-            local ok, _ = pcall(require, "cmp")
-            if ok then
-                require("cathy.config.cmp-pairs")
-            end
-            require("cathy.config.pair-customrules")
-        end,
-    })
-end)
-
 add("monaqa/dial.nvim")
 later(function()
     vim.api.nvim_create_autocmd({ "InsertEnter", "BufReadPost", "BufWritePost", "BufNewFile" }, {
