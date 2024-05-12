@@ -130,8 +130,8 @@ map("n", "ZQ", function()
 end)
 
 -- toggles
-map("n", "<leader>tw", "<cmd>set wrap!<cr>")
-map("n", "<leader>ts", scrolloff_toggle)
+-- map("n", "<leader>tw", "<cmd>set wrap!<cr>")
+-- map("n", "<leader>ts", scrolloff_toggle)
 
 -- misc
 if MiniStarter ~= nil then

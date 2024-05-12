@@ -122,7 +122,7 @@ later(function()
     vim.api.nvim_create_autocmd("Colorscheme", {
         callback = set
     })
-    vim.keymap.set("n", "<leader>tg", function()
+    vim.keymap.set("n", "<leader>go", function()
         pcall(MiniDiff.toggle_overlay)
     end)
 
