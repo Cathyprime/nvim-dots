@@ -83,7 +83,9 @@ end, { expr = true })
 map("n", "gQ", "qqqqq") -- clear q register and start recording (useful for recursive macros)
 
 -- quickfix commands
-map("n", "<leader>q", "<cmd>botright cope<cr>")
+if vim.g.loaded_dispatch ~= 1 then
+    map("n", "<leader>q", "<cmd>botright cope<cr>")
+end
 map("n", "]c", "<cmd>cnext<cr>")
 map("n", "[c", "<cmd>cprev<cr>")
 
