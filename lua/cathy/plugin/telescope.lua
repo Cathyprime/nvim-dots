@@ -76,6 +76,7 @@ end
 
 vim.keymap.set("n", "<leader>fw",       get_word, { desc = "cursor grep" })
 vim.keymap.set("n", "<leader>fF",       builtin.resume, { desc = "resume" })
+vim.keymap.set("n", "<leader>fd",       builtin.diagnostics, { desc = "diagnostics" })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "buffers" })
 vim.keymap.set("n", "<m-x>",            builtin.commands, { desc = "commands" })
 vim.keymap.set("n", "<leader>fo",       builtin.oldfiles, { desc = "oldfiles" })
