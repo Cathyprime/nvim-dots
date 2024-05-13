@@ -156,15 +156,3 @@ later(function()
         end,
     })
 end)
-
-add("mg979/vim-visual-multi")
-later(function()
-    vim.g.VM_set_statusline = 0
-    vim.g.VM_maps = {
-        ["Select Operator"] = ""
-    }
-    vim.api.nvim_set_hl(0, "VM_Mono", {
-        fg = "#aaaaaa",
-        bg = "#a020f0",
-    })
-end)
