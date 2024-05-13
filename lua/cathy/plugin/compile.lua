@@ -89,6 +89,7 @@ end
 vim.g.dispatch_handlers = {
     "terminal",
     "headless",
+    "job",
 }
 
 vim.keymap.set("n", "Zc",        ":AbortDispatch<cr>",    { silent = true                 })
