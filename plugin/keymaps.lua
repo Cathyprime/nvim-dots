@@ -76,21 +76,6 @@ local function toggle_diagnostics()
     end
 end
 
-local scroll
-vim.api.nvim_create_autocmd("VimEnter", {
-    once = true,
-    callback = function()
-        scroll = vim.opt.scrolloff
-    end,
-})
-local function scrolloff_toggle()
-    if vim.o.scrolloff == 0 then
-        vim.opt["scrolloff"] = scroll
-    else
-        vim.o.scrolloff = 0
-    end
-end
-
 -- macro
 map("x", "@", function()
     return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
@@ -128,10 +113,6 @@ end)
 map("n", "ZQ", function()
     confirm_save_cur("Save buffer? [y/n/q]", "Only [y/n/q]")
 end)
-
--- toggles
--- map("n", "<leader>tw", "<cmd>set wrap!<cr>")
--- map("n", "<leader>ts", scrolloff_toggle)
 
 -- misc
 if MiniStarter ~= nil then
