@@ -85,7 +85,6 @@ vim.keymap.set("x", "@", function()
     local stop = vim.fn.getpos("'>")[2]
     local ns = vim.api.nvim_create_namespace("macro_lines")
     for x = start,stop do
-        print(x)
         vim.api.nvim_buf_set_extmark(0, ns, x, 0, {
             id = x + 1
         })
@@ -181,13 +180,6 @@ map("n", "<leader>SS", ":%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", { silent = fal
 
 map("v", "<leader>s", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
-
--- vmap
--- hydra
--- s -> mark region, <cr>? on word to replace
--- remove highlight on hydra exit
--- S -> mark region, <cr>? on word to replace (no confirm)?
--- remove highlight on hydra exit
 
 -- terminal
 map("n", "<c-w>t", "<cmd>12Terminal<cr>", { desc = "open terminal" })
