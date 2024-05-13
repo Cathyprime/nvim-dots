@@ -77,9 +77,34 @@ local function toggle_diagnostics()
 end
 
 -- macro
-map("x", "@", function()
-    return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
-end, { expr = true })
+vim.keymap.set("x", "@", function()
+    local char = vim.fn.nr2char(vim.fn.getchar())
+    local keys = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+    vim.api.nvim_feedkeys(keys, 'x', false)
+    local start = vim.fn.getpos("'<")[2]
+    local stop = vim.fn.getpos("'>")[2]
+    local ns = vim.api.nvim_create_namespace("macro_lines")
+    for x = start,stop do
+        print(x)
+        vim.api.nvim_buf_set_extmark(0, ns, x, 0, {
+            id = x + 1
+        })
+    end
+    local function consume_marks(marks)
+        if #marks == 0 then return end
+        local cur = marks[1]
+        vim.api.nvim_buf_del_extmark(0, ns, cur[1])
+        vim.schedule(function()
+            vim.cmd(cur[2] .. "norm @" .. char)
+        end)
+        vim.schedule(function()
+            consume_marks(vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, {}))
+        end)
+    end
+    local x = vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, {})
+    consume_marks(x)
+end)
+
 map("n", "gQ", "qqqqq") -- clear q register and start recording (useful for recursive macros)
 
 -- quickfix commands
