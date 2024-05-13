@@ -149,10 +149,20 @@ map("c", "<c-a>", "<home>", { silent = false })
 map("n", "<a-;>", "q:")
 
 -- quick search and replace keymaps
-map("n", "<leader>s", ":s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
-map("n", "<leader>S", ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
+map("n", "<leader>ss", ":.,$s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
+map("n", "<leader>sS", ":.,$s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", { silent = false })
+map("n", "<leader>Ss", ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
+map("n", "<leader>SS", ":%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", { silent = false })
+
 map("v", "<leader>s", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
+
+-- vmap
+-- hydra
+-- s -> mark region, <cr>? on word to replace
+-- remove highlight on hydra exit
+-- S -> mark region, <cr>? on word to replace (no confirm)?
+-- remove highlight on hydra exit
 
 -- terminal
 map("n", "<c-w>t", "<cmd>12Terminal<cr>", { desc = "open terminal" })
