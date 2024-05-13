@@ -33,6 +33,10 @@ later(function()
         sort = {
             prefix = "",
             func = nil,
+        },
+        multiply = {
+            prefix = "",
+            func = nil,
         }
     })
 
