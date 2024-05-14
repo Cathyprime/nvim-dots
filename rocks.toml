@@ -27,6 +27,5 @@ nvim-dap-go = { version = "scm", opt = true }
 "grapple.nvim" = "0.29.0"
 neotest = { version = "5.2.3", opt = true }
 "flatten.nvim" = "0.5.1"
-"none-ls-extras.nvim" = { version = "scm", opt = true }
 "venn.nvim" = "scm"
 "hydra.nvim" = "1.0.2"
