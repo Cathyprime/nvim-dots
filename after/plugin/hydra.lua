@@ -32,7 +32,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     once = true,
     callback = function()
         scroll = vim.o.scrolloff
-        print(scroll)
     end,
 })
 
