@@ -156,3 +156,5 @@ later(function()
         end,
     })
 end)
+
+add("tpope/vim-abolish")
