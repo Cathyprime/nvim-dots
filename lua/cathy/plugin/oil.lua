@@ -18,6 +18,9 @@ require("mini.deps").now(function()
             ["gx"] = "",
             ["<a-cr>"] = "actions.open_external",
         },
+        view_options = {
+            show_hidden = true
+        }
     })
     vim.keymap.set("n", "-", "<cmd>Oil<cr>")
 end)
