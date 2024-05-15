@@ -1,14 +1,14 @@
 local M = {}
 
 M.borderchars = {
-    prompt  = { "",  "",  "",  "",  "",  "",  "",  ""  },
-    results = { "",  "",  "",  "",  "",  "",  "",  ""  },
+    prompt  = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    results = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 }
 
 M.layout_config = {
     prompt_position = "bottom",
-    height = 14,
+    height = math.floor(vim.opt.lines:get() * 0.6),
     preview_width = 0.60,
 }
 
