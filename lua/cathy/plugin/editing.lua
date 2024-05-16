@@ -50,7 +50,8 @@ later(function()
                     augend.decimal_fraction.new({
                         signed = true,
                         point_char = ".",
-                    })
+                    }),
+                    augend.constant.alias.Alpha,
                 }
                 for _, v in ipairs(t or {}) do
                     table.insert(defaults, v)
