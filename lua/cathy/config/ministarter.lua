@@ -26,9 +26,9 @@ local config = {
 }
 
 (function()
+    local version = vim.version()
     local header = {
-        "NEOVIM",
-        tostring(vim.version()),
+        "NEOVIM v" .. version.major .. "." .. version.minor .. "." .. version.patch,
         "",
         string.format("%s, %s", (function()
             local time = os.date("*t")
