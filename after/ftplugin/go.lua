@@ -17,7 +17,8 @@ end
 local ok, go = pcall(require, "go")
 if ok then
     go.setup({
-        dap_debug = true
+        dap_debug = true,
+        lsp_codelens = true,
     })
     local o, d = pcall(require, "dap-go")
     if o then
