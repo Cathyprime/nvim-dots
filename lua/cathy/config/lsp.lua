@@ -29,6 +29,28 @@ end
 
 vim.lsp.log.set_level(vim.log.levels.ERROR)
 
+local settings = function(server_name)
+    return function()
+        require("lspconfig")[server_name].setup({
+            on_attach = lsp_funcs.on_attach,
+            settings = {
+                [server_name] = {
+                    codelenses = {
+                        gc_details = true,
+                        generate = true,
+                        regenerate_cgo = false,
+                        run_govulncheck = false,
+                        test = true,
+                        tidy = true,
+                        upgrade_dependency = false,
+                        vendor = false,
+                    }
+                }
+            }
+        })
+    end
+end
+
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
@@ -50,5 +72,7 @@ require("mason-lspconfig").setup({
         rust_analyzer = disabled,
         -- tsserver = lsp_funcs.tsserver,
         lua_ls = lsp_funcs.lua_ls,
+        gopls = settings("gopls"),
+        templ = settings("templ"),
     }
 })

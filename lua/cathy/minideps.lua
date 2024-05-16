@@ -59,6 +59,15 @@ if SWITCHES.rust then
     pcall(require, "cathy.config.rust")
 end
 
+if SWITCHES.go then
+    require("mini.deps").add({
+        source = "ray-x/go.nvim",
+        depends = {
+            "ray-x/guihua.lua"
+        }
+    })
+end
+
 if SWITCHES.files == "neotree" then
     require("cathy.plugin.files")
 elseif SWITCHES.files == "oil" then
