@@ -22,12 +22,7 @@ later(function()
         end
     })
 
-    require("mini.align").setup({
-        mappings = {
-            start = "",
-            start_with_preview = "ga",
-        },
-    })
+    require("mini.align").setup()
 
     require("mini.operators").setup({
         sort = {
