@@ -19,7 +19,6 @@ nvim-web-devicons = "0.100"
 luasnip = { version = "2.3.0", opt = true }
 "fidget.nvim" = "1.4.1"
 "dressing.nvim" = "2.2.1"
-rustaceanvim = { version = "4.22.10", opt = true }
 nvim-jdtls = { version = "0.2.0", opt = true }
 nvim-dap-ui = { version = "4.0.0", opt = true }
 nvim-dap-go = { version = "scm", opt = true }

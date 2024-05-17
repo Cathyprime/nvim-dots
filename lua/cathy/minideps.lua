@@ -56,6 +56,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 })
 
 if SWITCHES.rust then
+    require("mini.deps").add("mrcjkb/rustaceanvim")
     pcall(require, "cathy.config.rust")
 end
 

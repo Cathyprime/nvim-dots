@@ -1,4 +1,9 @@
 vim.g.rustaceanvim = {
+    tools = {
+        float_win_config = {
+            border = "single",
+        },
+    },
     server = {
         on_attach = function(client, bufnr)
             require("cathy.config.lsp-funcs").on_attach(client, bufnr, {
