@@ -144,7 +144,8 @@ end)
 if MiniStarter ~= nil then
     map("n", "gh", MiniStarter.open)
 end
-map("n", "X", "0D")
+map("n", "x", [["_x]])
+map("n", "X", [[0"_D]])
 map("n", "J", [[mmJ`m]])
 map("n", "gp", "`[v`]")
 map("n", "U", "<c-r>")
@@ -159,7 +160,6 @@ map("n", "<leader>ot", "<cmd>e todo.norg<cr>")
 map("n", "<leader>os", "<cmd>Scratch sh<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
 map("n", "<c-z>", "<Nop>")
--- map("n", "<leader>a", add_harpoon)
 
 -- diagnostic
 map("n", "<leader>dl", diag_text_toggle)
