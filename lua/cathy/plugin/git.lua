@@ -2,10 +2,8 @@ local md = require("mini.deps")
 
 md.add("sindrets/diffview.nvim")
 md.add("FabijanZulj/blame.nvim")
-md.add({
-    source = "NeogitOrg/neogit",
-    checkout = "nightly"
-})
+md.add("NeogitOrg/neogit")
+-- checkout = "nightly"
 
 md.later(function()
     require("diffview").setup()
