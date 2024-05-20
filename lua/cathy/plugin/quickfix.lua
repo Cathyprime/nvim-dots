@@ -39,16 +39,3 @@ require("bqf").setup({
         auto_preview = false,
     },
 })
-
-add("yorickpeterse/nvim-pqf")
-later(function()
-    local icons = require("util.icons").icons
-    require("pqf").setup({
-        signs = {
-            error = icons.Error,
-            warning = icons.Warning,
-            info = icons.Info,
-            hint = icons.Hint
-        }
-    })
-end)
