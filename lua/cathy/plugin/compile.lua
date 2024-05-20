@@ -70,13 +70,32 @@ local function make_wrapper()
     vim.b["dispatch_ready"] = true
     local ok, c = pcall(vim.fn.input, {
         prompt = ":make ",
-        default = vim.b.dispatch or "",
+        default = vim.b["make_compile"] or "",
         cancelreturn = -99,
     })
     vim.cmd("redraw")
     if not ok or c == -99 then return "" end
+    vim.b["make_compile"] = c
     return ":Make! " .. c .. "<cr>"
 end
+
+local function make_wrapper_change()
+    vim.b["dispatch_ready"] = true
+    if not vim.b["make_compile"] then
+        return make_wrapper()
+    end
+    local ok, c = pcall(vim.fn.input, {
+        prompt = ":make ",
+        default = vim.b["make_compile"] or "",
+        cancelreturn = -99,
+        completion = "custom,v:lua.CustomFilesystemCompletion"
+    })
+    if not ok or c == -99 then return "" end
+    vim.cmd("redraw")
+    vim.b["make_compile"] = c
+    return ":Make! " .. c .. "<cr>"
+end
+
 local function openqf()
     if vim.b.dispatch_ready then
         vim.b["dispatch_ready"] = false
@@ -100,5 +119,6 @@ vim.keymap.set("n", "ZS",        start_wrapper_change,    { silent = false, expr
 vim.keymap.set("n", "Zs",        start_wrapper,           { silent = false, expr = true   })
 vim.keymap.set("n", "ZD",        dispatch_wrapper_change, { silent = false, expr = true   })
 vim.keymap.set("n", "Zd",        dispatch_wrapper,        { silent = false, expr = true   })
-vim.keymap.set("n", "ZM",        make_wrapper,            { silent = false, expr = true   })
+vim.keymap.set("n", "Zm",        make_wrapper,            { silent = false, expr = true   })
+vim.keymap.set("n", "ZM",        make_wrapper_change,     { silent = false, expr = true   })
 vim.keymap.set("n", "<leader>q", openqf,                  { silent = false, expr = true   })
