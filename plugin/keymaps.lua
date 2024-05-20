@@ -143,7 +143,6 @@ end)
 if MiniStarter ~= nil then
     map("n", "gh", MiniStarter.open)
 end
-map("n", "x", [["_x]])
 map("n", "X", [[0"_D]])
 map("n", "J", [[mmJ`m]])
 map("n", "gp", "`[v`]")
