@@ -1,5 +1,5 @@
-vim.g.mapleader = " "
-vim.g.localleader = "\\"
+vim.g.mapleader = vim.keycode "<space>"
+vim.g.localleader = [[\]]
 vim.g.dispatch_no_maps = true
 
 if vim.fn.executable("luarocks") == 1 then

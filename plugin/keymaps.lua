@@ -79,8 +79,7 @@ end
 -- macro
 vim.keymap.set("x", "@", function()
     local char = vim.fn.nr2char(vim.fn.getchar())
-    local keys = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
-    vim.api.nvim_feedkeys(keys, 'x', false)
+    vim.api.nvim_feedkeys(vim.keycode"<ESC>", 'x', false)
     local start = vim.fn.getpos("'<")[2]
     local stop = vim.fn.getpos("'>")[2]
     local ns = vim.api.nvim_create_namespace("macro_lines")
