@@ -1,10 +1,10 @@
-local now   = require("mini.deps").now
+-- local now   = require("mini.deps").now
 local later = require("mini.deps").later
 
-now(function()
-    local config = require("cathy.config.ministarter")
-    require("mini.starter").setup(config)
-end)
+-- now(function()
+--     local config = require("cathy.config.ministarter")
+--     require("mini.starter").setup(config)
+-- end)
 
 later(function()
 
