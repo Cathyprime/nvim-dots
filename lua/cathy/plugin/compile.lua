@@ -68,6 +68,9 @@ end
 
 local function make_wrapper()
     vim.b["dispatch_ready"] = true
+    if vim.b["make_compile"] then
+        return ":Make! " .. vim.b["make_compile"] .. "<cr>"
+    end
     local ok, c = pcall(vim.fn.input, {
         prompt = ":make ",
         default = vim.b["make_compile"] or "",
