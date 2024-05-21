@@ -48,10 +48,10 @@ options.options = {
             "l"
         }
     },
-    -- foldexpr = "v:lua.vim.treesitter.foldexpr()",
+    foldexpr = [[getline(v:lnum)=~'^\s*$'?'0':'1']],
     foldtext = "",
-    foldmethod = "manual",
-    foldcolumn = "auto",
+    foldmethod = "expr",
+    foldcolumn = "0",
     hls = true,
     cursorline = true,
     guicursor = "i-ci-ve:block",
