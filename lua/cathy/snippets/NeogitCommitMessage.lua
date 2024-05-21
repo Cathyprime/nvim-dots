@@ -68,7 +68,7 @@ return {
     })),
 
     s("cc", fmt([[
-    {type}{scope} {message} {body}]], {
+    {type}{scope}: {message}{body}]], {
         type = i(1),
         scope = c(2, {
             sn(nil, fmt("({})", i(1, "scope"))),
