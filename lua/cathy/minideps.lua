@@ -61,12 +61,7 @@ if SWITCHES.rust then
 end
 
 if SWITCHES.go then
-    require("mini.deps").add({
-        source = "ray-x/go.nvim",
-        depends = {
-            "ray-x/guihua.lua"
-        }
-    })
+    require("mini.deps").add("ray-x/go.nvim")
 end
 
 if SWITCHES.files == "neotree" then
