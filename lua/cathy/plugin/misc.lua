@@ -217,3 +217,5 @@ later(function()
         }
     })
 end)
+
+add("Eandrju/cellular-automaton.nvim")
