@@ -61,6 +61,14 @@ local function virtual_edit()
     end
 end
 
+local function fold_column()
+    if vim.o.foldcolumn == "0" then
+        vim.o.foldcolumn = "1"
+    else
+        vim.o.foldcolumn = "0"
+    end
+end
+
 Hydra({
     name = "Options",
     hint = [[
@@ -68,8 +76,9 @@ Hydra({
   ^
   _v_ %{ve} virtual edit
   _i_ %{list} invisible characters
-  _s_ %{scrolloff} scrolloff
+  _s_ %{so} scrolloff
   _S_ %{spell} spell
+  _f_ %{fc} fold column
   _w_ %{wrap} wrap
   _c_ %{cul} cursor line
   _n_ %{nu} number
@@ -86,13 +95,20 @@ Hydra({
                 border = "rounded",
             },
             funcs = {
-                ["scrolloff"] = function()
+                ["so"] = function()
                     if vim.o.scrolloff == 0 then
                         return "[ ]"
                     else
                         return "[x]"
                     end
                 end,
+                ["fc"] = function()
+                    if vim.o.foldcolumn ~= "0" then
+                        return "[x]"
+                    else
+                        return "[ ]"
+                    end
+                end
             },
         },
     },
@@ -105,6 +121,7 @@ Hydra({
         { "w", boolean_switch("wrap"), { desc = "wrap" } },
         { "c", boolean_switch("cursorline"), { desc = "cursor line" } },
         { "S", boolean_switch("spell"), { desc = "spell" } },
+        { "f", fold_column, { desc = "foldcolumn" }, },
         { "v", virtual_edit, { desc = "virtualedit" } },
         { "s", scrolloff_toggle, { desc = "scrolloff" }, },
         { "<Esc>", nil, { exit = true } },

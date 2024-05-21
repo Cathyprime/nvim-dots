@@ -32,7 +32,7 @@ options.options = {
         append = {
             [[foldclose:>]],
             [[foldopen:v]],
-            [[foldsep:│]],
+            [[foldsep: ]],
             [[fold: ]],
         },
     },
@@ -51,7 +51,7 @@ options.options = {
     foldexpr = [[getline(v:lnum)=~'^\s*$'?'0':'1']],
     foldtext = "",
     foldmethod = "expr",
-    foldcolumn = "0",
+    foldcolumn = "1",
     hls = true,
     cursorline = true,
     guicursor = "i-ci-ve:block",
