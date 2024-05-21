@@ -1,5 +1,5 @@
 local function augroup(name)
-    return vim.api.nvim_create_augroup("cathy_" .. name, { clear = true })
+    return vim.api.nvim_create_augroup(string.format("cathy_%s", name), { clear = true })
 end
 
 -- start minibuffer
