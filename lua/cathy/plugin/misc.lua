@@ -131,12 +131,21 @@ later(function()
     vim.keymap.set("n", "gl", "<cmd>Browse<cr>")
 end)
 
+add("cbochs/grapple.nvim")
 later(function()
-    vim.keymap.set("n", "<leader>a", require("grapple").toggle)
-    vim.keymap.set("n", "<leader>e", require("grapple").toggle_tags)
+    local grapple = require("grapple")
+    grapple.setup({
+        scope = "git_branch",
+    })
+    vim.keymap.set("n", "<leader>a", grapple.toggle)
+    vim.keymap.set("n", "<leader>e", grapple.toggle_tags)
 
-    vim.keymap.set("n", "<c-f>", "<cmd>Grapple cycle_tags next<cr>")
-    vim.keymap.set("n", "<c-s>", "<cmd>Grapple cycle_tags prev<cr>")
+    vim.keymap.set("n", "<c-f>", function() grapple.cycle_tags("next") end)
+    vim.keymap.set("n", "<c-s>", function() grapple.cycle_tags("prev") end)
+
+    vim.keymap.set("n", "<c-s-f>", function() grapple.cycle_scopes("next") end)
+    vim.keymap.set("n", "<c-s-s>", function() grapple.cycle_scopes("prev") end)
+    vim.api.nvim_del_user_command("Grapple")
 end)
 
 add({
