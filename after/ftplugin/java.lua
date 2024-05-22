@@ -4,6 +4,8 @@ if ok then
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(event)
             local client = vim.lsp.get_client_by_id(event.data.client_id)
+            assert(client)
+            client.server_capabilities.semanticTokensProvider = nil
             require("cathy.config.lsp-funcs").on_attach(client, event.buf)
 
             local function map(opts)
@@ -54,7 +56,7 @@ if ok then
 
     ---@diagnostic disable-next-line
     jdtls.start_or_attach({
-        on_attach= function()
+        on_attach = function()
             ---@diagnostic disable-next-line: missing-fields
             jdtls.setup_dap({ hotcodereplace = "auto" })
             require("jdtls.dap").setup_dap_main_class_configs()
