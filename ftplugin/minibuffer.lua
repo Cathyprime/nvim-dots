@@ -31,6 +31,13 @@ vim.opt_local.scrolloff = 0
 vim.opt_local.completeopt = "menu"
 vim.opt.cmdheight = 0
 
+vim.api.nvim_create_autocmd("BufEnter", {
+    once = true,
+    callback = function()
+        vim.opt.foldmethod = "expr"
+    end,
+})
+
 vim.api.nvim_create_autocmd("CmdwinLeave", {
     buffer = vim.api.nvim_get_current_buf(),
     once = true,

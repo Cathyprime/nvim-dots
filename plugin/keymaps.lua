@@ -170,6 +170,10 @@ map("c", "<c-a>", "<home>", { silent = false })
 
 -- minibuffer
 map("n", "<a-;>", "q:")
+map("n", "q:", function()
+    vim.opt.foldmethod = "manual"
+    return "q:"
+end, { expr = true })
 
 -- quick search and replace keymaps
 map("n", "<leader>ss", ":.,$s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
