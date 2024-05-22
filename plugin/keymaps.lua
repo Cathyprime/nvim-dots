@@ -185,6 +185,3 @@ map("v", "<leader>s", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = fal
 map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+\(\S\)#\1 \2#g<cr>:noh<cr>]])
-
--- terminal
-map("n", "<c-w>t", "<cmd>12Terminal<cr>", { desc = "open terminal" })
