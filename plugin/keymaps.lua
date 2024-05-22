@@ -184,4 +184,4 @@ map("n", "<leader>SS", ":%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", { silent = fal
 map("v", "<leader>s", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 
-map("v", "<leader>d", [[:s#\(\S\)\s\+\(\S\)#\1 \2#g<cr>:noh<cr>]])
+map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
