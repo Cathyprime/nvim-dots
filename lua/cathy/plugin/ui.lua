@@ -34,7 +34,10 @@ end)
 
 require("mini.deps").add({
     source = "nvim-lualine/lualine.nvim",
-    depends = {"rebelot/kanagawa.nvim"}
+    depends = {
+        "rebelot/kanagawa.nvim",
+        "AndreM222/copilot-lualine"
+    }
 })
 
 require("mini.deps").now(function()

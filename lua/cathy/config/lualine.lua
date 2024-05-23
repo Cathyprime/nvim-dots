@@ -232,6 +232,11 @@ local config = {
         },
         lualine_x = {
             {
+                "copilot",
+                -- Default values
+                show_colors = true,
+            },
+            {
                 "%S",
                 fmt = function(str)
                     str = hide_on_vert(str)
@@ -320,7 +325,12 @@ local config = {
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = {},
+    extensions = {
+        "man",
+        "nvim-dap-ui",
+        "oil",
+        "quickfix",
+    },
 }
 
 return config
