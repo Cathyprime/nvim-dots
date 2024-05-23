@@ -232,11 +232,6 @@ local config = {
         },
         lualine_x = {
             {
-                "copilot",
-                -- Default values
-                show_colors = true,
-            },
-            {
                 "%S",
                 fmt = function(str)
                     str = hide_on_vert(str)
@@ -251,6 +246,11 @@ local config = {
             "diagnostics",
         },
         lualine_y = {
+            {
+                "copilot",
+                -- Default values
+                show_colors = true,
+            },
             {
                 "grapple",
                 fmt = hide_on_vert,
