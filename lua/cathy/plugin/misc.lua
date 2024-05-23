@@ -121,6 +121,9 @@ later(function()
                 font = 4,
             },
         },
+        on_open = function()
+            vim.opt.fillchars = [[foldclose:>,foldopen:v,foldsep: ,fold: ]]
+        end
     })
 end)
 
