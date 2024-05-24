@@ -128,13 +128,12 @@ end
 -- neovide only
 if vim.g.neovide then
     if vim.fn.hostname() == "luna" then
-        vim.opt.guifont = "JetBrainsMono NFM:h14.8"
+        vim.opt.guifont = "Iosevka Custom:h14.3"
     elseif vim.fn.hostname() == "juno" then
-        vim.opt.guifont = "JetBrainsMono NFM:h16.8"
+        vim.opt.guifont = "Iosevka Custom:h17.7"
     else
-        vim.opt.guifont = "JetBrainsMono NFM:h14"
+        vim.opt.guifont = "Iosevka Custom:h14"
     end
-    vim.opt.guifont = "JetBrainsMono NFM:h14.8"
     vim.g.neovide_hide_mouse_when_typing = true
     vim.g.neovide_refresh_rate = 144
     -- vim.g.neovide_transparency = 0.9
