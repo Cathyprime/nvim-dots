@@ -82,6 +82,21 @@ local mode = {
         ["r?"]      = "confrm",
         ["default"] = "unknwn",
     },
+    lualine_mode = {
+        ["NORMAL"]    = "normal",
+        ["VISUAL"]    = "visual",
+        ["V-LINE"]    = "vislin",
+        ["V-BLOCK"]   = "visblk",
+        ["O-PENDING"] = "oppend",
+        ["SELECT"]    = "select",
+        ["S-LINE"]    = "sellin",
+        ["S-BLOCK"]   = "selblk",
+        ["INSERT"]    = "insert",
+        ["REPLACE"]   = "replce",
+        ["COMMAND"]   = "cmmand",
+        ["TERMINAL"]  = "termnl",
+        ["default"]   = "unknwn",
+    },
     name = {
         ["normal"] = "[ Normal ]",
         ["visual"] = "[ Visual ]",
@@ -101,11 +116,11 @@ local mode = {
     },
 }
 
-local function mode_component()
-    local mode_name = mode.modes[vim.fn.mode()]
-    local mode_str = mode.name[mode_name]
-    return mode_str
-end
+-- local function mode_component()
+--     local mode_name = mode.modes[vim.fn.mode()]
+--     local mode_str = mode.name[mode_name]
+--     return mode_str
+-- end
 
 local function window_component()
     return string.format("[%s:%s]", vim.api.nvim_win_get_number(0), vim.api.nvim_get_current_buf())
@@ -185,7 +200,8 @@ local config = {
     sections = {
         lualine_a = {
             {
-                mode_component,
+                -- mode_component,
+                "mode",
                 color = function()
                     local mode_name = mode.modes[vim.fn.mode()]
                     return mode.colors[mode_name]
@@ -195,7 +211,7 @@ local config = {
                     if vim.o.filetype == "neo-tree" or vim.o.filetype == "undotree" then
                         return nil
                     end
-                    return str
+                    return mode.name[mode.lualine_mode[str] or "default"]
                 end
             },
             {
