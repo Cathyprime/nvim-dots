@@ -11,7 +11,7 @@
 # List of Neovim plugins to install alongside their versions.
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
-"rocks.nvim" = "2.28.0"
+"rocks.nvim" = "2.29.0"
 neorg = { version = "8.5.0", opt = true }
 nvim-metals = { version = "0.8.x", opt = true }
 "telescope.nvim" = "scm"
@@ -22,7 +22,7 @@ luasnip = { version = "2.3.0", opt = true }
 nvim-jdtls = { version = "0.2.0", opt = true }
 nvim-dap-ui = { version = "4.0.0", opt = true }
 nvim-dap-go = { version = "scm", opt = true }
-neotest = { version = "5.2.3", opt = true }
+neotest = { version = "5.2.5", opt = true }
 "flatten.nvim" = "0.5.1"
 "venn.nvim" = "scm"
 "hydra.nvim" = "1.0.2"
