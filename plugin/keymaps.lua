@@ -175,6 +175,23 @@ map("n", "q:", function()
     return "q:"
 end, { expr = true })
 
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    once = false,
+    callback = function()
+        vim.keymap.del("n", "q:")
+    end,
+})
+
+vim.api.nvim_create_autocmd("RecordingLeave", {
+    once = false,
+    callback = function()
+        map("n", "q:", function()
+            vim.opt.foldmethod = "manual"
+            return "q:"
+        end, { expr = true })
+    end,
+})
+
 -- quick search and replace keymaps
 map("n", "<leader>ss", ":.,$s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
 map("n", "<leader>sS", ":.,$s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", { silent = false })
