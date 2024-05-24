@@ -1,6 +1,7 @@
 vim.g.mapleader = vim.keycode "<space>"
 vim.g.localleader = [[\]]
 vim.g.dispatch_no_maps = true
+vim.o.background = "dark"
 
 if vim.fn.executable("luarocks") == 1 then
     local rocks_config = {

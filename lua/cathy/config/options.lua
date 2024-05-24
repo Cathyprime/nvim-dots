@@ -14,7 +14,6 @@ options.options = {
     shiftwidth = 4,
     smartindent = false,
     autoindent = false,
-    background = "dark",
     expandtab = true,
     exrc = true,
     list = true,
