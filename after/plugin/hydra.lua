@@ -63,7 +63,7 @@ end
 
 local function fold_column()
     if vim.o.foldcolumn == "0" then
-        vim.o.foldcolumn = "3"
+        vim.o.foldcolumn = "4"
     else
         vim.o.foldcolumn = "0"
     end
