@@ -18,11 +18,11 @@ return {
   ["lualine.nvim"] = "0a5a66803c7407767b799067986b4dc3036e1983",
   ["mason-lspconfig.nvim"] = "a4caa0d083aab56f6cd5acf2d42331b74614a585",
   ["mason.nvim"] = "49ff59aded1047a773670651cfa40e76e63c6377",
+  ["mini.nvim"] = "e94945129780fa5b43447ecc0a4b0273892043e3",
   neogit = "daebc4bc94bdcfa69d8d75c731878bff758e16fa",
   ["neotest-go"] = "92950ad7be2ca02a41abca5c6600ff6ffaf5b5d6",
   ["none-ls.nvim"] = "60f5f80686f5a272ed3281a7d4962cb54dc5348e",
   nvim = "d97387aea8264f484bb5d5e74f2182a06c83e0d8",
-  ["nvim-bqf"] = "7751b6ef9fbc3907478eaf23e866c4316a2ed1b4",
   ["nvim-cmp"] = "5260e5e8ecadaf13e6b82cf867a909f54e15fd07",
   ["nvim-fundo"] = "ac9c9372c4bf677721e24f144ef29d3a05c2b589",
   ["nvim-lspconfig"] = "b972e7154bc94ab4ecdbb38c8edbccac36f83996",
@@ -41,5 +41,6 @@ return {
   ["vim-abolish"] = "dcbfe065297d31823561ba787f51056c147aa682",
   ["vim-dispatch"] = "4c695bc052cad2ae6b980aebbe48d046466e27ae",
   ["vim-macroeditor"] = "25fd58a712f58ed16ebe924c4f92c9999e455e95",
+  ["vim-qf"] = "7e65325651ff5a0b06af8df3980d2ee54cf10e14",
   ["zen-mode.nvim"] = "78557d972b4bfbb7488e17b5703d25164ae64e6a"
 }
