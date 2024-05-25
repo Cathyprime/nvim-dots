@@ -164,6 +164,7 @@ add({
 later(function()
     require("codesnap").setup({
         has_breadcrumbs = true,
+        save_path = os.getenv("HOME") .. "/Pictures/",
         watermark = "Magda :3"
     })
 end)
