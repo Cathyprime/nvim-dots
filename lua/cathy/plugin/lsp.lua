@@ -22,6 +22,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
             notification = {
                 window = {
                     winblend = 0,
+                    max_width = 60,
                 },
             }
         })
