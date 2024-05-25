@@ -169,7 +169,6 @@ map("n", "<leader>dq", vim.diagnostic.setqflist)
 map("c", "<c-a>", "<home>", { silent = false })
 
 -- minibuffer
-map("n", "<a-;>", "q:")
 map("n", "q:", function()
     vim.opt.foldmethod = "manual"
     return "q:"
@@ -192,6 +191,11 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
     end,
 })
 
+map("c", "<c-f>", function()
+    vim.opt.foldmethod = "manual"
+    return "<c-f>"
+end, { expr = true })
+
 -- quick search and replace keymaps
 map("n", "<leader>ss", ":.,$s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>", { silent = false })
 map("n", "<leader>sS", ":.,$s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", { silent = false })
@@ -202,3 +206,7 @@ map("v", "<leader>s", [[y:s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = fal
 map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
+
+-- search
+map("n", "*", "*N")
+map("n", "#", "#N")
