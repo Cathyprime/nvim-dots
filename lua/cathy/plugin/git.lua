@@ -14,7 +14,19 @@ end)
 md.now(function()
     local neogit = require("neogit")
     neogit.setup({})
-    vim.keymap.set("n", "ZG", function() neogit.open({ kind = "tab" }) end)
+    vim.keymap.set("n", "ZG", function()
+        vim.api.nvim_create_autocmd("TabClosed", {
+            once = true,
+            callback = function()
+                vim.iter(vim.api.nvim_list_bufs()):filter(function(buf)
+                    return vim.fn.bufname(buf) == ""
+                end):each(function(buf)
+                    vim.api.nvim_buf_delete(buf, {})
+                end)
+            end,
+        })
+        neogit.open({ kind = "tab" })
+    end)
 
     vim.api.nvim_create_autocmd("Filetype", {
         group = vim.api.nvim_create_augroup("cathy_neogit", { clear = true }),
