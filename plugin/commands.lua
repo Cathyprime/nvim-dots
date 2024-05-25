@@ -174,6 +174,17 @@ vim.api.nvim_create_user_command(
         if not opts.bang then
             vim.cmd(opts.mods .. " split")
         end
+
+        local buf = vim.iter(vim.api.nvim_list_bufs())
+            :find(function(buf)
+                return vim.fn.bufname(buf) == "Scratch -> " .. ft
+            end)
+
+        if buf ~= nil then
+            vim.api.nvim_win_set_buf(0, buf)
+            return
+        end
+
         vim.cmd"enew"
         vim.api.nvim_set_option_value("buftype", "nofile", { buf = 0 })
         vim.api.nvim_set_option_value("bufhidden", "hide", { buf = 0 })
@@ -181,6 +192,7 @@ vim.api.nvim_create_user_command(
         if ft == [[nil]] or ft == [[""]] then
             return
         end
+        vim.api.nvim_buf_set_name(0, "Scratch -> " .. ft)
         vim.api.nvim_set_option_value("filetype", ft, { buf = 0 })
         if ft == "sh" then
             vim.keymap.set("n", "<cr>", "mm<cmd>.!sh<cr>u`m", { buffer = true })
