@@ -207,6 +207,8 @@ map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = fa
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
 
--- search
-map("n", "*", "*N")
-map("n", "#", "#N")
+-- esc will return to place before searching
+map("n", "*", "mm*")
+map("n", "#", "mm#")
+map("n", "/", "mm/", { silent = false })
+map("n", "?", "mm?", { silent = false })
