@@ -18,6 +18,7 @@ md.now(function()
         vim.api.nvim_create_autocmd("TabClosed", {
             once = true,
             callback = function()
+                MiniNotify.clear()
                 vim.iter(vim.api.nvim_list_bufs()):filter(function(buf)
                     return vim.fn.bufname(buf) == ""
                 end):each(function(buf)
