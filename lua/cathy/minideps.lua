@@ -27,9 +27,9 @@ require("cathy.plugin.git")
 vim.api.nvim_create_autocmd("VimEnter", {
     once = true,
     callback = function()
+        require("mini.deps").add("stefandtw/quickfix-reflector.vim")
         require("cathy.plugin.telescope")
         require("cathy.plugin.ui")
-        require("cathy.plugin.quickfix")
         require("cathy.plugin.neorg")
     end,
 })
