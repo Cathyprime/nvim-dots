@@ -29,7 +29,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         require("cathy.plugin.telescope")
         require("cathy.plugin.ui")
-        require("cathy.plugin.quickfix")
         require("cathy.plugin.neorg")
     end,
 })
