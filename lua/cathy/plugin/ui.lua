@@ -1,16 +1,4 @@
-local telescope_config = {
-    borderchars = {
-        prompt  = { "",  "",  "",  "",  "",  "",  "",  ""  },
-        results = { "",  "",  "",  "",  "",  "",  "",  ""  },
-        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    },
-    layout_config = {
-        prompt_position = "bottom",
-        height = 14,
-        preview_width = 0.60,
-    },
-    border = true
-}
+local telescope_config = require("util.telescope-config")
 
 require("mini.deps").now(function()
     require("dressing").setup({
