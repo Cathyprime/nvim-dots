@@ -213,3 +213,8 @@ map("n", "*", "mm*")
 map("n", "#", "mm#")
 map("n", "/", "mm/", { silent = false })
 map("n", "?", "mm?", { silent = false })
+
+-- map("v", "<leader>x", function()
+--     local reg = vim.region(0, "v", ".", "", true)
+--     MiniMisc.put(reg)
+-- end)
