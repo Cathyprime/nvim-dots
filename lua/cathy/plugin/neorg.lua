@@ -1,5 +1,4 @@
-vim.keymap.set("n", "<leader>n", function()
-    vim.cmd.packadd("neorg")
+local function setup()
     require("neorg").setup({
         load = {
             ["core.defaults"] = {},
@@ -31,6 +30,21 @@ vim.keymap.set("n", "<leader>n", function()
             }
         }
     })
+end
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+    once = true,
+    pattern = "*.norg",
+    callback = function()
+        vim.cmd.packadd("neorg")
+        setup()
+        vim.keymap.set("n", "<leader>n", "<cmd>Neorg<cr>")
+    end,
+})
+
+vim.keymap.set("n", "<leader>n", function()
+    vim.cmd.packadd("neorg")
+    setup()
     vim.keymap.set("n", "<leader>n", "<cmd>Neorg<cr>")
     vim.cmd("Neorg")
 end)
