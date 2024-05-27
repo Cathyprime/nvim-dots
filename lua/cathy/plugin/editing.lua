@@ -38,6 +38,12 @@ later(function()
                     augend.integer.alias.binary,
                     augend.integer.alias.decimal_int,
                     augend.integer.alias.hex,
+                    augend.integer.new {
+                        radix = 16,
+                        prefix = "#",
+                        natural = true,
+                        case = "upper"
+                    },
                     augend.date.alias["%d/%m/%Y"],
                     augend.constant.new({ elements = { "&&", "||" }, word = false, cyclic = true }),
                     augend.constant.new({ elements = { "and", "or" } }),
