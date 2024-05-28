@@ -232,3 +232,14 @@ later(function()
 end)
 
 add("Eandrju/cellular-automaton.nvim")
+
+later(function()
+    local function map(lhs, rhs)
+        vim.keymap.set("n", "<leader>h" .. lhs, rhs)
+    end
+    local track = require("track")
+    map("a", track.toggle)
+    map("c", track.clear)
+    map("e", track.edit)
+    vim.keymap.set("n", "<leader>fa", track.search, { desc = "annotations" })
+end)
