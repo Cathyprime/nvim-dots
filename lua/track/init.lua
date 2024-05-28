@@ -15,7 +15,7 @@ local ns = vim.api.nvim_create_namespace("cathy_track")
 ---@return integer col column number of cursor
 local function getcurpos()
     local curpos = vim.fn.getpos(".")
-    return curpos[2], curpos[3]
+    return curpos[2] - 1, curpos[3]
 end
 
 vim.api.nvim_set_hl(0, "CathyTrack", {
@@ -31,7 +31,7 @@ local function mark(old, cb)
             cb()
         end
         local line = getcurpos()
-        vim.api.nvim_buf_set_extmark(0, ns, line - 1, 0, {
+        vim.api.nvim_buf_set_extmark(0, ns, line, 0, {
             virt_text = {
                 { desc, "CathyTrack" }
             },
@@ -53,7 +53,7 @@ local function curmarker(details)
     local line = getcurpos()
     return vim.iter(vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, { type = "virt_text", details = details }))
         :find(function(m)
-            return m[2] == line - 1
+            return m[2] == line
         end)
 end
 
@@ -103,7 +103,7 @@ local function get_buffers()
 end
 
 local function make_label(marker)
-    return string.format("[%s] %s | %s:%s", marker.id, marker.desc, marker.file, marker.lnum + 2)
+    return string.format("[%s] %s | %s:%s", marker.id, marker.desc, marker.file, marker.lnum + 1)
 end
 
 local function search(opts)
@@ -128,7 +128,7 @@ local function search(opts)
                 bufnr = marker[1],
                 file = vim.fn.bufname(marker[1]),
                 id = marker[2],
-                lnum = marker[3] - 1,
+                lnum = marker[3],
                 col = marker[4],
                 details = marker[5],
                 desc = marker[5]["virt_text"][1][1],
@@ -169,7 +169,7 @@ local function search(opts)
                     vim.cmd("e " .. target_mark.file)
                 end
                 vim.api.nvim_win_set_cursor(winnr, {
-                    target_mark.lnum + 2,
+                    target_mark.lnum + 1,
                     0,
                 })
             end)
@@ -186,11 +186,11 @@ local function search(opts)
 
                 local height = vim.api.nvim_win_get_height(self.state.winid)
                 local offset = math.floor(height / 2)
-                local start_line = target_mark.lnum + 1 - offset
+                local start_line = target_mark.lnum - offset
                 if start_line < 0 then
-                    start_line = 0
+                    start_line = 1
                 end
-                local end_line = start_line + height
+                local end_line = start_line + height - 1
                 local lines = vim.fn.readfile(target_mark.file)
                 lines = vim.iter(lines):enumerate():filter(function(i)
                     return i >= start_line and i <= end_line
@@ -208,7 +208,7 @@ local function search(opts)
                     self.state.bufnr,
                     0,
                     "TelescopeSelection",
-                    target_mark.lnum + 1 - start_line,
+                    target_mark.lnum - start_line + 1,
                     0,
                     -1
                 )
