@@ -151,7 +151,7 @@ later(function()
                 ERROR = { duration = 5000 },
                 WARN  = { duration = 4000 },
                 INFO  = { duration = 3000 },
-                DEBUG = { duration = 2000 },
+                DEBUG = { duration = 6000 },
                 TRACE = { duration = 1000 },
             })
                 :fold({}, function(acc, key, value)
