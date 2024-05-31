@@ -212,7 +212,7 @@ map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = fa
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
 
--- esc will return to place before searching
+-- place a jump point before searching
 map("n", "*", "mm*")
 map("n", "#", "mm#")
 map("n", "/", "mm/", { silent = false })
