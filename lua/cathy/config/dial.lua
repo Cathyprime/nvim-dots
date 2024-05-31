@@ -48,7 +48,7 @@ end
 return {
     register_group = {
         default = extend({
-            words({ "privacy", "protected", "public" }),
+            words({ "private", "protected", "public" }),
         }),
         case = {
             augend.case.new({
