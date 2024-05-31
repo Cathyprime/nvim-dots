@@ -48,7 +48,7 @@ end
 return {
     register_group = {
         default = extend({
-            words({ "private", "protected", "public" }),
+            words({ "private", "protected", "public" }, nil, false),
         }),
         case = {
             augend.case.new({
@@ -68,11 +68,11 @@ return {
             words({ "self", "super", "crate" }, nil, false),
         }),
         cs = extend({
-            words({"sealed", "private", "protected", "internal", "public"}),
+            words({"sealed", "private", "protected", "internal", "public"}, nil, false),
             words({"abstract", "virtual"}),
         }),
         java = extend({
-            words({"default", "private", "protected", "public"}),
+            words({"default", "private", "protected", "public"}, nil, false),
         }),
     }
 }
