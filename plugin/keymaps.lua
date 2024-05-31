@@ -160,6 +160,10 @@ map("n", "<leader>os", "<cmd>Scratch<cr>")
 map("n", "<leader>oS", "<cmd>Scratch sh<cr>")
 map("x", "<leader>;", [[:<c-u>'<,'>norm A;<cr>]])
 map("n", "<c-z>", "<Nop>")
+map("n", "<leader>b", function()
+    local char = vim.fn.nr2char(vim.fn.getchar())
+    return string.format("<cmd>call setreg('%s', getreg('%s'), 'b')<cr>", char, char)
+end, { expr = true, desc = "change register to block mode" })
 
 -- diagnostic
 map("n", "<leader>dl", diag_text_toggle)
