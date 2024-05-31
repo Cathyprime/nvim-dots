@@ -23,5 +23,10 @@ if ok then
     local o, d = pcall(require, "dap-go")
     if o then
         d.setup()
+        local function map(lhs, rhs, opts, mode)
+            opts = vim.tbl_deep_extend("force", { buffer = true, silent = false }, opts or {})
+            vim.keymap.set(mode or "n", "<localleader>" .. lhs, rhs, opts)
+        end
+        map("e", "<cmd>GoIfErr<cr>")
     end
 end
