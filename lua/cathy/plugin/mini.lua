@@ -1,4 +1,3 @@
--- local now   = require("mini.deps").now
 local later = require("mini.deps").later
 
 -- now(function()
@@ -63,6 +62,7 @@ later(function()
         triggers = {
             { mode = "n", keys = "<leader>m" },
             { mode = "n", keys = "<leader>f" },
+            { mode = "n", keys = "<leader>d" },
             { mode = "n", keys = "[" },
             { mode = "n", keys = "]" },
             { mode = "i", keys = "<c-x>" },
