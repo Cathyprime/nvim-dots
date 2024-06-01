@@ -6,9 +6,9 @@ Hydra({
     body = "z",
     heads = {
         { "h", "5zh" },
-        { "l", "5zl", { desc = "←/→" } },
+        { "l", "5zl", { desc = "<-/->" } },
         { "H", "zH" },
-        { "L", "zL", { desc = "half screen ←/→" } },
+        { "L", "zL", { desc = "half screen <-/->" } },
     },
 })
 
