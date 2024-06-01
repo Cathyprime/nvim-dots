@@ -8,6 +8,7 @@ options.options = {
             ">"
         }
     },
+    mouse = "",
     spell = true,
     spl = "en_us,en_gb,pl",
     tabstop = 4,
