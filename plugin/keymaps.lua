@@ -110,6 +110,8 @@ if vim.g.loaded_dispatch ~= 1 then
 end
 map("n", "]c", "<cmd>cnext<cr>", { desc = "Next quickfix item" })
 map("n", "[c", "<cmd>cprev<cr>", { desc = "Prev quickfix item" })
+map("n", "]C", "<cmd>cprev<cr>", { desc = "Prev quickfix item" })
+map("n", "[C", "<cmd>cnext<cr>", { desc = "Next quickfix item" })
 
 -- scrolling
 map("n", "<c-b>", "<Nop>")

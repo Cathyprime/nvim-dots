@@ -131,7 +131,7 @@ add("chrishrb/gx.nvim")
 later(function()
     ---@diagnostic disable-next-line: missing-parameter
     require("gx").setup()
-    vim.keymap.set("n", "gl", "<cmd>Browse<cr>")
+    vim.keymap.set("n", "gX", "<cmd>Browse<cr>")
 end)
 
 add("cbochs/grapple.nvim")

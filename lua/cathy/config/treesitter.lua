@@ -55,20 +55,20 @@ require("nvim-treesitter.configs").setup({
             enable = true,
             set_jumps = true,
             goto_next_start = {
-                ["]l"] = "@loop.outer",
-                ["]]"] = "@function.outer",
+                ["]l"] = { query = "@loop.outer", desc = "Goto next start loop" },
+                ["]]"] = { query = "@function.outer", desc = "Goto next start function" },
             },
             goto_next_end = {
-                ["]L"] = "@loop.outer",
-                ["]["] = "@function.outer",
+                ["]L"] = { query = "@loop.outer", desc = "Goto next end loop" },
+                ["]["] = { query = "@function.outer", desc = "Goto next end function" },
             },
             goto_previous_start = {
-                ["[l"] = "@loop.outer",
-                ["[["] = "@function.outer",
+                ["[l"] = { query = "@loop.outer", desc = "Goto prev start loop" },
+                ["[["] = { query = "@function.outer", desc = "Goto prev start function" },
             },
             goto_previos_end = {
-                ["[L"] = "@loop.outer",
-                ["[]"] = "@function.outer",
+                ["[L"] = { query = "@loop.outer", desc = "Goto prev end loop" },
+                ["[]"] = { query = "@function.outer", desc = "Goto prev end function" },
             },
         },
         swap = {
