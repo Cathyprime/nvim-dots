@@ -62,12 +62,6 @@ local function confirm_save_all(question, err)
     end
 end
 
-local diag_active = true
-local function diag_text_toggle()
-    diag_active = not diag_active
-    vim.diagnostic.config({ virtual_text = diag_active })
-end
-
 local function toggle_diagnostics()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
@@ -171,9 +165,8 @@ map("n", "<leader>b", function()
 end, { expr = true, desc = "change register to block mode" })
 
 -- diagnostic
-map("n", "<leader>dl", diag_text_toggle)
-map("n", "<leader>dt", toggle_diagnostics)
-map("n", "<leader>dq", vim.diagnostic.setqflist)
+map("n", "<leader>dt", toggle_diagnostics, { desc = "toggle diagnostics display" })
+map("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "show diagnostics in quickfix" })
 
 -- command line
 map("c", "<c-a>", "<home>", { silent = false })
