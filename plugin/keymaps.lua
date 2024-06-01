@@ -69,11 +69,7 @@ local function diag_text_toggle()
 end
 
 local function toggle_diagnostics()
-    if vim.diagnostic.is_enabled() then
-        vim.diagnostic.enable(false)
-    else
-        vim.diagnostic.enable(true)
-    end
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
 
 -- macro
@@ -105,12 +101,21 @@ end)
 
 map("n", "gQ", "qqqqq") -- clear q register and start recording (useful for recursive macros)
 
+-- matchit plugin descriptions
+vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function()
+        map("n", "]%", "<Plug>(MatchitNormalMultiForward)", { desc = "Next unmatched group" })
+        map("n", "[%", "<Plug>(MatchitNormalMultiBackward)", { desc = "Prev unmatched group" })
+    end,
+})
+
 -- quickfix commands
 if vim.g.loaded_dispatch ~= 1 then
     map("n", "<leader>q", "<cmd>botright cope<cr>")
 end
-map("n", "]c", "<cmd>cnext<cr>")
-map("n", "[c", "<cmd>cprev<cr>")
+map("n", "]c", "<cmd>cnext<cr>", { desc = "Next quickfix item" })
+map("n", "[c", "<cmd>cprev<cr>", { desc = "Prev quickfix item" })
 
 -- scrolling
 map("n", "<c-b>", "<Nop>")
