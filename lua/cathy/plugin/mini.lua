@@ -63,10 +63,16 @@ later(function()
         triggers = {
             { mode = "n", keys = "<leader>m" },
             { mode = "n", keys = "<leader>f" },
+            { mode = "n", keys = "[" },
+            { mode = "n", keys = "]" },
             { mode = "i", keys = "<c-x>" },
         },
         clues = {
             clue.gen_clues.builtin_completion(),
+            { mode = "n", keys = "]d", postkeys = "]" },
+            { mode = "n", keys = "]c", postkeys = "]" },
+            { mode = "n", keys = "[d", postkeys = "[" },
+            { mode = "n", keys = "[c", postkeys = "[" },
         }
     })
 

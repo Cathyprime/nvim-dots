@@ -7,13 +7,15 @@ vim.cmd([[sign define DiagnosticSignInfo text=]]  .. "🤓"          .. [[ texth
 vim.cmd([[sign define DiagnosticSignHint text=]]  .. icons.Hint    .. [[ texthl=DiagnosticSignHint linehl= numhl= ]])
 
 vim.diagnostic.config({
-    virtual_text = {
-        prefix = "⚫︎"
-    },
+    -- virtual_text = {
+    --     prefix = "⚫︎"
+    -- },
+    virtual_text = false,
     float = {
         border = "rounded"
     }
 })
+-- vim.diagnostic.enable(false)
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
