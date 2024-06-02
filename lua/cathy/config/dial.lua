@@ -23,12 +23,6 @@ local function extend(t)
         augend.integer.alias.binary,
         augend.integer.alias.decimal_int,
         augend.integer.alias.hex,
-        augend.integer.new {
-            radix = 16,
-            prefix = "#",
-            natural = true,
-            case = "upper"
-        },
         augend.date.alias["%d/%m/%Y"],
         words({ "&&", "||" }, false, true),
         words({ "and", "or" }),
