@@ -27,6 +27,7 @@ vim.api.nvim_set_hl(0, "CathyTrack", {
 ---@param cb? fun(): nil
 local function mark(old, cb)
     vim.ui.input({ prompt = "Description: ", default = old or "" }, function(desc)
+        if not desc then return end
         if cb ~= nil then
             cb()
         end
