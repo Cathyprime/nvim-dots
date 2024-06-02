@@ -227,7 +227,7 @@ vim.api.nvim_create_user_command(
                 vim.fn.system("tmux set -g status off")
             end
         else
-            vim.opt_global.laststatus = 3
+            vim.opt_global.laststatus = 2
             vim.opt_global.cmdheight = 1
             status = true
             vim.opt.nu = true
