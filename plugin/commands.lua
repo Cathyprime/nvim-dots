@@ -159,56 +159,6 @@ vim.api.nvim_create_user_command(
     }
 )
 
-vim.api.nvim_create_user_command(
-    "Scratch",
-    function(opts)
-        local ft
-        if #opts.fargs ~= 0 then
-            local args = opts.fargs[1]
-            ft = args
-        else
-            ft = vim.api.nvim_get_option_value("filetype", {
-                buf = 0,
-            })
-        end
-        if not opts.bang then
-            vim.cmd(opts.mods .. " split")
-        end
-
-        local buf = vim.iter(vim.api.nvim_list_bufs())
-            :find(function(buf)
-                return vim.fn.bufname(buf) == "Scratch -> " .. ft
-            end)
-
-        if buf ~= nil then
-            vim.api.nvim_win_set_buf(0, buf)
-            return
-        end
-
-        vim.cmd"enew"
-        vim.api.nvim_set_option_value("buftype", "nofile", { buf = 0 })
-        vim.api.nvim_set_option_value("bufhidden", "hide", { buf = 0 })
-        vim.api.nvim_set_option_value("swapfile", false, { buf = 0 })
-        if ft == [[nil]] or ft == [[""]] then
-            return
-        end
-        vim.api.nvim_buf_set_name(0, "Scratch -> " .. ft)
-        vim.api.nvim_set_option_value("filetype", ft, { buf = 0 })
-        if ft == "sh" then
-            vim.keymap.set("n", "<cr>", "mm<cmd>.!sh<cr>u`m", { buffer = true })
-            vim.keymap.set("n", "<m-cr>", "mm<cmd>.!sh<cr>`m", { buffer = true })
-        else
-            vim.cmd("LspStart")
-        end
-    end,
-    {
-        bang = true,
-        nargs = '?',
-        complete = "filetype",
-        desc = "Open a scratch buffer"
-    }
-)
-
 local status = true
 
 local old_font = vim.opt.guifont
