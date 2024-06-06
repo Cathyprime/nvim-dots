@@ -26,3 +26,4 @@ neotest = { version = "5.2.5", opt = true }
 "flatten.nvim" = "0.5.1"
 "venn.nvim" = "scm"
 "hydra.nvim" = "1.0.2"
+rustaceanvim = { version = "4.22.10", opt = true }
