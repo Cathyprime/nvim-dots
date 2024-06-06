@@ -42,7 +42,7 @@ options.options = {
     ignorecase = true,
     smartcase = true,
     incsearch = true,
-    foldlevel = 20,
+    foldlevel = 4,
     formatoptions = {
         remove = {
             "l"
