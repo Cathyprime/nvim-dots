@@ -3,6 +3,20 @@ vim.cmd.packadd("nvim-dap-go")
 
 local dap = require("dap")
 local dapui = require("dapui")
+require("mason-nvim-dap").setup({
+    ensure_installed = {
+        "codelldb",
+        "debugpy",
+        "delve",
+        "netcoredbg"
+    },
+    automatic_installation = true,
+    handlers = {
+        function(config)
+            require("mason-nvim-dap").default_setup(config)
+        end
+    },
+})
 
 dapui.setup()
 
@@ -15,27 +29,11 @@ dap.listeners.before.event_terminated["dapui_config"] = function()
     vim.cmd("silent Rooter enable")
     dapui.close()
 end
+
 dap.listeners.before.event_exited["dapui_config"] = function()
     vim.cmd("silent Rooter enable")
     dapui.close()
 end
-
-dap.adapters.coreclr = {
-    type = "executable",
-    command = require("mason-core.path").bin_prefix() .."/netcoredbg",
-    args = { "--interpreter=vscode" }
-}
-
-dap.configurations.cs = {
-    {
-        type = "coreclr",
-        name = "launch - netcoredbg",
-        request = "launch",
-        program = function()
-            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
-        end,
-    },
-}
 
 local hint = [[
  _n_: step over   _C_: Continue/Start   _<cr>_: Breakpoint
