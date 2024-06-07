@@ -21,7 +21,6 @@ luasnip = { version = "2.3.0", opt = true }
 "dressing.nvim" = "2.2.1"
 nvim-jdtls = { version = "0.2.0", opt = true }
 nvim-dap-ui = { version = "4.0.0", opt = true }
-nvim-dap-go = { version = "scm", opt = true }
 neotest = { version = "5.2.5", opt = true }
 "flatten.nvim" = "0.5.1"
 "venn.nvim" = "scm"
