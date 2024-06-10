@@ -1,5 +1,4 @@
 vim.cmd.packadd("nvim-dap-ui")
-vim.cmd.packadd("nvim-dap-go")
 
 local dap = require("dap")
 local dapui = require("dapui")
