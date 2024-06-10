@@ -69,6 +69,9 @@ later(function()
                         dismiss = "<m-e>",
                     },
                 },
+                filetypes = {
+                    cpp = true,
+                }
             })
         end,
     })
