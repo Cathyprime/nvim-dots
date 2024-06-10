@@ -32,5 +32,11 @@ return {
     ]], {
         type = i(1, "int"),
         name = i(0, "MyProperty"),
+    })),
+
+    s("p", fmt([[
+    Console.WriteLine({content});
+    ]], {
+        content = i(1, [["Hello, World!"]]),
     }))
 }
