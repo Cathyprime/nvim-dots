@@ -118,6 +118,7 @@ later(function()
                 change = "┃",
                 delete = "▁",
             },
+            priority = 1,
         },
     })
     local set = function()
