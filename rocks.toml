@@ -27,3 +27,4 @@ neotest = { version = "5.2.5", opt = true }
 "hydra.nvim" = "1.0.2"
 "mason-nvim-dap.nvim" = "2.2.2"
 rustaceanvim = { version = "4.22.10", opt = true }
+"playtime.nvim" = { version = "scm", opt = true }
