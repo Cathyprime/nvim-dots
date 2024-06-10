@@ -36,11 +36,13 @@ end
 
 local hint = [[
  _n_: step over   _C_: Continue/Start   _<cr>_: Breakpoint
- _i_: step into   _X_: Quit               _B_:  Condition breakpoint
+ _i_: step into   _X_: Quit               _B_:  Condition breakpoint ^
  _o_: step out    _K_: Hover              _L_:  Log breakpoint
  _J_: to cursor   _u_: Close UI
- ^
- ^ ^            _<esc>_: exit
+ ^ ^            ^                   ^  ^   Change window
+ ^ ^            ^                   ^  ^       _<c-k>_^
+ ^ ^          _<esc>_: exit         ^    _<c-h>_ ^     ^ _<c-l>_
+ ^ ^            ^                   ^  ^       _<c-j>_^
 ]]
 
 require("hydra")({
@@ -79,6 +81,10 @@ require("hydra")({
         {"K", function() require("dap.ui.widgets").hover() end, { silent = false }},
         {"J", function() dap.run_to_cursor() end, { silent = false }},
         {"X", function() dap.disconnect({ terminateDebuggee = false }) end, { silent = false }},
+        {"<c-h>", "<c-w><c-h>", { silent = true }},
+        {"<c-j>", "<c-w><c-j>", { silent = true }},
+        {"<c-k>", "<c-w><c-k>", { silent = true }},
+        {"<c-l>", "<c-w><c-l>", { silent = true }},
         {"<esc>", nil, { exit = true,  silent = false  }},
     }
 })
