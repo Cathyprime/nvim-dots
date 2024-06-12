@@ -35,14 +35,16 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 local hint = [[
- _n_: step over   _C_: Continue/Start   _<cr>_: Breakpoint
- _i_: step into   _X_: Quit               _B_:  Condition breakpoint ^
- _o_: step out    _K_: Hover              _L_:  Log breakpoint
- _J_: to cursor   _u_: Close UI
- ^ ^            ^                   ^  ^   Change window
- ^ ^            ^                   ^  ^       _<c-k>_^
- ^ ^          _<esc>_: exit         ^    _<c-h>_ ^     ^ _<c-l>_
- ^ ^            ^                   ^  ^       _<c-j>_^
+ _n_: step over   _J_: to cursor  _<cr>_: Breakpoint
+ _i_: step into   _X_: Quit        _B_: Condition breakpoint ^
+ _o_: step out    _K_: Hover       _L_: Log breakpoint
+ _b_: step back   _u_: Toggle UI
+ ^ ^            ^                 ^  ^
+ ^ ^ _C_: Continue/Start          ^  ^   Change window
+ ^ ^ _R_: Reverse continue        ^  ^       _<c-k>_^
+ ^ ^            ^                 ^  _<c-h>_ ^     ^ _<c-l>_
+ ^ ^     _<esc>_: exit            ^  ^       _<c-j>_^
+ ^ ^            ^
 ]]
 
 require("hydra")({
@@ -51,7 +53,7 @@ require("hydra")({
         color = "pink",
         invoke_on_body = true,
         hint = {
-            position = "bottom",
+            position = "middle-right",
             float_opts = {
                 border = "rounded",
             }
@@ -71,6 +73,8 @@ require("hydra")({
         {"i", function() dap.step_into() end, { silent = false }},
         {"n", function() dap.step_over() end, { silent = false }},
         {"o", function() dap.step_out() end, { silent = false }},
+        {"b", function() dap.step_back() end, { silent = false }},
+        {"R", function() dap.reverse_continue() end, { silent = false }},
         {"u", function()
             local ok, _ = pcall(dapui.toggle)
             if not ok then
