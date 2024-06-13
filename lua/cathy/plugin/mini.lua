@@ -28,10 +28,6 @@ later(function()
             prefix = "",
             func = nil,
         },
-        multiply = {
-            prefix = "",
-            func = nil,
-        }
     })
 
     require("mini.comment").setup({
