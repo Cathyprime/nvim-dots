@@ -1,5 +1,8 @@
 vim.cmd.packadd("rustaceanvim")
 vim.g.rustaceanvim = {
+    dap = {
+        disable = true
+    },
     tools = {
         float_win_config = {
             border = "single",
