@@ -2,7 +2,7 @@ require("mini.deps").add("tpope/vim-dispatch")
 
 local function start_wrapper()
     if vim.b["start_compile"] then
-        return ":Start -wait=always " .. vim.b["start_compile"] .. "<cr>"
+        return string.format("<cmd>Start -wait=always %s<cr>", vim.b["start_compile"])
     end
     local ok, c = pcall(vim.fn.input, {
         prompt = ":Start ",
@@ -13,7 +13,7 @@ local function start_wrapper()
     if c == -99 or not ok then return "" end
     vim.cmd("redraw")
     vim.b["start_compile"] = c
-    return ":Start -wait=always " .. vim.b["start_compile"] .. "<cr>"
+    return string.format("<cmd>Start -wait=always %s<cr>", vim.b["start_compile"])
 end
 
 local function start_wrapper_change()
@@ -29,13 +29,13 @@ local function start_wrapper_change()
     if not ok or c == -99 then return "" end
     vim.cmd("redraw")
     vim.b["start_compile"] = c
-    return ":Start -wait=always " .. c .. "<cr>"
+    return string.format("<cmd>Start -wait=always %s<cr>", c)
 end
 
 local function dispatch_wrapper()
-    vim.b["dispatch_ready"] = true
+    vim.g["dispatch_ready"] = true
     if vim.b["dispatch"] then
-        return ":Dispatch!<cr>"
+        return "<cmd>Dispatch!<cr>"
     end
     local ok, c = pcall(vim.fn.input, {
         prompt = ":Compile command ",
@@ -46,11 +46,11 @@ local function dispatch_wrapper()
     if c == -99 or not ok then return "" end
     vim.cmd("redraw")
     vim.b["dispatch"] = c
-    return ":Dispatch!<cr>"
+    return "<cmd>Dispatch!<cr>"
 end
 
 local function dispatch_wrapper_change()
-    vim.b["dispatch_ready"] = true
+    vim.g["dispatch_ready"] = true
     if not vim.b.dispatch then
         return dispatch_wrapper()
     end
@@ -63,45 +63,45 @@ local function dispatch_wrapper_change()
     if not ok or c == -99 then return "" end
     vim.cmd("redraw")
     vim.b["dispatch"] = c
-    return ":Dispatch!<cr>"
+    return "<cmd>Dispatch!<cr>"
 end
 
 local function make_wrapper()
-    vim.b["dispatch_ready"] = true
-    if vim.b["make_compile"] then
-        return ":Make! " .. vim.b["make_compile"] .. "<cr>"
+    vim.g["dispatch_ready"] = true
+    if vim.g["make_compile"] then
+        return string.format("<cmd>Make! %s<cr>", vim.g["make_compile"])
     end
     local ok, c = pcall(vim.fn.input, {
         prompt = ":make ",
-        default = vim.b["make_compile"] or "",
+        default = vim.g["make_compile"] or "",
         cancelreturn = -99,
     })
     vim.cmd("redraw")
     if not ok or c == -99 then return "" end
-    vim.b["make_compile"] = c
-    return ":Make! " .. c .. "<cr>"
+    vim.g["make_compile"] = c
+    return string.format("<cmd>Make! %s<cr>", c)
 end
 
 local function make_wrapper_change()
-    vim.b["dispatch_ready"] = true
-    if not vim.b["make_compile"] then
+    vim.g["dispatch_ready"] = true
+    if not vim.g["make_compile"] then
         return make_wrapper()
     end
     local ok, c = pcall(vim.fn.input, {
         prompt = ":make ",
-        default = vim.b["make_compile"] or "",
+        default = vim.g["make_compile"] or "",
         cancelreturn = -99,
         completion = "custom,v:lua.CustomFilesystemCompletion"
     })
     if not ok or c == -99 then return "" end
     vim.cmd("redraw")
-    vim.b["make_compile"] = c
-    return ":Make! " .. c .. "<cr>"
+    vim.g["make_compile"] = c
+    return string.format("<cmd>Make! %s<cr>", c)
 end
 
 local function openqf()
-    if vim.b.dispatch_ready then
-        vim.b["dispatch_ready"] = false
+    if vim.g.dispatch_ready then
+        vim.g["dispatch_ready"] = false
         return "<cmd>botright Cope<cr>"
     else
         return "<cmd>botright cope<cr>"
@@ -114,14 +114,14 @@ vim.g.dispatch_handlers = {
     "job",
 }
 
-vim.keymap.set("n", "Zc",        ":AbortDispatch<cr>",    { silent = true               })
-vim.keymap.set("n", "ZC",        ":AbortDispatch<cr>",    { silent = true               })
-vim.keymap.set("n", "ZF",        ":Focus!<cr>",           { silent = true               })
-vim.keymap.set("n", "Zf",        ":Focus ",               { silent = false              })
-vim.keymap.set("n", "ZS",        start_wrapper_change,    { silent = false, expr = true })
-vim.keymap.set("n", "Zs",        start_wrapper,           { silent = false, expr = true })
-vim.keymap.set("n", "ZD",        dispatch_wrapper_change, { silent = false, expr = true })
-vim.keymap.set("n", "Zd",        dispatch_wrapper,        { silent = false, expr = true })
-vim.keymap.set("n", "Zm",        make_wrapper,            { silent = false, expr = true })
-vim.keymap.set("n", "ZM",        make_wrapper_change,     { silent = false, expr = true })
-vim.keymap.set("n", "<leader>q", openqf,                  { silent = false, expr = true })
+vim.keymap.set("n", "Zc",        "<cmd>AbortDispatch<cr>", { silent = true               })
+vim.keymap.set("n", "ZC",        "<cmd>AbortDispatch<cr>", { silent = true               })
+vim.keymap.set("n", "ZF",        "<cmd>Focus!<cr>",        { silent = true               })
+vim.keymap.set("n", "Zf",        ":Focus ",                { silent = false              })
+vim.keymap.set("n", "ZS",        start_wrapper_change,     { silent = false, expr = true })
+vim.keymap.set("n", "Zs",        start_wrapper,            { silent = false, expr = true })
+vim.keymap.set("n", "ZD",        dispatch_wrapper_change,  { silent = false, expr = true })
+vim.keymap.set("n", "Zd",        dispatch_wrapper,         { silent = false, expr = true })
+vim.keymap.set("n", "Zm",        make_wrapper,             { silent = false, expr = true })
+vim.keymap.set("n", "ZM",        make_wrapper_change,      { silent = false, expr = true })
+vim.keymap.set("n", "<leader>q", openqf,                   { silent = false, expr = true })
