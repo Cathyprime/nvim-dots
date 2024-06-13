@@ -1,3 +1,4 @@
+vim.cmd.packadd("rustaceanvim")
 vim.g.rustaceanvim = {
     tools = {
         float_win_config = {
@@ -18,12 +19,3 @@ vim.g.rustaceanvim = {
         end,
     },
 }
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "BufEnterPre" }, {
-    once = true,
-    pattern = "*.rs",
-    group = vim.api.nvim_create_augroup("cathy_rust", { clear = true }),
-    callback = function()
-        vim.cmd.packadd("rustaceanvim")
-    end,
-})
