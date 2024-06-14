@@ -215,6 +215,10 @@ map("n", "#", "mm#")
 map("n", "/", "mm/", { silent = false })
 map("n", "?", "mm?", { silent = false })
 
+-- terminal
+map("t", "<esc><esc>", [[<c-\><c-n>]])
+map("t", "<m-w>", [[<c-\><c-n><c-w>w]])
+
 -- map("v", "<leader>x", function()
 --     local reg = vim.region(0, "v", ".", "", true)
 --     MiniMisc.put(reg)
