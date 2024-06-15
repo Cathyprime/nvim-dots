@@ -209,12 +209,6 @@ map("v", "<leader>S", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = fa
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
 
--- place a jump point before searching
-map("n", "*", "mm*")
-map("n", "#", "mm#")
-map("n", "/", "mm/", { silent = false })
-map("n", "?", "mm?", { silent = false })
-
 -- terminal
 map("t", "<esc><esc>", [[<c-\><c-n>]])
 map("t", "<m-w>", [[<c-\><c-n><c-w>w]])
