@@ -260,10 +260,6 @@ local config = {
                 show_colors = true,
             },
             {
-                "grapple",
-                fmt = hide_on_vert,
-            },
-            {
                 "filetype",
                 fmt = function(str)
                     if str == "TelescopePrompt" then
