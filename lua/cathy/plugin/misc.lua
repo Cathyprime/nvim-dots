@@ -143,11 +143,15 @@ later(function()
     vim.keymap.set("n", "<leader>a", grapple.toggle)
     vim.keymap.set("n", "<leader>e", grapple.toggle_tags)
 
-    vim.keymap.set("n", "<c-f>", function() grapple.cycle_tags("next") end)
-    vim.keymap.set("n", "<c-s>", function() grapple.cycle_tags("prev") end)
+    vim.keymap.set("n", "<c-f>", function() grapple.select({ index = 1 }) end)
+    vim.keymap.set("n", "<c-s>", function() grapple.select({ index = 2 }) end)
+    vim.keymap.set("n", "<c-n>", function() grapple.select({ index = 3 }) end)
 
-    vim.keymap.set("n", "<c-s-f>", function() grapple.cycle_scopes("next") end)
-    vim.keymap.set("n", "<c-s-s>", function() grapple.cycle_scopes("prev") end)
+    vim.keymap.set("n", "<c-s-a>", function() grapple.cycle_scopes("next") end)
+    vim.keymap.set("n", "<c-s-x>", function() grapple.cycle_scopes("prev") end)
+
+    vim.keymap.set("n", "<c-s-f>", function() grapple.cycle_tags("next") end)
+    vim.keymap.set("n", "<c-s-s>", function() grapple.cycle_tags("prev") end)
     vim.api.nvim_del_user_command("Grapple")
 end)
 
