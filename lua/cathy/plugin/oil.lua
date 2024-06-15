@@ -8,6 +8,7 @@ require("mini.deps").add({
 require("mini.deps").now(function()
     require("oil").setup({
         default_file_explorer = true,
+        skip_confirm_for_simple_edits = true,
         columns = {
             "permissions",
             "size",
@@ -19,7 +20,11 @@ require("mini.deps").now(function()
             ["<a-cr>"] = "actions.open_external",
         },
         view_options = {
-            show_hidden = true
+            natural_order = true,
+            show_hidden = true,
+            is_always_hidden = function(name)
+                return name == ".." or name == ".git"
+            end
         }
     })
     vim.keymap.set("n", "-", "<cmd>Oil<cr>")
