@@ -1,5 +1,4 @@
 return {
-  ["battery.nvim"] = "007d7943e28d1fc8c49a46c3a9c3b3f34975a0c2",
   ["blame.nvim"] = "dedbcdce857f708c63f261287ac7491a893912d0",
   ["cellular-automaton.nvim"] = "b7d056dab963b5d3f2c560d92937cb51db61cb5b",
   ["cmp-nvim-lsp"] = "39e2eda76828d88b773cc27a3f61d2ad782c922d",

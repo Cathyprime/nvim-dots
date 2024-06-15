@@ -146,14 +146,6 @@ local function venn_component()
     end
 end
 
-local function battery_component_gen()
-    if vim.g.neovide and vim.fn.hostname() ~= "luna" then
-        return require("battery").get_status_line
-    else
-        return nil
-    end
-end
-
 local function get_cb(arg)
     if type(arg) == "function" then
         return arg
@@ -296,7 +288,6 @@ local config = {
             { "location", fmt = location_fmt },
             window_component,
             {
-                battery_component_gen(),
                 fmt = function(str)
                     return hide_on_vert(str, function()
                         return str:sub(6)
