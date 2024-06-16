@@ -256,23 +256,24 @@ local minis = {
                     local diagnostics   = config.diagnostics({ trunc_width = 75 })
                     local cursor_pos    = config.cursor_pos({ trunc_width = 75 })
                     local window        = config.window({ trunc_width = 75 })
+                    local five_hls      = config.mode_highlights()
                     local git           = MiniStatusline.section_git({ trunc_width = 50 })
                     local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
                     local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
                     local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
                     return MiniStatusline.combine_groups({
                         { hl = mode_hl,                 strings = { mode } },
-                        { hl = 'MiniStatuslineDevinfo', strings = { recording } },
+                        recording,
                         { hl = 'MiniStatuslineDevinfo', strings = { git } },
                         diff,
                         { hl = 'MiniStatuslineDevinfo', strings = { filename } },
                         "%=",
                         { hl = 'MiniStatuslineDevinfo', strings = { last_button } },
                         { hl = 'MiniStatuslineDevinfo', strings = { search } },
-                        { hl = 'MiniStatuslineDevinfo', strings = { lsp, diagnostics } },
+                        { hl = 'MiniStatuslineDevinfo', strings = { lsp, diagnostics, } },
                         { hl = 'MiniStatuslineDevinfo', strings = { fileinfo } },
                         "%P ",
-                        { hl = mode_hl, strings = { cursor_pos, window } },
+                        { hl = five_hls, strings = { cursor_pos, window } },
                     })
                 end,
                 inactive = function()
