@@ -19,17 +19,3 @@ require("mini.deps").now(function()
         }
     })
 end)
-
-require("mini.deps").add({
-    source = "nvim-lualine/lualine.nvim",
-    depends = {
-        "rebelot/kanagawa.nvim",
-        "AndreM222/copilot-lualine"
-    }
-})
-
--- require("mini.deps").now(function()
---     local config = require("cathy.config.lualine")
---     ---@diagnostic disable-next-line
---     require("lualine").setup(config)
--- end)

@@ -4,11 +4,34 @@ local diff_signs = {
     delete = "-",
 }
 
-vim.api.nvim_set_hl(0, "Statusline_insert", { fg="#1f1f28", bg="#98bb6c" })
-vim.api.nvim_set_hl(0, "Statusline_normal", { fg="#16161d", bg="#7e9cd8" })
-vim.api.nvim_set_hl(0, "Statusline_visual", { fg="#1f1f28", bg="#957fb8" })
-vim.api.nvim_set_hl(0, "Statusline_command", { fg="#1f1f28", bg="#c0a36e" })
-vim.api.nvim_set_hl(0, "Statusline_replace", { fg="#1f1f28", bg="#ffa066" })
+vim.api.nvim_set_hl(0, "Statusline_insert",             { fg = "#1f1f28", bg = "#98bb6c" })
+vim.api.nvim_set_hl(0, "Statusline_normal",             { fg = "#16161d", bg = "#7e9cd8" })
+vim.api.nvim_set_hl(0, "Statusline_visual",             { fg = "#1f1f28", bg = "#957fb8" })
+vim.api.nvim_set_hl(0, "Statusline_command",            { fg = "#1f1f28", bg = "#c0a36e" })
+vim.api.nvim_set_hl(0, "Statusline_replace",            { fg = "#1f1f28", bg = "#ffa066" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeNormal",      { fg = "#c8c093", bg = "#571cbd" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual",      { fg = "#181818", bg = "#76946a" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeVisualLine",  { fg = "#c8c093", bg = "#ad410e" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeVisualBlock", { fg = "#80a0ff", bg = "#181818" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeSelect",      { fg = "#003366", bg = "#80a0ff" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert",      { fg = "#181818", bg = "#7e9cd8" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeReplace",     { fg = "#181818", bg = "#ce0406" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand",     { fg = "#181818", bg = "#ffa066" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeOther",       { fg = "#c8c093", bg = "#571cbd" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeTerminal",    { fg = "#e6c384", bg = "#181818" })
+vim.api.nvim_set_hl(0, "statusline_register",           { fg = "#16161d", bg = "#7e9cd8" })
+vim.api.nvim_set_hl(0, "statusline_register_recording", { fg = "white",   bg = "red"     })
+vim.api.nvim_set_hl(0, "MiniStatuslineDevinfo",         { fg = "#7e9cd8", bg = "#252535" })
+vim.api.nvim_set_hl(0, "MiniStatuslineDevinfoB",        { fg = "#dcd7ba", bg = "#2a2a37" })
+
+vim.api.nvim_set_hl(0, "StatusDiffAdded",   { fg = "#76946a", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiffChanged", { fg = "#dca561", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiffDeleted", { fg = "#c34043", bg = "#2a2a37" })
+
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignError", { fg = "#e82424", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignWarn",  { fg = "#ff9e3b", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignInfo",  { fg = "#658594", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignHint",  { fg = "#6a9589", bg = "#2a2a37" })
 
 local five_hls = {
     ["n"]       = "Statusline_normal",
@@ -77,42 +100,15 @@ local function diff_component(args)
         return ""
     end
     return table.concat({
-        format_element("MiniDiffSignAdd", get_diff("add")),
-        format_element("MiniDiffSignChange", get_diff("change")),
-        format_element("MiniDiffSignDelete", get_diff("delete")),
+        format_element("StatusDiffAdded", get_diff("add")),
+        format_element("StatusDiffChanged", get_diff("change")),
+        format_element("StatusDiffDeleted", get_diff("delete")),
     }, " ")
 end
 
 local k = vim.keycode
 local CTRL_V = k("<c-v>")
 local CTRL_S = k("<c-s>")
-
--- ["normal"] = { bg = "#571cbd", fg = "#c8c093" },
--- ["visual"] = { bg = "#76946a", fg = "#181818" },
--- ["vislin"] = { bg = "#ad410e", fg = "#c8c093" },
--- ["visblk"] = { bg = "#181818", fg = "#80a0ff" },
--- ["oppend"] = { bg = "#e6c384", fg = "#181818" },
--- ["select"] = { bg = "#80a0ff", fg = "#003366" },
--- ["sellin"] = { bg = "#80a0ff", fg = "#003366" },
--- ["selblk"] = { bg = "#80a0ff", fg = "#003366" },
--- ["insert"] = { bg = "#7e9cd8", fg = "#181818" },
--- ["replce"] = { bg = "#ce0406", fg = "#181818" },
--- ["replin"] = { bg = "#ce0406", fg = "#181818" },
--- ["cmmand"] = { bg = "#ffa066", fg = "#181818" },
--- ["termnl"] = { bg = "#181818", fg = "#e6c384" },
--- ["confrm"] = { bg = "#571cbd", fg = "#c8c093" },
--- ["unknwn"] = { bg = "black", fg = "white" },
-
-vim.api.nvim_set_hl(0, "MiniStatuslineModeNormal", { bg = "#571cbd", fg = "#c8c093" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual", { bg = "#76946a", fg = "#181818" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeVisualLine", { bg = "#ad410e", fg = "#c8c093" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeVisualBlock", { bg = "#181818", fg = "#80a0ff" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeSelect", { bg = "#80a0ff", fg = "#003366" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { bg = "#7e9cd8", fg = "#181818" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeReplace", { bg = "#ce0406", fg = "#181818" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand", { bg = "#ffa066", fg = "#181818" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeOther", { bg = "#571cbd", fg = "#c8c093" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeTerminal", { bg = "#181818", fg = "#e6c384" })
 
 local modes = {
     ["n"] = { long = "[ Normal ]", short = "N", hl = "MiniStatuslineModeNormal" },
@@ -158,15 +154,6 @@ local function get_hl()
     end
 end
 
-vim.api.nvim_set_hl(0, "statusline_register", {
-    bg = "#7e9cd8",
-    fg = "#16161d",
-})
-
-vim.api.nvim_set_hl(0, "statusline_register_recording", {
-    bg = "red",
-    fg = "white"
-})
 
 local function recording_component(args)
     local recording = vim.fn.reg_recording()
@@ -209,10 +196,10 @@ local diagnostic_is_disabled = function()
 end
 
 local diagnostic_levels = {
-    { name = "ERROR", sign = "E", hl = "DiagnosticSignError" },
-    { name = "WARN", sign = "W", hl = "DiagnosticSignWarn" },
-    { name = "INFO", sign = "I", hl = "DiagnosticSignInfo" },
-    { name = "HINT", sign = "H", hl = "DiagnosticSignHint" },
+    { name = "ERROR", sign = "E", hl = "StatusDiagnosticSignError" },
+    { name = "WARN", sign  = "W", hl = "StatusDiagnosticSignWarn" },
+    { name = "INFO", sign  = "I", hl = "StatusDiagnosticSignInfo" },
+    { name = "HINT", sign  = "H", hl = "StatusDiagnosticSignHint" },
 }
 
 local function diagnostics_component(args)
