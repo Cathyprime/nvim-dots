@@ -246,7 +246,7 @@ local minis = {
                     local config = require("cathy.config.statusline")
                     local ok, ft = config.filetype_specific()
                     if ok then
-                        return ft()
+                        return ft(true)
                     end
                     local mode, mode_hl = config.mode({ trunc_width = 120 })
                     local recording     = config.recording({ trunc_width = 20 })
@@ -280,7 +280,7 @@ local minis = {
                     local config = require("cathy.config.statusline")
                     local ok, ft = config.filetype_specific()
                     if ok then
-                        return ft()
+                        return ft(false)
                     end
                     local filename   = config.filename({ trunc_width = 20 })
                     local cursor_pos = config.cursor_pos({ trunc_width = 75 })

@@ -6,6 +6,7 @@ local diff_signs = {
 
 vim.api.nvim_set_hl(0, "Statusline_insert",             { fg = "#1f1f28", bg = "#98bb6c" })
 vim.api.nvim_set_hl(0, "Statusline_normal",             { fg = "#16161d", bg = "#7e9cd8" })
+vim.api.nvim_set_hl(0, "Statusline_normal_inactive",    { fg = "#c8c093", bg = "#7e9cd8" })
 vim.api.nvim_set_hl(0, "Statusline_visual",             { fg = "#1f1f28", bg = "#957fb8" })
 vim.api.nvim_set_hl(0, "Statusline_command",            { fg = "#1f1f28", bg = "#c0a36e" })
 vim.api.nvim_set_hl(0, "Statusline_replace",            { fg = "#1f1f28", bg = "#ffa066" })
@@ -230,8 +231,29 @@ local dap_names = {
     ["dapui_console"] = "DAP Console",
 }
 
-local function dap_component()
-    return string.format("%s", dap_names[vim.bo.filetype])
+local function Statusline_normal(active)
+    if active then
+        return "Statusline_normal"
+    else
+        return "Statusline_normal_inactive"
+    end
+end
+
+local function dap_component(active)
+    local name = string.format("%s", dap_names[vim.bo.filetype])
+    return MiniStatusline.combine_groups({
+        { hl = Statusline_normal(active), strings = { name } },
+        { hl = "MiniStatuslineDevinfoB", strings = { "%=" } }
+    })
+end
+
+local function oil()
+    local ok, oil = pcall(require, "oil")
+    if ok then
+        return vim.fn.fnamemodify(oil.get_current_dir(), ":~")
+    else
+        return ""
+    end
 end
 
 local filetypes = {
@@ -241,29 +263,28 @@ local filetypes = {
     ["dapui_watches"] = dap_component,
     ["dap-repl"] = dap_component,
     ["dapui_console"] = dap_component,
-    ["oil"] = function()
-        local ok, oil = pcall(require, "oil")
-        if ok then
-            return vim.fn.fnamemodify(oil.get_current_dir(), ":~")
-        else
-            return ""
-        end
-    end,
-    ["man"] = function()
-        local name = vim.fn.bufname():gsub("man://", "")
+    ["oil"] = function(active)
         return MiniStatusline.combine_groups({
-            "MAN ",
-            name,
-            "%=",
-            "%P ",
-            "%l:%c",
+            { hl = Statusline_normal(active), strings = { oil() } },
+            { hl = "MiniStatuslineDevinfoB", strings = { "%=" } },
         })
     end,
-    ["qf"] = function()
+    ["man"] = function(active)
+        local name = vim.fn.bufname():gsub("man://", "")
         return MiniStatusline.combine_groups({
-            "Quickfix List",
+            { hl = Statusline_normal(active), strings = { "MAN" } },
+            { hl = "MiniStatuslineDevinfo", strings = { name } },
+            { hl = "MiniStatuslineDevinfoB", strings = { "%=" } },
+            { hl = "MiniStatuslineDevinfo", strings = { "%P" } },
+            { hl = "Statusline_normal", strings = { "%l:%c" } },
+        })
+    end,
+    ["qf"] = function(active)
+        return MiniStatusline.combine_groups({
+            { hl = Statusline_normal(active), strings = { "Quickfix List" } },
+            { hl = "MiniStatuslineDevinfoB", strings = { "" }},
             "%=",
-            "%l:%c",
+            { hl = "Statusline_normal",  strings = { "(%l:%c)" } }
         })
     end,
 }
