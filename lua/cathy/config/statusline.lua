@@ -176,9 +176,9 @@ local function filename_component(args)
     end
     if vim.bo.buftype == "terminal" then
         return "%t"
-    else
-        return "%f %m%r"
     end
+
+    return vim.fn.expand('%:~:.') .. " %m%r"
 end
 
 local function last_button_component(args)
@@ -281,10 +281,17 @@ local filetypes = {
     end,
     ["qf"] = function(active)
         return MiniStatusline.combine_groups({
-            { hl = Statusline_normal(active), strings = { "Quickfix List" } },
+            { hl = Statusline_normal(active), strings = { "%q" } },
             { hl = "MiniStatuslineDevinfoB", strings = { "" }},
             "%=",
             { hl = "Statusline_normal",  strings = { "(%l:%c)" } }
+        })
+    end,
+    ["undotree"] = function(active)
+        return MiniStatusline.combine_groups({
+            { hl = Statusline_normal(active), strings = { "Undotree" } },
+            { hl = "MiniStatuslineDevinfoB", strings = { "" }},
+            "%=",
         })
     end,
 }
