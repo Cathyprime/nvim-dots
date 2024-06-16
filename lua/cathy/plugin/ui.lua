@@ -28,8 +28,8 @@ require("mini.deps").add({
     }
 })
 
-require("mini.deps").now(function()
-    local config = require("cathy.config.lualine")
-    ---@diagnostic disable-next-line
-    require("lualine").setup(config)
-end)
+-- require("mini.deps").now(function()
+--     local config = require("cathy.config.lualine")
+--     ---@diagnostic disable-next-line
+--     require("lualine").setup(config)
+-- end)

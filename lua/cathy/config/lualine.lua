@@ -10,18 +10,6 @@ local separators = {
     }
 }
 
--- default
--- local separators = {
---     component = {
---         left = "",
---         right = ""
---     },
---     section = {
---         left = "",
---         right = ""
---     }
--- }
-
 auto_colors.inactive.a.bg = auto_colors.normal.a.bg
 auto_colors.inactive.b.bg = auto_colors.normal.b.bg
 auto_colors.inactive.c.bg = auto_colors.normal.c.bg
@@ -116,12 +104,6 @@ local mode = {
     },
 }
 
--- local function mode_component()
---     local mode_name = mode.modes[vim.fn.mode()]
---     local mode_str = mode.name[mode_name]
---     return mode_str
--- end
-
 local function window_component()
     return string.format("[%s:%s]", vim.api.nvim_win_get_number(0), vim.api.nvim_get_current_buf())
 end
@@ -136,14 +118,6 @@ local function recording_component()
         register = "%%"
     end
     return string.format("%s%s", register, recording)
-end
-
-local function venn_component()
-    if vim.b.venn_enabled ~= nil then
-        return "v"
-    else
-        return ""
-    end
 end
 
 local function get_cb(arg)
@@ -222,7 +196,7 @@ local config = {
                 end
             },
         },
-        lualine_b = { venn_component, "branch", "diff" },
+        lualine_b = { "branch", "diff" },
         lualine_c = {
             {
                 "filename",
