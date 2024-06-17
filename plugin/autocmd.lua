@@ -31,10 +31,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 -- highlight yank
+vim.api.nvim_set_hl(0, "highlight_yank", {
+    bg = "#571cbd",
+    fg = "#c8c093",
+})
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup("highlight_yank"),
     callback = function()
-        vim.highlight.on_yank({ higroup = "SLNormal" })
+        vim.highlight.on_yank({ higroup = "highlight_yank" })
     end,
 })
 
