@@ -4,12 +4,24 @@ local diff_signs = {
     delete = "-",
 }
 
+local k = vim.keycode
+local CTRL_V = k"<c-v>"
+local CTRL_S = k"<c-s>"
+
+vim.api.nvim_set_hl(0, "StatuslineB_insert",            { fg = "#98bb6c", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatuslineB_normal",            { fg = "#7e9cd8", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatuslineB_normal_inactive",   { fg = "#7e9cd8", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatuslineB_visual",            { fg = "#957fb8", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatuslineB_command",           { fg = "#c0a36e", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatuslineB_replace",           { fg = "#ffa066", bg = "#252535" })
+
 vim.api.nvim_set_hl(0, "Statusline_insert",             { fg = "#1f1f28", bg = "#98bb6c" })
 vim.api.nvim_set_hl(0, "Statusline_normal",             { fg = "#16161d", bg = "#7e9cd8" })
 vim.api.nvim_set_hl(0, "Statusline_normal_inactive",    { fg = "#c8c093", bg = "#7e9cd8" })
 vim.api.nvim_set_hl(0, "Statusline_visual",             { fg = "#1f1f28", bg = "#957fb8" })
 vim.api.nvim_set_hl(0, "Statusline_command",            { fg = "#1f1f28", bg = "#c0a36e" })
 vim.api.nvim_set_hl(0, "Statusline_replace",            { fg = "#1f1f28", bg = "#ffa066" })
+
 vim.api.nvim_set_hl(0, "MiniStatuslineModeNormal",      { fg = "#c8c093", bg = "#571cbd" })
 vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual",      { fg = "#181818", bg = "#76946a" })
 vim.api.nvim_set_hl(0, "MiniStatuslineModeVisualLine",  { fg = "#c8c093", bg = "#ad410e" })
@@ -25,14 +37,14 @@ vim.api.nvim_set_hl(0, "statusline_register_recording", { fg = "white",   bg = "
 vim.api.nvim_set_hl(0, "MiniStatuslineDevinfo",         { fg = "#7e9cd8", bg = "#252535" })
 vim.api.nvim_set_hl(0, "MiniStatuslineDevinfoB",        { fg = "#dcd7ba", bg = "#2a2a37" })
 
-vim.api.nvim_set_hl(0, "StatusDiffAdded",   { fg = "#76946a", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiffChanged", { fg = "#dca561", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiffDeleted", { fg = "#c34043", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiffAdded",               { fg = "#76946a", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiffChanged",             { fg = "#dca561", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiffDeleted",             { fg = "#c34043", bg = "#2a2a37" })
 
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignError", { fg = "#e82424", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignWarn",  { fg = "#ff9e3b", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignInfo",  { fg = "#658594", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignHint",  { fg = "#6a9589", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignError",     { fg = "#e82424", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignWarn",      { fg = "#ff9e3b", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignInfo",      { fg = "#658594", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignHint",      { fg = "#6a9589", bg = "#2a2a37" })
 
 local five_hls = {
     ["n"]       = "Statusline_normal",
@@ -50,11 +62,11 @@ local five_hls = {
     ["vs"]      = "Statusline_visual",
     ["V"]       = "Statusline_visual",
     ["Vs"]      = "Statusline_visual",
-    ["CTRL-V"]  = "Statusline_visual",
-    ["CTRL-Vs"] = "Statusline_visual",
+    [CTRL_V]  = "Statusline_visual",
+    [CTRL_V .. "s"] = "Statusline_visual",
     ["s"]       = "Statusline_visual",
     ["S"]       = "Statusline_visual",
-    ["CTRL-S"]  = "Statusline_visual",
+    [CTRL_S]  = "Statusline_visual",
     ["i"]       = "Statusline_insert",
     ["ic"]      = "Statusline_insert",
     ["ix"]      = "Statusline_insert",
@@ -75,8 +87,53 @@ local five_hls = {
     ["t"]       = "Statusline_normal",
 }
 
+local background_five_hls = {
+    ["n"]       = "StatuslineB_normal",
+    ["no"]      = "StatuslineB_normal",
+    ["nov"]     = "StatuslineB_normal",
+    ["noV"]     = "StatuslineB_normal",
+    ["noCTRL"]  = "StatuslineB_normal",
+    ["CTRL"]    = "StatuslineB_normal",
+    ["niI"]     = "StatuslineB_normal",
+    ["niR"]     = "StatuslineB_normal",
+    ["niV"]     = "StatuslineB_normal",
+    ["nt"]      = "StatuslineB_normal",
+    ["ntT"]     = "StatuslineB_normal",
+    ["v"]       = "StatuslineB_visual",
+    ["vs"]      = "StatuslineB_visual",
+    ["V"]       = "StatuslineB_visual",
+    ["Vs"]      = "StatuslineB_visual",
+    [CTRL_V]  = "StatuslineB_visual",
+    [CTRL_V .. "s"] = "StatuslineB_visual",
+    ["s"]       = "StatuslineB_visual",
+    ["S"]       = "StatuslineB_visual",
+    [CTRL_S]  = "StatuslineB_visual",
+    ["i"]       = "StatuslineB_insert",
+    ["ic"]      = "StatuslineB_insert",
+    ["ix"]      = "StatuslineB_insert",
+    ["R"]       = "StatuslineB_replace",
+    ["Rc"]      = "StatuslineB_replace",
+    ["Rx"]      = "StatuslineB_replace",
+    ["Rv"]      = "StatuslineB_replace",
+    ["Rvc"]     = "StatuslineB_replace",
+    ["Rvx"]     = "StatuslineB_replace",
+    ["c"]       = "StatuslineB_command",
+    ["cr"]      = "StatuslineB_command",
+    ["cv"]      = "StatuslineB_command",
+    ["cvr"]     = "StatuslineB_command",
+    ["r"]       = "StatuslineB_normal",
+    ["rm"]      = "StatuslineB_normal",
+    ["r?"]      = "StatuslineB_normal",
+    ["!"]       = "StatuslineB_normal",
+    ["t"]       = "StatuslineB_normal",
+}
+
 local function five_hl()
     return five_hls[vim.fn.mode()]
+end
+
+local function background_five_hl()
+    return background_five_hls[vim.fn.mode()]
 end
 
 local function get_diff(which)
@@ -100,16 +157,42 @@ local function diff_component(args)
     if MiniStatusline.is_truncated(args.trunc_width) then
         return ""
     end
-    return table.concat({
-        format_element("StatusDiffAdded", get_diff("add")),
-        format_element("StatusDiffChanged", get_diff("change")),
-        format_element("StatusDiffDeleted", get_diff("delete")),
-    }, " ")
-end
 
-local k = vim.keycode
-local CTRL_V = k("<c-v>")
-local CTRL_S = k("<c-s>")
+    local space_added = false
+    local add = get_diff("add")
+    local change = get_diff("change")
+    local delete = get_diff("delete")
+
+    if not space_added and add ~= "" then
+        add = " " .. add
+        space_added = true
+    end
+
+    if not space_added and change ~= "" then
+        change =  " " .. change
+        space_added = true
+    end
+
+    if not space_added and delete ~= "" then
+        delete = " " .. delete
+        space_added = true
+    end
+
+    local ret_tbl = {
+        format_element("StatusDiffAdded", add),
+        format_element("StatusDiffChanged", change),
+        format_element("StatusDiffDeleted", delete),
+    }
+
+    return vim.iter(ret_tbl):filter(function(elem)
+        return elem ~= ""
+    end):fold("", function(acc, elem)
+        if acc == "" then
+            return elem
+        end
+        return acc .. " " .. elem
+    end)
+end
 
 local modes = {
     ["n"] = { long = "[ Normal ]", short = "N", hl = "MiniStatuslineModeNormal" },
@@ -167,7 +250,7 @@ local function recording_component(args)
     if register == "%" then
         register = "%%"
     end
-    return format_element(get_hl(), string.format(" %s%s ", register, recording))
+    return format_element(get_hl(), string.format(" %s%s", register, recording))
 end
 
 local function filename_component(args)
@@ -223,12 +306,12 @@ local function diagnostics_component(args)
 end
 
 local dap_names = {
-    ["dapui_scopes"] = "DAP Scopes",
     ["dapui_breakpoints"] = "DAP Breakpoints",
-    ["dapui_stacks"] = "DAP Stacks",
     ["dapui_watches"] = "DAP Watches",
-    ["dap-repl"] = "DAP Repl",
     ["dapui_console"] = "DAP Console",
+    ["dapui_scopes"] = "DAP Scopes",
+    ["dapui_stacks"] = "DAP Stacks",
+    ["dap-repl"] = "DAP Repl",
 }
 
 local function Statusline_normal(active)
@@ -306,8 +389,13 @@ local function choose()
     end
 end
 
+vim.keymap.set({ "n", "x" }, "<leader><cr>", function()
+    MiniMisc.put(MiniStatusline.active())
+end)
+
 return {
     filetype_specific = choose,
+    mode_highlightsB = background_five_hl,
     mode_highlights = five_hl,
     last_button = last_button_component,
     diagnostics = diagnostics_component,

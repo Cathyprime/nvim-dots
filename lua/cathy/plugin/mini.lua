@@ -257,21 +257,21 @@ local minis = {
                     local cursor_pos    = config.cursor_pos({ trunc_width = 75 })
                     local window        = config.window({ trunc_width = 75 })
                     local five_hls      = config.mode_highlights()
+                    local five_hls_b    = config.mode_highlightsB()
                     local git           = MiniStatusline.section_git({ trunc_width = 50 })
                     local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
                     local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
                     local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
+
                     return MiniStatusline.combine_groups({
-                        { hl = mode_hl,                 strings = { mode } },
-                        recording,
-                        { hl = 'MiniStatuslineDevinfo', strings = { git } },
-                        diff,
+                        { hl = mode_hl,                 strings = { mode, recording } },
+                        { hl = five_hls_b,              strings = { git, diff } },
                         { hl = 'MiniStatuslineDevinfoB', strings = { filename } },
                         "%=",
                         { hl = 'MiniStatuslineDevinfoB', strings = { last_button } },
                         { hl = 'MiniStatuslineDevinfoB', strings = { search } },
                         { hl = 'MiniStatuslineDevinfoB', strings = { lsp, diagnostics, } },
-                        { hl = 'MiniStatuslineDevinfo', strings = { fileinfo } },
+                        { hl = five_hls_b,              strings = { fileinfo } },
                         "%P ",
                         { hl = five_hls, strings = { cursor_pos, window } },
                     })
@@ -286,7 +286,7 @@ local minis = {
                     local cursor_pos = config.cursor_pos({ trunc_width = 75 })
                     local window     = config.window({ trunc_width = 75 })
                     return MiniStatusline.combine_groups({
-                        { hl = 'MiniStatuslineDevinfo', strings = { filename } },
+                        { hl = 'MiniStatuslineDevinfoB', strings = { filename } },
                         "%=",
                         "%P ",
                         { strings = { cursor_pos, window } },
