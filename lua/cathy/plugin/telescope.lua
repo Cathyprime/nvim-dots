@@ -15,22 +15,11 @@ local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local defaults = {
     borderchars = telescope_config.borderchars,
-    -- layout_config = telescope_config.layout_config,
     border = telescope_config.border,
     mappings = {
         i = {
-            ["<C-l>"] = function(...)
-                return actions.smart_send_to_loclist(...)
-            end,
             ["<C-q>"] = function(...)
                 return actions.smart_send_to_qflist(...)
-            end,
-            ["<C-u>"] = false,
-            ["<C-e>"] = function(...)
-                return actions.preview_scrolling_down(...)
-            end,
-            ["<C-y>"] = function(...)
-                return actions.preview_scrolling_up(...)
             end,
         },
     },
