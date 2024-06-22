@@ -12,19 +12,6 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
-    "Playtime",
-    function()
-        vim.opt.mouse = "a"
-        vim.api.nvim_del_user_command("Playtime")
-        vim.cmd.packadd("playtime.nvim")
-        vim.cmd("Playtime")
-    end,
-    {
-        desc = "Playtime"
-    }
-)
-
-vim.api.nvim_create_user_command(
     "Messages",
     [[let output = [] | redir => output | silent messages | redir END | silent cexpr output | silent cope]],
     {

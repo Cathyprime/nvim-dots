@@ -1,50 +1,39 @@
-local function setup()
-    require("neorg").setup({
-        load = {
-            ["core.defaults"] = {},
-            ["core.concealer"] = {
-                config = {
-                    icons = {
-                        heading = false,
-                        code_block = {
-                            highlight = "",
-                            spell_check = false,
-                        }
+require("neorg").setup({
+    load = {
+        ["core.defaults"] = {},
+        ["core.concealer"] = {
+            config = {
+                icons = {
+                    heading = false,
+                    code_block = {
+                        highlight = "",
+                        spell_check = false,
                     }
                 }
-            },
-            ["core.keybinds"] = {
-                config = {
-                    hook = function(keybinds)
-                        keybinds.map("norg", "n", "gf", "<cmd>Neorg keybind all core.looking-glass.magnify-code-block<cr>")
-                    end
-                }
-            },
-            ["core.export"] = { config = { export_dir = "~/Documents/neorg/exported" } },
-            ["core.ui.calendar"] = {},
-            ["core.dirman"] = {
-                config = {
-                    workspaces = { notes = "~/Documents/neorg/notes" },
-                    default_workspace = "notes"
-                }
+            }
+        },
+        ["core.keybinds"] = {
+            config = {
+                hook = function(keybinds)
+                    keybinds.map("norg", "n", "gf", "<cmd>Neorg keybind all core.looking-glass.magnify-code-block<cr>")
+                end
+            }
+        },
+        ["core.export"] = { config = { export_dir = "~/Documents/neorg/exported" } },
+        ["core.ui.calendar"] = {},
+        ["core.dirman"] = {
+            config = {
+                workspaces = { notes = "~/Documents/neorg/notes" },
+                default_workspace = "notes"
             }
         }
-    })
-end
+    }
+})
 
 vim.api.nvim_create_autocmd("BufReadPre", {
     once = true,
     pattern = "*.norg",
     callback = function()
         vim.cmd.packadd("neorg")
-        setup()
-        vim.keymap.set("n", "<leader>n", "<cmd>Neorg<cr>")
     end,
 })
-
-vim.keymap.set("n", "<leader>n", function()
-    vim.cmd.packadd("neorg")
-    setup()
-    vim.keymap.set("n", "<leader>n", "<cmd>Neorg<cr>")
-    vim.cmd("Neorg")
-end)

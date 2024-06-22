@@ -1,4 +1,3 @@
-vim.cmd.packadd("rustaceanvim")
 vim.g.rustaceanvim = {
     dap = {
         disable = true

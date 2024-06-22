@@ -12,19 +12,26 @@
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
 "rocks.nvim" = "2.31.0"
-neorg = { version = "8.7.1", opt = true }
-nvim-metals = { version = "0.9.x", opt = true }
-"telescope.nvim" = "scm"
+"rocks-lazy.nvim" = "scm"
+nvim-metals = { version = "0.9.x", opt = true, ft = "scala" }
+"telescope.nvim" = { version = "scm", opt = true, keys = ["<leader>f"], cmd = "Telescope" }
 nvim-web-devicons = "0.100"
-luasnip = { version = "2.3.0", opt = true }
+luasnip = { version = "2.3.0", opt = true, event = "InsertEnter" }
 "fidget.nvim" = "1.4.1"
 "dressing.nvim" = "2.2.1"
-nvim-jdtls = { version = "0.2.0", opt = true }
+nvim-jdtls = { version = "0.2.0", opt = true, ft = "java" }
 nvim-dap-ui = { version = "4.0.0", opt = true }
-neotest = { version = "5.3.3", opt = true }
+neotest = "5.3.3"
 "flatten.nvim" = "0.5.1"
 "venn.nvim" = "scm"
 "hydra.nvim" = "1.0.2"
 "mason-nvim-dap.nvim" = "2.3.0"
-rustaceanvim = { version = "4.22.10", opt = true, pin = true }
-"playtime.nvim" = { version = "scm", opt = true }
+rustaceanvim = { version = "4.22.10", opt = true, pin = true, ft = "rust" }
+"playtime.nvim" = { version = "scm", opt = true, cmd = "Playtime" }
+
+[plugins.neorg]
+version = "8.7.1"
+opt = true
+ft = "norg"
+cmd = "Neorg"
+keys = [{ lhs = "<leader>n", rhs = "<cmd>Neorg<cr>" }]

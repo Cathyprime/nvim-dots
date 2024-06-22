@@ -1,6 +1,5 @@
 require("mini.deps").add("nvim-neotest/neotest-go")
 
-vim.cmd.packadd("neotest")
 local ok, test = pcall(require, "neotest")
 if ok then
     test.setup({
