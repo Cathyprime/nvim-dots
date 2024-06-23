@@ -1,7 +1,11 @@
 local ft_settings = {
     sh = function()
-        vim.keymap.set("n", "<cr>", "mm<cmd>.!sh<cr>u`m", { buffer = true })
+        vim.keymap.set("n", "<cr>", [[<cmd>redir @" | exec '.w !sh' | redir END<cr>]], { buffer = true })
         vim.keymap.set("n", "<m-cr>", "mm<cmd>.!sh<cr>`m", { buffer = true })
+        vim.keymap.set("n", "gl", [[<cmd>%s#git@github.com:#https://github.com/<cr>]], { buffer = true })
+        vim.keymap.set("n", "gj", "<cmd>.!jq<cr>", { buffer = true })
+        vim.keymap.set("v", "<cr>", [[:w !sh<cr>]], { buffer = true })
+        vim.keymap.set("v", "<m-cr>", [[:!sh<cr>]], { buffer = true })
     end,
     text = function()
         vim.keymap.set("n", "<cr>", [[<cmd>.!toilet --width 120 --font smblock<cr>]], { silent = true, buffer = true })
