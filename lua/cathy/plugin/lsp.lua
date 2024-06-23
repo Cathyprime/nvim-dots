@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
             notification = {
                 window = {
                     winblend = 0,
-                    max_width = 60,
+                    max_width = 90,
                 },
             }
         })
