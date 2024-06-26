@@ -28,6 +28,7 @@ neotest = "5.3.3"
 "mason-nvim-dap.nvim" = "2.3.0"
 rustaceanvim = { version = "4.22.10", opt = true, pin = true, ft = "rust" }
 "playtime.nvim" = { version = "scm", opt = true, cmd = "Playtime" }
+"trouble.nvim" = "3.4.3"
 
 [plugins.neorg]
 version = "8.7.1"
