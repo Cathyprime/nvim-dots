@@ -1,14 +1,11 @@
-require("mini.deps").add({
-    source = "williamboman/mason-lspconfig.nvim",
-    depends = {
+return {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
+        "j-hui/fidget.nvim",
     },
-})
-
-vim.api.nvim_create_autocmd("VimEnter", {
-    once = true,
-    callback = function()
+    config =  function()
         require("cathy.config.lsp")
         require("fidget").setup({
             progress = {
@@ -27,4 +24,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
             }
         })
     end,
-})
+    event = "VimEnter",
+}

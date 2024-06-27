@@ -1,236 +1,198 @@
-local add   = require("mini.deps").add
-local later = require("mini.deps").later
-local now   = require("mini.deps").now
-
-local function keymap(lhs, rhs, config, opts, mode)
-    mode = mode or "n"
-    opts = opts or {}
-    vim.keymap.set(mode, lhs, function()
-        config()
-        vim.keymap.set(mode, lhs, rhs, opts)
-        if type(rhs) == "function" then
-            rhs()
-        else
-            local str = rhs:gsub("%<.-%>", "")
-            vim.cmd(str)
-        end
-    end, opts)
+local function map(lhs, rhs)
+    vim.keymap.set("n", "<leader>h" .. lhs, rhs)
 end
+local track = require("track")
+map("a", track.toggle_label)
+map("c", track.clear_labels)
+map("e", track.edit_label)
+vim.keymap.set("n", "<leader>fa", track.search_labels, { desc = "annotations" })
 
-add("mbbill/undotree")
-later(function()
-    vim.g.undotree_WindowLayout = 2
-    vim.g.undotree_ShortIndicators = 0
-    vim.g.undotree_SplitWidth = 40
-    vim.g.undotree_SetFocusWhenToggle = 1
-    vim.g.undotree_DiffCommand = [[diff]]
-    vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
-end)
-
-add("dohsimpson/vim-macroeditor")
-
-add({
-    source = "kevinhwang91/nvim-fundo",
-    depends = { "kevinhwang91/promise-async" },
-})
-require("fundo").install()
-
-add("Vigemus/iron.nvim")
-local iron_setup = function()
-    require("iron.core").setup({
-        config = {
-            repl_open_cmd = "vertical botright 70 split",
-            repl_definition = {
-                sh = {
-                    command = { "zsh" },
-                },
-            },
-        },
-        keymaps = {
-            send_motion = "<localleader>",
-            visual_send = "<localleader>",
-            send_file = "<localleader>f",
-            send_line = "<localleader><localleader>",
-            cr = "<localleader><cr>",
-            interrupt = "<localleader><c-c>",
-            exit = "<localleader><c-d>",
-            clear = "<localleader><c-l>",
-            send_mark = "<localleader>mm",
-            mark_motion = "<localleader>m",
-            mark_visual = "<localleader>m",
-            remove_mark = "<localleader>md",
-        },
-    })
-end
-keymap("<leader>is", "<cmd>IronRepl<cr>", iron_setup)
-keymap("<leader>ih", "<cmd>IronHide<cr>", iron_setup)
-keymap("<leader>if", "<cmd>IronWatch file<cr>", iron_setup)
-keymap("<leader>im", "<cmd>IronWatch mark<cr>", iron_setup)
-
-add("milisims/nvim-luaref")
-
-add({
-    source = "jellydn/hurl.nvim",
-    depends = {
-        -- "MunifTanjim/nui.nvim", installed by lua rocks
-        "nvim-treesitter/nvim-treesitter"
-    }
-})
-
-later(function()
-    require("hurl").setup({
-        debug = false,
-        show_notification = false,
-        mode = "split",
-        split_position = "bottom",
-        split_size = "30%",
-        formatters = {
-            json = { "jq" },
-            html = {
-                "prettier",
-                "--parser",
-                "html",
-            },
-        },
-    })
-    vim.keymap.set("n", "ZH", "<cmd>HurlRunner<cr>")
-    vim.keymap.set("n", "Zh", "<cmd>HurlRunnerAt<cr>")
-    vim.keymap.set("v", "Zh", ":HurlRunner<cr>")
-end)
-
-add({
-    source = "folke/zen-mode.nvim",
-    depends = {
-        "folke/twilight.nvim",
+return {
+    {
+        "rktjmp/playtime.nvim",
+        cmd = "Playtime"
     },
-})
-
-later(function()
-    require("zen-mode").setup({
-        plugins = {
-            options = {
-                enabled = true,
-                ruler = false,
-                showcmd = false,
-                laststatus = 0,
-            },
-            twilight = { enabled = true },
-            gitsigns = { enabled = true },
-            wezterm = {
-                enabled = true,
-                font = 4,
-            },
-        },
-        on_open = function()
-            vim.opt.fillchars = [[foldclose:>,foldopen:v,foldsep: ,fold: ]]
-        end
-    })
-end)
-
-add("chrishrb/gx.nvim")
-later(function()
-    ---@diagnostic disable-next-line: missing-parameter
-    require("gx").setup()
-    vim.keymap.set("n", "gX", "<cmd>Browse<cr>")
-end)
-
-add("cbochs/grapple.nvim")
-later(function()
-    local grapple = require("grapple")
-    grapple.setup({
-        scope = "git_branch",
-    })
-    vim.keymap.set("n", "<leader>a", grapple.toggle)
-    vim.keymap.set("n", "<leader>e", grapple.toggle_tags)
-
-    vim.keymap.set("n", "<c-f>", function() grapple.select({ index = 1 }) end)
-    vim.keymap.set("n", "<c-s>", function() grapple.select({ index = 2 }) end)
-    vim.keymap.set("n", "<c-n>", function() grapple.select({ index = 3 }) end)
-
-    vim.keymap.set("n", "<c-s-a>", function() grapple.cycle_scopes("next") end)
-    vim.keymap.set("n", "<c-s-x>", function() grapple.cycle_scopes("prev") end)
-
-    vim.keymap.set("n", "<c-s-f>", function() grapple.cycle_tags("next") end)
-    vim.keymap.set("n", "<c-s-s>", function() grapple.cycle_tags("prev") end)
-    vim.api.nvim_del_user_command("Grapple")
-end)
-
-add({
-    source = "mistricky/codesnap.nvim",
-    hooks = {
-        post_install = function(opts)
-            vim.system({ "make" }, {
-                cwd = opts.path,
-            })
-        end
-    }
-})
-later(function()
-    require("codesnap").setup({
-        has_breadcrumbs = true,
-        save_path = os.getenv("HOME") .. "/Pictures/",
-        watermark = ""
-    })
-end)
-
-now(function()
-    require("flatten").setup()
-end)
-
-later(function()
-    local hint = [[
- Arrow^^^^^^
- ^ ^ _K_ ^ ^   Select region with <C-v>
- _H_ ^ ^ _L_   _f_: surround it with box
- ^ ^ _J_ ^ ^                      _<Esc>_
+    {
+        "jbyuki/venn.nvim",
+        config = function()
+            local hint = [[
+  Arrow^^^^^^
+  ^ ^ _K_ ^ ^   Select region with <C-v>  ^
+  _H_ ^ ^ _L_   _f_: surround it with box
+  ^ ^ _J_ ^ ^                      _<Esc>_
 ]]
 
-    require("hydra")({
-        name = "venn",
-        mode = "n",
-        hint = hint,
-        config = {
-            color = "pink",
-            invoke_on_body = true,
-            hint = {
-                float_opts = {
-                    border = "rounded",
+            require("hydra")({
+                name = "venn",
+                mode = "n",
+                hint = hint,
+                config = {
+                    color = "pink",
+                    invoke_on_body = true,
+                    hint = {
+                        float_opts = {
+                            border = "rounded",
+                        }
+                    },
+                    on_enter = function()
+                        vim.opt_local.virtualedit = "all"
+                    end,
+                    on_exit = function()
+                        vim.opt_local.virtualedit = ""
+                    end
+                },
+                body = "<leader>v",
+                heads = {
+                    { "H",     "<C-v>h:VBox<CR>" },
+                    { "J",     "<C-v>j:VBox<CR>" },
+                    { "K",     "<C-v>k:VBox<CR>" },
+                    { "L",     "<C-v>l:VBox<CR>" },
+                    { "f",     ":VBox<CR>",      { mode = "v" } },
+                    { "<Esc>", nil,              { exit = true } },
                 }
-            },
-            on_enter = function()
-                vim.opt_local.virtualedit = "all"
-            end,
-            on_exit = function()
-                vim.opt_local.virtualedit = ""
-            end
-        },
-        body = "<leader>v",
-        heads = {
-            { "H", "<C-v>h:VBox<CR>" },
-            { "J", "<C-v>j:VBox<CR>" },
-            { "K", "<C-v>k:VBox<CR>" },
-            { "L", "<C-v>l:VBox<CR>" },
-            { "f", ":VBox<CR>", { mode = "v" }},
-            { "<Esc>", nil, { exit = true } },
+            })
+        end
+    },
+    "Eandrju/cellular-automaton.nvim",
+    {
+        "folke/trouble.nvim",
+        config = true,
+        keys = {
+            { "ZX", "<cmd>Trouble diagnostics filter.buf=0<cr>", { silent = true } },
+            { "<leader>x", "<cmd>Trouble<cr>", { silent = true } }
         }
-    })
-end)
-
-add("Eandrju/cellular-automaton.nvim")
-
-later(function()
-    local function map(lhs, rhs)
-        vim.keymap.set("n", "<leader>h" .. lhs, rhs)
-    end
-    local track = require("track")
-    map("a", track.toggle_label)
-    map("c", track.clear_labels)
-    map("e", track.edit_label)
-    vim.keymap.set("n", "<leader>fa", track.search_labels, { desc = "annotations" })
-end)
-
-later(function()
-    require("trouble").setup()
-    vim.keymap.set("n", "<leader>q", "<cmd>Trouble diagnostics filter.buf=0<cr>", { silent = true })
-    vim.keymap.set("n", "<leader>x", "<cmd>Trouble<cr>", { silent = true })
-end)
+    },
+    {
+        "mbbill/undotree",
+        config = function()
+            vim.g.undotree_WindowLayout = 2
+            vim.g.undotree_ShortIndicators = 0
+            vim.g.undotree_SplitWidth = 40
+            vim.g.undotree_SetFocusWhenToggle = 1
+            vim.g.undotree_DiffCommand = [[diff]]
+            vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
+        end
+    },
+    {
+        "dohsimpson/vim-macroeditor",
+        cmd = "MacroEdit"
+    },
+    {
+        "kevinhwang91/nvim-fundo",
+        dependencies = {
+            "kevinhwang91/promise-async"
+        },
+        config = function()
+            require("fundo").install()
+        end
+    },
+    {
+        "Vigemus/iron.nvim",
+        config = function()
+            require("iron.core").setup({
+                config = {
+                    repl_open_cmd = "vertical botright 70 split",
+                    repl_definition = {
+                        sh = {
+                            command = { "zsh" },
+                        },
+                    },
+                },
+                keymaps = {
+                    send_motion = "<localleader>",
+                    visual_send = "<localleader>",
+                    send_file = "<localleader>f",
+                    send_line = "<localleader><localleader>",
+                    cr = "<localleader><cr>",
+                    interrupt = "<localleader><c-c>",
+                    exit = "<localleader><c-d>",
+                    clear = "<localleader><c-l>",
+                    send_mark = "<localleader>mm",
+                    mark_motion = "<localleader>m",
+                    mark_visual = "<localleader>m",
+                    remove_mark = "<localleader>md",
+                },
+            })
+        end,
+        keys = {
+            { "<leader>is", "<cmd>IronRepl<cr>" },
+            { "<leader>ih", "<cmd>IronHide<cr>" },
+            { "<leader>if", "<cmd>IronWatch file<cr>" },
+            { "<leader>im", "<cmd>IronWatch mark<cr>" }
+        }
+    },
+    "milisims/nvim-luaref",
+    {
+        "folke/zen-mode.nvim",
+        dependencies = {
+            "folke/twilight.nvim",
+        },
+        config = function()
+            require("zen-mode").setup({
+                plugins = {
+                    options = {
+                        enabled = true,
+                        ruler = false,
+                        showcmd = false,
+                        laststatus = 0,
+                    },
+                    twilight = { enabled = true },
+                    gitsigns = { enabled = true },
+                    wezterm = {
+                        enabled = true,
+                        font = 4,
+                    },
+                },
+                on_open = function()
+                    vim.opt.fillchars = [[foldclose:>,foldopen:v,foldsep: ,fold: ]]
+                end
+            })
+        end
+    },
+    {
+        "chrishrb/gx.nvim",
+        keys = {
+            { "gX", "<cmd>Browse<cr>" }
+        }
+    },
+    {
+        "cbochs/grapple.nvim",
+        config = function()
+            require("grapple").setup({
+                scope = "git_branch",
+            })
+            vim.api.nvim_del_user_command("Grapple")
+        end,
+        keys = function()
+            local grapple = require("grapple")
+            return {
+                { "<leader>a", grapple.toggle },
+                { "<leader>e", grapple.toggle_tags },
+                { "<c-f>", function() grapple.select({ index = 1 }) end },
+                { "<c-s>", function() grapple.select({ index = 2 }) end },
+                { "<c-n>", function() grapple.select({ index = 3 }) end },
+                { "<c-s-a>", function() grapple.cycle_scopes("next") end },
+                { "<c-s-x>", function() grapple.cycle_scopes("prev") end },
+                { "<c-s-f>", function() grapple.cycle_tags("next") end },
+                { "<c-s-s>", function() grapple.cycle_tags("prev") end }
+            }
+        end
+    },
+    {
+        "mistricky/codesnap.nvim",
+        build = "make",
+        config = function()
+            require("codesnap").setup({
+                has_breadcrumbs = true,
+                save_path = os.getenv("HOME") .. "/Pictures/",
+                watermark = ""
+            })
+        end
+    },
+    {
+        "willothy/flatten.nvim",
+        config = true,
+        lazy = false,
+        priority = 1001,
+    },
+}

@@ -1,0 +1,3 @@
+return {
+    "scalameta/nvim-metals"
+}

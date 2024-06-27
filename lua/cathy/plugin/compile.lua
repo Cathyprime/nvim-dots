@@ -1,5 +1,3 @@
-require("mini.deps").add("tpope/vim-dispatch")
-
 local function start_wrapper()
     if vim.b["start_compile"] then
         return string.format("<cmd>Start -wait=always %s<cr>", vim.b["start_compile"])
@@ -114,14 +112,19 @@ vim.g.dispatch_handlers = {
     "job",
 }
 
-vim.keymap.set("n", "Zc",        "<cmd>AbortDispatch<cr>", { silent = true               })
-vim.keymap.set("n", "ZC",        "<cmd>AbortDispatch<cr>", { silent = true               })
-vim.keymap.set("n", "ZF",        "<cmd>Focus!<cr>",        { silent = true               })
-vim.keymap.set("n", "Zf",        ":Focus ",                { silent = false              })
-vim.keymap.set("n", "ZS",        start_wrapper_change,     { silent = false, expr = true })
-vim.keymap.set("n", "Zs",        start_wrapper,            { silent = false, expr = true })
-vim.keymap.set("n", "ZD",        dispatch_wrapper_change,  { silent = false, expr = true })
-vim.keymap.set("n", "Zd",        dispatch_wrapper,         { silent = false, expr = true })
-vim.keymap.set("n", "Zm",        make_wrapper,             { silent = false, expr = true })
-vim.keymap.set("n", "ZM",        make_wrapper_change,      { silent = false, expr = true })
-vim.keymap.set("n", "<leader>q", openqf,                   { silent = false, expr = true })
+return {
+    "tpope/vim-dispatch",
+    config = function()
+        vim.keymap.set("n", "Zc",        "<cmd>AbortDispatch<cr>", { silent = true               })
+        vim.keymap.set("n", "ZC",        "<cmd>AbortDispatch<cr>", { silent = true               })
+        vim.keymap.set("n", "ZF",        "<cmd>Focus!<cr>",        { silent = true               })
+        vim.keymap.set("n", "Zf",        ":Focus ",                { silent = false              })
+        vim.keymap.set("n", "ZS",        start_wrapper_change,     { silent = false, expr = true })
+        vim.keymap.set("n", "Zs",        start_wrapper,            { silent = false, expr = true })
+        vim.keymap.set("n", "ZD",        dispatch_wrapper_change,  { silent = false, expr = true })
+        vim.keymap.set("n", "Zd",        dispatch_wrapper,         { silent = false, expr = true })
+        vim.keymap.set("n", "Zm",        make_wrapper,             { silent = false, expr = true })
+        vim.keymap.set("n", "ZM",        make_wrapper_change,      { silent = false, expr = true })
+        vim.keymap.set("n", "<leader>q", openqf,                   { silent = false, expr = true })
+    end
+}

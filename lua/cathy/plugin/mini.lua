@@ -250,7 +250,7 @@ local minis = {
                     end
                     local mode, mode_hl = config.mode({ trunc_width = 120 })
                     local recording     = config.recording({ trunc_width = 20 })
-                    local filename      = config.filename({ trunc_width = 20 })
+                    local filename      = config.filename({ trunc_width = 110 })
                     local last_button   = config.last_button({ trunc_width = 20 })
                     local diff          = config.diff({ trunc_width = 75 })
                     local diagnostics   = config.diagnostics({ trunc_width = 75 })
@@ -297,8 +297,11 @@ local minis = {
     end
 }
 
-require("mini.deps").later(function()
-    for _, func in pairs(minis) do
-        func()
+return {
+    "echasnovski/mini.nvim",
+    config = function()
+        for _, func in pairs(minis) do
+            func()
+        end
     end
-end)
+}

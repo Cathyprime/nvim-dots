@@ -121,22 +121,29 @@ for key, value in pairs(options.options) do
     if type(value) ~= "table" then
         vim.opt[key] = value
     else
-        set_option(key, value)
+    set_option(key, value)
     end
 end
 
 -- neovide only
 if vim.g.neovide then
     if vim.fn.hostname() == "luna" then
-        vim.opt.guifont = "Iosevka Custom:h14.3"
+        vim.opt.guifont = "Iosevka Custom:h13.8"
     elseif vim.fn.hostname() == "juno" then
         vim.opt.guifont = "Iosevka Custom:h17.7"
     else
         vim.opt.guifont = "Iosevka Custom:h14"
     end
+
+    vim.opt.mouse = "a"
+    vim.g.neovide_scale_factor = 1.0
     vim.g.neovide_hide_mouse_when_typing = true
     vim.g.neovide_refresh_rate = 144
-    -- vim.g.neovide_transparency = 0.9
-    vim.g.neovide_cursor_vfx_mode = "railgun"
+    vim.g.neovide_cursor_vfx_mode = ""
     vim.g.neovide_fullscreen = true
+    vim.g.neovide_floating_shadow = false
+    vim.g.neovide_cursor_animation_length = 0.05
+    vim.g.neovide_cursor_trail_size = 0.2
+    vim.g.neovide_cursor_animate_command_line = false
+    vim.g.neovide_scroll_animation_length = 0.05
 end

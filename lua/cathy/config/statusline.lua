@@ -255,7 +255,7 @@ end
 
 local function filename_component(args)
     if MiniStatusline.is_truncated(args.trunc_width) then
-        return ""
+        return "%t"
     end
     if vim.bo.buftype == "terminal" then
         return "%t"

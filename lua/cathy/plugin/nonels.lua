@@ -1,8 +1,7 @@
-require("mini.deps").add("nvimtools/none-ls.nvim")
-
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
-    once = true,
-    callback = function()
+return {
+    "nvimtools/none-ls.nvim",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    config = function()
         local null_ls = require("null-ls")
         null_ls.setup({
             sources = {
@@ -16,5 +15,5 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
             },
         })
         vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format)
-    end,
-})
+    end
+}

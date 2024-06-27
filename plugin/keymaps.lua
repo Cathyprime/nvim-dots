@@ -141,9 +141,6 @@ map("n", "ZQ", function()
 end)
 
 -- misc
-if MiniStarter ~= nil then
-    map("n", "gh", MiniStarter.open)
-end
 map("n", "X", [[0"_D]])
 map("x", "X", [[:norm 0"_D<cr>]])
 map("n", "J", [[mmJ`m]])
@@ -213,7 +210,17 @@ map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
 map("t", "<esc><esc>", [[<c-\><c-n>]])
 map("t", "<m-w>", [[<c-\><c-n><c-w>w]])
 
--- map("v", "<leader>x", function()
---     local reg = vim.region(0, "v", ".", "", true)
---     MiniMisc.put(reg)
--- end)
+if vim.g.neovide then
+    local change_scale_factor = function(delta)
+        vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+    end
+    vim.keymap.set("n", "<C-+>", function()
+        change_scale_factor(1.05)
+    end)
+    vim.keymap.set("n", "<C-=>", function()
+        vim.g.neovide_scale_factor = 1.0
+    end)
+    vim.keymap.set("n", "<C-->", function()
+        change_scale_factor(1/1.05)
+    end)
+end

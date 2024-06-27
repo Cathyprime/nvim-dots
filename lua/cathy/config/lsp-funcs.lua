@@ -103,19 +103,13 @@ return {
                     },
                     workspace = {
                         checkThirdParty = false,
-                        library = (function()
-                            return vim.tbl_deep_extend(
-                                "keep",
-                                {
-                                    vim.env.VIMRUNTIME,
-                                    "${3rd}/luv/library",
-                                    "${3rd}/busted/library",
-                                    "$HOME/.config/nvim/lua/",
-                                    vim.g.rocks_nvim.rocks_path .. "/share/lua/5.1/",
-                                },
-                                vim.split(vim.fn.glob("$HOME/.local/share/nvim/site/pack/deps/*/*/lua"), "\n")
-                            )
-                        end)(),
+                        library = {
+                            vim.env.VIMRUNTIME,
+                            "${3rd}/luv/library",
+                            "${3rd}/busted/library",
+                            "$HOME/.config/nvim/lua/",
+                            vim.g.rocks_nvim.rocks_path .. "/share/lua/5.1/",
+                        },
                     }
                 })
                 client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })

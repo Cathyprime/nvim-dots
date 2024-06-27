@@ -1,4 +1,3 @@
-vim.cmd.packadd("nvim-jdtls")
 local ok, jdtls = pcall(require, "jdtls")
 if ok then
     vim.api.nvim_create_autocmd("LspAttach", {

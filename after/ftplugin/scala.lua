@@ -5,7 +5,6 @@ if not SWITCHES.scala then
     return
 end
 
-vim.cmd.packadd("nvim-metals")
 local metals_config = require("metals").bare_config()
 metals_config.init_options.statusBarProvider = "on"
 metals_config.settings = {
