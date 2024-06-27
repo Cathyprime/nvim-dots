@@ -1,6 +1,6 @@
-<a href="https://dotfyle.com/Yoolayn/nvim-dots"><img src="https://dotfyle.com/Yoolayn/nvim-dots/badges/plugins?style=for-the-badge" /></a>
-<a href="https://dotfyle.com/Yoolayn/nvim-dots"><img src="https://dotfyle.com/Yoolayn/nvim-dots/badges/leaderkey?style=for-the-badge" /></a>
-<a href="https://dotfyle.com/Yoolayn/nvim-dots"><img src="https://dotfyle.com/Yoolayn/nvim-dots/badges/plugin-manager?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/Cathyprime/nvim-dots"><img src="https://dotfyle.com/Cathyprime/nvim-dots/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/Cathyprime/nvim-dots"><img src="https://dotfyle.com/Cathyprime/nvim-dots/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/Cathyprime/nvim-dots"><img src="https://dotfyle.com/Cathyprime/nvim-dots/badges/plugin-manager?style=flat" /></a>
 
 # Neovim dots
 
@@ -12,14 +12,14 @@ Plugin list in the readme might not be up to date every time :3
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:Yoolayn/nvim-dots ~/.config/Yoolayn/nvim-dots
-NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
+git clone git@github.com:Cathyprime/nvim-dots ~/.config/Cathyprime/nvim-dots
+NVIM_APPNAME=Cathyprime/nvim-dots/ nvim
 ```
 
 Open Neovim with this config:
 
 ```sh
-NVIM_APPNAME=Yoolayn/nvim-dots/ nvim
+NVIM_APPNAME=Cathyprime/nvim-dots/ nvim
 ```
 
 ## Plugins
