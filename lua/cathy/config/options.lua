@@ -128,7 +128,7 @@ end
 -- neovide only
 if vim.g.neovide then
     if vim.fn.hostname() == "luna" then
-        vim.opt.guifont = "Iosevka Custom:h13.8"
+        vim.opt.guifont = "Iosevka Custom:h14.8"
     elseif vim.fn.hostname() == "juno" then
         vim.opt.guifont = "Iosevka Custom:h17.7"
     else
