@@ -33,7 +33,7 @@ return {
                 buffers = {
                     mappings = {
                         i = {
-                            ["<c-d>"] = "delete_buffer"
+                            ["<m-d>"] = "delete_buffer"
                         }
                     }
                 }
