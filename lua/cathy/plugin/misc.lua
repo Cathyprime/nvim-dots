@@ -14,6 +14,9 @@ return {
     },
     {
         "jbyuki/venn.nvim",
+        keys = {
+            { "<leader>v" }
+        },
         config = function()
             local hint = [[
   Arrow^^^^^^
@@ -53,7 +56,10 @@ return {
             })
         end
     },
-    "Eandrju/cellular-automaton.nvim",
+    {
+        "Eandrju/cellular-automaton.nvim",
+        cmd = "CellularAutomaton"
+    },
     {
         "folke/trouble.nvim",
         config = true,
@@ -70,8 +76,10 @@ return {
             vim.g.undotree_SplitWidth = 40
             vim.g.undotree_SetFocusWhenToggle = 1
             vim.g.undotree_DiffCommand = [[diff]]
-            vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
-        end
+        end,
+        keys = {
+            { "<leader>u", "<cmd>UndotreeToggle<cr>" }
+        }
     },
     {
         "dohsimpson/vim-macroeditor",
@@ -127,6 +135,7 @@ return {
         dependencies = {
             "folke/twilight.nvim",
         },
+        cmd = "ZenMode",
         config = function()
             require("zen-mode").setup({
                 plugins = {
@@ -181,6 +190,12 @@ return {
     {
         "mistricky/codesnap.nvim",
         build = "make",
+        cmd = {
+            "CodeSnap",
+            "CodeSnapSave",
+            "CodeSnapHighlight",
+            "CodeSnapSaveHighlight",
+        },
         config = function()
             require("codesnap").setup({
                 has_breadcrumbs = true,

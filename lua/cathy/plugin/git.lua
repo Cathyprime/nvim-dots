@@ -1,27 +1,24 @@
 return {
     {
         "sindrets/diffview.nvim",
-        config = function()
-            require("diffview").setup()
-
-            vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>")
-            vim.keymap.set("n", "<leader>gc", "<cmd>DiffviewClose<cr>")
-        end
+        keys = {
+            { "<leader>gd", "<cmd>DiffviewOpen<cr>" },
+            { "<leader>gc", "<cmd>DiffviewClose<cr>" }
+        },
+        config = true
     },
     {
         "FabijanZulj/blame.nvim",
-        config = function()
-            require("blame").setup()
-            vim.keymap.set("n", "<leader>gb", "<cmd>BlameToggle<cr>")
-            vim.keymap.set("n", "<leader>gB", "<cmd>BlameToggle virtual<cr>")
-        end
+        config = true,
+        keys = {
+            { "<leader>gb", "<cmd>BlameToggle<cr>" },
+            { "<leader>gB", "<cmd>BlameToggle virtual<cr>" },
+        }
     },
     {
         "NeogitOrg/neogit",
-        config =function()
-            local neogit = require("neogit")
-            neogit.setup({})
-            vim.keymap.set("n", "ZG", function()
+        keys = {
+            { "ZG",  function()
                 vim.api.nvim_create_autocmd("TabClosed", {
                     once = true,
                     callback = function()
@@ -33,9 +30,11 @@ return {
                         end)
                     end,
                 })
-                neogit.open({ kind = "tab" })
-            end)
-
+                require("neogit").open({ kind = "tab" })
+            end }
+        },
+        config = true,
+        init =  function()
             vim.api.nvim_create_autocmd("Filetype", {
                 group = vim.api.nvim_create_augroup("cathy_neogit", { clear = true }),
                 pattern = "Neogit*",

@@ -1,3 +1,4 @@
 return {
-    "scalameta/nvim-metals"
+    "scalameta/nvim-metals",
+    ft = "scala"
 }

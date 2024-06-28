@@ -389,10 +389,6 @@ local function choose()
     end
 end
 
-vim.keymap.set({ "n", "x" }, "<leader><cr>", function()
-    MiniMisc.put(MiniStatusline.active())
-end)
-
 return {
     filetype_specific = choose,
     mode_highlightsB = background_five_hl,

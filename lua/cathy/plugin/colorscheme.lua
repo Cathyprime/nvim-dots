@@ -42,7 +42,10 @@ return {
             end
         end
     },
-    "catppuccin/nvim",
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+    },
     "blazkowolf/gruber-darker.nvim"
 }
 

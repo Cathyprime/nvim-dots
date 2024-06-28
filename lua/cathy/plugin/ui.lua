@@ -2,6 +2,7 @@ local telescope_config = require("util.telescope-config")
 
 return {
     "stevearc/dressing.nvim",
+    event = "VeryLazy",
     config = function()
         require("dressing").setup({
             input = {

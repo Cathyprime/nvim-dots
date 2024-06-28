@@ -26,7 +26,7 @@ return {
     },
     {
         "monaqa/dial.nvim",
-        event = { "InsertEnter", "BufReadPost", "BufWritePost", "BufNewFile" },
+        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
         config = function()
             local dial = require("cathy.config.dial")
             require("dial.config").augends:register_group(dial.register_group)
@@ -46,6 +46,7 @@ return {
     },
     {
         "kylechui/nvim-surround",
+        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
         config = function()
             vim.api.nvim_create_autocmd("InsertEnter", {
                 once = true,

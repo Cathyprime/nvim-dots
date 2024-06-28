@@ -294,6 +294,54 @@ local minis = {
                 end
             }
         })
+    end,
+
+    sessions = function()
+        require("mini.sessions").setup({
+            autoread = false,
+            autowrite = true,
+            file = "~/.local/share/nvim/sessions",
+            force = {
+                delete = true
+            }
+        })
+        vim.api.nvim_create_user_command(
+            "Mksession",
+            function()
+                require("mini.sessions").write("default")
+            end,
+            {}
+        )
+        vim.api.nvim_create_user_command(
+            "Delsession",
+            function()
+                require("mini.sessions").delete("default")
+            end,
+            {}
+        )
+        vim.api.nvim_create_autocmd("VimEnter", {
+            once = true,
+            nested = true,
+            callback = function()
+                if MiniSessions.detected["default"] ~= nil then
+                    require("mini.sessions").read("default")
+                    vim.cmd.enew()
+                    vim.api.nvim_set_option_value("buftype", "nofile", { buf = 0 })
+                    vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = 0 })
+                    vim.api.nvim_set_option_value("swapfile", false, { buf = 0 })
+                    vim.api.nvim_buf_set_lines(0, 0, -1, false, {
+                        "This buffer is for text that is not saved",
+                        "To open a file, press <space>ff",
+                        "",
+                        "                    ▞▀▖",
+                        " ▛▚▀▖▙▀▖▙▀▖▙▀▖▛▀▖ ▐▌ ▄▘",
+                        " ▌▐ ▌▌  ▌  ▌  ▙▄▘ ▗▖▖ ▌",
+                        " ▘▝ ▘▘  ▘  ▘  ▌   ▝▘▝▀ ",
+                    })
+                end
+            end,
+        })
+
     end
 }
 

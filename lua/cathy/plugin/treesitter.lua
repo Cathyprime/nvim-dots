@@ -7,6 +7,7 @@ return {
         "JoosepAlviste/nvim-ts-context-commentstring",
     },
     build = ":TSUpdate",
+    event = "VeryLazy",
     config = function()
         require("cathy.config.treesitter")
         ---@diagnostic disable-next-line

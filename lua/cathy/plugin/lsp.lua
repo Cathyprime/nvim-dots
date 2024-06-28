@@ -24,5 +24,5 @@ return {
             }
         })
     end,
-    event = "VimEnter",
+    event = "VeryLazy",
 }

@@ -1,3 +1,6 @@
 return {
-    "stefandtw/quickfix-reflector.vim"
+    {
+        "stefandtw/quickfix-reflector.vim",
+        ft = "qf"
+    }
 }
