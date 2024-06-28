@@ -4,6 +4,12 @@ return {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
         "j-hui/fidget.nvim",
+        {
+            "zeioth/garbage-day.nvim",
+            dependencies = "neovim/nvim-lspconfig",
+            event = "VeryLazy",
+            opts = {}
+        },
     },
     config =  function()
         require("cathy.config.lsp")
