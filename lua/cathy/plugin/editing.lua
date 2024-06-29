@@ -1,6 +1,7 @@
 return {
     "tpope/vim-abolish",
     {
+        enabled = false,
         "zbirenbaum/copilot.lua",
         event = { "InsertEnter", "CmdlineEnter" },
         config = function()
