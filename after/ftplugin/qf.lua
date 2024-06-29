@@ -1,4 +1,3 @@
-vim.cmd.packadd "cfilter"
 vim.opt_local.spell = false
 
 local function cmd(command)
@@ -14,3 +13,4 @@ end
 
 vim.keymap.set("n", "<", cmd("colder"), { buffer = true, silent = true, expr = true })
 vim.keymap.set("n", ">", cmd("cnewer"), { buffer = true, silent = true, expr = true })
+vim.keymap.set("n", "o", "<cr>:cclose<cr>", { buffer = true, silent = true })

@@ -102,7 +102,7 @@ local function openqf()
         vim.g["dispatch_ready"] = false
         return "<cmd>botright Cope<cr>"
     else
-        return "<cmd>botright cope<cr>"
+        return "<Plug>(qf_qf_toggle)"
     end
 end
 

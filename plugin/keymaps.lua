@@ -106,12 +106,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 -- quickfix commands
 if vim.g.loaded_dispatch ~= 1 then
-    map("n", "<leader>q", "<cmd>botright cope<cr>")
+    map("n", "<leader>q", "<Plug>(qf_qf_toggle)")
 end
-map("n", "]c", "<cmd>cnext<cr>", { desc = "Next quickfix item" })
-map("n", "[c", "<cmd>cprev<cr>", { desc = "Prev quickfix item" })
-map("n", "]C", "<cmd>cprev<cr>", { desc = "Prev quickfix item" })
-map("n", "[C", "<cmd>cnext<cr>", { desc = "Next quickfix item" })
+map("n", "]c", "<Plug>(qf_qf_next)", { desc = "Next quickfix item" })
+map("n", "[c", "<Plug>(qf_qf_previous)", { desc = "Prev quickfix item" })
+map("n", "]C", "<Plug>(qf_qf_previous)", { desc = "Prev quickfix item" })
+map("n", "[C", "<Plug>(qf_qf_next)", { desc = "Next quickfix item" })
 
 -- scrolling
 map("n", "<c-b>", "<Nop>")
