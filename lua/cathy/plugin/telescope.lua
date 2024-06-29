@@ -84,6 +84,7 @@ return {
 
         vim.keymap.set("n", "<c-p>",      telescope_utils.project_files, { desc = "project files" })
         vim.keymap.set("n", "<leader>fp", telescope_utils.change_dir, { desc = "projects" })
+        require("telescope").load_extension("fzf")
     end,
     keys = { "<leader>f" }
 }
