@@ -28,7 +28,8 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 return {
     s("fn", fmt([[
-    {type} {name}({args}) {{
+    {type} {name}({args})
+    {{
         {body}
     }}
     ]], {
@@ -39,7 +40,8 @@ return {
     })),
 
     s("main", fmt([[
-    {stdio}int main(int argc, char *argv[]) {{
+    {stdio}int main(int argc, char *argv[])
+    {{
         {body}
     }}
     ]], {
