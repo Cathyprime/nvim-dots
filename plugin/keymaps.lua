@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 -- quickfix commands
 if vim.g.loaded_dispatch ~= 1 then
-    map("n", "<leader>q", "<Plug>(qf_qf_toggle)")
+    map("n", "<leader>q", "<cwd>cope<cr>")
 end
 map("n", "]c", "<Plug>(qf_qf_next)", { desc = "Next quickfix item" })
 map("n", "[c", "<Plug>(qf_qf_previous)", { desc = "Prev quickfix item" })
