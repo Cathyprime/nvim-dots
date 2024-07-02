@@ -26,6 +26,10 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local ms = ls.multi_snippet
 -- local k = require("luasnip.nodes.key_indexer").new_key
 
+local function type_snippet(short, long)
+    return s({ trig = short, snippetType = "autosnippet" }, t(long))
+end
+
 return {
     s("fn", fmt([[
     {type} {name}({args})
@@ -37,19 +41,6 @@ return {
         name =i(2, "name"),
         args = i(3),
         body = i(0)
-    })),
-
-    s("main", fmt([[
-    {stdio}int main(int argc, char *argv[])
-    {{
-        {body}
-    }}
-    ]], {
-        stdio = c(1, {
-            t"",
-            t{"#include <stdio.h>", "", ""},
-        }),
-        body = i(0),
     })),
 
     s({trig = "for([%w_]*)", regTrig = true}, fmt([[
@@ -78,27 +69,33 @@ return {
         body = i(0)
     })),
 
-    s("inc", fmt([[
-    #include {}
-    ]], {
-        c(1, {
-            sn(nil, {
-                t[["]],
-                i(1, "module"),
-                t[["]],
-            }),
-            sn(nil, {
-                t"<",
-                i(1, "module"),
-                t">",
-            })
-        })
-    })),
-
     s("def", fmt([[
     #define {} {}
     ]], {
         i(1, "name"),
         i(2, "content")
-    }))
+    })),
+
+
+    s({ trig = "#\"", snippetType = "autosnippet" }, fmt([[
+    #include "{file}"
+    ]], {
+        file = i(1, "file")
+    })),
+
+    s({ trig = "#<", snippetType = "autosnippet" }, fmt([[
+    #include <{file}>
+    ]], {
+        file = i(1, "file")
+    })),
+
+    type_snippet("u8", "uint8_t"),
+    type_snippet("u16", "uint16_t"),
+    type_snippet("u32", "uint32_t"),
+    type_snippet("u64", "uint64_t"),
+
+    type_snippet("i8", "int8_t"),
+    type_snippet("i16", "int16_t"),
+    type_snippet("i32", "int32_t"),
+    type_snippet("i64", "int64_t"),
 }
