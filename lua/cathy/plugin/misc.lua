@@ -136,6 +136,7 @@ return {
             "folke/twilight.nvim",
         },
         cmd = "ZenMode",
+        keys = { { "<leader>w", "<cmd>ZenMode<cr>" } },
         config = function()
             require("zen-mode").setup({
                 plugins = {
