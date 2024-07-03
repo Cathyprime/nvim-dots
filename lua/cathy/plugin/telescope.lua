@@ -7,7 +7,10 @@ return {
             "nvim-telescope/telescope-fzf-native.nvim",
             build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
         },
-        "nvim-lua/plenary.nvim"
+        "nvim-lua/plenary.nvim",
+        {
+            "nvim-telescope/telescope-file-browser.nvim",
+        }
     },
     config = function()
         local telescope_config = require("util.telescope-config")
@@ -83,8 +86,16 @@ return {
         end, { desc = "grep current file" })
 
         vim.keymap.set("n", "<c-p>",      telescope_utils.project_files, { desc = "project files" })
-        vim.keymap.set("n", "<leader>fp", telescope_utils.change_dir, { desc = "projects" })
+        vim.keymap.set("n", "<leader>fp", function()
+            require("telescope").extensions.file_browser.file_browser({
+                hide_parent_dir = true,
+                create_from_prompt = false,
+                no_ignore = true,
+                quiet = true,
+            })
+        end, { desc = "projects" })
         require("telescope").load_extension("fzf")
+        require("telescope").load_extension("file_browser")
     end,
     keys = { "<leader>f" }
 }
