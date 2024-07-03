@@ -41,10 +41,10 @@ vim.api.nvim_set_hl(0, "StatusDiffAdded",               { fg = "#76946a", bg = "
 vim.api.nvim_set_hl(0, "StatusDiffChanged",             { fg = "#dca561", bg = "#2a2a37" })
 vim.api.nvim_set_hl(0, "StatusDiffDeleted",             { fg = "#c34043", bg = "#2a2a37" })
 
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignError",     { fg = "#e82424", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignWarn",      { fg = "#ff9e3b", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignInfo",      { fg = "#658594", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignHint",      { fg = "#6a9589", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignError",     { fg = "#e82424", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignWarn",      { fg = "#ff9e3b", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignInfo",      { fg = "#658594", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignHint",      { fg = "#6a9589", bg = "#252535" })
 
 local five_hls = {
     ["n"]       = "Statusline_normal",
@@ -223,6 +223,10 @@ local function cursor_pos_component(args)
     return "(%l:%c)"
 end
 
+local function cursor_pos_component_min(_)
+    return "%l,%c"
+end
+
 local function window_component(args)
     if MiniStatusline.is_truncated(args.trunc_width) then
         return ""
@@ -393,6 +397,7 @@ return {
     filetype_specific = choose,
     mode_highlightsB = background_five_hl,
     mode_highlights = five_hl,
+    cursor_pos_min = cursor_pos_component_min,
     last_button = last_button_component,
     diagnostics = diagnostics_component,
     cursor_pos = cursor_pos_component,

@@ -26,7 +26,9 @@ vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
             fg = "#0078ff"
         })
         vim.api.nvim_set_hl(0, "WinSeparator", {
-            fg = "#61119e"
+            -- fg = "#61119e",
+            fg = "#252535",
+            bg = "#252535"
         })
         vim.api.nvim_set_hl(0, "Folded", {
             fg = "None"

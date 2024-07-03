@@ -254,8 +254,8 @@ local minis = {
                     local last_button   = config.last_button({ trunc_width = 20 })
                     local diff          = config.diff({ trunc_width = 75 })
                     local diagnostics   = config.diagnostics({ trunc_width = 75 })
-                    local cursor_pos    = config.cursor_pos({ trunc_width = 75 })
-                    local window        = config.window({ trunc_width = 75 })
+                    local cursor_pos    = config.cursor_pos_min({ trunc_width = 75 })
+                    -- local window        = config.window({ trunc_width = 75 })
                     local five_hls      = config.mode_highlights()
                     local five_hls_b    = config.mode_highlightsB()
                     local git           = MiniStatusline.section_git({ trunc_width = 50 })
@@ -265,15 +265,14 @@ local minis = {
 
                     return MiniStatusline.combine_groups({
                         { hl = mode_hl,                 strings = { mode, recording } },
-                        { hl = five_hls_b,              strings = { git, diff } },
+                        { hl = five_hls_b,              strings = { git } },
                         { hl = 'MiniStatuslineDevinfoB', strings = { filename } },
                         "%=",
-                        { hl = 'MiniStatuslineDevinfoB', strings = { last_button } },
-                        { hl = 'MiniStatuslineDevinfoB', strings = { search } },
-                        { hl = 'MiniStatuslineDevinfoB', strings = { lsp, diagnostics, } },
-                        { hl = five_hls_b,              strings = { fileinfo } },
+                        { hl = 'MiniStatuslineDevinfoB', strings = { last_button, search, diff } },
+                        { hl = five_hls_b, strings = { lsp, diagnostics, } },
+                        -- { hl = five_hls_b,              strings = { fileinfo } },
+                        { hl = five_hls, strings = { cursor_pos } },
                         "%P ",
-                        { hl = five_hls, strings = { cursor_pos, window } },
                     })
                 end,
                 inactive = function()
@@ -283,13 +282,12 @@ local minis = {
                         return ft(false)
                     end
                     local filename   = config.filename({ trunc_width = 20 })
-                    local cursor_pos = config.cursor_pos({ trunc_width = 75 })
-                    local window     = config.window({ trunc_width = 75 })
+                    local cursor_pos = config.cursor_pos_min({ trunc_width = 75 })
                     return MiniStatusline.combine_groups({
                         { hl = 'MiniStatuslineDevinfoB', strings = { filename } },
                         "%=",
+                        { strings = { cursor_pos } },
                         "%P ",
-                        { strings = { cursor_pos, window } },
                     })
                 end
             }
