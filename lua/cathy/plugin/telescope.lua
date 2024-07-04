@@ -85,8 +85,8 @@ return {
             })
         end, { desc = "grep current file" })
 
-        vim.keymap.set("n", "<c-p>",      telescope_utils.project_files, { desc = "project files" })
-        vim.keymap.set("n", "<leader>fp", function()
+        -- vim.keymap.set("n", "<c-p>",      telescope_utils.project_files, { desc = "project files" })
+        vim.keymap.set("n", "<c-p>", function()
             require("telescope").extensions.file_browser.file_browser({
                 hide_parent_dir = true,
                 create_from_prompt = false,
