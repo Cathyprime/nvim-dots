@@ -162,9 +162,11 @@ return {
     },
     {
         "chrishrb/gx.nvim",
+        cmd = "Browse",
+        config = true,
         keys = {
             { "gX", "<cmd>Browse<cr>" }
-        }
+        },
     },
     {
         "cbochs/grapple.nvim",
