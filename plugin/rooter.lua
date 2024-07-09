@@ -48,38 +48,64 @@ vim.api.nvim_create_autocmd("BufEnter", {
     callback = set_root,
 })
 
+local switch = {
+    enable = function(notif)
+        if not on then
+            notif("Rooter: on")
+            on = true
+        end
+    end,
+    disable = function(notif)
+        if on then
+            notif("Rooter: off")
+            on = false
+        end
+    end,
+    toggle = function(notif)
+        on = not on
+        if on then
+            notif("Rooter: on")
+        else
+            notif("Rooter: off")
+        end
+    end,
+    status = function(notif)
+        if on then
+            notif("Rooter: on")
+        else
+            notif("Rooter: off")
+        end
+    end,
+    cwd = function(notif)
+        notif(string.format("cwd: %s", vim.fn.getcwd()), vim.log.levels.INFO)
+    end
+}
+
 vim.api.nvim_create_user_command(
     "Rooter",
     function(opts)
         local notif = function(msg, level)
+            level = level or vim.log.levels.INFO
             vim.notify(msg, level)
         end
         if opts.smods.silent then
             notif = function() end
         end
         if opts.args == "" then
-            on = not on
-            if on then
-                notif("Rooter: on", vim.log.levels.INFO)
-            else
-                notif("Rooter: off", vim.log.levels.INFO)
-            end
+            set_root()
         else
-            if opts.args == "enable" then
-                on = true
-                notif("Rooter: on", vim.log.levels.INFO)
-            elseif opts.args == "disable" then
-                on = false
-                notif("Rooter: off", vim.log.levels.INFO)
-            else
+            local f = switch[opts.args]
+            if f == nil then
                 notif("Rooter: unknown command", vim.log.levels.ERROR)
+                return
             end
+            f(notif)
         end
     end,
     {
         nargs = "*",
         complete = function(arg_lead)
-            return vim.iter({ "enable", "disable" }):filter(function(el)
+            return vim.iter({ "enable", "disable", "toggle", "status", "cwd" }):filter(function(el)
                 return el:lower():match("^" .. arg_lead)
             end):totable()
         end
