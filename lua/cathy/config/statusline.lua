@@ -265,7 +265,8 @@ local function filename_component(args)
         return "%t"
     end
 
-    return vim.fn.expand('%:~:.') .. " %m%r"
+    -- return vim.fn.expand('%:~:.') .. " %m%r"
+    return " %F%m%r"
 end
 
 local function last_button_component(args)
