@@ -26,7 +26,7 @@ return {
         vim.api.nvim_create_autocmd("Filetype", {
             pattern = "fugitive",
             callback = function()
-                vim.keymap.set("n", "<tab>", "<cmd>execute <SNR>58_StageInline('toggle',line('.'),v:count)<CR>", { buffer = true })
+                vim.keymap.set("n", "<tab>", "=", { buffer = true, remap = true })
             end,
         })
     end
