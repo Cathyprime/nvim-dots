@@ -64,8 +64,8 @@ return {
         "folke/trouble.nvim",
         config = true,
         keys = {
-            { "ZX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { silent = true } },
-            { "Zx", "<cmd>Trouble diagnostics toggle<cr>", { silent = true } },
+            { "Zx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { silent = true } },
+            { "ZX", "<cmd>Trouble diagnostics toggle<cr>", { silent = true } },
             { "<leader>x", "<cmd>Trouble<cr>", { silent = true } }
         }
     },
