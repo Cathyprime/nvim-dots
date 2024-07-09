@@ -64,7 +64,7 @@ cmp.setup({
         ["<c-p>"] = cmp.mapping.select_prev_item(cmp_select),
         ["<c-y>"] = cmp.mapping.confirm({ select = false }),
         ["<c-e>"] = cmp.mapping.abort(),
-        ["<c-x>c"] = cmp.mapping.complete(),
+        ["<c-x><c-x>"] = cmp.mapping.complete(),
         ["<c-g>"] = cmp.mapping(function()
             if cmp.visible_docs() then
                 cmp.close_docs()
@@ -129,3 +129,5 @@ cmp.setup({
         }
     },
 })
+
+cmp.setup.filetype("TelescopePrompt", { enabled = false })
