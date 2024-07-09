@@ -1,45 +1,33 @@
 return {
-    {
-        "sindrets/diffview.nvim",
-        keys = {
-            { "<leader>gd", "<cmd>DiffviewOpen<cr>" },
-            { "<leader>gc", "<cmd>DiffviewClose<cr>" }
-        },
-        config = true
-    },
-    {
-        "FabijanZulj/blame.nvim",
-        config = true,
-        keys = {
-            { "<leader>gb", "<cmd>BlameToggle<cr>" },
-            { "<leader>gB", "<cmd>BlameToggle virtual<cr>" },
-        }
-    },
-    {
-        "NeogitOrg/neogit",
-        keys = {
-            { "ZG",  function()
-                vim.api.nvim_create_autocmd("TabClosed", {
-                    once = true,
-                    callback = function()
-                        MiniNotify.clear()
-                        vim.iter(vim.api.nvim_list_bufs()):filter(function(buf)
-                            return vim.fn.bufname(buf) == ""
-                        end):each(function(buf)
-                            vim.api.nvim_buf_delete(buf, {})
-                        end)
-                    end,
-                })
-                require("neogit").open({ kind = "tab" })
-            end }
-        },
-        config = true,
-        init =  function()
-            vim.api.nvim_create_autocmd("Filetype", {
-                group = vim.api.nvim_create_augroup("cathy_neogit", { clear = true }),
-                pattern = "Neogit*",
-                command = "setlocal foldcolumn=0"
-            })
-        end
-    },
+    "tpope/vim-fugitive",
+    config = function()
+        vim.keymap.set("n", "gu", function()
+            if vim.o.diff == "diff" then
+                return "<cmd>diffget //2<CR>"
+            end
+            return "<esc>"
+        end, { expr = true })
+        vim.keymap.set("n", "gh", function()
+            if vim.o.diff == "diff" then
+                return "<cmd>diffget //3<CR>"
+            end
+            return "<esc>"
+        end, { expr = true })
+        vim.cmd[[
+            function! s:quark(args, ...)
+                if a:args ==# ""
+                    return "topleft"
+                endif
+                return join(a:000, " ")
+            endfunction
+            command! -bang -nargs=? -range=-1 -complete=customlist,fugitive#Complete G
+            \ exe fugitive#Command(<line1>, <count>, +"<range>", <bang>0, <SID>quark(<q-args>, <mods>), <q-args>)
+        ]]
+        vim.api.nvim_create_autocmd("Filetype", {
+            pattern = "fugitive",
+            callback = function()
+                vim.keymap.set("n", "<tab>", "<cmd>execute <SNR>58_StageInline('toggle',line('.'),v:count)<CR>", { buffer = true })
+            end,
+        })
+    end
 }

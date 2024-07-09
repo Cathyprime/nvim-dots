@@ -159,6 +159,7 @@ map("n", "<leader>b", function()
     local char = vim.fn.nr2char(vim.fn.getchar())
     return string.format("<cmd>call setreg('%s', getreg('%s'), 'b')<cr>", char, char)
 end, { expr = true, desc = "change register to block mode" })
+map("n", "<leader>r", "<cmd>Rooter<cr>")
 
 -- diagnostic
 map("n", "<leader>dt", toggle_diagnostics, { desc = "toggle diagnostics display" })

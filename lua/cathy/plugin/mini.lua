@@ -235,10 +235,6 @@ local minis = {
         })
     end,
 
-    git = function()
-        require("mini.git").setup()
-    end,
-
     statusline = function()
         require("mini.statusline").setup({
             content = {
