@@ -14,7 +14,6 @@ return {
     },
     config = function()
         local telescope_config = require("util.telescope-config")
-        local telescope_utils = require("util.telescope-utils")
 
         local actions = require("telescope.actions")
         local builtin = require("telescope.builtin")
@@ -47,6 +46,24 @@ return {
                     override_generic_sorter = true,
                     override_file_sorter = true,
                     case_mode = "smart_case",
+                },
+                file_browser = {
+                    mappings = {
+                        i = {
+                            ["<c-t>"] = function(prompt_bufnr)
+                                vim.cmd "silent Rooter disable"
+                                require("telescope._extensions.file_browser.actions").change_cwd(prompt_bufnr)
+                                vim.cmd "Rooter cwd"
+                            end
+                        },
+                        n = {
+                            ["t"] = function(prompt_bufnr)
+                                vim.cmd "silent Rooter disable"
+                                require("telescope._extensions.file_browser.actions").change_cwd(prompt_bufnr)
+                                vim.cmd "Rooter cwd"
+                            end
+                        }
+                    }
                 }
             }
         })
