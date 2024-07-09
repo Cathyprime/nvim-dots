@@ -2,16 +2,7 @@ return {
     "tpope/vim-fugitive",
     dependencies = "tpope/vim-rhubarb",
     config = function()
-        vim.cmd[[
-            function! s:quark(args, ...)
-                if a:args ==# ""
-                    return "topleft"
-                endif
-                return join(a:000, " ")
-            endfunction
-            command! -bang -nargs=? -range=-1 -complete=customlist,fugitive#Complete G
-            \ exe fugitive#Command(<line1>, <count>, +"<range>", <bang>0, <SID>quark(<q-args>, <mods>), <q-args>)
-        ]]
+        vim.keymap.set("n", "ZG", "<cmd>topleft Git<cr>")
         vim.api.nvim_create_autocmd("Filetype", {
             pattern = "fugitive",
             callback = function()
