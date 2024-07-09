@@ -1,9 +1,8 @@
-local telescope_config = require("util.telescope-config")
-
 return {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
     config = function()
+        local telescope_config = require("util.telescope-config")
         require("dressing").setup({
             input = {
                 insert_only = false,
