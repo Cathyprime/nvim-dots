@@ -174,7 +174,6 @@ return {
             require("grapple").setup({
                 scope = "git_branch",
             })
-            -- vim.api.nvim_del_user_command("Grapple")
         end,
         cmd = "Grapple",
         keys = function()
