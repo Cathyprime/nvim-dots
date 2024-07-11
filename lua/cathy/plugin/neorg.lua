@@ -1,8 +1,9 @@
+vim.keymap.set("n", "<leader>n", "<cmd>Neorg<cr>")
+
 return {
     {
         "nvim-neorg/neorg",
         build = false, -- disable the build script that currently uses luarocks.nvim
-        ft = "norg",
         opts = {
             load = {
                 ["core.defaults"] = {},
