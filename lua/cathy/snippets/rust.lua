@@ -1,12 +1,10 @@
 local ls = require("luasnip")
 local s = ls.snippet
 local sn = ls.snippet_node
-local isn = ls.indent_snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
-local d = ls.dynamic_node
 local tsp = require("luasnip.extras.treesitter_postfix")
 -- local r = ls.restore_node
 -- local events = require("luasnip.util.events")
@@ -113,10 +111,8 @@ local function expr_or_type_tsp(trig, typename, expr_callback, type_callback)
             local env = parent.snippet.env
             local data = env.LS_TSDATA
             if expr_node_types[data.prefix.type] then
-                -- is expr
                 return expr_callback(env.LS_TSMATCH)
             else
-                -- is type
                 return type_callback(env.LS_TSMATCH)
             end
         end),
@@ -153,6 +149,7 @@ return {
     new_expr_or_type_tsp(".refcell", "RefCell"),
     both_replace_expr_or_type_tsp(".ref", "&?"),
     both_replace_expr_or_type_tsp(".refm", "&mut ?"),
+    both_replace_expr_or_type_tsp(".vec", "Vec<?>"),
 
     s("fn", fmt([[
     fn {funame}({arg}){arrow}{retype} {{
@@ -238,81 +235,6 @@ return {
         body = i(0)
     })),
 
-    s({ trig = "match([%a]+)([%d]+)", regTrig = true, hidden = true }, fmt([[
-        {assign}match {var} {{
-            {arms}
-        }}
-        ]], {
-            assign = c(1, {
-                sn(nil, {t("let "), i(1, "name"), t(": "), i(2, "type"), t(" = ")}),
-                t""
-            }),
-            var = i(2, "variable"),
-            arms = d(3, function (_, snip)
-                local retTable = {}
-                local function new_line(index)
-                    if index == 1 then
-                        return t("")
-                    else
-                        return t({"", ""})
-                    end
-                end
-                for index=1,snip.captures[2] do
-                    table.insert(retTable, isn(index, {
-                        new_line(index),
-                        t(snip.captures[1] .. "::"),
-                        i(1),
-                        t(" => "),
-                        c(2, {
-                            sn(nil, i(1)),
-                            sn(nil, {t"{", i(1), t"}"})
-                        }),
-                        t(",")
-                    }, "$PARENT_INDENT\t"))
-                end
-                return sn(nil, retTable)
-            end)
-        })
-    ),
-
-    s(
-        { trig = "match([%d]+)", regTrig = true, hidden = true },
-        fmt([[
-        {assign}match {var} {{
-            {arms}
-        }}
-        ]], {
-            assign = c(1, {
-                sn(nil, {t("let "), i(1, "name"), t(": "), i(2, "type"), t(" = ")}),
-                t""
-            }),
-            var = i(2, "variable"),
-            arms = d(3, function (_, snip)
-                local retTable = {};
-                local function new_line(index)
-                    if index == 1 then
-                        return t("")
-                    else
-                        return t({"", ""})
-                    end
-                end
-                for index=1,snip.captures[1] do
-                    table.insert(retTable, isn(index, {
-                        new_line(index),
-                        i(1, "pattern"),
-                        t(" => "),
-                        c(2, {
-                            sn(nil, i(1)),
-                            sn(nil, {t"{", i(1), t"}"})
-                        }),
-                        t(",")
-                    }, "$PARENT_INDENT\t"))
-                end
-                return sn(nil, retTable)
-            end)
-        })
-    ),
-
     s("if", fmt([[
     if {cond} {{
         {body}
@@ -377,26 +299,6 @@ return {
                 parent.snippet.env.LS_TSMATCH,
                 [[println!("{:?}", %s)]]
             )
-        end, {}),
-    }),
-
-    tsp.treesitter_postfix({
-        trig = ".match",
-        name = [[(.match) match ?]],
-        dscr = [[Wrap expression with match ? block]],
-        wordTrig = false,
-        reparseBuffer = "live",
-        matchTSNode = {
-            query = expr_query,
-            query_lang = "rust",
-        },
-    }, {
-        f(function(_, parent)
-            return replace_all(
-                parent.snippet.env.LS_TSMATCH,
-                [[match %s {
-        }]]
-                )
         end, {}),
     }),
 
