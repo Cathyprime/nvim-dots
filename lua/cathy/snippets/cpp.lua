@@ -6,6 +6,7 @@ local t = ls.text_node
 local i = ls.insert_node
 local d = ls.dynamic_node
 local extras = require("luasnip.extras")
+local l = extras.lambda
 local rep = extras.rep
 local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
@@ -345,13 +346,15 @@ return {
         trig = ".sc",
         snippetType = "autosnippet",
         matchTSNode = nodes
-    }, {
+    }, fmt([[static_cast<{}>({}){}]], {
+        i(1, "type"),
         f(function(_, parent)
             local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-            local replaced_content = ("static_cast<>(%s)"):format(node_content)
-            return vim.split(replaced_content, "\n", { trimempty = false })
-        end)
-    }),
+            return vim.split(node_content, "\n", { trimempty = false })
+        end),
+        i(0),
+        })
+    ),
 
     tsp({
         trig = ".uu",
