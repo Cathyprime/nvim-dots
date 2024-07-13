@@ -25,17 +25,11 @@ package.cpath = package.cpath .. ";" .. table.concat(luarocks_cpath, ";")
 vim.opt.runtimepath:append(vim.fs.joinpath(rocks_config.rocks_path, "lib", "luarocks", "rocks-5.1", "rocks.nvim", "*"))
 
 SWITCHES = {
-    files = "oil",
     scala = true,
     go    = true,
     dap   = true,
     rust  = true,
 }
-
-if SWITCHES.files ~= nil then
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-end
 
 pcall(require, "cathy.lazy")
 pcall(require, "cathy.globals")
