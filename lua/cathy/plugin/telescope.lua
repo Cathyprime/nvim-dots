@@ -3,7 +3,10 @@ return {
     tag = "0.1.8",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope-file-browser.nvim",
+        {
+            "nvim-telescope/telescope-file-browser.nvim",
+            dependencies = "nvim-tree/nvim-web-devicons"
+        },
         "stevearc/dressing.nvim",
         {
             "nvim-telescope/telescope-fzf-native.nvim",
