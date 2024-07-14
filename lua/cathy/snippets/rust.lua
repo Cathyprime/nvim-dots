@@ -140,7 +140,30 @@ local function both_replace_expr_or_type_tsp(trig, pattern)
     )
 end
 
+local function begin_line_snip(trig, expansion)
+    local trigger = "^%s*"..trig.."*$"
+    local args = {
+        trig = trig,
+        snippetType = "autosnippet",
+        condition = function(line_to_cursor, matched_trigger, _)
+            if matched_trigger == nil or line_to_cursor == nil then
+                return false
+            end
+            return line_to_cursor:match(trigger)
+        end
+    }
+    return s(args, expansion)
+end
+
 return {
+    begin_line_snip("pc ", { t"pub(crate) " }),
+    begin_line_snip("ps ", { t"pub(super) " }),
+    begin_line_snip("#ii", { t"#[inline]" }),
+    begin_line_snip("#ia", { t"#[inline(always)]" }),
+    begin_line_snip("#tc", { t"#[cfg(test)]" }),
+    begin_line_snip("#tt", { t"#[test]" }),
+    begin_line_snip("#d", fmt("#[derive({})]", { i(1) })),
+    begin_line_snip("##", fmt("#[{}]", i(1))),
     new_expr_or_type_tsp(".rc", "Rc"),
     new_expr_or_type_tsp(".arc", "Arc"),
     new_expr_or_type_tsp(".box", "Box"),
