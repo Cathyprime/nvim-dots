@@ -216,8 +216,10 @@ map("c", "<c-f>", function()
 end, { expr = true })
 
 -- quick search and replace keymaps
-map("n", "gs", "m':set opfunc=v:lua.SubstituteConfirm<cr>g@")
-map("n", "gS", "m':set opfunc=v:lua.Substitute<cr>g@")
+map("n", "gs", "m':set opfunc=v:lua.Substitute<cr>g@")
+map("n", "gss", "m':set opfunc=v:lua.Substitute<cr>g@_")
+map("n", "gS", "m':set opfunc=v:lua.SubstituteConfirm<cr>g@")
+map("n", "gSS", "m':set opfunc=v:lua.SubstituteConfirm<cr>g@_")
 map("v", "gs", [[y:.,$s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 map("v", "gS", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 
