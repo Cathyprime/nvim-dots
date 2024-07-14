@@ -64,9 +64,30 @@ return {
         "folke/trouble.nvim",
         config = true,
         keys = {
-            { "Zx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { silent = true } },
-            { "ZX", "<cmd>Trouble diagnostics toggle<cr>", { silent = true } },
-            { "<leader>x", "<cmd>Trouble<cr>", { silent = true } }
+            { "<leader>x", "<cmd>Trouble<cr>", silent = true },
+            { "Zx", "<cmd>Trouble symbols toggle<cr>", silent = true },
+            { "ZX", "<cmd>Trouble diagnostics toggle<cr>", silent = true },
+            { "gR", "<cmd>Trouble lsp_references toggle<cr>", silent = true },
+            { "]d", function()
+                if require("trouble").is_open() then
+                    require("trouble").next({ skip_groups = true, jump = true })
+                end
+            end, desc = "Next trouble item" },
+            { "[d", function()
+                if require("trouble").is_open() then
+                    require("trouble").prev({ skip_groups = true, jump = true })
+                end
+            end, desc = "Prev trouble item" },
+            { "]D", function()
+                if require("trouble").is_open() then
+                    require("trouble").prev({ skip_groups = true, jump = true })
+                end
+            end, desc = "Prev trouble item" },
+            { "[D", function()
+                if require("trouble").is_open() then
+                    require("trouble").next({ skip_groups = true, jump = true })
+                end
+            end, desc = "Next trouble item" },
         }
     },
     {
