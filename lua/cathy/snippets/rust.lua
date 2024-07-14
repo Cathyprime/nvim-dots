@@ -87,6 +87,7 @@ local expr_or_type_query = [[
     (string_literal)
 
     (type_identifier)
+    (primitive_type)
     (generic_type)
     (scoped_type_identifier)
     (reference_type)
@@ -284,7 +285,7 @@ return {
     ),
 
     tsp.treesitter_postfix({
-        trig = ".println",
+        trig = ".print",
         name = [[(.println) println!("{:?}", ?)]],
         dscr = [[Wrap expression with println!("{:?}", ?)]],
         wordTrig = false,
