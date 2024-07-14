@@ -26,7 +26,6 @@ return {
                     }
                 },
                 ["core.export"] = { config = { export_dir = "~/Documents/neorg/exported" } },
-                ["core.ui.calendar"] = {},
                 ["core.dirman"] = {
                     config = {
                         workspaces = { notes = "~/Documents/neorg/notes" },
