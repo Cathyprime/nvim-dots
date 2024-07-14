@@ -94,7 +94,7 @@ local minis = {
     splitjoin = function()
         require("mini.splitjoin").setup({
             mappings = {
-                toggle = "gs",
+                toggle = "<leader>s",
             }
         })
     end,
