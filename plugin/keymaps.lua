@@ -1,19 +1,3 @@
-function _G.SubstituteConfirm()
-    local cur = vim.fn.getpos("''")
-    vim.fn.cursor(cur[2], cur[3])
-    local cword = vim.fn.expand("<cword>")
-    vim.cmd("'[,']s/" .. cword .. "/" .. vim.fn.input("s/" .. cword .. "/") .. "/gc")
-    vim.fn.cursor(cur[2], cur[3])
-end
-
-function _G.Substitute()
-    local cur = vim.fn.getpos("''")
-    vim.fn.cursor(cur[2], cur[3])
-    local cword = vim.fn.expand("<cword>")
-    vim.cmd("'[,']s/" .. cword .. "/" .. vim.fn.input("s/" .. cword .. "/") .. "/g")
-    vim.fn.cursor(cur[2], cur[3])
-end
-
 local function map(modes, lhs, rhs, opts)
     opts = opts or {}
     local options = vim.tbl_deep_extend("keep", opts, { silent = true })
@@ -216,10 +200,7 @@ map("c", "<c-f>", function()
 end, { expr = true })
 
 -- quick search and replace keymaps
-map("n", "gs", "m':set opfunc=v:lua.Substitute<cr>g@")
-map("n", "gss", "m':set opfunc=v:lua.Substitute<cr>g@_")
-map("n", "gS", "m':set opfunc=v:lua.SubstituteConfirm<cr>g@")
-map("n", "gSS", "m':set opfunc=v:lua.SubstituteConfirm<cr>g@_")
+require("substitute")
 map("v", "gs", [[y:.,$s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 map("v", "gS", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 
