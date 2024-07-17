@@ -35,16 +35,8 @@ return {
                     }
                 end,
             })
-            if vim.o.background == "light" then
-                vim.cmd.colorscheme "catppuccin-latte"
-            else
-                vim.cmd.colorscheme "kanagawa"
-            end
+            vim.cmd.colorscheme "kanagawa"
         end
-    },
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
     },
     "blazkowolf/gruber-darker.nvim"
 }
