@@ -65,7 +65,7 @@ return {
         config = true,
         keys = {
             { "<leader>x", "<cmd>Trouble<cr>", silent = true },
-            { "Zx", "<cmd>Trouble symbols toggle<cr>", silent = true },
+            { "Zx", "<cmd>Trouble lsp_document_symbols toggle focus=true<cr>", silent = true },
             { "ZX", "<cmd>Trouble diagnostics toggle<cr>", silent = true },
             { "gR", "<cmd>Trouble lsp_references toggle<cr>", silent = true },
             { "]d", function()
