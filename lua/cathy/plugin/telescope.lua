@@ -1,3 +1,5 @@
+local telescope_utils = require("util.telescope-utils")
+
 return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
@@ -91,6 +93,7 @@ return {
         { "<m-x>",            require("telescope.builtin").commands, desc = "commands" },
         { "<leader>fo",       require("telescope.builtin").oldfiles, desc = "oldfiles" },
         { "<leader>fh",       require("telescope.builtin").help_tags, desc = "help" },
+        { "<leader>fp",       telescope_utils.change_dir,  desc = "project files" },
         { "<leader>fg",       require("telescope.builtin").live_grep, desc = "grep" },
         { "z=",               require("telescope.builtin").spell_suggest, desc = "spell suggestion" },
         { "<leader>fn",       function()

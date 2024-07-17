@@ -32,11 +32,7 @@ M.change_dir = function()
     local function enter(prompt_bufnr)
         local selected = state.get_selected_entry()
         actions.close(prompt_bufnr)
-        require("telescope.builtin").find_files({
-            cwd = selected[1],
-            hidden = true,
-            file_ignore_patterns = config.ignores,
-        })
+        vim.cmd.cd(selected[1])
     end
 
     local input = {
