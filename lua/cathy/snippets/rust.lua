@@ -55,11 +55,11 @@ local function replace_all(match, template)
 end
 
 local function result_ok_type_callback(match)
-    return replace_all(match, "Result<%s, _>")
+    return replace_all(match, "Result<%s>")
 end
 
 local function result_err_type_callback(match)
-    return replace_all(match, "Result<_, %s>")
+    return replace_all(match, "Result<(), %s>")
 end
 
 local function build_simple_replace_callback(replaced)
@@ -205,89 +205,6 @@ return {
 
     s("p", fmt([[println!({});]], {i(0)})),
 
-    s("var", fmt([[let {mut}{name}: {type} = {value};]], {
-        mut = c(1, {t "", t "mut "}),
-        name = i(2, "name"),
-        type = i(3, "type"),
-        value = i(0, "value")
-    })),
-
-    s("for", fmt([[
-    for {var} in {table} {{
-        {body}
-    }}
-    ]], {
-        var = i(1, "variable"),
-        table = i(2, "x..y"),
-        body = i(0)
-    })),
-
-    s("while", fmt([[
-    while {condition} {{
-        {body}
-    }}
-    ]], {
-        condition = i(1, "true"),
-        body = i(0)
-    })),
-
-    s("whilet", fmt([[
-    while let {pattern} = {expression} {{
-        {body}
-    }}
-    ]], {
-        pattern = i(1, "pattern"),
-        expression = i(2, "expression"),
-        body = i(0)
-    })),
-
-    s("enum", fmt([[
-    enum {name} {{
-        {body}
-    }}
-    ]], {
-        name = i(1, "name"),
-        body = i(0)
-    })),
-
-    s("struct", fmt([[
-    struct {name} {{
-        {body}
-    }}
-    ]], {
-        name = i(1, "name"),
-        body = i(0)
-    })),
-
-    s("if", fmt([[
-    if {cond} {{
-        {body}
-    }}
-    ]],{
-        cond = i(1, "condition"),
-        body = c(2, {
-            sn(nil, fmt("   {}", {
-                i(1)
-            })),
-            sn(nil, fmt([[
-        {body1}
-        }} else {{
-            {body2}
-        ]], {
-                body1 = i(1),
-                body2 = i(2)
-            }))
-        })
-    })),
-
-    s({trig = [[\%( \{4\}\| \)\?eif]], hidden = true, regTrig = true, trigEngine = "vim"}, fmt([[
-    }} else if {condition} {{
-        {body}
-    ]], {
-        condition = i(1),
-        body = i(0),
-    })),
-
     expr_or_type_tsp(
         ".ok",
         "Ok(?)",
@@ -308,7 +225,7 @@ return {
     ),
 
     tsp.treesitter_postfix({
-        trig = ".print",
+        trig = ".p",
         name = [[(.println) println!("{:?}", ?)]],
         dscr = [[Wrap expression with println!("{:?}", ?)]],
         wordTrig = false,
