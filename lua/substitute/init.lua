@@ -44,7 +44,7 @@ vim.keymap.set("n", "gs", function()
 end, opts)
 
 vim.keymap.set("n", "gss", function()
-    return M.get_word("v:lua.requrie'substitute'.substitute_callback", true)
+    return M.get_word("v:lua.require'substitute'.substitute_callback", true)
 end, opts)
 
 vim.keymap.set("n", "gS", function()
