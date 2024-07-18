@@ -214,7 +214,6 @@ local function constructor_snip(trig, name, template)
             wordTrig = true,
             trigEngine = "plain",
             hidden = true,
-            snippetType = "autosnippet",
             resolveExpandParams = inject_class_name,
         },
         d(1, function(_, parent)
@@ -255,10 +254,9 @@ return {
     type_snippet("i64", "int64_t"),
 
     s({
-        trig = "t(%l+)!",
+        trig = "t(%l+)",
         wordTrig = true,
         regTrig = true,
-        snippetType = "autosnippet",
         name = "(t) Quick types",
         desc = "Expands to a type",
     }, {
@@ -267,44 +265,6 @@ return {
             return quick_type(shortcut)
         end),
     }),
-
-    s("fn", fmt([[
-    {type} {name}({args})
-    {{
-        {body}
-    }}
-    ]], {
-            type = i(1, "void"),
-            name =i(2, "name"),
-            args = i(3),
-            body = i(0)
-        })),
-
-    s({trig = "for([%w_]*)", regTrig = true}, fmt([[
-    for (int {index} = {start}; {indexrep} < {stop}; {indexpp}) {{
-        {body}
-    }}
-    ]], {
-            index = d(1, function (_, snip)
-                local var = snip.captures[1]
-                if var == "" then
-                    var = "i"
-                end
-                return sn(1,i(1, var))
-            end),
-            start = i(2, "0"),
-            indexrep = rep(1),
-            stop = i(3, "stop"),
-            indexpp = d(4, function (_, snip)
-                local var = snip.captures[1]
-                if var == "" then
-                    var = "i"
-                end
-                var = var .. "++"
-                return sn(1, i(1, var))
-            end),
-            body = i(0)
-        })),
 
     s({ trig = "#\"", snippetType = "autosnippet" }, fmt([[
     #include "{file}"
@@ -369,49 +329,49 @@ return {
     }),
 
     constructor_snip(
-        "ctor!",
+        "ctor",
         "Default constructor",
         [[
         <cls>() = default;
         ]]
     ),
     constructor_snip(
-        "dtor!",
+        "dtor",
         "Default destructor",
         [[
         ~<cls>() = default;
         ]]
     ),
     constructor_snip(
-        "cc!",f
+        "cc",f
         "Copy constructor",
         [[
         <cls>(const <cls>& rhs) = default;
         ]]
     ),
     constructor_snip(
-        "mv!",
+        "mv",
         "Move constructor",
         [[
         <cls>(<cls>&& rhs) = default;
         ]]
     ),
     constructor_snip(
-        "ncc!",
+        "ncc",
         "No copy constructor",
         [[
         <cls>(const <cls>&) = delete;
         ]]
     ),
     constructor_snip(
-        "nmv!",
+        "nmv",
         "No move constructor",
         [[
         <cls>(<cls>&&) = delete;
         ]]
     ),
     constructor_snip(
-        "ncm!",
+        "ncm",
         "No copy and move constructor",
         [[
         <cls>(const <cls>&) = delete;
