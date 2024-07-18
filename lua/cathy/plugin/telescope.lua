@@ -75,11 +75,7 @@ return {
         }
     end,
     keys = {
-        { "<leader>fw",       function()
-            require("telescope.builtin").find_files({
-                cwd = "~/.config/nvim"
-            })
-        end, desc = "cursor grep" },
+        { "<leader>fw", telescope_utils.get_word, desc = "cursor grep" },
         { "<leader>ff", function()
             require("telescope.builtin").find_files({
                 file_ignore_patterns = require("util.telescope-config").ignores,
