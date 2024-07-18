@@ -225,7 +225,7 @@ return {
     ),
 
     tsp.treesitter_postfix({
-        trig = ".p",
+        trig = ".print",
         name = [[(.println) println!("{:?}", ?)]],
         dscr = [[Wrap expression with println!("{:?}", ?)]],
         wordTrig = false,
