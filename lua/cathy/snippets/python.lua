@@ -161,32 +161,6 @@ return {
         i(0),
     })),
 
-    s("if", fmt([[
-    if {cond}:
-        {body}
-    ]],{
-        cond = i(1, "condition"),
-        body = c(2, {
-            i(1),
-            isn(nil, fmt([[
-            {body1}
-            else:
-                {body2}
-            ]], {
-                body1 = i(1),
-                body2 = i(2)
-            }), "$PARENT_INDENT")
-        })
-    })),
-
-    s({trig = [[\%( \{4\}\| \)\?eif]], hidden = true, regTrig = true, trigEngine = "vim"}, fmt([[
-    elif {cond}:
-        {body}
-    ]], {
-        cond = i(1, "condition"),
-        body = i(2)
-    })),
-
     s("class", fmt([[
     class {name}{inheritance}:
 

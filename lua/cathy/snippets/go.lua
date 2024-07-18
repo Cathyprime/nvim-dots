@@ -51,29 +51,10 @@ local left = function(values)
 end
 
 return {
-    s("pln", fmt([[
+    s("p", fmt([[
     fmt.Println({args})
     ]], {
         args = i(1, "args"),
-    })),
-
-    s("cjson", fmt([[
-		c.AbortWithStatusJSON(msgs.ReportError(
-			msgs.{err},
-			"{content}",{info}{info2}
-		))
-		return
-    ]], {
-        err = i(1, "ErrInternal"),
-        content = i(2, "content"),
-        info = d(3, function(content)
-            if content[1][1] ~= "" then
-                return sn(nil, t{"", "\t"})
-            else
-                return sn(nil, t"")
-            end
-        end, { 4 }),
-        info2 = i(4)
     })),
 
     s("pf", fmt([[
@@ -145,13 +126,4 @@ return {
         right = f(right, { 4 }),
         body = i(0),
     })),
-
-    s("ctx", fmt([[
-    ctx, cancel := context.WithTimeout(context.Background(), time.{unit}*{amount})
-    defer cancel()
-    ]], {
-        unit = i(1, "Millisecond"),
-        amount = i(2, "200")
-    }))
-
 }

@@ -28,14 +28,10 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 return {
     s("fn", fmt([[
-    {annotation}def {name}{args}: {retType} = {{
+    def {name}{args}: {retType} = {{
         {body}
     }}
     ]], {
-        annotation = c(1, {
-            t"",
-            t({"@annotation.tailrec", ""})
-        }),
         name = i(2, "name"),
         args = c(3, {
             t"",
