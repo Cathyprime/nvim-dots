@@ -12,6 +12,24 @@ local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local tsp = require("luasnip.extras.treesitter_postfix").treesitter_postfix
 
+local function replace_all(match, template)
+    match = vim.F.if_nil(match, "")
+    ---@type string
+    local match_str = ""
+    if type(match) == "table" then
+        match_str = table.concat(match, "\n")
+    else
+        match_str = match
+    end
+
+    local ret = template:gsub("%%s", match_str)
+    local ret_lines = vim.split(ret, "\n", {
+        trimempty = false,
+    })
+
+    return ret_lines
+end
+
 local function type_snippet(short, long)
     return s({ trig = short, snippetType = "autosnippet" }, t(long))
 end
@@ -242,6 +260,12 @@ local nodes = {
     query_lang = "cpp"
 }
 
+local type_query = [[
+[
+  (type_identifier)
+] @prefix
+]]
+
 return {
     type_snippet("u8", "uint8_t"),
     type_snippet("u16", "uint16_t"),
@@ -266,6 +290,8 @@ return {
         end),
     }),
 
+    s({ trig = "#o", snippetType = "autosnippet" }, { t"#pragma once" }),
+
     s({ trig = "#\"", snippetType = "autosnippet" }, fmt([[
     #include "{file}"
     ]], {
@@ -288,6 +314,23 @@ return {
             local replaced_content = ("std::move(%s)"):format(node_content)
             return vim.split(replaced_content, "\n", { trimempty = false })
         end)
+    }),
+
+    tsp({
+        trig = ".opt",
+        wordTrig = false,
+        reparseBuffer = "live",
+        matchTSNode = {
+            query = type_query,
+            query_lang = nodes.query_lang,
+        },
+    }, {
+        f(function(_, parent)
+            return replace_all(
+                parent.snippet.env.LS_TSMATCH,
+                [[std::optional<%s>]]
+            )
+        end, {}),
     }),
 
     tsp({
