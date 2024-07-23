@@ -37,6 +37,9 @@ end
 local default_quick_markers = {
     v = { params = 1, template = "std::vector<%s>" },
     a = { params = 1, template = "std::array<%s>" },
+    q = { params = 1, template = "std::unique_ptr<%s>" },
+    p = { params = 1, template = "std::shared_ptr<%s>" },
+    c = { params = 0, template = "Placeholder" },
     i = { params = 0, template = "int32_t" },
     s = { params = 0, template = "std::string" },
     u = { params = 0, template = "uint32_t" },
@@ -45,15 +48,7 @@ local default_quick_markers = {
 }
 
 local function quick_type(shortcut)
-    local Config = { get = function(_) return {} end }
-    local quick_markers = Config.get("snippet.cpp.quick_type.extra_trig") or {}
     local markers = vim.deepcopy(default_quick_markers)
-    for _, marker in ipairs(quick_markers) do
-        markers[marker.trig] = {
-            params = marker.params,
-            template = marker.template,
-        }
-    end
 
     ---@param s string
     ---@return string?, string?
@@ -153,8 +148,7 @@ local function invoke_after_reparse_buffer(ori_bufnr, match, fun)
         local current_line_left = current_line:sub(1, col - #match)
         local current_line_right = current_line:sub(col + 1)
         lines[row] = current_line_left .. current_line_right
-        local lang = vim.treesitter.language.get_lang(vim.bo[ori_bufnr].filetype)
-        or vim.bo[ori_bufnr].filetype
+        local lang = vim.treesitter.language.get_lang(vim.bo[ori_bufnr].filetype) or vim.bo[ori_bufnr].filetype
 
         local source = table.concat(lines, "\n")
         ---@type vim.treesitter.LanguageTree
@@ -182,46 +176,42 @@ local function inject_class_name(_, line_to_cursor, match, captures)
     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
     local buf = vim.api.nvim_get_current_buf()
 
-    return invoke_after_reparse_buffer(
-        buf,
-        match,
-        function(parser, source)
-            local pos = {
-                row - 1,
-                col - #match, -- match has been removed from source
-            }
-            local node = parser:named_node_for_range {
-                pos[1],
-                pos[2],
-                pos[1],
-                pos[2],
-            }
-            if node == nil then
-                return nil
-            end
-
-            local class_node = find_first_parent(node, {
-                "struct_specifier",
-                "class_specifier",
-            })
-            if class_node == nil then
-                return nil
-            end
-            local name_nodes = class_node:field("name")
-            if name_nodes == nil or #name_nodes == 0 then
-                return nil
-            end
-            local name_node = name_nodes[1]
-            local ret = {
-                trigger = match,
-                captures = captures,
-                env_override = {
-                    CLASS_NAME = vim.treesitter.get_node_text(name_node, source),
-                },
-            }
-            return ret
+    return invoke_after_reparse_buffer(buf, match, function(parser, source)
+        local pos = {
+            row - 1,
+            col - #match, -- match has been removed from source
+        }
+        local node = parser:named_node_for_range({
+            pos[1],
+            pos[2],
+            pos[1],
+            pos[2],
+        })
+        if node == nil then
+            return nil
         end
-    )
+
+        local class_node = find_first_parent(node, {
+            "struct_specifier",
+            "class_specifier",
+        })
+        if class_node == nil then
+            return nil
+        end
+        local name_nodes = class_node:field("name")
+        if name_nodes == nil or #name_nodes == 0 then
+            return nil
+        end
+        local name_node = name_nodes[1]
+        local ret = {
+            trigger = match,
+            captures = captures,
+            env_override = {
+                CLASS_NAME = vim.treesitter.get_node_text(name_node, source),
+            },
+        }
+        return ret
+    end)
 end
 
 local function constructor_snip(trig, name, template)
@@ -251,13 +241,14 @@ local nodes = {
               [
                 (call_expression)
                 (identifier)
+                (type_identifier)
                 (template_function)
                 (subscript_expression)
                 (field_expression)
                 (user_defined_literal)
               ] @prefix
             ]],
-    query_lang = "cpp"
+    query_lang = "cpp",
 }
 
 local type_query = [[
@@ -266,7 +257,28 @@ local type_query = [[
 ] @prefix
 ]]
 
+local function type(trig, replacement)
+    return tsp({
+        trig = trig,
+        wordTrig = false,
+        reparseBuffer = "live",
+        snippetType = "autosnippet",
+        matchTSNode = {
+            query = type_query,
+            query_lang = nodes.query_lang,
+        },
+    }, {
+        f(function(_, parent)
+            return replace_all(parent.snippet.env.LS_TSMATCH, replacement)
+        end, {}),
+    })
+end
+
 return {
+    type(".uniq", "std::unique_ptr<%s>"),
+    type(".opt", "std::optional<%s>"),
+    type(".sh", "std::shared_ptr<%s>"),
+
     type_snippet("u8", "uint8_t"),
     type_snippet("u16", "uint16_t"),
     type_snippet("u32", "uint32_t"),
@@ -290,85 +302,82 @@ return {
         end),
     }),
 
-    s({ trig = "#o", snippetType = "autosnippet" }, { t"#pragma once" }),
+    s({ trig = "#o", snippetType = "autosnippet" }, { t("#pragma once") }),
 
-    s({ trig = "#\"", snippetType = "autosnippet" }, fmt([[
+    s(
+        { trig = '#"', snippetType = "autosnippet" },
+        fmt(
+            [[
     #include "{file}"
-    ]], {
-        file = i(1, "file")
-    })),
+    ]],
+            {
+                file = i(1, "file"),
+            }
+        )
+    ),
 
-    s({ trig = "#<", snippetType = "autosnippet" }, fmt([[
+    s(
+        { trig = "#<", snippetType = "autosnippet" },
+        fmt(
+            [[
     #include <{file}>
-    ]], {
-        file = i(1, "file")
-    })),
+    ]],
+            {
+                file = i(1, "file"),
+            }
+        )
+    ),
 
     tsp({
         trig = ".mv",
         snippetType = "autosnippet",
-        matchTSNode = nodes
+        matchTSNode = nodes,
     }, {
         f(function(_, parent)
             local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
             local replaced_content = ("std::move(%s)"):format(node_content)
             return vim.split(replaced_content, "\n", { trimempty = false })
-        end)
-    }),
-
-    tsp({
-        trig = ".opt",
-        wordTrig = false,
-        reparseBuffer = "live",
-        matchTSNode = {
-            query = type_query,
-            query_lang = nodes.query_lang,
-        },
-    }, {
-        f(function(_, parent)
-            return replace_all(
-                parent.snippet.env.LS_TSMATCH,
-                [[std::optional<%s>]]
-            )
-        end, {}),
+        end),
     }),
 
     tsp({
         trig = ".be",
         snippetType = "autosnippet",
-        matchTSNode = nodes
+        matchTSNode = nodes,
     }, {
         f(function(_, parent)
             local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
             local replaced_content = ("%s.begin(), %s.end()"):format(node_content, node_content)
             return vim.split(replaced_content, "\n", { trimempty = false })
-        end)
+        end),
     }),
 
-    tsp({
-        trig = ".sc",
-        snippetType = "autosnippet",
-        matchTSNode = nodes
-    }, fmt([[static_cast<{}>({}){}]], {
-        i(1, "type"),
-        f(function(_, parent)
-            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-            return vim.split(node_content, "\n", { trimempty = false })
-        end),
-        i(0),
+    tsp(
+        {
+            trig = ".sc",
+            snippetType = "autosnippet",
+            matchTSNode = nodes,
+        },
+        fmt([[static_cast<{}>({}){}]], {
+            i(1, "type"),
+            f(function(_, parent)
+                local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
+                return vim.split(node_content, "\n", { trimempty = false })
+            end),
+            i(0),
         })
     ),
 
     tsp({
         trig = ".uu",
         snippetType = "autosnippet",
-        matchTSNode = nodes
+        matchTSNode = nodes,
     }, {
         f(function(_, parent)
             local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
             local replaced_content = ("(void)%s"):format(node_content)
             return vim.split(replaced_content, "\n", { trimempty = false })
-        end)
+        end),
     }),
 
     constructor_snip(
@@ -386,8 +395,8 @@ return {
         ]]
     ),
     constructor_snip(
-        "cc",f
-        "Copy constructor",
+        "cc",
+        f("Copy constructor"),
         [[
         <cls>(const <cls>& rhs) = default;
         ]]
@@ -421,5 +430,4 @@ return {
         <cls>(<cls>&&) = delete;
         ]]
     ),
-
 }
