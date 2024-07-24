@@ -8,43 +8,65 @@ local k = vim.keycode
 local CTRL_V = k"<c-v>"
 local CTRL_S = k"<c-s>"
 
-vim.api.nvim_set_hl(0, "StatuslineB_insert",            { fg = "#98bb6c", bg = "#252535" })
-vim.api.nvim_set_hl(0, "StatuslineB_normal",            { fg = "#7e9cd8", bg = "#252535" })
-vim.api.nvim_set_hl(0, "StatuslineB_normal_inactive",   { fg = "#7e9cd8", bg = "#252535" })
-vim.api.nvim_set_hl(0, "StatuslineB_visual",            { fg = "#957fb8", bg = "#252535" })
-vim.api.nvim_set_hl(0, "StatuslineB_command",           { fg = "#c0a36e", bg = "#252535" })
-vim.api.nvim_set_hl(0, "StatuslineB_replace",           { fg = "#ffa066", bg = "#252535" })
+local color1
+local color2
+local color3
+local color4
+local color5
 
-vim.api.nvim_set_hl(0, "Statusline_insert",             { fg = "#1f1f28", bg = "#98bb6c" })
-vim.api.nvim_set_hl(0, "Statusline_normal",             { fg = "#16161d", bg = "#7e9cd8" })
+if vim.o.background == "dark" then
+    color1 = "#252535"
+    color2 = "#1f1f28"
+    color3 = "#181818"
+    color4 = "#16161d"
+    color5 = "#2a2a37"
+else
+    color1 = "#7a756a"
+    color2 = "#252535"
+    color3 = "#aaa494"
+    color4 = "#252535"
+    color5 = "#dbd3be"
+end
+
+vim.api.nvim_set_hl(0, "StatuslineB_insert",            { fg = "#98bb6c", bg = color1    })
+vim.api.nvim_set_hl(0, "StatuslineB_normal",            { fg = "#7e9cd8", bg = color1    })
+vim.api.nvim_set_hl(0, "StatuslineB_normal_inactive",   { fg = "#7e9cd8", bg = color1    })
+vim.api.nvim_set_hl(0, "StatuslineB_visual",            { fg = "#957fb8", bg = color1    })
+vim.api.nvim_set_hl(0, "StatuslineB_command",           { fg = "#c0a36e", bg = color1    })
+vim.api.nvim_set_hl(0, "StatuslineB_replace",           { fg = "#ffa066", bg = color1    })
+
+vim.api.nvim_set_hl(0, "Statusline_insert",             { fg = color2,    bg = "#98bb6c" })
+vim.api.nvim_set_hl(0, "Statusline_normal",             { fg = color4,    bg = "#7e9cd8" })
 vim.api.nvim_set_hl(0, "Statusline_normal_inactive",    { fg = "#c8c093", bg = "#7e9cd8" })
-vim.api.nvim_set_hl(0, "Statusline_visual",             { fg = "#1f1f28", bg = "#957fb8" })
-vim.api.nvim_set_hl(0, "Statusline_command",            { fg = "#1f1f28", bg = "#c0a36e" })
-vim.api.nvim_set_hl(0, "Statusline_replace",            { fg = "#1f1f28", bg = "#ffa066" })
+vim.api.nvim_set_hl(0, "Statusline_visual",             { fg = color2,    bg = "#957fb8" })
+vim.api.nvim_set_hl(0, "Statusline_command",            { fg = color2,    bg = "#c0a36e" })
+vim.api.nvim_set_hl(0, "Statusline_replace",            { fg = color2,    bg = "#ffa066" })
 
 vim.api.nvim_set_hl(0, "MiniStatuslineModeNormal",      { fg = "#c8c093", bg = "#571cbd" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual",      { fg = "#181818", bg = "#76946a" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual",      { fg = color3,    bg = "#76946a" })
 vim.api.nvim_set_hl(0, "MiniStatuslineModeVisualLine",  { fg = "#c8c093", bg = "#ad410e" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeVisualBlock", { fg = "#80a0ff", bg = "#181818" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeVisualBlock", { fg = "#80a0ff", bg = color3    })
 vim.api.nvim_set_hl(0, "MiniStatuslineModeSelect",      { fg = "#003366", bg = "#80a0ff" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert",      { fg = "#181818", bg = "#7e9cd8" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeReplace",     { fg = "#181818", bg = "#ce0406" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand",     { fg = "#181818", bg = "#ffa066" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert",      { fg = color3,    bg = "#7e9cd8" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeReplace",     { fg = color3,    bg = "#ce0406" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand",     { fg = color3,    bg = "#ffa066" })
 vim.api.nvim_set_hl(0, "MiniStatuslineModeOther",       { fg = "#c8c093", bg = "#571cbd" })
-vim.api.nvim_set_hl(0, "MiniStatuslineModeTerminal",    { fg = "#e6c384", bg = "#181818" })
-vim.api.nvim_set_hl(0, "statusline_register",           { fg = "#16161d", bg = "#7e9cd8" })
+vim.api.nvim_set_hl(0, "MiniStatuslineModeTerminal",    { fg = "#e6c384", bg = color3    })
+vim.api.nvim_set_hl(0, "statusline_register",           { fg = color4,    bg = "#7e9cd8" })
 vim.api.nvim_set_hl(0, "statusline_register_recording", { fg = "white",   bg = "red"     })
-vim.api.nvim_set_hl(0, "MiniStatuslineDevinfo",         { fg = "#7e9cd8", bg = "#252535" })
-vim.api.nvim_set_hl(0, "MiniStatuslineDevinfoB",        { fg = "#dcd7ba", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "MiniStatuslineDevinfo",         { fg = "#7e9cd8", bg = color1    })
+vim.api.nvim_set_hl(0, "MiniStatuslineBrackets",        { fg = "#dca561", bg = color5    })
 
-vim.api.nvim_set_hl(0, "StatusDiffAdded",               { fg = "#76946a", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiffChanged",             { fg = "#dca561", bg = "#2a2a37" })
-vim.api.nvim_set_hl(0, "StatusDiffDeleted",             { fg = "#c34043", bg = "#2a2a37" })
+vim.api.nvim_set_hl(0, "MiniStatuslineDevinfoB",        { fg = "#dcd7ba", bg = color5    })
 
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignError",     { fg = "#e82424", bg = "#252535" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignWarn",      { fg = "#ff9e3b", bg = "#252535" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignInfo",      { fg = "#658594", bg = "#252535" })
-vim.api.nvim_set_hl(0, "StatusDiagnosticSignHint",      { fg = "#6a9589", bg = "#252535" })
+vim.api.nvim_set_hl(0, "StatusDiffAdded",               { fg = "#76946a", bg = color5    })
+vim.api.nvim_set_hl(0, "StatusDiffChanged",             { fg = "#dca561", bg = color5    })
+vim.api.nvim_set_hl(0, "StatusDiffDeleted",             { fg = "#c34043", bg = color5    })
+
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignError",     { fg = "#e82424", bg = color1    })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignWarn",      { fg = "#ff9e3b", bg = color1    })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignInfo",      { fg = "#658594", bg = color1    })
+vim.api.nvim_set_hl(0, "StatusDiagnosticSignHint",      { fg = "#6a9589", bg = color1    })
 
 local five_hls = {
     ["n"]       = "Statusline_normal",
@@ -88,44 +110,44 @@ local five_hls = {
 }
 
 local background_five_hls = {
-    ["n"]       = "StatuslineB_normal",
-    ["no"]      = "StatuslineB_normal",
-    ["nov"]     = "StatuslineB_normal",
-    ["noV"]     = "StatuslineB_normal",
-    ["noCTRL"]  = "StatuslineB_normal",
-    ["CTRL"]    = "StatuslineB_normal",
-    ["niI"]     = "StatuslineB_normal",
-    ["niR"]     = "StatuslineB_normal",
-    ["niV"]     = "StatuslineB_normal",
-    ["nt"]      = "StatuslineB_normal",
-    ["ntT"]     = "StatuslineB_normal",
-    ["v"]       = "StatuslineB_visual",
-    ["vs"]      = "StatuslineB_visual",
-    ["V"]       = "StatuslineB_visual",
-    ["Vs"]      = "StatuslineB_visual",
-    [CTRL_V]  = "StatuslineB_visual",
+    ["n"]           = "StatuslineB_normal",
+    ["no"]          = "StatuslineB_normal",
+    ["nov"]         = "StatuslineB_normal",
+    ["noV"]         = "StatuslineB_normal",
+    ["noCTRL"]      = "StatuslineB_normal",
+    ["CTRL"]        = "StatuslineB_normal",
+    ["niI"]         = "StatuslineB_normal",
+    ["niR"]         = "StatuslineB_normal",
+    ["niV"]         = "StatuslineB_normal",
+    ["nt"]          = "StatuslineB_normal",
+    ["ntT"]         = "StatuslineB_normal",
+    ["v"]           = "StatuslineB_visual",
+    ["vs"]          = "StatuslineB_visual",
+    ["V"]           = "StatuslineB_visual",
+    ["Vs"]          = "StatuslineB_visual",
+    [CTRL_V]        = "StatuslineB_visual",
     [CTRL_V .. "s"] = "StatuslineB_visual",
-    ["s"]       = "StatuslineB_visual",
-    ["S"]       = "StatuslineB_visual",
-    [CTRL_S]  = "StatuslineB_visual",
-    ["i"]       = "StatuslineB_insert",
-    ["ic"]      = "StatuslineB_insert",
-    ["ix"]      = "StatuslineB_insert",
-    ["R"]       = "StatuslineB_replace",
-    ["Rc"]      = "StatuslineB_replace",
-    ["Rx"]      = "StatuslineB_replace",
-    ["Rv"]      = "StatuslineB_replace",
-    ["Rvc"]     = "StatuslineB_replace",
-    ["Rvx"]     = "StatuslineB_replace",
-    ["c"]       = "StatuslineB_command",
-    ["cr"]      = "StatuslineB_command",
-    ["cv"]      = "StatuslineB_command",
-    ["cvr"]     = "StatuslineB_command",
-    ["r"]       = "StatuslineB_normal",
-    ["rm"]      = "StatuslineB_normal",
-    ["r?"]      = "StatuslineB_normal",
-    ["!"]       = "StatuslineB_normal",
-    ["t"]       = "StatuslineB_normal",
+    ["s"]           = "StatuslineB_visual",
+    ["S"]           = "StatuslineB_visual",
+    [CTRL_S]        = "StatuslineB_visual",
+    ["i"]           = "StatuslineB_insert",
+    ["ic"]          = "StatuslineB_insert",
+    ["ix"]          = "StatuslineB_insert",
+    ["R"]           = "StatuslineB_replace",
+    ["Rc"]          = "StatuslineB_replace",
+    ["Rx"]          = "StatuslineB_replace",
+    ["Rv"]          = "StatuslineB_replace",
+    ["Rvc"]         = "StatuslineB_replace",
+    ["Rvx"]         = "StatuslineB_replace",
+    ["c"]           = "StatuslineB_command",
+    ["cr"]          = "StatuslineB_command",
+    ["cv"]          = "StatuslineB_command",
+    ["cvr"]         = "StatuslineB_command",
+    ["r"]           = "StatuslineB_normal",
+    ["rm"]          = "StatuslineB_normal",
+    ["r?"]          = "StatuslineB_normal",
+    ["!"]           = "StatuslineB_normal",
+    ["t"]           = "StatuslineB_normal",
 }
 
 local function five_hl()
@@ -195,19 +217,19 @@ local function diff_component(args)
 end
 
 local modes = {
-    ["n"] = { long = "[ Normal ]", short = "N", hl = "MiniStatuslineModeNormal" },
-    ["v"] = { long = "[ Visual ]", short = "V", hl = "MiniStatuslineModeVisual" },
-    ["V"] = { long = "[ VisLin ]", short = "V-L", hl = "MiniStatuslineModeVisualLine" },
+    ["n"]    = { long = "[ Normal ]", short = "N",   hl = "MiniStatuslineModeNormal"      },
+    ["v"]    = { long = "[ Visual ]", short = "V",   hl = "MiniStatuslineModeVisual"      },
+    ["V"]    = { long = "[ VisLin ]", short = "V-L", hl = "MiniStatuslineModeVisualLine"  },
     [CTRL_V] = { long = "[ VisBlk ]", short = "V-B", hl = "MiniStatuslineModeVisualBlock" },
-    ["s"] = { long = "--Select--", short = "S", hl = "MiniStatuslineModeSelect" },
-    ["S"] = { long = "--SelLin--", short = "S-L", hl = "MiniStatuslineModeSelect" },
-    [CTRL_S] = { long = "--SelBlk--", short = "S-B", hl = "MiniStatuslineModeSelect" },
-    ["i"] = { long = "--Insert--", short = "I", hl = "MiniStatuslineModeInsert" },
-    ["R"] = { long = "--Replce--", short = "R", hl = "MiniStatuslineModeReplace" },
-    ["c"] = { long = "--Cmmand--", short = "C", hl = "MiniStatuslineModeCommand" },
-    ["r"] = { long = "--Prompt--", short = "P", hl = "MiniStatuslineModeOther" },
-    ["!"] = { long = "--Shell --", short = "Sh", hl = "MiniStatuslineModeOther" },
-    ["t"] = { long = "--Termnl--", short = "T", hl = "MiniStatuslineModeTerminal" },
+    ["s"]    = { long = "--Select--", short = "S",   hl = "MiniStatuslineModeSelect"      },
+    ["S"]    = { long = "--SelLin--", short = "S-L", hl = "MiniStatuslineModeSelect"      },
+    [CTRL_S] = { long = "--SelBlk--", short = "S-B", hl = "MiniStatuslineModeSelect"      },
+    ["i"]    = { long = "--Insert--", short = "I",   hl = "MiniStatuslineModeInsert"      },
+    ["R"]    = { long = "--Replce--", short = "R",   hl = "MiniStatuslineModeReplace"     },
+    ["c"]    = { long = "--Cmmand--", short = "C",   hl = "MiniStatuslineModeCommand"     },
+    ["r"]    = { long = "--Prompt--", short = "P",   hl = "MiniStatuslineModeOther"       },
+    ["!"]    = { long = "--Shell --", short = "Sh",  hl = "MiniStatuslineModeOther"       },
+    ["t"]    = { long = "--Termnl--", short = "T",   hl = "MiniStatuslineModeTerminal"    },
 }
 
 local function mode_component(args)
@@ -286,9 +308,9 @@ end
 
 local diagnostic_levels = {
     { name = "ERROR", hl = "StatusDiagnosticSignError" },
-    { name = "WARN", hl = "StatusDiagnosticSignWarn" },
-    { name = "INFO", hl = "StatusDiagnosticSignInfo" },
-    { name = "HINT", hl = "StatusDiagnosticSignHint" },
+    { name = "WARN",  hl = "StatusDiagnosticSignWarn"  },
+    { name = "INFO",  hl = "StatusDiagnosticSignInfo"  },
+    { name = "HINT",  hl = "StatusDiagnosticSignHint"  },
 }
 
 local function diagnostics_component(args)
@@ -307,16 +329,16 @@ local function diagnostics_component(args)
         return ""
     end
 
-    return string.format("[%s%%#%s#]", table.concat(t, " "), background_five_hl())
+    return string.format("%%#MiniStatuslineBrackets#[%s%%#MiniStatuslineBrackets#]", table.concat(t, " "))
 end
 
 local dap_names = {
     ["dapui_breakpoints"] = "DAP Breakpoints",
-    ["dapui_watches"] = "DAP Watches",
-    ["dapui_console"] = "DAP Console",
-    ["dapui_scopes"] = "DAP Scopes",
-    ["dapui_stacks"] = "DAP Stacks",
-    ["dap-repl"] = "DAP Repl",
+    ["dapui_watches"]     = "DAP Watches",
+    ["dapui_console"]     = "DAP Console",
+    ["dapui_scopes"]      = "DAP Scopes",
+    ["dapui_stacks"]      = "DAP Stacks",
+    ["dap-repl"]          = "DAP Repl",
 }
 
 local function Statusline_normal(active)
@@ -345,12 +367,12 @@ local function oil()
 end
 
 local filetypes = {
-    ["dapui_scopes"] = dap_component,
     ["dapui_breakpoints"] = dap_component,
-    ["dapui_stacks"] = dap_component,
-    ["dapui_watches"] = dap_component,
-    ["dap-repl"] = dap_component,
-    ["dapui_console"] = dap_component,
+    ["dapui_watches"]     = dap_component,
+    ["dapui_console"]     = dap_component,
+    ["dapui_scopes"]      = dap_component,
+    ["dapui_stacks"]      = dap_component,
+    ["dap-repl"]          = dap_component,
     ["oil"] = function(active)
         return MiniStatusline.combine_groups({
             { hl = Statusline_normal(active), strings = { oil() } },

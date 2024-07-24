@@ -35,10 +35,20 @@ return {
                     }
                 end,
             })
-            vim.cmd.colorscheme "kanagawa"
+            if vim.o.background == "dark" then
+                vim.cmd.colorscheme "kanagawa"
+            else
+                vim.cmd.colorscheme "everforest"
+            end
         end
     },
-    "blazkowolf/gruber-darker.nvim"
+    "blazkowolf/gruber-darker.nvim",
+    {
+        "sainnhe/everforest",
+        config = function()
+            vim.g.everforest_background = "soft"
+        end
+    }
 }
 
 -- {
