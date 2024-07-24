@@ -256,7 +256,6 @@ local minis = {
                     local five_hls_b    = config.mode_highlightsB()
                     local git           = MiniStatusline.section_git({ trunc_width = 50 })
                     local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
-                    local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
                     local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
 
                     return MiniStatusline.combine_groups({
@@ -266,7 +265,6 @@ local minis = {
                         "%=",
                         { hl = 'MiniStatuslineDevinfoB', strings = { last_button, search, diff } },
                         { hl = five_hls_b, strings = { lsp, diagnostics, } },
-                        -- { hl = five_hls_b,              strings = { fileinfo } },
                         { hl = five_hls, strings = { cursor_pos } },
                         "%P ",
                     })

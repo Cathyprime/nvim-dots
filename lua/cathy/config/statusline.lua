@@ -285,21 +285,21 @@ local diagnostic_is_disabled = function()
 end
 
 local diagnostic_levels = {
-    { name = "ERROR", sign = "E", hl = "StatusDiagnosticSignError" },
-    { name = "WARN", sign  = "W", hl = "StatusDiagnosticSignWarn" },
-    { name = "INFO", sign  = "I", hl = "StatusDiagnosticSignInfo" },
-    { name = "HINT", sign  = "H", hl = "StatusDiagnosticSignHint" },
+    { name = "ERROR", hl = "StatusDiagnosticSignError" },
+    { name = "WARN", hl = "StatusDiagnosticSignWarn" },
+    { name = "INFO", hl = "StatusDiagnosticSignInfo" },
+    { name = "HINT", hl = "StatusDiagnosticSignHint" },
 }
 
 local function diagnostics_component(args)
     if MiniStatusline.is_truncated(args.trunc_width) or diagnostic_is_disabled() then return "" end
 
     local count = vim.diagnostic.count()
-    local severity, signs, t = vim.diagnostic.severity, args.signs or {}, {}
+    local severity, t = vim.diagnostic.severity, {}
     for _, level in ipairs(diagnostic_levels) do
         local n = count[severity[level.name]] or 0
         if n > 0 then
-            local item = format_element(level.hl, string.format("%s:%s", (signs[level.name] or level.sign), n))
+            local item = format_element(level.hl, n)
             table.insert(t, item)
         end
     end
@@ -307,7 +307,7 @@ local function diagnostics_component(args)
         return ""
     end
 
-    return " " .. table.concat(t, " ")
+    return string.format("[%s%%#%s#]", table.concat(t, " "), background_five_hl())
 end
 
 local dap_names = {
