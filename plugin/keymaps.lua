@@ -171,6 +171,8 @@ map("n", "<leader>d", "<cmd>Sexplore<cr>")
 
 -- command line
 map("c", "<c-a>", "<home>", { silent = false })
+map("c", "<m-f>", "<c-right>", { silent = false })
+map("c", "<m-b>", "<c-left>", { silent = false })
 
 -- minibuffer
 map("n", "q:", function()
