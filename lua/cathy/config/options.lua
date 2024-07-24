@@ -78,7 +78,10 @@ options.options = {
     laststatus = 2,
     undofile = true,
     undodir = os.getenv("HOME") .. "/.config/nvim/undo",
-    wildmode = "longest:full,full",
+    wildmode = "longest,list,full",
+    wildoptions = {
+        remove = "pum"
+    },
     winminwidth = 5,
     pumheight = 4,
     wrap = true,
