@@ -163,10 +163,11 @@ map("n", "<leader>r", function()
     vim.cmd.Rooter("toggle")
     vim.cmd.Rooter()
 end)
+map("n", "<leader>d", "<cmd>Sexplore<cr>")
 
 -- diagnostic
-map("n", "<leader>dt", toggle_diagnostics, { desc = "toggle diagnostics display" })
-map("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "show diagnostics in quickfix" })
+-- map("n", "<leader>dt", toggle_diagnostics, { desc = "toggle diagnostics display" })
+-- map("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "show diagnostics in quickfix" })
 
 -- command line
 map("c", "<c-a>", "<home>", { silent = false })
