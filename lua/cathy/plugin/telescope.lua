@@ -108,6 +108,15 @@ return {
                 create_from_prompt = false,
                 no_ignore = true,
                 quiet = true,
+                cwd = (function()
+                    local pph = vim.fn.expand("%:p:h")
+                    local cwd = vim.fn.getcwd()
+                    if string.find(pph, cwd) then
+                        return cwd
+                    else
+                        return pph
+                    end
+                end)()
             })
         end, desc = "projects" }
     }
