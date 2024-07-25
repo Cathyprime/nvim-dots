@@ -1,4 +1,5 @@
 local telescope_utils = require("util.telescope-utils")
+local get_root = require("rooter").get_root
 
 return {
     "nvim-telescope/telescope.nvim",
@@ -80,6 +81,7 @@ return {
             require("telescope.builtin").find_files({
                 file_ignore_patterns = require("util.telescope-config").ignores,
                 hidden = true,
+                cwd = get_root(true)
             })
         end, desc = "files" },
         { "<leader>fF",       require("telescope.builtin").resume, desc = "resume" },
