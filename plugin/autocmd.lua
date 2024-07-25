@@ -22,21 +22,29 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 vim.api.nvim_create_autocmd("TermOpen", {
     group = augroup("terminal"),
     callback = function()
-        vim.opt_local.number = false
         vim.opt_local.relativenumber = false
-        vim.opt_local.spell = false
         vim.opt_local.signcolumn = "no"
         vim.opt_local.scrolloff = 0
+        vim.opt_local.number = false
+        vim.opt_local.spell = false
     end
 })
 
 -- highlight yank
-vim.api.nvim_set_hl(0, "highlight_yank", {
-    bg = "#571cbd",
-    fg = "#c8c093",
+local highlight_yank = augroup("highlight_yank")
+local function set_hl()
+    vim.api.nvim_set_hl(0, "highlight_yank", {
+        bg = "#571cbd",
+        fg = "#c8c093",
+    })
+end
+vim.api.nvim_create_autocmd("Colorscheme", {
+    group = highlight_yank,
+    callback = set_hl,
 })
+set_hl()
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = augroup("highlight_yank"),
+    group = highlight_yank,
     callback = function()
         vim.highlight.on_yank({ higroup = "highlight_yank" })
     end,
