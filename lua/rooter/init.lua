@@ -25,9 +25,9 @@ local function isBanned(ft)
     end)
 end
 
-local function get_root()
+local function pattern_detector(always_run)
     if isBanned(vim.o.filetype) then return end
-    if not on then return end
+    if not on and not always_run then return end
     local path = vim.api.nvim_buf_get_name(0)
     if path == "" then return end
 
@@ -37,6 +37,43 @@ local function get_root()
         end)
     end)
     return root
+end
+
+local function realpath(path)
+    if path == "" or path == nil then
+        return nil
+    end
+    path = vim.uv.fs_realpath(path) or path
+    return path
+end
+
+local function lsp_detector()
+    local bufpath = realpath(vim.api.nvim_buf_get_name(0))
+    if not bufpath then
+        return {}
+    end
+    local roots = {}
+    local buffer = vim.api.nvim_get_current_buf()
+    for _, client in ipairs(vim.lsp.get_clients({ bufnr = buffer })) do
+        local workspace = client.config.workspace_folders
+        for _, ws in pairs(workspace or {}) do
+            roots[#roots + 1] = vim.uri_to_fname(ws.uri)
+        end
+        if client.root_dir then
+            roots[#roots + 1] = client.root_dir
+        end
+    end
+    return vim.tbl_filter(function(path)
+        return path and bufpath:find(path, 1, true) == 1
+    end, roots)
+end
+
+local function get_root(always_run)
+    local roots = lsp_detector()
+    if roots and #roots > 1 then
+        return roots[1]
+    end
+    return pattern_detector(always_run)
 end
 
 local function set_root()
