@@ -27,7 +27,7 @@ vim.api.nvim_create_user_command(
             vim.cmd.colorscheme "kanagawa"
         else
             vim.o.background = "light"
-            vim.cmd.colorscheme "catppuccin-latte"
+            vim.cmd.colorscheme "everforest"
         end
     end,
     {
