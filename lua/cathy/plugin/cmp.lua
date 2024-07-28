@@ -18,9 +18,6 @@ return {
         },
         config = function()
             require("cathy.config.cmp")
-            local colors = require("cathy.config.cmp-colors")
-            colors.run(false)
-            colors.set_autocmd()
         end,
         event = { "InsertEnter" }
     }
