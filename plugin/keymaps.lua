@@ -62,10 +62,6 @@ local function confirm_save_all(question, err)
     end
 end
 
-local function toggle_diagnostics()
-    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end
-
 -- macro
 vim.keymap.set("x", "@", function()
     local char = vim.fn.nr2char(vim.fn.getchar())
