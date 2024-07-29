@@ -35,7 +35,7 @@ vim.api.nvim_create_user_command(
     function()
         if vim.o.background == "light" then
             vim.o.background = "dark"
-            vim.cmd.colorscheme "kanagawa"
+            vim.cmd.colorscheme "kanagawa_remix"
         else
             vim.o.background = "light"
             vim.cmd.colorscheme "everforest"
@@ -43,6 +43,20 @@ vim.api.nvim_create_user_command(
     end,
     {
         desc = "Switch theme from dark to light or another way",
+    }
+)
+
+vim.api.nvim_create_user_command(
+    "DarkMode",
+    function()
+        if vim.o.background == "light" then
+            vim.o.background = "dark"
+        else
+            vim.o.background = "light"
+        end
+    end,
+    {
+        desc = "toggle dark mode"
     }
 )
 
