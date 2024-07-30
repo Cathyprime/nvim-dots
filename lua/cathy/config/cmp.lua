@@ -91,7 +91,7 @@ cmp.setup({
         format = function(_, item)
             local kind = item.kind or ""
 
-            item.kind = " " .. (icons[kind] or icons["Unknown"]) .. " "
+            item.kind = string.format(" %s ", (icons[kind] or icons["Unknown"]))
             item.menu = ""
             item.abbr = item.abbr:match("[^(]+")
 
