@@ -176,7 +176,8 @@ return {
     both_replace_expr_or_type_tsp(".vec", "Vec<?>"),
 
     s("fn", fmt([[
-    fn {funame}({arg}){arrow}{retype} {{
+    fn {funame}({arg}){arrow}{retype}
+    {{
         {body}
     }}
     ]], {
@@ -195,7 +196,8 @@ return {
 
     s("test", fmt([[
     #[test]
-    fn {funame}() {{
+    fn {funame}()
+    {{
         {body}
     }}
     ]], {
