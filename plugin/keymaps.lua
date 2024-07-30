@@ -200,8 +200,8 @@ end, { expr = true })
 
 -- quick search and replace keymaps
 require("substitute")
-map("v", "gs", [[y:.,$s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
-map("v", "gS", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
+-- map("v", "gs", [[y:.,$s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
+-- map("v", "gS", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
 
