@@ -7,6 +7,7 @@ local opts = {
     expr = true
 }
 
+---@return nil
 function M.substitute_confirm_callback()
     local input = vim.fn.input({
         cancelreturn = -99,
@@ -18,6 +19,7 @@ function M.substitute_confirm_callback()
     vim.cmd("'[,']s/" .. sub_word .. "/" .. input .. "/gc")
 end
 
+---@return nil
 function M.substitute_callback()
     local input = vim.fn.input({
         cancelreturn = -99,
@@ -29,6 +31,9 @@ function M.substitute_callback()
     vim.cmd("'[,']s/" .. sub_word .. "/" .. input .. "/g")
 end
 
+---@param func string
+---@param linewise boolean?
+---@return string
 function M.get_word(func, linewise)
     sub_word = vim.fn.expand("<cword>")
     vim.go.operatorfunc = func
@@ -44,6 +49,7 @@ local cache = {
     replace = ""
 }
 
+---@return string
 local function query_prompt()
     if cache.query == "" then
         return "Query replace in region: "
@@ -60,6 +66,7 @@ local function replace_prompt(what)
     end
 end
 
+---@return string?
 function M.visual_replace()
     local query = vim.fn.input({
         cancelreturn = -99,
