@@ -63,19 +63,11 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
     "Terminal",
     function(opts)
-        opts.mods = opts.mods or "botright"
-        vim.cmd(string.format("%s %ssp | exec 'term %s' | startinsert", opts.mods, opts.count, opts.args))
-        vim.api.nvim_buf_set_name(0, "Terminal")
-        vim.wo.winfixheight = true
-        vim.api.nvim_create_autocmd("TermClose", {
-            once = true,
-            buffer = vim.api.nvim_get_current_buf(),
-            command = "bd!"
-        })
+        opts.mods = opts.mods or "horizontal"
+        vim.cmd(string.format("%s sp | exec 'term %s'", opts.mods, opts.args))
     end,
     {
         nargs = "*",
-        count = 12,
         desc = "Open terminal in split"
     }
 )
