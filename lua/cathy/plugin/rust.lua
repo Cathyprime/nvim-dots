@@ -18,7 +18,6 @@ return {
                             vim.cmd.RustLsp("codeAction")
                         end,
                         hover = function()
-                            vim.cmd.RustLsp({ "hover", "range" })
                             vim.cmd.RustLsp({ "hover", "actions" })
                         end,
                     })
