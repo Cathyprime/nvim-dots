@@ -6,6 +6,7 @@ local root_names = {
     "Cargo%.toml",
     "go%.mod",
     "main.cpp",
+    "main.c",
     "gradlew",
     "/lua",
     "Makefile",
