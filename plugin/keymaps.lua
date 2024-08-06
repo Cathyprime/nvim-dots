@@ -159,7 +159,7 @@ map("n", "<leader>r", function()
     vim.cmd.Rooter("toggle")
     vim.cmd.Rooter()
 end)
-map("n", "<leader>d", "<cmd>Sexplore<cr>")
+-- map("n", "<leader>d", "<cmd>Sexplore<cr>")
 
 -- diagnostic
 -- map("n", "<leader>dt", toggle_diagnostics, { desc = "toggle diagnostics display" })
