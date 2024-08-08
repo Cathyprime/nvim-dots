@@ -330,7 +330,6 @@ return {
 
     tsp({
         trig = ".mv",
-        snippetType = "autosnippet",
         matchTSNode = nodes,
     }, {
         f(function(_, parent)
@@ -342,12 +341,22 @@ return {
 
     tsp({
         trig = ".be",
-        snippetType = "autosnippet",
         matchTSNode = nodes,
     }, {
         f(function(_, parent)
             local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
             local replaced_content = ("%s.begin(), %s.end()"):format(node_content, node_content)
+            return vim.split(replaced_content, "\n", { trimempty = false })
+        end),
+    }),
+
+    tsp({
+        trig = ".sizeof",
+        matchTSNode = nodes,
+    }, {
+        f(function(_, parent)
+            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
+            local replaced_content = ("sizeof(%s) / sizeof(%s[0])"):format(node_content, node_content)
             return vim.split(replaced_content, "\n", { trimempty = false })
         end),
     }),
