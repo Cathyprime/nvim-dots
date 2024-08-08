@@ -1,30 +1,30 @@
 return {
     "tpope/vim-abolish",
-    {
-        enabled = false,
-        "zbirenbaum/copilot.lua",
-        event = { "InsertEnter", "CmdlineEnter" },
-        config = function()
-            require("copilot").setup({
-                panel = { enabled = false },
-                suggestion = {
-                    enabled = true,
-                    auto_trigger = false,
-                    keymap = {
-                        accept = "<m-y>",
-                        accept_word = "<m-w>",
-                        accept_line = "<m-l>",
-                        next = "<m-n>",
-                        prev = "<m-p>",
-                        dismiss = "<m-e>",
-                    },
-                },
-                filetypes = {
-                    cpp = true,
-                }
-            })
-        end
-    },
+    -- {
+    --     enabled = false,
+    --     "zbirenbaum/copilot.lua",
+    --     event = { "InsertEnter", "CmdlineEnter" },
+    --     config = function()
+    --         require("copilot").setup({
+    --             panel = { enabled = false },
+    --             suggestion = {
+    --                 enabled = true,
+    --                 auto_trigger = false,
+    --                 keymap = {
+    --                     accept = "<m-y>",
+    --                     accept_word = "<m-w>",
+    --                     accept_line = "<m-l>",
+    --                     next = "<m-n>",
+    --                     prev = "<m-p>",
+    --                     dismiss = "<m-e>",
+    --                 },
+    --             },
+    --             filetypes = {
+    --                 cpp = true,
+    --             }
+    --         })
+    --     end
+    -- },
     {
         "monaqa/dial.nvim",
         event = { "BufReadPost", "BufWritePost", "BufNewFile" },
