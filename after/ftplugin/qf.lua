@@ -11,8 +11,8 @@ local function cmd(command)
     end
 end
 
-vim.keymap.set("n", "<", cmd("colder"), { buffer = true, silent = true, expr = true })
-vim.keymap.set("n", ">", cmd("cnewer"), { buffer = true, silent = true, expr = true })
+-- vim.keymap.set("n", "<", cmd("colder"), { buffer = true, silent = true, expr = true })
+-- vim.keymap.set("n", ">", cmd("cnewer"), { buffer = true, silent = true, expr = true })
 vim.keymap.set("n", "o", function()
     if vim.fn.getwininfo(vim.fn.win_getid())[1]['loclist'] == 1 then
         return "<cr><cmd>lclose<cr>"

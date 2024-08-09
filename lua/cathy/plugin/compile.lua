@@ -97,15 +97,6 @@ local function make_wrapper_change()
     return string.format("<cmd>Make! %s<cr>", c)
 end
 
-local function openqf()
-    if vim.g.dispatch_ready then
-        vim.g["dispatch_ready"] = false
-        return "<cmd>botright Cope<cr>"
-    else
-        return "<Plug>(qf_qf_toggle)"
-    end
-end
-
 vim.g.dispatch_handlers = {
     "terminal",
     "headless",
@@ -125,6 +116,5 @@ return {
         vim.keymap.set("n", "Zd",        dispatch_wrapper,         { silent = false, expr = true })
         vim.keymap.set("n", "Zm",        make_wrapper,             { silent = false, expr = true })
         vim.keymap.set("n", "ZM",        make_wrapper_change,      { silent = false, expr = true })
-        vim.keymap.set("n", "<leader>q", openqf,                   { silent = false, expr = true })
     end
 }

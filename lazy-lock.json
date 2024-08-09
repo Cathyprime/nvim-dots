@@ -45,6 +45,7 @@
   "playtime.nvim": { "branch": "main", "commit": "894fe6ff5d8a4f28050019857c4a2f5d680178ca" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "promise-async": { "branch": "main", "commit": "038d05664fedc920ba86720214c84a15ff7432b0" },
+  "quicker.nvim": { "branch": "master", "commit": "b6a3d2f6aed7882e8bea772f82ba80b5535157a9" },
   "rustaceanvim": { "branch": "master", "commit": "7da155a907e3f48b1f7c25c59e248996fba833df" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "a46780830b576049c675680650f773bedfa8677a" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
