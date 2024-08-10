@@ -54,11 +54,15 @@ require("mason-lspconfig").setup({
         lua_ls = lsp_funcs.lua_ls,
         omnisharp = function()
             require("lspconfig").omnisharp.setup({
+                on_attach = function(client, bufnr)
+                    require("cathy.config.lsp-funcs").on_attach(client, bufnr, {
+                        definition = require("omnisharp_extended").lsp_definition,
+                    })
+                end,
                 handlers = {
-                    ["textDocument/definition"] = require("omnisharp_extended").definition_handler,
-                    ["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
-                    ["textDocument/references"] = require("omnisharp_extended").references_handler,
-                    ["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
+                    ["textDocument/definition"] = function(...)
+                        return require("omnisharp_extended").handler(...)
+                    end,
                 }
             })
         end
