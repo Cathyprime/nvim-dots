@@ -5,12 +5,13 @@ return {
             vim.g.qf_auto_quit = 0
             vim.g.qf_max_height = 12
             vim.g.qf_auto_resize = 0
+            vim.g.qf_auto_open_quickfix = 0
         end
     },
     {
         "stevearc/quicker.nvim",
+        ft = "qf",
         config = function()
-            print("setting up quicker")
             require("quicker").setup({
                 keys = {
                     {
