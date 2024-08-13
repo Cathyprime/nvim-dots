@@ -55,8 +55,8 @@ return {
                     ---@diagnostic disable-next-line
                     require("nvim-surround").setup({
                         keymaps = {
-                            insert = "<c-d>",
-                            insert_line = "<c-s>",
+                            insert = false,
+                            insert_line = false,
                             normal = "s",
                             normal_cur = "ss",
                             normal_line = "S",
