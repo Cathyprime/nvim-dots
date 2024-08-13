@@ -405,9 +405,16 @@ return {
     ),
     constructor_snip(
         "cc",
-        f("Copy constructor"),
+        "Copy constructor",
         [[
         <cls>(const <cls>& rhs) = default;
+        ]]
+    ),
+    constructor_snip(
+        "ca",
+        "Copy assigment",
+        [[
+        <cls>& operator=(const <cls>& rhs) = default;
         ]]
     ),
     constructor_snip(
