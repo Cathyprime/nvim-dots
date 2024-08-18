@@ -4,13 +4,29 @@ local sn = ls.snippet_node
 local f = ls.function_node
 local t = ls.text_node
 local i = ls.insert_node
+local c = ls.choice_node
 local d = ls.dynamic_node
 local extras = require("luasnip.extras")
-local l = extras.lambda
-local rep = extras.rep
 local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local tsp = require("luasnip.extras.treesitter_postfix").treesitter_postfix
+
+local function ranges_views_snippet(trig, func)
+    return s(trig,
+        fmta([[
+		| <namespace>::views::<fn>([&](auto&& value) {
+			<body>
+		})
+      ]], {
+        namespace = c(1, {
+            t("ranges"),
+            t("std"),
+        }),
+        body = i(0),
+        fn = func,
+    })
+    )
+end
 
 local function replace_all(match, template)
     match = vim.F.if_nil(match, "")
@@ -77,7 +93,16 @@ local function quick_type(shortcut)
         end
 
         if trig.params == 0 then
-            return trig.template, rest
+            local template = trig.template
+            if trig.template == "Placeholder" then
+                template = vim.fn.input({
+                    prompt = "Custom: ",
+                    default = "Placeholder",
+                    cancelreturn = "Placeholder"
+                })
+            end
+
+            return template, rest
         end
 
         local parameters = {}
@@ -279,6 +304,10 @@ return {
     type(".opt", "std::optional<%s>"),
     type(".sh", "std::shared_ptr<%s>"),
 
+    ranges_views_snippet("|trans", t("transform")),
+    ranges_views_snippet("|filter", t("filter")),
+    ranges_views_snippet("|c", i(2, "func")),
+
     type_snippet("u8", "uint8_t"),
     type_snippet("u16", "uint16_t"),
     type_snippet("u32", "uint32_t"),
@@ -290,9 +319,10 @@ return {
     type_snippet("i64", "int64_t"),
 
     s({
-        trig = "t(%l+)",
+        trig = "t(%l+)!",
         wordTrig = true,
         regTrig = true,
+        snippetType = "autosnippet",
         name = "(t) Quick types",
         desc = "Expands to a type",
     }, {
@@ -304,29 +334,17 @@ return {
 
     s({ trig = "#o", snippetType = "autosnippet" }, { t("#pragma once") }),
 
-    s(
-        { trig = '#"', snippetType = "autosnippet" },
-        fmt(
-            [[
+    s({ trig = '#"', snippetType = "autosnippet" }, fmt([[
     #include "{file}"
     ]],
-            {
-                file = i(1, "file"),
-            }
-        )
-    ),
+        { file = i(1, "file"), }
+    )),
 
-    s(
-        { trig = "#<", snippetType = "autosnippet" },
-        fmt(
-            [[
+    s({ trig = "#<", snippetType = "autosnippet" }, fmt([[
     #include <{file}>
     ]],
-            {
-                file = i(1, "file"),
-            }
-        )
-    ),
+        { file = i(1, "file"), }
+    )),
 
     tsp({
         trig = ".mv",
@@ -361,21 +379,18 @@ return {
         end),
     }),
 
-    tsp(
-        {
-            trig = ".sc",
-            snippetType = "autosnippet",
-            matchTSNode = nodes,
-        },
-        fmt([[static_cast<{}>({}){}]], {
-            i(1, "type"),
-            f(function(_, parent)
-                local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-                return vim.split(node_content, "\n", { trimempty = false })
-            end),
-            i(0),
-        })
-    ),
+    tsp({
+        trig = ".sc",
+        snippetType = "autosnippet",
+        matchTSNode = nodes,
+    }, fmt([[static_cast<{}>({}){}]], {
+        i(1, "type"),
+        f(function(_, parent)
+            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
+            return vim.split(node_content, "\n", { trimempty = false })
+        end),
+        i(0),
+    })),
 
     tsp({
         trig = ".uu",
