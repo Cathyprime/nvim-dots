@@ -139,7 +139,6 @@ end)
 -- misc
 map("n", "X", [[0"_D]])
 map("x", "X", [[:norm 0"_D<cr>]])
-map("n", "J", [[mmJ`m]])
 map("n", "gp", "`[v`]")
 map("n", "j", function()
     return jump("j")
