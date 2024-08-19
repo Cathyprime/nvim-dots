@@ -60,6 +60,7 @@ options.options = {
     showcmdloc = "statusline",
     showtabline = 0,
     scrolloff = 8,
+    smoothscroll = true,
     termguicolors = true,
     signcolumn = "yes",
     inccommand = "nosplit",
