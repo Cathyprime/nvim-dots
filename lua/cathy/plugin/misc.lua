@@ -171,6 +171,10 @@ return {
                         enabled = true,
                         font = 4,
                     },
+                    neovide = {
+                        enabled = true,
+                        scale = 1.12
+                    },
                 },
                 on_open = function()
                     vim.opt.fillchars = [[foldclose:>,foldopen:v,foldsep: ,fold: ]]
