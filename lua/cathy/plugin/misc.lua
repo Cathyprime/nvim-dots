@@ -154,9 +154,6 @@ return {
     "milisims/nvim-luaref",
     {
         "folke/zen-mode.nvim",
-        dependencies = {
-            "folke/twilight.nvim",
-        },
         cmd = "ZenMode",
         keys = { { "<leader>w", "<cmd>ZenMode<cr>" } },
         config = function()
@@ -168,7 +165,7 @@ return {
                         showcmd = false,
                         laststatus = 0,
                     },
-                    twilight = { enabled = true },
+                    twilight = { enabled = false },
                     gitsigns = { enabled = true },
                     wezterm = {
                         enabled = true,
