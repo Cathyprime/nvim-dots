@@ -104,10 +104,6 @@ return {
         }
     },
     {
-        "dohsimpson/vim-macroeditor",
-        cmd = "MacroEdit"
-    },
-    {
         "kevinhwang91/nvim-fundo",
         dependencies = {
             "kevinhwang91/promise-async"

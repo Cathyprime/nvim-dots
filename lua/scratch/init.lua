@@ -64,7 +64,7 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
-    "Scratch",
+    "New",
     function(opts)
         local ft
         if #opts.fargs ~= 0 then
@@ -108,5 +108,5 @@ vim.api.nvim_create_user_command(
     }
 )
 
-vim.keymap.set("n", "<leader>os", "<cmd>Scratch<cr>", { desc = "open scratch buffer" })
-vim.keymap.set("n", "<leader>oS", "<cmd>Scratch sh<cr>", { desc = "open scratch shell buffer" })
+vim.keymap.set("n", "<leader>os", "<cmd>New<cr>", { desc = "open scratch buffer" })
+vim.keymap.set("n", "<leader>oS", "<cmd>New sh<cr>", { desc = "open scratch shell buffer" })
