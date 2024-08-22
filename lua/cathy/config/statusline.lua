@@ -198,7 +198,7 @@ end
 
 local function get_hl()
     if vim.fn.reg_recording() ~= "" then
-        return "statusline_register_recording"
+        return "statuslineRegisterRecording"
     else
         return five_hls[vim.fn.mode()]
     end
