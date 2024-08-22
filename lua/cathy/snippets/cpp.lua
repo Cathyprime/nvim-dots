@@ -347,7 +347,32 @@ return {
     )),
 
     tsp({
+        trig = ".fwd",
+        snippetType = "autosnippet",
+        matchTSNode = nodes,
+    }, {
+        f(function(_, parent)
+            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
+            local replaced_content = ("std::forward<decltype(%s)>(%s)"):format(node_content)
+            return vim.split(replaced_content, "\n", { trimempty = false })
+        end),
+    }),
+
+    tsp({
+        trig = ".dt",
+        snippetType = "autosnippet",
+        matchTSNode = nodes,
+    }, {
+        f(function(_, parent)
+            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
+            local replaced_content = ("decltype(%s)"):format(node_content)
+            return vim.split(replaced_content, "\n", { trimempty = false })
+        end),
+    }),
+
+    tsp({
         trig = ".mv",
+        snippetType = "autosnippet",
         matchTSNode = nodes,
     }, {
         f(function(_, parent)
@@ -359,6 +384,7 @@ return {
 
     tsp({
         trig = ".be",
+        snippetType = "autosnippet",
         matchTSNode = nodes,
     }, {
         f(function(_, parent)
@@ -370,6 +396,7 @@ return {
 
     tsp({
         trig = ".sizeof",
+        snippetType = "autosnippet",
         matchTSNode = nodes,
     }, {
         f(function(_, parent)
