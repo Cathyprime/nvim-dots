@@ -6,6 +6,7 @@ local root_names = {
     "Cargo%.toml",
     "go%.mod",
     "main.cpp",
+    "main.cc",
     "main.c",
     "gradlew",
     "/lua",
@@ -16,6 +17,7 @@ local root_names = {
 
 local disabled_filetype = {
     "help",
+    "qf",
     "Neogit.*",
 }
 
