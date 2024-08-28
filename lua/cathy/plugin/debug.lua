@@ -2,8 +2,11 @@ vim.cmd.packadd "termdebug"
 vim.g.termdebug_wide = 1
 vim.g.termdebug_useFloatingHover = 0
 
+local termdebug = vim.api.nvim_create_augroup("TermDebug", {})
+
 vim.api.nvim_create_autocmd("User", {
     pattern = "TermdebugStartPre",
+    group = termdebug,
     callback = function()
         vim.keymap.set("n", "<cr>", "<cmd>Break<cr>")
         vim.keymap.set("n", "C", "<cmd>Clear<cr>")
@@ -11,7 +14,22 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 vim.api.nvim_create_autocmd("User", {
+    pattern = "TermdebugStartPost",
+    group = termdebug,
+    callback = function()
+        vim.cmd("Var")
+        vim.api.nvim_win_set_height(0, 5)
+        vim.cmd("set winfixheight")
+        vim.cmd("set winfixbuf")
+        vim.schedule(function()
+            vim.cmd("Gdb")
+        end)
+    end,
+})
+
+vim.api.nvim_create_autocmd("User", {
     pattern = "TermdebugStopPre",
+    group = termdebug,
     callback = function()
         vim.keymap.del("n", "<cr>")
         vim.keymap.del("n", "C")
