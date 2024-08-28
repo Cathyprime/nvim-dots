@@ -62,27 +62,11 @@ local minis = {
         local module = require("mini.clue")
         module.setup({
             triggers = {
-                { mode = "n", keys = "<leader>m" },
                 { mode = "n", keys = "<leader>f" },
-                { mode = "n", keys = "<leader>d" },
-                { mode = "n", keys = "[" },
-                { mode = "n", keys = "]" },
                 { mode = "i", keys = "<c-x>" },
             },
             clues = {
                 module.gen_clues.builtin_completion(),
-                { mode = "n", keys = "]d", postkeys = "]" },
-                { mode = "n", keys = "]D", postkeys = "]" },
-                { mode = "n", keys = "]{", postkeys = "[", desc = "change direction" },
-                { mode = "n", keys = "]c", postkeys = "]" },
-                { mode = "n", keys = "]C", postkeys = "]" },
-                { mode = "n", keys = "[d", postkeys = "[" },
-                { mode = "n", keys = "[D", postkeys = "[" },
-                { mode = "n", keys = "[c", postkeys = "[" },
-                { mode = "n", keys = "[}", postkeys = "]", desc = "change direction" },
-                { mode = "n", keys = "[C", postkeys = "[" },
-                { mode = "n", keys = "[]", desc = "Goto prev end function" },
-                { mode = "n", keys = "[L", desc = "Goto prev end loop" },
             }
         })
     end,

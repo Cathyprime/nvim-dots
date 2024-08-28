@@ -1,3 +1,15 @@
+local function jump_quickfix(options)
+  return function()
+    require("demicolon.jump").repeatably_do(function(opts)
+      if opts.forward then
+        vim.cmd([[execute "normal! \<Plug>(qf_qf_next)"]])
+      else
+        vim.cmd([[execute "normal! \<Plug>(qf_qf_previous)"]])
+      end
+    end, options)
+  end
+end
+
 return {
     {
         "romainl/vim-qf",
@@ -11,6 +23,7 @@ return {
     {
         "stevearc/quicker.nvim",
         ft = "qf",
+        dependencies = "mawkler/demicolon.nvim",
         config = function()
             require("quicker").setup({
                 keys = {
@@ -32,6 +45,16 @@ return {
             })
         end,
         keys = {
+            {
+                "]c",
+                jump_quickfix({ forward = true }),
+                desc = "Next quickfix item"
+            },
+            {
+                "[c",
+                jump_quickfix({ forward = false }),
+                desc = "Prev quickfix item"
+            },
             { "<leader>q", function()
                 if vim.g.dispatch_ready then
                     vim.g["dispatch_ready"] = false

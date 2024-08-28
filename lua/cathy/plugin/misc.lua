@@ -1,3 +1,18 @@
+---@param options { forward: boolean }
+local function trouble_jump(options)
+  return function()
+    require("demicolon.jump").repeatably_do(function(opts)
+      if require("trouble").is_open() then
+        if opts.forward then
+          require("trouble").next({ skip_groups = true, jump = true })
+        else
+          require("trouble").prev({ skip_groups = true, jump = true })
+        end
+      end
+    end, options)
+  end
+end
+
 local function map(lhs, rhs)
     vim.keymap.set("n", "<leader>h" .. lhs, rhs)
 end
@@ -61,33 +76,31 @@ return {
         cmd = "CellularAutomaton"
     },
     {
+        "mawkler/demicolon.nvim",
+        opts = {
+            keymaps = {
+                horizontal_motions = true,
+                diagnostic_motions = false,
+                repeat_motions = true,
+            },
+            integrations = {
+                gitsigns = {
+                    enabled = false,
+                },
+            },
+        },
+    },
+    {
         "folke/trouble.nvim",
         config = true,
+        dependencies = "mawkler/demicolon.nvim",
         keys = {
             { "<leader>x", "<cmd>Trouble<cr>", silent = true },
             { "Zx", "<cmd>Trouble lsp_document_symbols toggle focus=true<cr>", silent = true },
             { "ZX", "<cmd>Trouble diagnostics toggle<cr>", silent = true },
             { "gR", "<cmd>Trouble lsp_references toggle<cr>", silent = true },
-            { "]d", function()
-                if require("trouble").is_open() then
-                    require("trouble").next({ skip_groups = true, jump = true })
-                end
-            end, desc = "Next trouble item" },
-            { "[d", function()
-                if require("trouble").is_open() then
-                    require("trouble").prev({ skip_groups = true, jump = true })
-                end
-            end, desc = "Prev trouble item" },
-            { "]D", function()
-                if require("trouble").is_open() then
-                    require("trouble").prev({ skip_groups = true, jump = true })
-                end
-            end, desc = "Prev trouble item" },
-            { "[D", function()
-                if require("trouble").is_open() then
-                    require("trouble").next({ skip_groups = true, jump = true })
-                end
-            end, desc = "Next trouble item" },
+            { "]d", trouble_jump({ forward = true}), desc = "Next trouble item" },
+            { "[d", trouble_jump({ forward = false }), desc = "Prev trouble item" },
         }
     },
     {
