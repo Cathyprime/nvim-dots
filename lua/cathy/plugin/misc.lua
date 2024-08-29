@@ -182,7 +182,7 @@ return {
                     },
                     neovide = {
                         enabled = true,
-                        scale = 1.12
+                        scale = 1.06
                     },
                 },
                 on_open = function()
