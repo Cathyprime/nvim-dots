@@ -57,11 +57,10 @@ return {
             },
             { "<leader>q", function()
                 if vim.g.dispatch_ready then
-                    vim.g["dispatch_ready"] = false
                     vim.cmd("Copen")
+                else
                     require("quicker").toggle()
                 end
-                require("quicker").toggle()
             end }
         }
     }
