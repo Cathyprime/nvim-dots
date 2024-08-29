@@ -8,7 +8,6 @@ options.options = {
             ">"
         }
     },
-    mouse = "",
     spell = true,
     spl = "en_us,en_gb,pl",
     tabstop = 4,
@@ -129,11 +128,11 @@ for key, value in pairs(options.options) do
     end
 end
 
+vim.opt.guifont = "Iosevka Custom:h14.2"
+
 -- neovide only
 if vim.g.neovide then
-    vim.opt.guifont = "Iosevka Custom:h14.2"
 
-    vim.opt.mouse = "a"
     vim.g.neovide_scale_factor = 1.0
     vim.g.neovide_hide_mouse_when_typing = true
     vim.g.neovide_refresh_rate = 144
