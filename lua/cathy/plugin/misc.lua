@@ -1,16 +1,16 @@
 ---@param options { forward: boolean }
 local function trouble_jump(options)
-  return function()
-    require("demicolon.jump").repeatably_do(function(opts)
-      if require("trouble").is_open() then
-        if opts.forward then
-          require("trouble").next({ skip_groups = true, jump = true })
-        else
-          require("trouble").prev({ skip_groups = true, jump = true })
-        end
-      end
-    end, options)
-  end
+    return function()
+        require("demicolon.jump").repeatably_do(function(opts)
+            if require("trouble").is_open() then
+                if opts.forward then
+                    require("trouble").next({ skip_groups = true, jump = true })
+                else
+                    require("trouble").prev({ skip_groups = true, jump = true })
+                end
+            end
+        end, options)
+    end
 end
 
 local function map(lhs, rhs)
@@ -81,7 +81,7 @@ return {
             keymaps = {
                 horizontal_motions = true,
                 diagnostic_motions = false,
-                repeat_motions = true,
+                repeat_motions = false,
             },
             integrations = {
                 gitsigns = {
@@ -89,6 +89,14 @@ return {
                 },
             },
         },
+        config = function(_, opts)
+            require("demicolon").setup(opts)
+            local ts_repeatable_move = require('nvim-treesitter.textobjects.repeatable_move')
+            local nxo = {"n", "x", "o"}
+
+            vim.keymap.set(nxo, ';', ts_repeatable_move.repeat_last_move)
+            vim.keymap.set(nxo, ',', ts_repeatable_move.repeat_last_move_opposite)
+        end
     },
     {
         "folke/trouble.nvim",
@@ -182,7 +190,7 @@ return {
                     },
                     neovide = {
                         enabled = true,
-                        scale = 1.06
+                        scale = 1.02
                     },
                 },
                 on_open = function()
