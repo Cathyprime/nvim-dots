@@ -11,7 +11,7 @@ vim.diagnostic.config({
     --     prefix = "⚫︎"
     -- },
     virtual_text = false,
-    signs = true,
+    signs = false,
     underline = false,
     float = {
         border = "rounded"
