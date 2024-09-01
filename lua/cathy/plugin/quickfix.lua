@@ -35,6 +35,12 @@ return {
                         desc = "Expand quickfix context",
                     },
                     {
+                        "<c-l>",
+                        "<cmd>silent Refresh<cr>",
+                        silent = true,
+                        desc = "Refresh quickfix list",
+                    },
+                    {
                         "<",
                         function()
                             require("quicker").collapse()
