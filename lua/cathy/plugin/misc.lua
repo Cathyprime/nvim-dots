@@ -102,10 +102,31 @@ return {
         "folke/trouble.nvim",
         config = true,
         dependencies = "mawkler/demicolon.nvim",
+        cmd = "Trouble",
+        opts = {
+            modes = {
+                current_project_diagnostics = {
+                    auto_close = false,
+                    mode = "diagnostics", -- inherit from diagnostics mode
+                    filter = {
+                        any = {
+                            buf = 0, -- current buffer
+                            {
+                                severity = vim.diagnostic.severity.ERROR, -- errors only
+                                -- limit to files in the current project
+                                function(item)
+                                    return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+                                end,
+                            },
+                        },
+                    },
+                }
+            }
+        },
         keys = {
             { "<leader>x", "<cmd>Trouble<cr>", silent = true },
             { "Zx", "<cmd>Trouble lsp_document_symbols toggle focus=true<cr>", silent = true },
-            { "ZX", "<cmd>Trouble diagnostics toggle<cr>", silent = true },
+            { "ZX", "<cmd>Trouble current_project_diagnostics toggle<cr>", silent = true },
             { "gR", "<cmd>Trouble lsp_references toggle<cr>", silent = true },
             { "]d", trouble_jump({ forward = true}), desc = "Next trouble item" },
             { "[d", trouble_jump({ forward = false }), desc = "Prev trouble item" },
