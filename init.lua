@@ -1,6 +1,5 @@
 vim.g.mapleader = vim.keycode "<space>"
 vim.g.localleader = [[\]]
-vim.g.dispatch_no_maps = true
 vim.o.background = "light"
 
 local rocks_config = {

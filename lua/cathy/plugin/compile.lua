@@ -47,10 +47,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
                 if opts.count < 0 or opts.line1 == opts.line2 then
                     count = opts.count
                 end
-                if args == "" and vim.b.start_compile ~= "" then
-                    args = vim.b.start_compile or ""
+                if args == "" and vim.b.start ~= "" then
+                    args = vim.b.start or ""
                 end
-                vim.b["start_compile"] = args
+                vim.b["start"] = args
                 vim.fn["dispatch#start_command"](bang, "-wait=always "..args, count, mods)
             end,
             {
