@@ -21,6 +21,7 @@ return {
     config = function(_, opts)
         require("telescope").setup(opts)
         require("telescope").load_extension("fzf")
+        require("telescope").load_extension("projects")
         require("telescope").load_extension("file_browser")
     end,
     opts = function()
@@ -45,8 +46,12 @@ return {
             local entry = current_picker:get_selection()
             if entry == nil then
                 local prompt = current_picker:_get_prompt()
-                actions.close(prompt_bufnr)
-                vim.cmd(string.format("edit %s", prompt))
+                if prompt:match("/$") then
+                    fb_actions.create_from_prompt(prompt_bufnr)
+                else
+                    actions.close(prompt_bufnr)
+                    vim.cmd(string.format("edit %s", prompt))
+                end
             elseif entry.is_dir then
                 actions.close(prompt_bufnr)
                 oil.open(entry.value)
@@ -118,7 +123,7 @@ return {
         { "<m-x>",            require("telescope.builtin").commands,      desc = "commands" },
         { "<leader>fo",       require("telescope.builtin").oldfiles,      desc = "oldfiles" },
         { "<leader>fh",       require("telescope.builtin").help_tags,     desc = "help" },
-        -- { "<leader>fp",       telescope_utils.change_dir,                 desc = "project files" },
+        { "<leader>fp",       require("telescope").extensions.projects.projects, desc = "project files" },
         { "<leader>fg",       require("telescope.builtin").live_grep,     desc = "grep" },
         { "z=",               require("telescope.builtin").spell_suggest, desc = "spell suggestion" },
         {
