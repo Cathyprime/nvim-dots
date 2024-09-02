@@ -101,7 +101,7 @@ return {
     keys = {
         { "<leader>fw",       telescope_utils.get_word,                   desc = "cursor grep" },
         {
-            "<leader>ff",
+            "<c-p>",
             function()
                 require("telescope.builtin").find_files({
                     file_ignore_patterns = require("util.telescope-config").ignores,
@@ -114,7 +114,7 @@ return {
         { "<leader>fF",       require("telescope.builtin").resume,        desc = "resume" },
         { "<leader>fs",       require("telescope.builtin").treesitter,    desc = "treesitter" },
         { "<leader>fd",       require("telescope.builtin").diagnostics,   desc = "diagnostics" },
-        { "<leader><leader>", require("telescope.builtin").buffers,       desc = "buffers" },
+        -- { "<leader><leader>", require("telescope.builtin").buffers,       desc = "buffers" },
         { "<m-x>",            require("telescope.builtin").commands,      desc = "commands" },
         { "<leader>fo",       require("telescope.builtin").oldfiles,      desc = "oldfiles" },
         { "<leader>fh",       require("telescope.builtin").help_tags,     desc = "help" },
@@ -140,7 +140,7 @@ return {
             desc = "grep current file"
         },
         {
-            "<c-p>",
+            "<leader>ff",
             function()
                 require("telescope").extensions.file_browser.file_browser({
                     hide_parent_dir = true,
