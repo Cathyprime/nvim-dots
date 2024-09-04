@@ -157,10 +157,13 @@ map("n", "<leader>b", function()
     local char = vim.fn.nr2char(vim.fn.getchar())
     return string.format("<cmd>call setreg('%s', getreg('%s'), 'b')<cr>", char, char)
 end, { expr = true, desc = "change register to block mode" })
-map("n", "<leader>r", function()
-    vim.cmd.Rooter("toggle")
-    vim.cmd.Rooter()
-end)
+
+if package.loaded["rooter"] then
+    map("n", "<leader>r", function()
+        vim.cmd.Rooter("toggle")
+        vim.cmd.Rooter()
+    end)
+end
 
 -- diagnostic
 -- map("n", "<leader>dt", toggle_diagnostics, { desc = "toggle diagnostics display" })

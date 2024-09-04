@@ -1,4 +1,4 @@
-local on = true
+local on = false
 local root_names = {
     "%.csproj$",
     "docker%-compose%.yml",
@@ -88,11 +88,6 @@ local function set_root()
     end
 end
 
-vim.api.nvim_create_autocmd("BufEnter", {
-    group = vim.api.nvim_create_augroup("rooter", {}),
-    callback = set_root,
-})
-
 local switch = {
     enable = function(notif)
         if not on then
@@ -126,37 +121,46 @@ local switch = {
     end
 }
 
-vim.api.nvim_create_user_command(
-    "Rooter",
-    function(opts)
-        local notif = function(msg, level)
-            level = level or vim.log.levels.INFO
-            vim.notify(msg, level)
-        end
-        if opts.smods.silent then
-            notif = function() end
-        end
-        if opts.args == "" then
-            set_root()
-        else
-            local f = switch[opts.args]
-            if f == nil then
-                notif("Rooter: unknown command", vim.log.levels.ERROR)
-                return
-            end
-            f(notif)
-        end
-    end,
-    {
-        nargs = "*",
-        complete = function(arg_lead)
-            return vim.iter({ "enable", "disable", "toggle", "status", "cwd" }):filter(function(el)
-                return el:lower():match("^" .. arg_lead)
-            end):totable()
-        end
-    }
-)
-
 return {
-    get_root = get_root
+    get_root = get_root,
+    setup = function(opts)
+        if on then
+            return
+        end
+        on = true
+        vim.api.nvim_create_user_command(
+            "Rooter",
+            function(opts)
+                local notif = function(msg, level)
+                    level = level or vim.log.levels.INFO
+                    vim.notify(msg, level)
+                end
+                if opts.smods.silent or (opts and opts.silent) then
+                    notif = function() end
+                end
+                if opts.args == "" then
+                    set_root()
+                else
+                    local f = switch[opts.args]
+                    if f == nil then
+                        notif("Rooter: unknown command", vim.log.levels.ERROR)
+                        return
+                    end
+                    f(notif)
+                end
+            end,
+            {
+                nargs = "*",
+                complete = function(arg_lead)
+                    return vim.iter({ "enable", "disable", "toggle", "status", "cwd" }):filter(function(el)
+                        return el:lower():match("^" .. arg_lead)
+                    end):totable()
+                end
+            }
+        )
+        vim.api.nvim_create_autocmd("BufEnter", {
+            group = vim.api.nvim_create_augroup("rooter", {}),
+            callback = set_root,
+        })
+    end
 }
