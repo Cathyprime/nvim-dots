@@ -24,6 +24,8 @@ M.ignores = {
     ".*tar$",
     ".*zip$",
     ".*jar$",
+    "obj/.*",
+    "%.gradle/.*",
 }
 
 return M

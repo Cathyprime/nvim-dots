@@ -280,9 +280,32 @@ return {
         version = "*",
     },
     {
-        "ahmedkhalf/project.nvim",
+        "Cathyprime/project.nvim",
         config = function()
-            require("project_nvim").setup()
+            require("project_nvim").setup({
+                show_hidden = true,
+                detection_methods = { "pattern" },
+                patterns = {
+                    ".git",
+                    "_darcs",
+                    ".hg",
+                    ".bzr",
+                    ".svn",
+                    "*.csproj",
+                    "Makefile",
+                    "package.json",
+                    "build.sbt",
+                    "main.c",
+                    "main.cc",
+                    "main.cpp",
+                    "gradlew",
+                    "package.json",
+                    "go.mod",
+                    "Cargo.toml",
+                    "docker-compose.yml",
+                },
+                file_ignore_patterns = require("util.telescope-config").ignores,
+            })
         end
     },
 }
