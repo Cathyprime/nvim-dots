@@ -276,7 +276,7 @@ local minis = {
                     if ok then
                         return ft(false)
                     end
-                    local filename   = config.filename({ trunc_width = 20 })
+                    local filename   = config.filename({ trunc_width = 110 })
                     local cursor_pos = config.cursor_pos_min({ trunc_width = 75 })
                     return MiniStatusline.combine_groups({
                         { hl = 'MiniStatuslineDevinfoB', strings = { filename } },
