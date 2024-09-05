@@ -1,3 +1,17 @@
+local ok, _ = pcall(require, "telescope")
+if not ok then
+    local empty = function()
+        vim.notify("failed to load telescope, try restarting neovim Kappa", vim.log.levels.ERROR)
+    end
+    return {
+        project_files = empty,
+        change_dir = empty,
+        get_nvim = empty,
+        hidden = empty,
+        get_word = empty
+    }
+end
+
 local builtin = require "telescope.builtin"
 local pickers = require "telescope.pickers"
 local finders = require "telescope.finders"
