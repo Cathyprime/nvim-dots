@@ -52,7 +52,6 @@ require("mason-lspconfig").setup({
         lsp_funcs.default_setup,
         jdtls = disabled,
         rust_analyzer = disabled,
-        -- tsserver = lsp_funcs.tsserver,
         lua_ls = lsp_funcs.lua_ls,
         omnisharp = function()
             require("lspconfig").omnisharp.setup({

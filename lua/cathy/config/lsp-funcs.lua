@@ -52,6 +52,9 @@ end
 return {
     on_attach = attach,
     default_setup = function(server)
+        if server == "tsserver" then
+            server = "ts_ls"
+        end
         lspconfig[server].setup({
             on_attach = attach,
             capabilities = vim.tbl_deep_extend(
@@ -103,30 +106,6 @@ return {
             end,
             settings = {
                 Lua = {}
-            }
-        })
-    end,
-    tsserver = function()
-        require("lspconfig").tsserver.setup({
-            on_attach = attach,
-            settings = {
-                typescript = {
-                    format = {
-                        indentSize = vim.o.shiftwidth,
-                        convertTabsToSpaces = vim.o.expandtab,
-                        tabSize = vim.o.tabstop,
-                    },
-                },
-                javascript = {
-                    format = {
-                        indentSize = vim.o.shiftwidth,
-                        convertTabsToSpaces = vim.o.expandtab,
-                        tabSize = vim.o.tabstop,
-                    },
-                },
-                completions = {
-                    completeFunctionCalls = true,
-                },
             }
         })
     end,
