@@ -43,7 +43,7 @@ require("mason-lspconfig").setup({
         "jdtls",
         "jsonls",
         "lua_ls",
-        -- "rust_analyzer",
+        "rust_analyzer",
         "tailwindcss",
         "tsserver",
         "yamlls",
