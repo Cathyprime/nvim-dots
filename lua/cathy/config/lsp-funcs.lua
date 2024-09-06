@@ -49,14 +49,20 @@ local attach = function(client, bufnr, alt_keys)
     end
 end
 
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(ev)
+        attach(vim.lsp.get_client_by_id(ev.data.client_id, ev.buf))
+    end,
+})
+
 return {
-    on_attach = attach,
+    -- on_attach = attach,
     default_setup = function(server)
         if server == "tsserver" then
             server = "ts_ls"
         end
         lspconfig[server].setup({
-            on_attach = attach,
+            -- on_attach = attach,
             capabilities = vim.tbl_deep_extend(
                 "force",
                 {},
