@@ -13,7 +13,8 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 ---@diagnostic disable-next-line
 cmp.setup({
     completion = {
-        completeopt = "menu,preview"
+        completeopt = "menu,preview",
+        autocomplete = false
     },
 
     preselect = cmp.PreselectMode.None,
@@ -82,7 +83,7 @@ cmp.setup({
 
     view = {
         docs = {
-            auto_open = false
+            auto_open = true
         }
     },
 
