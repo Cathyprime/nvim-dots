@@ -5,7 +5,6 @@ if ok then
             local client = vim.lsp.get_client_by_id(event.data.client_id)
             assert(client)
             client.server_capabilities.semanticTokensProvider = nil
-            require("cathy.config.lsp-funcs").on_attach(client, event.buf)
 
             local function map(opts)
                 vim.keymap.set(opts.mode, "<leader>c" .. opts.lhs, opts.rhs, { buffer = event.buf })
