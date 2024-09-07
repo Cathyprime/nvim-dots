@@ -11,6 +11,11 @@ return {
     config = function()
         require("cathy.config.treesitter")
         ---@diagnostic disable-next-line
-        require("ts_context_commentstring").setup({ enable_autocmd = false })
+        require("ts_context_commentstring").setup({
+            enable_autocmd = false,
+            languages = {
+                c = { __default = "// %s", __multiline = "/* %s */" }
+            }
+        })
     end
 }
