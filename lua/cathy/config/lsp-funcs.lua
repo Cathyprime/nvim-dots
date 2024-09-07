@@ -51,7 +51,11 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
-        attach(vim.lsp.get_client_by_id(ev.data.client_id, ev.buf))
+        if vim.b["alt_lsp_maps"] then
+            attach(vim.lsp.get_client_by_id(ev.data.client_id), ev.buf, vim.b["alt_lsp_maps"])
+        else
+            attach(vim.lsp.get_client_by_id(ev.data.client_id), ev.buf)
+        end
     end,
 })
 
@@ -62,7 +66,7 @@ return {
             server = "ts_ls"
         end
         lspconfig[server].setup({
-            -- on_attach = attach,
+            -- on_attach = function() end,
             capabilities = vim.tbl_deep_extend(
                 "force",
                 {},
