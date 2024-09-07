@@ -1,6 +1,7 @@
 vim.g.mapleader = vim.keycode "<space>"
 vim.g.localleader = [[\]]
 vim.o.background = "light"
+vim.cmd[[packadd! termdebug]]
 
 local rocks_config = {
     rocks_path = vim.fn.stdpath("data") .. "/rocks",
