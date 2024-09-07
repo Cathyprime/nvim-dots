@@ -139,7 +139,7 @@ map("n", "ZQ", function()
 end)
 
 -- misc
-map("n", "U", "<c-r>")
+map("n", "U", "<cmd>:earlier 1f<cr>")
 map("n", "X", [[0"_D]])
 map("x", "X", [[:norm 0"_D<cr>]])
 map("n", "gp", "`[v`]")
