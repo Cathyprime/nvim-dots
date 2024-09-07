@@ -47,7 +47,6 @@ return {
     },
     {
         "kylechui/nvim-surround",
-        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
         config = function()
             vim.api.nvim_create_autocmd("InsertEnter", {
                 once = true,
