@@ -36,6 +36,7 @@ return {
         local actions_state = require("telescope.actions.state")
         local fb_actions = require("telescope").extensions.file_browser.actions
         local oil = require("oil")
+        local os_sep = require("plenary.path").path.sep
 
         local on_tab = function(prompt_bufnr)
             local current_picker = actions_state.get_current_picker(prompt_bufnr)
@@ -51,12 +52,15 @@ return {
             local current_picker = actions_state.get_current_picker(prompt_bufnr)
             local entry = current_picker:get_selection()
             if entry == nil then
-                local prompt = current_picker:_get_prompt()
-                if prompt:match("/$") then
+                local finder = current_picker.finder
+                local input = (finder.files and finder.path or finder.cwd) .. os_sep .. current_picker:_get_prompt()
+                if input:match("/$") then
                     fb_actions.create_from_prompt(prompt_bufnr)
+                    actions.close(prompt_bufnr)
+                    oil.open(input)
                 else
                     actions.close(prompt_bufnr)
-                    vim.cmd(string.format("edit %s", prompt))
+                    vim.cmd(string.format("edit %s", input))
                 end
             elseif entry.is_dir then
                 actions.close(prompt_bufnr)
