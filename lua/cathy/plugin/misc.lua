@@ -244,6 +244,7 @@ return {
                 { "<c-f>", function() grapple.select({ index = 1 }) end },
                 { "<c-s>", function() grapple.select({ index = 2 }) end },
                 { "<c-n>", function() grapple.select({ index = 3 }) end },
+                { "<c-h>", function() grapple.select({ index = 4 }) end },
                 { "<c-s-a>", function() grapple.cycle_scopes("next") end },
                 { "<c-s-x>", function() grapple.cycle_scopes("prev") end },
                 { "<c-s-f>", function() grapple.cycle_tags("next") end },
