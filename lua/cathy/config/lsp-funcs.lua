@@ -62,9 +62,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 return {
     -- on_attach = attach,
     default_setup = function(server)
-        if server == "tsserver" then
-            server = "ts_ls"
-        end
         lspconfig[server].setup({
             -- on_attach = function() end,
             capabilities = vim.tbl_deep_extend(

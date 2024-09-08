@@ -1,4 +1,4 @@
-vim.g.mapleader = vim.keycode "<space>"
+vim.g.mapleader = " "
 vim.g.localleader = [[\]]
 vim.o.background = "light"
 vim.cmd[[packadd! termdebug]]
