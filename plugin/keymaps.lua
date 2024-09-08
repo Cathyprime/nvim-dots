@@ -203,7 +203,7 @@ map("c", "<c-f>", function()
 end, { expr = true })
 
 -- quick search and replace keymaps
-require("substitute")
+require("cathy.substitute")
 -- map("v", "gs", [[y:.,$s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 -- map("v", "gS", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 

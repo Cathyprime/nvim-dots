@@ -64,16 +64,16 @@ end
 ---@return nil
 function M.substitute_callback_half_ass()
     do_replace()
-    vim.cmd(string.format(":'[,']s/%s/%s/ge", cache.query, cache.replace))
+    vim.cmd(string.format(":'[,']S/%s/%s/ge", cache.query, cache.replace))
     vim.cmd("stopinsert")
 end
 
 function M.substitute_callback()
     do_query()
     do_replace()
-    vim.cmd(string.format(":'[,']s/%s/%s/ge", cache.query, cache.replace))
+    vim.cmd(string.format(":'[,']S/%s/%s/ge", cache.query, cache.replace))
     vim.cmd("stopinsert")
-    vim.go.operatorfunc = "v:lua.require'substitute'.substitute_callback_half_ass"
+    vim.go.operatorfunc = "v:lua.require'cathy.substitute'.substitute_callback_half_ass"
     return 'g@'
 end
 
@@ -85,11 +85,11 @@ function M.visual_replace()
 end
 
 vim.keymap.set("n", "gs", function()
-    return M.get_word("v:lua.require'substitute'.substitute_callback", false)
+    return M.get_word("v:lua.require'cathy.substitute'.substitute_callback", false)
 end, opts)
 
 vim.keymap.set("n", "gss", function()
-    return M.get_word("v:lua.require'substitute'.substitute_callback", true)
+    return M.get_word("v:lua.require'cathy.substitute'.substitute_callback", true)
 end, opts)
 
 vim.keymap.set("x", "gs", function() return M.visual_replace() end, opts)

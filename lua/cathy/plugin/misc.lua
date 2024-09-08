@@ -16,7 +16,7 @@ end
 local function map(lhs, rhs)
     vim.keymap.set("n", "<leader>h" .. lhs, rhs)
 end
-local track = require("track")
+local track = require("cathy.track")
 map("a", track.toggle_label)
 map("c", track.clear_labels)
 map("e", track.edit_label)

@@ -1,4 +1,4 @@
-local text = require("track.text")
+local text = require("cathy.track.text")
 -- local color = require("track.color")
 
 return {
