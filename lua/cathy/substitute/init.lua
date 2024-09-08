@@ -18,6 +18,10 @@ local formats = {
     normal_abolish = [['[,']S/%s/%s/gec]],
 }
 
+local function reset()
+    cache.use_abolish = true
+end
+
 local function get_placeholder(visual)
     if visual then
         return cache.use_abolish and formats.visual_abolish or formats.visual
@@ -84,6 +88,7 @@ end
 ---@param linewise boolean?
 ---@return string
 function M.get_word(func, linewise)
+    reset()
     vim.go.operatorfunc = func
     if linewise then
         return "g@_"
@@ -113,6 +118,7 @@ end
 
 ---@return string?
 function M.visual_replace()
+    reset()
     if not do_query() then
         return "<esc>"
     end
