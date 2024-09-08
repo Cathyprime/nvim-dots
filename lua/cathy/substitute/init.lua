@@ -7,8 +7,28 @@ local opts = {
 
 local cache = {
     query = "",
-    replace = ""
+    replace = "",
+    use_abolish = true,
 }
+
+local formats = {
+    visual = ":s/%s/%s/gec<cr>",
+    visual_abolish = ":S/%s/%s/gec<cr>",
+    normal = [['[,']s/%s/%s/gec]],
+    normal_abolish = [['[,']S/%s/%s/gec]],
+}
+
+local function get_placeholder(visual)
+    if visual then
+        return cache.use_abolish and formats.visual_abolish or formats.visual
+    else
+        return cache.use_abolish and formats.normal_abolish or formats.normal
+    end
+end
+
+local function abolish()
+    vim.notify(cache.use_abolish and "Using abolish" or "Using default", vim.log.levels.INFO)
+end
 
 ---@return string
 local function query_prompt()
@@ -28,25 +48,36 @@ local function replace_prompt()
 end
 
 local function do_query()
-    local query = vim.fn.input({
+    local buf = vim.api.nvim_get_current_buf()
+    vim.keymap.set("c", "<c-g>", function()
+        cache.use_abolish = not cache.use_abolish
+        abolish()
+    end, { buffer = buf })
+
+    local ok, query = pcall(vim.fn.input, {
         cancelreturn = -99,
         prompt = query_prompt(),
     })
-    if query == -99 then
-        return
+
+    vim.keymap.del("c", "<c-g>", { buffer = buf })
+
+    if not ok or query == -99 then
+        return false
     end
     cache.query = query ~= "" and query or cache.query
+    return true
 end
 
 local function do_replace()
-    local replace = vim.fn.input({
+    local ok, replace = pcall(vim.fn.input, {
         cancelreturn = -99,
         prompt = replace_prompt(),
     })
-    if replace == -99 then
-        return
+    if not ok or replace == -99 then
+        return false
     end
     cache.replace = replace ~= "" and replace or cache.replace
+    return true
 end
 
 ---@param func string
@@ -64,14 +95,17 @@ end
 ---@return nil
 function M.substitute_callback_half_ass()
     do_replace()
-    vim.cmd(string.format(":'[,']S/%s/%s/ge", cache.query, cache.replace))
+    vim.cmd(string.format(get_placeholder(false), cache.query, cache.replace))
     vim.cmd("stopinsert")
 end
 
 function M.substitute_callback()
-    do_query()
-    do_replace()
-    vim.cmd(string.format(":'[,']S/%s/%s/ge", cache.query, cache.replace))
+    if do_query() then
+        do_replace()
+    else
+        return "<esc>"
+    end
+    vim.cmd(string.format(get_placeholder(false), cache.query, cache.replace))
     vim.cmd("stopinsert")
     vim.go.operatorfunc = "v:lua.require'cathy.substitute'.substitute_callback_half_ass"
     return 'g@'
@@ -79,9 +113,13 @@ end
 
 ---@return string?
 function M.visual_replace()
-    do_query()
-    do_replace()
-    return string.format(":s/%s/%s/gc<cr>", cache.query, cache.replace)
+    if not do_query() then
+        return "<esc>"
+    end
+    if not do_replace() then
+        return "<esc>"
+    end
+    return string.format(get_placeholder(true), cache.query, cache.replace)
 end
 
 vim.keymap.set("n", "gs", function()
