@@ -59,6 +59,7 @@ return {
         "williamboman/mason.nvim",
         "mfussenegger/nvim-dap",
         "rcarriga/nvim-dap-ui",
+        "nvim-neotest/nvim-nio",
     },
     keys = { { "<leader>z" } },
     config = function()
