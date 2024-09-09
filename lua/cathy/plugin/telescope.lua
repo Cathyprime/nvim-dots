@@ -133,7 +133,7 @@ return {
         { "<m-x>",            function() require("telescope.builtin").commands() end,             desc = "commands" },
         { "<leader>fo",       function() require("telescope.builtin").oldfiles() end,             desc = "oldfiles" },
         { "<leader>fh",       function() require("telescope.builtin").help_tags() end,            desc = "help" },
-        { "<leader>fp",       function() require("telescope").extensions.projects.projects() end, desc = "project files" },
+        { "<leader><leader>", function() require("telescope").extensions.projects.projects() end, desc = "project files" },
         { "<leader>fg",       function() require("telescope.builtin").live_grep() end,            desc = "grep" },
         { "z=",               function() require("telescope.builtin").spell_suggest() end,        desc = "spell suggestion" },
         {
