@@ -31,12 +31,12 @@ return {
         require("telescope").load_extension("file_browser")
     end,
     opts = function()
-        local telescope_config = require("util.telescope-config")
-        local actions = require("telescope.actions")
-        local actions_state = require("telescope.actions.state")
         local fb_actions = require("telescope").extensions.file_browser.actions
-        local oil = require("oil")
+        local telescope_config = require("util.telescope-config")
+        local actions_state = require("telescope.actions.state")
         local os_sep = require("plenary.path").path.sep
+        local actions = require("telescope.actions")
+        local oil = require("oil")
 
         local on_tab = function(prompt_bufnr)
             local current_picker = actions_state.get_current_picker(prompt_bufnr)
@@ -161,6 +161,7 @@ return {
                     hide_parent_dir = true,
                     create_from_prompt = false,
                     no_ignore = true,
+                    hidden = true,
                     quiet = true,
                     cwd = (function()
                         local pph = vim.fn.expand("%:p:h")

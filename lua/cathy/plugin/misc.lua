@@ -286,6 +286,10 @@ return {
             require("project_nvim").setup({
                 show_hidden = true,
                 detection_methods = { "pattern" },
+                exclude_dirs = {
+                    "~/.cargo/*",
+                    "~/.rustup/*",
+                },
                 patterns = {
                     ".git",
                     "_darcs",
