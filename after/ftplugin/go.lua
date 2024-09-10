@@ -14,3 +14,6 @@ local function map(lhs, rhs, opts, mode)
     vim.keymap.set(mode or "n", "<localleader>" .. lhs, rhs, opts)
 end
 map("e", "<cmd>GoIfErr<cr>")
+
+vim.b.dispatch = "go build ."
+vim.b.start = "go run ."

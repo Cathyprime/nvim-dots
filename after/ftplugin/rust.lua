@@ -9,3 +9,17 @@ vim.b["alt_lsp_maps"] = {
 
 vim.opt_local.expandtab = false
 vim.g.termdebugger = "rust-gdb"
+
+vim.b.dispatch = "cargo build"
+vim.b.start = "cargo run"
+vim.api.nvim_create_autocmd("BufEnter", {
+    once = true,
+    callback = function()
+        local path = vim.fn.split(vim.fn.getcwd(), "/")
+        vim.b.project_name = path[#path]
+    end,
+})
+
+vim.keymap.set("n", "<leader>z", function()
+    vim.cmd(string.format("Termdebug target/debug/%s", vim.b.project_name))
+end)
