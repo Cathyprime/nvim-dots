@@ -41,10 +41,12 @@ return {
         local on_tab = function(prompt_bufnr)
             local current_picker = actions_state.get_current_picker(prompt_bufnr)
             local entry = current_picker:get_selection()
-            if entry.is_dir then
-                fb_actions.change_cwd(prompt_bufnr)
-            else
-                current_picker:set_prompt(vim.fn.fnamemodify(entry.value, ":t"))
+            if entry then
+                if entry.is_dir then
+                    fb_actions.change_cwd(prompt_bufnr)
+                else
+                    current_picker:set_prompt(vim.fn.fnamemodify(entry.value, ":t"))
+                end
             end
         end
 
