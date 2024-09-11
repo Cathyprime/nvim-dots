@@ -124,6 +124,7 @@ map("x", "a_", ":<c-u>norm! F_vf_<cr>")
 
 -- clipboard
 map({ "n", "v" }, "<leader>y", [["+y]])
+map({ "n", "v" }, "<leader>gy", "<cmd>:%y+<cr>")
 map({ "n", "v" }, "<leader>Y", [["+y$]])
 map({ "n", "v" }, "<leader>p", [["+p]])
 map({ "n", "v" }, "<leader>P", [["+P]])
