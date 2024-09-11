@@ -21,7 +21,6 @@ map("n"       , "<esc>", "<cmd>close<cr>")
 map("n"       , "<c-p>",          "<nop>")
 
 local old_status = vim.opt.laststatus
-vim.api.nvim_win_set_height(0, 2)
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
 vim.opt.laststatus = 0

@@ -57,6 +57,7 @@ options.options = {
     cursorline = true,
     guicursor = "i-ci-ve:block",
     showcmdloc = "statusline",
+    cmdwinheight = 2,
     showtabline = 0,
     scrolloff = 8,
     smoothscroll = true,
