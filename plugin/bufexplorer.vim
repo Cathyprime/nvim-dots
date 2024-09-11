@@ -524,8 +524,8 @@ function! s:MapKeys()
     xnoremap <script> <silent> <nowait> <buffer> d             :call <SID>RemoveBuffer("delete")<CR>
     nnoremap <script> <silent> <nowait> <buffer> D             :call <SID>RemoveBuffer("wipe")<CR>
     xnoremap <script> <silent> <nowait> <buffer> D             :call <SID>RemoveBuffer("wipe")<CR>
-    nnoremap <script> <silent> <nowait> <buffer> f             :call <SID>SelectBuffer("split", "sb")<CR>
-    nnoremap <script> <silent> <nowait> <buffer> F             :call <SID>SelectBuffer("split", "st")<CR>
+    nnoremap <script> <silent> <nowait> <buffer> gf             :call <SID>SelectBuffer("split", "sb")<CR>
+    nnoremap <script> <silent> <nowait> <buffer> gF             :call <SID>SelectBuffer("split", "st")<CR>
     nnoremap <script> <silent> <nowait> <buffer> m             :call <SID>MRUListShow()<CR>
     nnoremap <script> <silent> <nowait> <buffer> o             :call <SID>SelectBuffer()<CR>
     nnoremap <script> <silent> <nowait> <buffer> p             :call <SID>ToggleSplitOutPathName()<CR>
@@ -537,8 +537,8 @@ function! s:MapKeys()
     nnoremap <script> <silent> <nowait> <buffer> t             :call <SID>SelectBuffer("tab")<CR>
     nnoremap <script> <silent> <nowait> <buffer> T             :call <SID>ToggleShowTabBuffer()<CR>
     nnoremap <script> <silent> <nowait> <buffer> u             :call <SID>ToggleShowUnlisted()<CR>
-    nnoremap <script> <silent> <nowait> <buffer> v             :call <SID>SelectBuffer("split", "vr")<CR>
-    nnoremap <script> <silent> <nowait> <buffer> V             :call <SID>SelectBuffer("split", "vl")<CR>
+    nnoremap <script> <silent> <nowait> <buffer> gv             :call <SID>SelectBuffer("split", "vr")<CR>
+    nnoremap <script> <silent> <nowait> <buffer> gV             :call <SID>SelectBuffer("split", "vl")<CR>
 
     for k in ["G", "n", "N", "L", "M", "H"]
         execute "nnoremap <buffer> <silent>" k ":keepjumps normal!" k."<CR>"
