@@ -8,6 +8,13 @@ options.options = {
             ">"
         }
     },
+    diffopt = {
+        append = {
+            "iwhite",
+            "algorithm:histogram",
+            "indent-heuristic",
+        }
+    },
     spell = true,
     spl = "en_us,en_gb,pl",
     tabstop = 4,
