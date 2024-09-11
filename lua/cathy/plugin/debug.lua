@@ -3,37 +3,39 @@ vim.g.termdebug_useFloatingHover = 0
 
 local termdebug = vim.api.nvim_create_augroup("TermDebug", {})
 
-vim.api.nvim_create_autocmd("User", {
-    pattern = "TermdebugStartPre",
-    group = termdebug,
-    callback = function()
-        vim.keymap.set("n", "<cr>", "<cmd>Break<cr>")
-        vim.keymap.set("n", "C", "<cmd>Clear<cr>")
-    end,
-})
+local function set_autocmds_for_termdebug()
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "TermdebugStartPre",
+        group = termdebug,
+        callback = function()
+            vim.keymap.set("n", "<cr>", "<cmd>Break<cr>")
+            vim.keymap.set("n", "C", "<cmd>Clear<cr>")
+        end,
+    })
 
-vim.api.nvim_create_autocmd("User", {
-    pattern = "TermdebugStartPost",
-    group = termdebug,
-    callback = function()
-        vim.cmd("Var")
-        vim.api.nvim_win_set_height(0, 5)
-        vim.cmd("set winfixheight")
-        vim.cmd("set winfixbuf")
-        vim.schedule(function()
-            vim.cmd("Gdb")
-        end)
-    end,
-})
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "TermdebugStartPost",
+        group = termdebug,
+        callback = function()
+            vim.cmd("Var")
+            vim.api.nvim_win_set_height(0, 5)
+            vim.cmd("set winfixheight")
+            vim.cmd("set winfixbuf")
+            vim.schedule(function()
+                vim.cmd("Gdb")
+            end)
+        end,
+    })
 
-vim.api.nvim_create_autocmd("User", {
-    pattern = "TermdebugStopPre",
-    group = termdebug,
-    callback = function()
-        vim.keymap.del("n", "<cr>")
-        vim.keymap.del("n", "C")
-    end,
-})
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "TermdebugStopPre",
+        group = termdebug,
+        callback = function()
+            vim.keymap.del("n", "<cr>")
+            vim.keymap.del("n", "C")
+        end,
+    })
+end
 
 local cache = {
     netcoredbg_dll_path = "",
@@ -214,7 +216,12 @@ return {
 
         vim.keymap.set("n", "<leader>z", function()
             if isGDBFiletype(vim.o.filetype) then
-                vim.cmd("exec 'Termdebug' | wincmd p")
+                set_autocmds_for_termdebug()
+                if vim.b.termdebug_command then
+                    vim.cmd(vim.b.termdebug_command)
+                else
+                    vim.cmd("Termdebug")
+                end
             else
                 debug_hydra:activate()
             end

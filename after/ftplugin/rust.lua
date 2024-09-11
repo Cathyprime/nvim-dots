@@ -17,9 +17,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
         local path = vim.fn.split(vim.fn.getcwd(), "/")
         vim.b.project_name = path[#path]
+        vim.b.termdebug_command = string.format("Termdebug target/debug/%s", vim.b.project_name)
     end,
 })
-
-vim.keymap.set("n", "<leader>z", function()
-    vim.cmd(string.format("Termdebug target/debug/%s", vim.b.project_name))
-end)
