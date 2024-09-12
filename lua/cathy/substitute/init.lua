@@ -8,19 +8,15 @@ local opts = {
 local cache = {
     query = "",
     replace = "",
-    use_abolish = true,
+    use_abolish = false,
 }
 
 local formats = {
+    normal = vim.keycode":<c-u>'[,']s###g<left><left>",
+    normal_abolish = vim.keycode":<c-u>'[,']S###g<left><left>",
     visual = ":s/%s/%s/gec<cr>",
     visual_abolish = ":S/%s/%s/gec<cr>",
-    normal = [['[,']s/%s/%s/gec]],
-    normal_abolish = [['[,']S/%s/%s/gec]],
 }
-
-local function reset()
-    cache.use_abolish = true
-end
 
 local function get_placeholder(visual)
     if visual then
@@ -28,10 +24,6 @@ local function get_placeholder(visual)
     else
         return cache.use_abolish and formats.normal_abolish or formats.normal
     end
-end
-
-local function abolish()
-    vim.notify(cache.use_abolish and "Using abolish" or "Using default", vim.log.levels.INFO)
 end
 
 ---@return string
@@ -45,9 +37,9 @@ end
 
 local function replace_prompt()
     if cache.replace == "" then
-        return "Query replace "..cache.query.." with: "
+        return (cache.use_abolish and "[Using abolish] " or "") .. "Query replace "..cache.query.." with: "
     else
-        return "Query replacing "..cache.query.." with "..cache.replace..": "
+        return (cache.use_abolish and "[Using abolish] " or "") .. "Query replacing "..cache.query.." with "..cache.replace..": "
     end
 end
 
@@ -55,7 +47,6 @@ local function do_query()
     local buf = vim.api.nvim_get_current_buf()
     vim.keymap.set("c", "<c-g>", function()
         cache.use_abolish = not cache.use_abolish
-        abolish()
     end, { buffer = buf })
 
     local ok, query = pcall(vim.fn.input, {
@@ -84,41 +75,8 @@ local function do_replace()
     return true
 end
 
----@param func string
----@param linewise boolean?
----@return string
-function M.get_word(func, linewise)
-    reset()
-    vim.go.operatorfunc = func
-    if linewise then
-        return "g@_"
-    else
-        return "g@"
-    end
-end
-
----@return nil
-function M.substitute_callback_half_ass()
-    do_replace()
-    vim.cmd(string.format(get_placeholder(false), cache.query, cache.replace))
-    vim.cmd("stopinsert")
-end
-
-function M.substitute_callback()
-    if do_query() then
-        do_replace()
-    else
-        return "<esc>"
-    end
-    vim.cmd(string.format(get_placeholder(false), cache.query, cache.replace))
-    vim.cmd("stopinsert")
-    vim.go.operatorfunc = "v:lua.require'cathy.substitute'.substitute_callback_half_ass"
-    return 'g@'
-end
-
 ---@return string?
-function M.visual_replace()
-    reset()
+local function visual_replace()
     if not do_query() then
         return "<esc>"
     end
@@ -128,14 +86,39 @@ function M.visual_replace()
     return string.format(get_placeholder(true), cache.query, cache.replace)
 end
 
+function M.replace()
+    vim.api.nvim_feedkeys(get_placeholder(false), "m", false)
+    vim.go.operatorfunc = "v:lua.require'cathy.substitute'.replace"
+end
+
+local function meow(linewise, use_abolish)
+    cache.use_abolish = use_abolish
+    vim.go.operatorfunc = "v:lua.require'cathy.substitute'.replace"
+    if linewise then
+        return "g@_"
+    else
+        return "g@"
+    end
+end
+
 vim.keymap.set("n", "gs", function()
-    return M.get_word("v:lua.require'cathy.substitute'.substitute_callback", false)
+    return meow(false, false)
 end, opts)
 
 vim.keymap.set("n", "gss", function()
-    return M.get_word("v:lua.require'cathy.substitute'.substitute_callback", true)
+    return meow(true, false)
 end, opts)
 
-vim.keymap.set("x", "gs", function() return M.visual_replace() end, opts)
+vim.keymap.set("n", "gS", function()
+    return meow(false, true)
+end, opts)
+
+vim.keymap.set("n", "gSS", function()
+    return meow(true, true)
+end, opts)
+
+vim.keymap.set("x", "gs", function()
+    return visual_replace()
+end, opts)
 
 return M
