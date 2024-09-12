@@ -21,6 +21,7 @@ map("n"       , "<esc>", "<cmd>close<cr>")
 map("n"       , "<c-p>",          "<nop>")
 
 local old_status = vim.opt.laststatus
+local old_cmdheight = vim.opt.cmdheight
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
 vim.opt.laststatus = 0
@@ -42,7 +43,7 @@ vim.api.nvim_create_autocmd("CmdwinLeave", {
     once = true,
     callback = function()
         vim.opt.laststatus = old_status
-        vim.opt.cmdheight = 1
+        vim.opt.cmdheight = old_cmdheight
     end
 })
 
