@@ -13,7 +13,7 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 ---@diagnostic disable-next-line
 cmp.setup({
     completion = {
-        completeopt = "menu,preview,noinsert,noselect",
+        completeopt = "menu,preview,noinsert",
         autocomplete = false
     },
 

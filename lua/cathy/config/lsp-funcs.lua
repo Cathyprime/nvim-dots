@@ -105,7 +105,6 @@ return {
                             "${3rd}/luv/library",
                             "${3rd}/busted/library",
                             "$HOME/.config/nvim/lua/",
-                            vim.g.rocks_nvim.rocks_path .. "/share/lua/5.1/",
                         },
                     }
                 })
