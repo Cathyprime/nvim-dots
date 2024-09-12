@@ -2,6 +2,17 @@ local function augroup(name)
     return vim.api.nvim_create_augroup(string.format("cathy_%s", name), { clear = true })
 end
 
+-- search highlights
+vim.api.nvim_create_autocmd("CursorHold", { command = "set nohlsearch" })
+vim.keymap.set("n", "n", "<cmd>set hlsearch<cr>n", { silent = true })
+vim.keymap.set("n", "N", "<cmd>set hlsearch<cr>N", { silent = true })
+vim.keymap.set("n", "/", "<cmd>set hlsearch<cr>/")
+vim.keymap.set("n", "?", "<cmd>set hlsearch<cr>?")
+vim.keymap.set("n", "*", "<cmd>set hlsearch<cr>*")
+vim.keymap.set("n", "g*", "<cmd>:set hlsearch<cr>g*")
+vim.keymap.set("n", "#", "<cmd>set hlsearch<cr>#")
+vim.keymap.set("n", "g#", "<cmd>:set hlsearch<cr>g#")
+
 -- start minibuffer
 vim.api.nvim_create_autocmd("CmdwinEnter", {
     once = false,
