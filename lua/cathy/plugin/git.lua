@@ -57,7 +57,7 @@ return {
         "NeogitOrg/neogit",
         keys = {
             { "ZG",  function()
-                require("neogit").open({ kind = "split" })
+                require("neogit").open({ kind = "tab" })
             end }
         },
         config = true,
