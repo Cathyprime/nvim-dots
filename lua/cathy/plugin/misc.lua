@@ -289,6 +289,7 @@ return {
                 exclude_dirs = {
                     "~/.cargo/*",
                     "~/.rustup/*",
+                    "~/Polygon/*",
                 },
                 patterns = {
                     ".git",
