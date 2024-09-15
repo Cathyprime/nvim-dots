@@ -202,7 +202,6 @@ map("c", "<c-f>", function()
     vim.opt.foldmethod = "manual"
     return "<c-f>"
 end, { expr = true })
-
 map("c", "<space>", function()
     local cmdtype = vim.fn.getcmdtype()
     if cmdtype == "/" or cmdtype == "?" then
@@ -210,6 +209,7 @@ map("c", "<space>", function()
     end
     return "<space>"
 end, { silent = false, expr = true })
+vim.keymap.set("ca", "G", "Git")
 
 -- quick search and replace keymaps
 require("cathy.substitute")
