@@ -1,5 +1,5 @@
 return {
-    "nvimtools/hydra.nvim",
+    "Cathyprime/hydra.nvim",
     config = function()
         local Hydra = require("hydra")
         Hydra({
