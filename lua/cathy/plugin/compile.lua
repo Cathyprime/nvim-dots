@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
                     args = vim.b.start or ""
                 end
                 vim.b["start"] = args
-                vim.fn["dispatch#start_command"](bang, "-wait=always "..args, count, mods)
+                vim.fn["dispatch#start_command"](bang, args, count, mods)
             end,
             {
                 bang = true,
@@ -82,14 +82,6 @@ return {
         config = function()
             vim.keymap.set("n", "Zc", "<cmd>AbortDispatch<cr>", { silent = true  })
             vim.keymap.set("n", "ZC", "<cmd>AbortDispatch<cr>", { silent = true  })
-            vim.keymap.set("n", "ZF", "<cmd>Focus!<cr>",        { silent = true  })
-            vim.keymap.set("n", "Zf", ":Focus ",                { silent = false })
-            vim.keymap.set("n", "Zm", "<cmd>Make<cr>",          { silent = true  })
-            vim.keymap.set("n", "ZM", "<cmd>Make<cr>",          { silent = true  })
-            vim.keymap.set("n", "Zd", "<cmd>Dispatch<cr>",      { silent = true  })
-            vim.keymap.set("n", "ZD", ":Dispatch ",             { silent = false })
-            vim.keymap.set("n", "ZS", ":Start ",                { silent = false })
-            vim.keymap.set("n", "Zs", "<cmd>Start<cr>",         { silent = true  })
         end,
     },
 }
