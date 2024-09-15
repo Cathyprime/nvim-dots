@@ -203,6 +203,14 @@ map("c", "<c-f>", function()
     return "<c-f>"
 end, { expr = true })
 
+map("c", "<space>", function()
+    local cmdtype = vim.fn.getcmdtype()
+    if cmdtype == "/" or cmdtype == "?" then
+        return ".*"
+    end
+    return "<space>"
+end, { silent = false, expr = true })
+
 -- quick search and replace keymaps
 require("cathy.substitute")
 -- map("v", "gs", [[y:.,$s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
