@@ -1,13 +1,13 @@
 local function jump_quickfix(options)
-  return function()
-    require("demicolon.jump").repeatably_do(function(opts)
-      if opts.forward then
-        vim.cmd([[execute "normal! \<Plug>(qf_qf_next)"]])
-      else
-        vim.cmd([[execute "normal! \<Plug>(qf_qf_previous)"]])
-      end
-    end, options)
-  end
+    return function()
+        require("demicolon.jump").repeatably_do(function(opts)
+            if opts.forward then
+                vim.cmd([[execute "normal! \<Plug>(qf_qf_next)"]])
+            else
+                vim.cmd([[execute "normal! \<Plug>(qf_qf_previous)"]])
+            end
+        end, options)
+    end
 end
 
 return {
@@ -62,7 +62,9 @@ return {
                 desc = "Prev quickfix item"
             },
             { "<leader>q", function()
-                require("zen-mode").close()
+                if require("zen-mode.view").is_open() then
+                    require("zen-mode").close()
+                end
                 if vim.g.dispatch_ready then
                     vim.cmd("Copen")
                 else
