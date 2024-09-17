@@ -13,14 +13,14 @@ local function trouble_jump(options)
     end
 end
 
-local function map(lhs, rhs)
-    vim.keymap.set("n", "<leader>h" .. lhs, rhs)
-end
-local track = require("cathy.track")
-map("a", track.toggle_label)
-map("c", track.clear_labels)
-map("e", track.edit_label)
-vim.keymap.set("n", "<leader>fa", track.search_labels, { desc = "annotations" })
+-- local function map(lhs, rhs)
+--     vim.keymap.set("n", "<leader>h" .. lhs, rhs)
+-- end
+-- local track = require("cathy.track")
+-- map("a", track.toggle_label)
+-- map("c", track.clear_labels)
+-- map("e", track.edit_label)
+-- vim.keymap.set("n", "<leader>fa", track.search_labels, { desc = "annotations" })
 
 return {
     {
@@ -96,15 +96,6 @@ return {
         keys = {
             { "<leader>u", "<cmd>UndotreeToggle<cr>" }
         }
-    },
-    {
-        "kevinhwang91/nvim-fundo",
-        dependencies = {
-            "kevinhwang91/promise-async"
-        },
-        config = function()
-            require("fundo").install()
-        end
     },
     {
         "Vigemus/iron.nvim",
