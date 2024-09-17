@@ -210,6 +210,7 @@ return {
                     "~/.cargo/*",
                     "~/.rustup/*",
                     "~/Polygon/*",
+                    "*node_modules/*",
                 },
                 patterns = {
                     ".git",
@@ -219,6 +220,7 @@ return {
                     ".svn",
                     "*.csproj",
                     "Makefile",
+                    "README.md",
                     "package.json",
                     "build.sbt",
                     "main.c",
