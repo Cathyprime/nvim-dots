@@ -260,6 +260,9 @@ return {
         end
 
         vim.keymap.set("n", "<leader>z", function()
+            if require("zen-mode.view").is_open() then
+                require("zen-mode").close()
+            end
             if isGDBFiletype(vim.o.filetype) then
                 set_autocmds_for_termdebug()
                 if vim.b.termdebug_command then
