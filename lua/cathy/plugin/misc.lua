@@ -24,54 +24,6 @@ vim.keymap.set("n", "<leader>fa", track.search_labels, { desc = "annotations" })
 
 return {
     {
-        "rktjmp/playtime.nvim",
-        cmd = "Playtime"
-    },
-    {
-        "jbyuki/venn.nvim",
-        keys = {
-            { "<leader>v" }
-        },
-        config = function()
-            local hint = [[
-  Arrow^^^^^^
-  ^ ^ _K_ ^ ^   Select region with <C-v>  ^
-  _H_ ^ ^ _L_   _f_: surround it with box
-  ^ ^ _J_ ^ ^                      _<Esc>_
-]]
-
-            require("hydra")({
-                name = "venn",
-                mode = "n",
-                hint = hint,
-                config = {
-                    color = "pink",
-                    invoke_on_body = true,
-                    hint = {
-                        float_opts = {
-                            border = "rounded",
-                        }
-                    },
-                    on_enter = function()
-                        vim.opt_local.virtualedit = "all"
-                    end,
-                    on_exit = function()
-                        vim.opt_local.virtualedit = ""
-                    end
-                },
-                body = "<leader>v",
-                heads = {
-                    { "H",     "<C-v>h:VBox<CR>" },
-                    { "J",     "<C-v>j:VBox<CR>" },
-                    { "K",     "<C-v>k:VBox<CR>" },
-                    { "L",     "<C-v>l:VBox<CR>" },
-                    { "f",     ":VBox<CR>",      { mode = "v" } },
-                    { "<Esc>", nil,              { exit = true } },
-                }
-            })
-        end
-    },
-    {
         "Eandrju/cellular-automaton.nvim",
         cmd = "CellularAutomaton"
     },
@@ -250,23 +202,6 @@ return {
                 { "<c-s-f>", function() grapple.cycle_tags("next") end },
                 { "<c-s-s>", function() grapple.cycle_tags("prev") end }
             }
-        end
-    },
-    {
-        "mistricky/codesnap.nvim",
-        build = "make",
-        cmd = {
-            "CodeSnap",
-            "CodeSnapSave",
-            "CodeSnapHighlight",
-            "CodeSnapSaveHighlight",
-        },
-        config = function()
-            require("codesnap").setup({
-                has_breadcrumbs = true,
-                save_path = os.getenv("HOME") .. "/Pictures/",
-                watermark = ""
-            })
         end
     },
     {
