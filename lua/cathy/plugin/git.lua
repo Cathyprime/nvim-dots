@@ -57,6 +57,7 @@ return {
         "NeogitOrg/neogit",
         keys = {
             { "ZG",  function()
+                require("zen-mode").close()
                 require("neogit").open({ kind = "tab" })
             end }
         },

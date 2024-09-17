@@ -62,6 +62,7 @@ return {
                 desc = "Prev quickfix item"
             },
             { "<leader>q", function()
+                require("zen-mode").close()
                 if vim.g.dispatch_ready then
                     vim.cmd("Copen")
                 else
