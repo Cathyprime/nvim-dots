@@ -196,12 +196,6 @@ return {
         end
     },
     {
-        "willothy/flatten.nvim",
-        config = true,
-        lazy = false,
-        priority = 1001,
-    },
-    {
         "NStefan002/screenkey.nvim",
         lazy = false,
         version = "*",
