@@ -22,28 +22,54 @@ return {
     },
     {
         "kylechui/nvim-surround",
-        config = function()
-            vim.api.nvim_create_autocmd("InsertEnter", {
-                once = true,
-                callback = function()
-                    ---@diagnostic disable-next-line
-                    require("nvim-surround").setup({
-                        keymaps = {
-                            insert = false,
-                            insert_line = false,
-                            normal = "s",
-                            normal_cur = "ss",
-                            normal_line = "S",
-                            normal_cur_line = "SS",
-                            visual = "s",
-                            visual_line = "S",
-                            delete = "ds",
-                            change = "cs",
-                            change_line = "cS",
-                        },
-                    })
-                end,
-            })
-        end
+        event = "InsertEnter",
+        opts = {
+            keymaps = {
+                insert = false,
+                insert_line = false,
+                normal = "s",
+                normal_cur = "ss",
+                normal_line = "S",
+                normal_cur_line = "SS",
+                visual = "s",
+                visual_line = "S",
+                delete = "ds",
+                change = "cs",
+                change_line = "cS",
+            },
+            surrounds = {
+                t = {
+                    add = function()
+                        local type = require("nvim-surround.config").get_input("Enter the type name: ")
+                        return { { type .. "<" }, { ">" }}
+                    end,
+                    find = function()
+                        local c = require("nvim-surround.config")
+                        if vim.g.loaded_nvim_treesitter then
+                            local selection = c.get_selection({
+                                query = {
+                                    capture = "@type.outer",
+                                    type = "textobjects",
+                                }
+                            })
+                            if selection then
+                                return selection
+                            end
+                        end
+                        return c.get_selection({ pattern = "[^=%s%<%>{}]+%b()" })
+                    end,
+                    delete = "^(.-%<)().-(%>)()$",
+                    change = {
+                        target = "^.-([%w_]+)()%<.-%>()()$",
+                        replacement = function()
+                            local result = require("nvim-surround.config").get_input("Enter the type name: ")
+                            if result then
+                                return { { result }, { "" } }
+                            end
+                        end
+                    }
+                }
+            }
+        },
     }
 }
