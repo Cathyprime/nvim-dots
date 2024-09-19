@@ -1,4 +1,6 @@
 local ls = require("luasnip")
+local gen = require("cathy.sniper")
+local utils = require("cathy.sniper.utils")
 local s = ls.snippet
 local sn = ls.snippet_node
 local t = ls.text_node
@@ -6,24 +8,7 @@ local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
 local tsp = require("luasnip.extras.treesitter_postfix")
--- local r = ls.restore_node
--- local events = require("luasnip.util.events")
--- local ai = require("luasnip.nodes.absolute_indexer")
--- local extras = require("luasnip.extras")
--- local l = extras.lambda
--- local rep = extras.rep
--- local p = extras.partial
--- local m = extras.match
--- local n = extras.nonempty
--- local dl = extras.dynamic_lambda
 local fmt = require("luasnip.extras.fmt").fmt
--- local fmta = require("luasnip.extras.fmt").fmta
--- local conds = require("luasnip.extras.expand_conditions")
--- local postfix = require("luasnip.extras.postfix").postfix
--- local types = require("luasnip.util.types")
--- local parse = require("luasnip.util.parser").parse_snippet
--- local ms = ls.multi_snippet
--- local k = require("luasnip.nodes.key_indexer").new_key
 
 local expr_query = [[
 [
@@ -35,30 +20,6 @@ local expr_query = [[
     (string_literal)
 ] @prefix
 ]]
-
-local function replace_all(match, template)
-    match = vim.F.if_nil(match, "")
-    ---@type string
-    local match_str = ""
-    if type(match) == "table" then
-        match_str = table.concat(match, "\n")
-    else
-        match_str = match
-    end
-
-    local ret = template:gsub("%%s", match_str)
-    local ret_lines = vim.split(ret, "\n", {
-        trimempty = false,
-    })
-
-    return ret_lines
-end
-
-local function build_simple_replace_callback(replaced)
-    return function(match)
-        return replace_all(match, replaced)
-    end
-end
 
 local expr_node_types = {
     ["struct_expression"] = true,
@@ -86,64 +47,32 @@ local expr_or_type_query = [[
 ] @prefix
 ]]
 
-local function expr_or_type_tsp(trig, typename, expr_callback, type_callback)
-    local name = ("(%s) %s"):format(trig, typename)
-    return tsp.treesitter_postfix({
-        trig = trig,
-        name = name,
-        wordTrig = false,
-        reparseBuffer = "live",
-        matchTSNode = {
-            query = expr_or_type_query,
-            query_lang = "rust",
-        },
-    }, {
-        f(function(_, parent)
-            local env = parent.snippet.env
-            local data = env.LS_TSDATA
-            if expr_node_types[data.prefix.type] then
-                return expr_callback(env.LS_TSMATCH)
-            else
-                return type_callback(env.LS_TSMATCH)
-            end
-        end),
-    })
-end
+local expr_or_type_tsp = gen.one_or_other(expr_or_type_query, expr_node_types)
 
 local function new_expr_or_type_tsp(trig, typename)
     local expr_callback = function(match)
-        return replace_all(match, typename .. "::new(%s)")
+        return utils.replace_all(match, typename .. "::new(%s)")
     end
     local type_callback = function(match)
-        return replace_all(match, typename .. "<%s>")
+        return utils.replace_all(match, typename .. "<%s>")
     end
     return expr_or_type_tsp(trig, typename, expr_callback, type_callback)
 end
 
-local function begin_line_snip(trig, expansion)
-    local trigger = "^%s*"..trig.."*$"
-    local args = {
-        trig = trig,
-        snippetType = "autosnippet",
-        condition = function(line_to_cursor, matched_trigger, _)
-            if matched_trigger == nil or line_to_cursor == nil then
-                return false
-            end
-            return line_to_cursor:match(trigger)
-        end
-    }
-    return s(args, expansion)
-end
+local expr_surround = gen.expr_surround_gen({
+    query = expr_query,
+    query_lang = "rust"
+})
 
 return {
-    begin_line_snip("pc ", { t"pub(crate) " }),
-    begin_line_snip("ps ", { t"pub(super) " }),
-    begin_line_snip("#ii", { t"#[inline]" }),
-    begin_line_snip("#ia", { t"#[inline(always)]" }),
-    begin_line_snip("#tc", { t"#[cfg(test)]" }),
-    begin_line_snip("#tt", { t"#[test]" }),
-    begin_line_snip("#d", fmt("#[derive({})]", { i(1) })),
-    begin_line_snip("##", fmt("#[{}]", i(1))),
+    gen.begin_line_snip("pc ", { t"pub(crate) " }),
+    gen.begin_line_snip("ps ", { t"pub(super) " }),
+    gen.begin_line_snip("#ii", { t"#[inline]" }),
+    gen.begin_line_snip("#ia", { t"#[inline(always)]" }),
+    gen.begin_line_snip("#tc", { t"#[cfg(test)]" }),
+    gen.begin_line_snip("#tt", { t"#[test]" }),
+    gen.begin_line_snip("#d", fmt("#[derive({})]", { i(1) })),
+    gen.begin_line_snip("##", fmt("#[{}]", i(1))),
     new_expr_or_type_tsp(".rc", "Rc"),
     new_expr_or_type_tsp(".arc", "Arc"),
     new_expr_or_type_tsp(".box", "Box"),
@@ -152,6 +81,26 @@ return {
     new_expr_or_type_tsp(".cell", "Cell"),
     new_expr_or_type_tsp(".refcell", "RefCell"),
     new_expr_or_type_tsp(".vec", "Vec"),
+    expr_surround(".print", [[println!("{:?}", %s)]]),
+    expr_surround(".dbg", [[dbg!(%s)]]),
+    expr_or_type_tsp(
+        ".ok",
+        "Ok(?)",
+        utils.simple_replace_callback("Ok(%s)"),
+        utils.simple_replace_callback("Result<%s, ()>")
+    ),
+    expr_or_type_tsp(
+        ".err",
+        "Err(?)",
+        utils.simple_replace_callback("Err(%s)"),
+        utils.simple_replace_callback("Result<(), %s>")
+    ),
+    expr_or_type_tsp(
+        ".some",
+        "Some(?)",
+        utils.simple_replace_callback("Some(%s)"),
+        utils.simple_replace_callback("Option<%s>")
+    ),
 
     s({ trig = "fn ", snippetType = "autosnippet", wordTrig = true }, fmt([[
     fn {funame}({arg}){arrow}{retype} {{
@@ -182,42 +131,5 @@ return {
     })),
 
     s("p", fmt([[println!({});]], {i(0)})),
-
-    expr_or_type_tsp(
-        ".ok",
-        "Ok(?)",
-        build_simple_replace_callback("Ok(%s)"),
-        build_simple_replace_callback("Result<%s, ()>")
-    ),
-    expr_or_type_tsp(
-        ".err",
-        "Err(?)",
-        build_simple_replace_callback("Err(%s)"),
-        build_simple_replace_callback("Result<(), %s>")
-    ),
-    expr_or_type_tsp(
-        ".some",
-        "Some(?)",
-        build_simple_replace_callback("Some(%s)"),
-        build_simple_replace_callback("Option<%s>")
-    ),
-
-    tsp.treesitter_postfix({
-        trig = ".print",
-        name = [[(.println) println!("{:?}", ?)]],
-        wordTrig = false,
-        reparseBuffer = "live",
-        matchTSNode = {
-            query = expr_query,
-            query_lang = "rust",
-        },
-    }, {
-        f(function(_, parent)
-            return replace_all(
-                parent.snippet.env.LS_TSMATCH,
-                [[println!("{:?}", %s)]]
-            )
-        end, {}),
-    }),
 
 }
