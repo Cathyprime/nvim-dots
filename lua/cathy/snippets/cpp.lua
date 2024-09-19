@@ -278,31 +278,80 @@ local nodes = {
 
 local type_query = [[
 [
+  (qualified_identifier
+    name: (type_identifier))
   (type_identifier)
+  (primitive_type)
 ] @prefix
 ]]
 
 local function type(trig, replacement)
     return tsp({
-        trig = trig,
+        trig = trig .. " ",
         wordTrig = false,
         reparseBuffer = "live",
         snippetType = "autosnippet",
         matchTSNode = {
             query = type_query,
             query_lang = nodes.query_lang,
+            select = "longest"
         },
     }, {
         f(function(_, parent)
-            return replace_all(parent.snippet.env.LS_TSMATCH, replacement)
+            return replace_all(parent.snippet.env.LS_TSMATCH, replacement .. " ")
         end, {}),
     })
 end
 
+local expr_query = [[
+[
+  (call_expression)
+  (identifier)
+  (template_function)
+  (subscript_expression)
+  (field_expression)
+  (user_defined_literal)
+] @prefix
+]]
+
+local function expr_tsp(trig, expand)
+    local name = ("(%s) %s"):format(trig, expand)
+    local replaced = expand:gsub("?", "%%s")
+
+    return tsp({
+        trig = trig,
+        name = name,
+        wordTrig = false,
+        reparseBuffer = "live",
+        matchTSNode = {
+            query = expr_query,
+            query_lang = "cpp",
+        },
+    }, {
+        f(function(_, parent)
+            return replace_all(parent.snippet.env.LS_TSMATCH, replaced)
+        end, {}),
+    })
+end
+
+local function expr_tsp_nodes(trig, expand)
+    return tsp({
+        trig = trig,
+        name = ("(%s) %s"):format(trig, expand),
+        wordTrig = false,
+        matchTSNode = {
+            query = expr_query,
+            query_lang = "cpp",
+        }
+    }, expand)
+end
+
 return {
-    type(".uniq", "std::unique_ptr<%s>"),
+    type(".up", "std::unique_ptr<%s>"),
+    type(".sp", "std::shared_ptr<%s>"),
+    type(".wp", "std::weak_ptr<%s>"),
     type(".opt", "std::optional<%s>"),
-    type(".sh", "std::shared_ptr<%s>"),
+    type(".vec", "std::vector<%s>"),
 
     ranges_views_snippet("|trans", t("transform")),
     ranges_views_snippet("|filter", t("filter")),
@@ -317,6 +366,21 @@ return {
     type_snippet("i16", "int16_t"),
     type_snippet("i32", "int32_t"),
     type_snippet("i64", "int64_t"),
+
+    expr_tsp(".be", "?.begin(), ?.end()"),
+    expr_tsp(".mv", "std::move(?)"),
+    expr_tsp(".fwd", "std::forward<decltype(?)>(?)"),
+    expr_tsp(".val", "std::declval<?>()"),
+    expr_tsp(".dt", "decltype(?)"),
+    expr_tsp(".uu", "(void)?"),
+    expr_tsp(".single", "ranges::views::single(?)"),
+    expr_tsp_nodes(".sc", fmt("static_cast<{body}>({expr}){end}", {
+        body = i(1),
+        expr = f(function(_, parent)
+            return replace_all(parent.snippet.env.LS_TSMATCH, "%s")
+        end, {}),
+        ["end"] = i(0),
+    })),
 
     s({
         trig = "t(%l+)!",
@@ -347,54 +411,6 @@ return {
     )),
 
     tsp({
-        trig = ".fwd",
-        snippetType = "autosnippet",
-        matchTSNode = nodes,
-    }, {
-        f(function(_, parent)
-            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-            local replaced_content = ("std::forward<decltype(%s)>(%s)"):format(node_content)
-            return vim.split(replaced_content, "\n", { trimempty = false })
-        end),
-    }),
-
-    tsp({
-        trig = ".dt",
-        snippetType = "autosnippet",
-        matchTSNode = nodes,
-    }, {
-        f(function(_, parent)
-            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-            local replaced_content = ("decltype(%s)"):format(node_content)
-            return vim.split(replaced_content, "\n", { trimempty = false })
-        end),
-    }),
-
-    tsp({
-        trig = ".mv",
-        snippetType = "autosnippet",
-        matchTSNode = nodes,
-    }, {
-        f(function(_, parent)
-            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-            local replaced_content = ("std::move(%s)"):format(node_content)
-            return vim.split(replaced_content, "\n", { trimempty = false })
-        end),
-    }),
-
-    tsp({
-        trig = ".be",
-        snippetType = "autosnippet",
-        matchTSNode = nodes,
-    }, {
-        f(function(_, parent)
-            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-            local replaced_content = ("%s.begin(), %s.end()"):format(node_content, node_content)
-            return vim.split(replaced_content, "\n", { trimempty = false })
-        end),
-    }),
-
-    tsp({
         trig = ".sizeof",
         snippetType = "autosnippet",
         matchTSNode = nodes,
@@ -402,31 +418,6 @@ return {
         f(function(_, parent)
             local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
             local replaced_content = ("sizeof(%s) / sizeof(%s[0])"):format(node_content, node_content)
-            return vim.split(replaced_content, "\n", { trimempty = false })
-        end),
-    }),
-
-    tsp({
-        trig = ".sc",
-        snippetType = "autosnippet",
-        matchTSNode = nodes,
-    }, fmt([[static_cast<{}>({}){}]], {
-        i(1, "type"),
-        f(function(_, parent)
-            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-            return vim.split(node_content, "\n", { trimempty = false })
-        end),
-        i(0),
-    })),
-
-    tsp({
-        trig = ".uu",
-        snippetType = "autosnippet",
-        matchTSNode = nodes,
-    }, {
-        f(function(_, parent)
-            local node_content = table.concat(parent.snippet.env.LS_TSMATCH, "\n")
-            local replaced_content = ("(void)%s"):format(node_content)
             return vim.split(replaced_content, "\n", { trimempty = false })
         end),
     }),
@@ -443,6 +434,13 @@ return {
         "Default destructor",
         [[
         ~<cls>() = default;
+        ]]
+    ),
+    constructor_snip(
+        "vdtor",
+        "Default destructor",
+        [[
+        virtual ~<cls>() = default;
         ]]
     ),
     constructor_snip(
@@ -464,6 +462,27 @@ return {
         "Move constructor",
         [[
         <cls>(<cls>&& rhs) = default;
+        ]]
+    ),
+    constructor_snip(
+        "ma",
+        "Move assigment",
+        [[
+        <cls>& operator=(<cls>&& rhs) = default;
+        ]]
+    ),
+    constructor_snip(
+        "nca",
+        "Copy assigment",
+        [[
+        <cls>& operator=(const <cls>& rhs) = 0;
+        ]]
+    ),
+    constructor_snip(
+        "nma",
+        "Move assigment",
+        [[
+        <cls>& operator=(<cls>&& rhs) = 0;
         ]]
     ),
     constructor_snip(

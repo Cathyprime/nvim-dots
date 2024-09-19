@@ -54,14 +54,6 @@ local function replace_all(match, template)
     return ret_lines
 end
 
-local function result_ok_type_callback(match)
-    return replace_all(match, "Result<%s>")
-end
-
-local function result_err_type_callback(match)
-    return replace_all(match, "Result<(), %s>")
-end
-
 local function build_simple_replace_callback(replaced)
     return function(match)
         return replace_all(match, replaced)
@@ -96,11 +88,9 @@ local expr_or_type_query = [[
 
 local function expr_or_type_tsp(trig, typename, expr_callback, type_callback)
     local name = ("(%s) %s"):format(trig, typename)
-    local dscr = ("Wrap expression/type with %s"):format(typename)
     return tsp.treesitter_postfix({
         trig = trig,
         name = name,
-        dscr = dscr,
         wordTrig = false,
         reparseBuffer = "live",
         matchTSNode = {
@@ -128,16 +118,6 @@ local function new_expr_or_type_tsp(trig, typename)
         return replace_all(match, typename .. "<%s>")
     end
     return expr_or_type_tsp(trig, typename, expr_callback, type_callback)
-end
-
-local function both_replace_expr_or_type_tsp(trig, pattern)
-    local template = pattern:gsub("?", "%%s")
-    return expr_or_type_tsp(
-        trig,
-        pattern,
-        build_simple_replace_callback(template),
-        build_simple_replace_callback(template)
-    )
 end
 
 local function begin_line_snip(trig, expansion)
@@ -171,13 +151,10 @@ return {
     new_expr_or_type_tsp(".rw", "RwLock"),
     new_expr_or_type_tsp(".cell", "Cell"),
     new_expr_or_type_tsp(".refcell", "RefCell"),
-    both_replace_expr_or_type_tsp(".ref", "&?"),
-    both_replace_expr_or_type_tsp(".refm", "&mut ?"),
-    both_replace_expr_or_type_tsp(".vec", "Vec<?>"),
+    new_expr_or_type_tsp(".vec", "Vec"),
 
-    s("fn", fmt([[
-    fn {funame}({arg}){arrow}{retype}
-    {{
+    s({ trig = "fn ", snippetType = "autosnippet", wordTrig = true }, fmt([[
+    fn {funame}({arg}){arrow}{retype} {{
         {body}
     }}
     ]], {
@@ -196,8 +173,7 @@ return {
 
     s("test", fmt([[
     #[test]
-    fn {funame}()
-    {{
+    fn {funame}() {{
         {body}
     }}
     ]], {
@@ -211,13 +187,13 @@ return {
         ".ok",
         "Ok(?)",
         build_simple_replace_callback("Ok(%s)"),
-        result_ok_type_callback
+        build_simple_replace_callback("Result<%s, ()>")
     ),
     expr_or_type_tsp(
         ".err",
         "Err(?)",
         build_simple_replace_callback("Err(%s)"),
-        result_err_type_callback
+        build_simple_replace_callback("Result<(), %s>")
     ),
     expr_or_type_tsp(
         ".some",
@@ -229,7 +205,6 @@ return {
     tsp.treesitter_postfix({
         trig = ".print",
         name = [[(.println) println!("{:?}", ?)]],
-        dscr = [[Wrap expression with println!("{:?}", ?)]],
         wordTrig = false,
         reparseBuffer = "live",
         matchTSNode = {
