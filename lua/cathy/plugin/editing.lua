@@ -41,7 +41,9 @@ return {
                 t = {
                     add = function()
                         local type = require("nvim-surround.config").get_input("Enter the type name: ")
-                        return { { type .. "<" }, { ">" }}
+                        if type then
+                            return { { type .. "<" }, { ">" }}
+                        end
                     end,
                     find = function()
                         local c = require("nvim-surround.config")
@@ -62,9 +64,9 @@ return {
                     change = {
                         target = "^.-([%w_]+)()%<.-%>()()$",
                         replacement = function()
-                            local result = require("nvim-surround.config").get_input("Enter the type name: ")
-                            if result then
-                                return { { result }, { "" } }
+                            local type = require("nvim-surround.config").get_input("Enter the type name: ")
+                            if type then
+                                return { { type }, { "" } }
                             end
                         end
                     }
