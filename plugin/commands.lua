@@ -118,18 +118,7 @@ vim.api.nvim_create_user_command(
             vim.notify("spt not found!", vim.log.levels.ERROR)
             return
         end
-        vim.cmd("tabnew | exec 'noa term spt' | startinsert")
-        vim.api.nvim_buf_set_name(0, "Spotify")
-        vim.opt_local.number = false
-        vim.opt_local.relativenumber = false
-        vim.opt_local.spell = false
-        vim.opt_local.signcolumn = "no"
-        vim.opt_local.scrolloff = 0
-        vim.api.nvim_create_autocmd("TermClose", {
-            once = true,
-            buffer = vim.api.nvim_get_current_buf(),
-            command = "bd!",
-        })
+        require("lazy.util").float_term("spt")
     end,
     {
         desc = "Open spotify"
