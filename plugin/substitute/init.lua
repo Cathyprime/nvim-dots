@@ -1,4 +1,4 @@
-local M = {}
+CathySubstitute = {}
 
 local opts = {
     silent = true,
@@ -11,7 +11,7 @@ local cache = {
     use_abolish = false,
 }
 
-local formats = {
+CathySubstitute.formats = {
     normal = vim.keycode":<c-u>'[,']s###g<left><left>",
     normal_abolish = vim.keycode":<c-u>'[,']S###g<left><left>",
     visual = ":s/%s/%s/gec<cr>",
@@ -20,9 +20,9 @@ local formats = {
 
 local function get_placeholder(visual)
     if visual then
-        return cache.use_abolish and formats.visual_abolish or formats.visual
+        return cache.use_abolish and CathySubstitute.formats.visual_abolish or CathySubstitute.formats.visual
     else
-        return cache.use_abolish and formats.normal_abolish or formats.normal
+        return cache.use_abolish and CathySubstitute.formats.normal_abolish or CathySubstitute.formats.normal
     end
 end
 
@@ -86,14 +86,14 @@ local function visual_replace()
     return string.format(get_placeholder(true), cache.query, cache.replace)
 end
 
-function M.replace()
+function CathySubstitute.replace()
     vim.api.nvim_feedkeys(get_placeholder(false), "m", false)
-    vim.go.operatorfunc = "v:lua.require'cathy.substitute'.replace"
+    vim.go.operatorfunc = "v:lua.CathySubstitute.replace"
 end
 
 local function meow(linewise, use_abolish)
     cache.use_abolish = use_abolish
-    vim.go.operatorfunc = "v:lua.require'cathy.substitute'.replace"
+    vim.go.operatorfunc = "v:lua.CathySubstitute.replace"
     if linewise then
         return "g@_"
     else
@@ -120,5 +120,3 @@ end, opts)
 vim.keymap.set("x", "gs", function()
     return visual_replace()
 end, opts)
-
-return M

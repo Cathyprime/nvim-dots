@@ -1,5 +1,5 @@
 let g:bufExplorerDisableDefaultKeyMapping = 1
-nnoremap <script> <silent> <unique> <F4> :BufExplorer<CR>
+nnoremap <script> <silent> <F4> :BufExplorer<CR>
 "============================================================================
 "    Copyright: Copyright (c) 2001-2023, Jeff Lanzarotta
 "               All rights reserved.

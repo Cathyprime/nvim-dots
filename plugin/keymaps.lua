@@ -212,7 +212,6 @@ end, { silent = false, expr = true })
 vim.keymap.set("ca", "G", "Git")
 
 -- quick search and replace keymaps
-require("cathy.substitute")
 -- map("v", "gs", [[y:.,$s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 -- map("v", "gS", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
 

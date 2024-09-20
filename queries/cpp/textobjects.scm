@@ -5,5 +5,4 @@
 (qualified_identifier
   name: (qualified_identifier
           scope: (template_type
-                   arguments: (_) @template.inner)
-          )) @template.outer
+                   arguments: (_) @template.inner))) @template.outer
