@@ -203,16 +203,52 @@ map("c", "<c-f>", function()
     return "<c-f>"
 end, { expr = true })
 vim.keymap.set("ca", "G", "Git")
-
--- quick search and replace keymaps
--- map("v", "gs", [[y:.,$s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
--- map("v", "gS", [[y:%s/<c-r>"/<c-r>"/gc<left><left><left>]], { silent = false })
+map("c", "<c-t>", function()
+    local cmdtype = vim.fn.getcmdtype()
+    if cmdtype == "/" or cmdtype == "?" then
+        return ".\\{-}"
+    end
+    return
+end, { silent = false, expr = true })
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
 
 -- terminal
 map("t", "<esc><esc>", [[<c-\><c-n>]])
 map("t", "<m-w>", [[<c-\><c-n><c-w>w]])
+
+-- search
+vim.api.nvim_create_autocmd("CursorHold", { command = "set nohlsearch" })
+local function wrap(str, ret)
+    return function()
+        local old_wrapscan = vim.opt.wrapscan
+        vim.opt.hlsearch = true
+        vim.opt.wrapscan = false
+        local ok = pcall(vim.cmd, string.format("silent normal! %s", str))
+        if ok then
+            vim.cmd(string.format("silent normal! %s", ret))
+        end
+        vim.opt.wrapscan = old_wrapscan
+    end
+end
+local function wrap_fn(str, meow)
+    return function()
+        return string.format("<cmd>set hlsearch<cr><cmd>silent! normal! %s<cr>", str(meow))
+    end
+end
+local function stable_search(forward)
+    return forward
+        and (vim.v.searchforward == 1 and "n" or "N")
+        or (vim.v.searchforward == 0 and "n" or "N")
+end
+vim.keymap.set("n", "/", "<cmd>set hlsearch<cr>/")
+vim.keymap.set("n", "?", "<cmd>set hlsearch<cr>?")
+vim.keymap.set("n", "*", wrap("*", "N"), { silent = true })
+vim.keymap.set("n", "g*", wrap("g*", "N"), { silent = true })
+vim.keymap.set("n", "#", wrap("#", "n"), { silent = true })
+vim.keymap.set("n", "g#", wrap("g#", "n"), { silent = true })
+vim.keymap.set("n", "n", wrap_fn(stable_search, true), { silent = true, expr = true })
+vim.keymap.set("n", "N", wrap_fn(stable_search, false), { silent = true, expr = true })
 
 if vim.g.neovide then
     local change_scale_factor = function(delta)

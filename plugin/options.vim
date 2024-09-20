@@ -52,7 +52,7 @@ set wildoptions-=pum
 set winminwidth=5
 set pumheight=4
 set wrap
-set grepprg=rg\ --vimgrap\ --no-heading\ --smart-case
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 let g:markdown_recommended_style=0
 set guifont=Iosevka\ Custom:h14.2
 
