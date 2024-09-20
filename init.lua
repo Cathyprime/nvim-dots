@@ -1,7 +1,5 @@
 vim.g.mapleader = " "
 vim.g.localleader = [[\]]
-vim.o.background = "light"
-vim.cmd[[packadd termdebug]]
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

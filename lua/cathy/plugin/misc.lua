@@ -29,6 +29,7 @@ return {
     },
     {
         "mawkler/demicolon.nvim",
+        lazy = true,
         opts = {
             keymaps = {
                 horizontal_motions = true,

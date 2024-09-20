@@ -13,6 +13,14 @@ vim.keymap.set("n", "g*", "<cmd>:set hlsearch<cr>g*")
 vim.keymap.set("n", "#", "<cmd>set hlsearch<cr>#")
 vim.keymap.set("n", "g#", "<cmd>:set hlsearch<cr>g#")
 
+-- options.vim
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "options.vim",
+    callback = function()
+        vim.b.minitrailspace_disable = true
+    end,
+})
+
 -- start minibuffer
 vim.api.nvim_create_autocmd("CmdwinEnter", {
     once = false,
