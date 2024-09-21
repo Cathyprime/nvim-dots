@@ -16,7 +16,7 @@ return {
         "stevearc/dressing.nvim",
         "stevearc/oil.nvim",
         {
-            "nvim-telescope/telescope-file-browser.nvim",
+            "Cathyprime/telescope-file-browser.nvim",
             dependencies = "nvim-tree/nvim-web-devicons"
         },
         {
@@ -54,8 +54,8 @@ return {
         local on_cr = function(prompt_bufnr)
             local current_picker = actions_state.get_current_picker(prompt_bufnr)
             local entry = current_picker:get_selection()
+            local finder = current_picker.finder
             if entry == nil then
-                local finder = current_picker.finder
                 local input = (finder.files and finder.path or finder.cwd) .. os_sep .. current_picker:_get_prompt()
                 if input:match("/$") then
                     fb_actions.create_from_prompt(prompt_bufnr)
@@ -66,8 +66,16 @@ return {
                     vim.cmd(string.format("edit %s", input))
                 end
             elseif entry.is_dir then
-                actions.close(prompt_bufnr)
-                oil.open(entry.value)
+                local Path = require("plenary.path")
+                local entry_path = Path:new(entry.value):absolute()
+                local cwd = Path:new(finder.files and finder.path or finder.cwd):parent():absolute()
+                if entry_path == cwd then
+                    fb_actions.goto_parent_dir(prompt_bufnr, true)
+                else
+                    local entry_cwd = entry.value
+                    actions.close(prompt_bufnr)
+                    oil.open(entry.value)
+                end
             else
                 actions.select_default(prompt_bufnr)
             end
@@ -132,7 +140,6 @@ return {
         { "<leader>fF",       function() require("telescope.builtin").resume() end,               desc = "resume" },
         { "<leader>fs",       function() require("telescope.builtin").treesitter() end,           desc = "treesitter" },
         { "<leader>fd",       function() require("telescope.builtin").diagnostics() end,          desc = "diagnostics" },
-        -- { "<leader><leader>", require("telescope.builtin").buffers,       desc = "buffer       s" },
         { "<m-x>",            function() require("telescope.builtin").commands() end,             desc = "commands" },
         { "<leader>fo",       function() require("telescope.builtin").oldfiles() end,             desc = "oldfiles" },
         { "<leader>fh",       function() require("telescope.builtin").help_tags() end,            desc = "help" },
@@ -161,7 +168,7 @@ return {
             "<leader>ff",
             function()
                 require("telescope").extensions.file_browser.file_browser({
-                    hide_parent_dir = true,
+                    hide_parent_dir = false,
                     create_from_prompt = false,
                     no_ignore = true,
                     hidden = true,
