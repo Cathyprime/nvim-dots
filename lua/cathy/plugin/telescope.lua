@@ -167,21 +167,17 @@ return {
         {
             "<leader>ff",
             function()
+                local pph = vim.fn.expand("%:p:h")
+                if pph:find("term://") then
+                    pph = pph:gsub("term://", ""):gsub("//.*$", "/")
+                end
                 require("telescope").extensions.file_browser.file_browser({
                     hide_parent_dir = false,
                     create_from_prompt = false,
                     no_ignore = true,
                     hidden = true,
                     quiet = true,
-                    cwd = (function()
-                        local pph = vim.fn.expand("%:p:h")
-                        local cwd = vim.fn.getcwd()
-                        if string.find(pph, cwd) then
-                            return cwd
-                        else
-                            return pph
-                        end
-                    end)()
+                    cwd = pph
                 })
             end,
             desc = "projects"
