@@ -195,7 +195,7 @@ local minis = {
             }
         )
         vim.api.nvim_create_user_command(
-            "MessHistory",
+            "NotifyHistory",
             function()
                 module.show_history()
             end,
