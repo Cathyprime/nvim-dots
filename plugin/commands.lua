@@ -22,14 +22,6 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
-    "Messages",
-    [[let output = [] | redir => output | silent messages | redir END | silent cexpr output | silent cope]],
-    {
-        desc = "Copy messages to quickfix list"
-    }
-)
-
-vim.api.nvim_create_user_command(
     "SwitchTheme",
     function()
         if vim.o.background == "light" then
