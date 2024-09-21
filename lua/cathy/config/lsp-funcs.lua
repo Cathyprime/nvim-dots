@@ -28,6 +28,7 @@ local attach = function(client, bufnr, alt_keys)
     vim.keymap.set("n", "<leader>fS", alt_keys and alt_keys.lsp_workspace_symbols or telescope.lsp_workspace_symbols, fSop)
 
     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+    client.server_capabilities.semanticTokensProvider = nil
     if client.server_capabilities.definitionProvider then
         vim.api.nvim_set_option_value("tagfunc", "v:lua.vim.lsp.tagfunc", { buf = bufnr })
     end
