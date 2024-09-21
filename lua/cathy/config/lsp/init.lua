@@ -1,5 +1,6 @@
 local icons     = require("util.icons").icons
-local lsp_funcs = require("cathy.config.lsp-funcs")
+local lsp_funcs = require("cathy.config.lsp.funcs")
+require("cathy.config.lsp.progress_handler")
 
 vim.cmd([[sign define DiagnosticSignError text=]] .. icons.Error   .. [[ texthl=DiagnosticSignError linehl= numhl= ]])
 vim.cmd([[sign define DiagnosticSignWarn text=]]  .. icons.Warning .. [[ texthl=DiagnosticSignWarn linehl= numhl= ]])

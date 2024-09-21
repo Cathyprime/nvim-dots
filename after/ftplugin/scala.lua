@@ -30,7 +30,7 @@ metals_config.on_attach = function(client, bufnr)
             },
         },
     }
-    require("cathy.config.lsp-funcs").on_attach(client, bufnr)
+    require("cathy.config.lsp.lsp-funcs").on_attach(client, bufnr)
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {
