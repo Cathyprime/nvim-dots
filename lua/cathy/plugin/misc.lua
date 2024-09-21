@@ -210,6 +210,8 @@ return {
                 exclude_dirs = {
                     "~/.cargo/*",
                     "~/.rustup/*",
+                    "~/.local/*",
+                    "~/go/pkg/*",
                     "~/Polygon/*",
                     "*node_modules/*",
                 },
@@ -228,7 +230,6 @@ return {
                     "main.cc",
                     "main.cpp",
                     "gradlew",
-                    "package.json",
                     "go.mod",
                     "Cargo.toml",
                     "docker-compose.yml",
