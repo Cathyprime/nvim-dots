@@ -136,75 +136,75 @@ local minis = {
         end)
     end,
 
-    notify = function()
-        local module = require("mini.notify")
-        module.setup({
-            lsp_progress = {
-                enable = false
-            },
-        })
-        vim.notify = module.make_notify({
-            ERROR = { duration = 5000 },
-            WARN  = { duration = 4000 },
-            INFO  = { duration = 3000 },
-        })
-        vim.api.nvim_create_user_command(
-            "Notify",
-            function(opts)
-                local trans = {
-                    ["off"]   = 5,
-                    ["error"] = 4,
-                    ["warn"]  = 3,
-                    ["info"]  = 2,
-                    ["debug"] = 1,
-                    ["trace"] = 0
-                }
-                local level = trans[opts.fargs[1]:lower()]
-                local levels = vim.iter({
-                    ERROR = { duration = 5000 },
-                    WARN  = { duration = 4000 },
-                    INFO  = { duration = 3000 },
-                    DEBUG = { duration = 6000 },
-                    TRACE = { duration = 1000 },
-                })
-                    :fold({}, function(acc, key, value)
-                    if vim.log.levels[key] < level then
-                        value["duration"] = 0
-                    end
-                    acc[key] = value
-                    return acc
-                end)
-                vim.notify = module.make_notify(levels)
-            end,
-            {
-                nargs = 1,
-                complete = function(arg_lead)
-                    return vim.iter({
-                        "off",
-                        "error",
-                        "warn",
-                        "info",
-                        "debug",
-                        "trace"
-                    })
-                        :filter(function(value)
-                            return value:sub(1, #arg_lead) == arg_lead:lower()
-                        end)
-                        :totable()
-                end
-            }
-        )
-        vim.api.nvim_create_user_command(
-            "NotifyHistory",
-            function()
-                module.show_history()
-            end,
-            {
-                desc = "show message history",
-                nargs = 0
-            }
-        )
-    end,
+    -- notify = function()
+    --     local module = require("mini.notify")
+    --     module.setup({
+    --         lsp_progress = {
+    --             enable = false
+    --         },
+    --     })
+    --     vim.notify = module.make_notify({
+    --         ERROR = { duration = 5000 },
+    --         WARN  = { duration = 4000 },
+    --         INFO  = { duration = 3000 },
+    --     })
+    --     vim.api.nvim_create_user_command(
+    --         "Notify",
+    --         function(opts)
+    --             local trans = {
+    --                 ["off"]   = 5,
+    --                 ["error"] = 4,
+    --                 ["warn"]  = 3,
+    --                 ["info"]  = 2,
+    --                 ["debug"] = 1,
+    --                 ["trace"] = 0
+    --             }
+    --             local level = trans[opts.fargs[1]:lower()]
+    --             local levels = vim.iter({
+    --                 ERROR = { duration = 5000 },
+    --                 WARN  = { duration = 4000 },
+    --                 INFO  = { duration = 3000 },
+    --                 DEBUG = { duration = 6000 },
+    --                 TRACE = { duration = 1000 },
+    --             })
+    --                 :fold({}, function(acc, key, value)
+    --                 if vim.log.levels[key] < level then
+    --                     value["duration"] = 0
+    --                 end
+    --                 acc[key] = value
+    --                 return acc
+    --             end)
+    --             vim.notify = module.make_notify(levels)
+    --         end,
+    --         {
+    --             nargs = 1,
+    --             complete = function(arg_lead)
+    --                 return vim.iter({
+    --                     "off",
+    --                     "error",
+    --                     "warn",
+    --                     "info",
+    --                     "debug",
+    --                     "trace"
+    --                 })
+    --                     :filter(function(value)
+    --                         return value:sub(1, #arg_lead) == arg_lead:lower()
+    --                     end)
+    --                     :totable()
+    --             end
+    --         }
+    --     )
+    --     vim.api.nvim_create_user_command(
+    --         "NotifyHistory",
+    --         function()
+    --             module.show_history()
+    --         end,
+    --         {
+    --             desc = "show message history",
+    --             nargs = 0
+    --         }
+    --     )
+    -- end,
 
     hipatterns = function()
         local module = require("mini.hipatterns")
