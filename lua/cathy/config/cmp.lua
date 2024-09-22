@@ -2,7 +2,7 @@
 -- cmp
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local icons = require("util.icons").icons
+local icons = require("cathy.utils.icons").icons
 local ts_utils = require("nvim-treesitter.ts_utils")
 -- local has_words_before = function()
 --  unpack = unpack or table.unpack

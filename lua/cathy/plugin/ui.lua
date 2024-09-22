@@ -2,7 +2,7 @@ return {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
     config = function()
-        local telescope_config = require("util.telescope-config")
+        local telescope_config = require("cathy.utils.telescope.config")
         require("dressing").setup({
             input = {
                 insert_only = false,

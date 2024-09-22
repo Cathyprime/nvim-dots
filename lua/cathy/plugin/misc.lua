@@ -234,7 +234,7 @@ return {
                     "Cargo.toml",
                     "docker-compose.yml",
                 },
-                file_ignore_patterns = require("util.telescope-config").ignores,
+                file_ignore_patterns = require("cathy.utils.telescope.config").ignores,
             })
         end
     },

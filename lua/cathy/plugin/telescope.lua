@@ -1,8 +1,8 @@
-local telescope_utils = require("util.telescope-utils")
+local telescope_utils = require("cathy.utils.telescope")
 
 local find_files = function()
     require("telescope.builtin").find_files({
-        file_ignore_patterns = require("util.telescope-config").ignores,
+        file_ignore_patterns = require("cathy.utils.telescope.config").ignores,
         hidden = true,
     })
 end
@@ -33,7 +33,7 @@ return {
     end,
     opts = function()
         local fb_actions = require("telescope").extensions.file_browser.actions
-        local telescope_config = require("util.telescope-config")
+        local telescope_config = require("cathy.utils.telescope.config")
         local actions_state = require("telescope.actions.state")
         local os_sep = require("plenary.path").path.sep
         local actions = require("telescope.actions")

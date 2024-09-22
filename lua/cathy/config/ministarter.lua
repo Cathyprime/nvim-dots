@@ -1,5 +1,5 @@
 local starter = require("mini.starter")
-local utils = require("util.telescope-utils")
+local utils = require("cathy.utils.telescope")
 
 local config = {
     content_hooks = {

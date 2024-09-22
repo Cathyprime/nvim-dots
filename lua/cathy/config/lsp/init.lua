@@ -1,4 +1,4 @@
-local icons     = require("util.icons").icons
+local icons = require("cathy.utils.icons").icons
 local lsp_funcs = require("cathy.config.lsp.funcs")
 require("cathy.config.lsp.progress_handler")
 
