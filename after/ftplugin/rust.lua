@@ -7,7 +7,7 @@ vim.b["alt_lsp_maps"] = {
     end,
 }
 
-vim.opt_local.expandtab = false
+vim.opt_local.expandtab = true
 vim.g.termdebugger = "rust-gdb"
 
 vim.b.dispatch = "cargo build"
