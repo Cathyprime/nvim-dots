@@ -136,7 +136,7 @@ return {
     end,
     keys = {
         { "<leader>fw",       telescope_utils.get_word,                                           desc = "cursor grep" },
-        { "<c-p>",            find_files,                                                         desc = "files" },
+        { "<c-p>",            require("cathy.utils.telescope").project_files,                     desc = "files" },
         { "<leader>fF",       function() require("telescope.builtin").resume() end,               desc = "resume" },
         { "<leader>fs",       function() require("telescope.builtin").treesitter() end,           desc = "treesitter" },
         { "<leader>fd",       function() require("telescope.builtin").diagnostics() end,          desc = "diagnostics" },
