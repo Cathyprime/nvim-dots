@@ -1,8 +1,4 @@
-local function map(modes, lhs, rhs, opts)
-    opts = opts or {}
-    local options = vim.tbl_deep_extend("keep", opts, { silent = true })
-    vim.keymap.set(modes, lhs, rhs, options)
-end
+local map = require("cathy.utils").map_gen({ silent = true })
 
 local function jump(direction)
     local ret = ""
@@ -212,10 +208,6 @@ map("c", "<c-t>", function()
 end, { silent = false, expr = true })
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])
-
--- terminal
-map("t", "<esc><esc>", [[<c-\><c-n>]])
-map("t", "<m-w>", [[<c-\><c-n><c-w>w]])
 
 -- search
 vim.api.nvim_create_autocmd("CursorHold", { command = "set nohlsearch" })

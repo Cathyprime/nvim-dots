@@ -12,32 +12,6 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
-    "ToggleDiagnostics",
-    function()
-        vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-    end,
-    {
-        desc = "Toggle diagnostics display"
-    }
-)
-
-vim.api.nvim_create_user_command(
-    "SwitchTheme",
-    function()
-        if vim.o.background == "light" then
-            vim.o.background = "dark"
-            vim.cmd.colorscheme "kanagawa_remix"
-        else
-            vim.o.background = "light"
-            vim.cmd.colorscheme "everforest"
-        end
-    end,
-    {
-        desc = "Switch theme from dark to light or another way",
-    }
-)
-
-vim.api.nvim_create_user_command(
     "DarkMode",
     function()
         if vim.o.background == "light" then
@@ -52,14 +26,15 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
-    "Terminal",
+    "Gh",
     function(opts)
-        opts.mods = opts.mods or "horizontal"
-        vim.cmd(string.format("%s sp | exec 'term %s'", opts.mods, opts.args))
+        local cmd = opts.fargs
+        table.insert(cmd, 1, "gh")
+        require("lazy.util").float_term(cmd)
     end,
     {
         nargs = "*",
-        desc = "Open terminal in split"
+        desc = "Execute github cli commands in a terminal"
     }
 )
 
@@ -83,39 +58,33 @@ local function create_command(cmd, argument, desc)
     )
 end
 
-vim.api.nvim_create_user_command(
-    "Docker",
-    function ()
-        if vim.fn.executable("lazydocker") ~= 1 then
-            vim.notify("lazydocker not found!", vim.log.levels.ERROR)
-            return
-        end
-        vim.cmd("tabnew | exec 'term lazydocker' | startinsert")
-        vim.api.nvim_buf_set_name(0, "LazyDocker")
-        vim.api.nvim_create_autocmd("TermClose", {
-            once = true,
-            buffer = vim.api.nvim_get_current_buf(),
-            command = "bd!",
-        })
-    end,
-    {
-        desc = "Open lazydocker"
-    }
-)
-
-vim.api.nvim_create_user_command(
-    "Spotify",
-    function()
-        if vim.fn.executable("spt") ~= 1 then
-            vim.notify("spt not found!", vim.log.levels.ERROR)
-            return
-        end
-        require("lazy.util").float_term("spt")
-    end,
-    {
-        desc = "Open spotify"
-    }
-)
+local function executable_term(cmd, program, opts)
+    vim.api.nvim_create_user_command(
+        cmd,
+        function()
+            if vim.fn.executable(program) ~= 1 then
+                vim.notify(opts.err_msg or "you've forgot the error message", vim.log.levels.ERROR)
+                return
+            end
+            require("cathy.utils")[opts.func_cmd](program, opts.func_opts)
+        end,
+        {
+            desc = opts.desc or nil,
+        }
+    )
+end
+executable_term("Docker", "lazydocker", {
+    desc = "Open lazydocker",
+    err_msg = "lazydocker not found!",
+    func_cmd = "tab_term",
+    func_opts = { title = "Docker" }
+})
+executable_term("Spotify", "spt", {
+    desc = "Open spotify",
+    err_msg = "spt not found!",
+    func_cmd = "tab_term",
+    func_opts = { title = "Spotify" }
+})
 
 create_command("SpotifyRepeat",  "--repeat",   "toggle repeat mode")
 create_command("SpotifyPP",      "--toggle",   "play/pause the music")
@@ -153,41 +122,5 @@ vim.api.nvim_create_user_command(
     end,
     {
         desc = "Delete saved view"
-    }
-)
-
-local status = true
-
-local old_font = vim.opt.guifont
-vim.api.nvim_create_user_command(
-    "Presentation",
-    function()
-        if status then
-            vim.opt_global.laststatus = 0
-            vim.opt_global.cmdheight = 0
-            vim.opt.nu = false
-            vim.opt.rnu = false
-            status = false
-            if vim.g.neovide then
-                vim.opt.guifont = "JetBrainsMono NFM:h20"
-            else
-                vim.fn.system("tmux set -g status off")
-            end
-        else
-            vim.opt_global.laststatus = 2
-            vim.opt_global.cmdheight = 1
-            status = true
-            vim.opt.nu = true
-            vim.opt.rnu = true
-            if vim.g.neovide then
-                vim.opt.guifont = old_font
-            else
-                vim.fn.system("tmux set -g status off")
-            end
-        end
-    end,
-    {
-        nargs = 0,
-        desc = "Open Presentation view"
     }
 )
