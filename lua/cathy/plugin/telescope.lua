@@ -83,6 +83,7 @@ return {
         local defaults = {
             borderchars = telescope_config.borderchars,
             border = telescope_config.border,
+            layout_config = telescope_config.layout_config,
             mappings = {
                 i = {
                     ["<C-q>"] = function(...)
@@ -174,6 +175,7 @@ return {
                 require("telescope").extensions.file_browser.file_browser({
                     hide_parent_dir = false,
                     create_from_prompt = false,
+                    previewer = false,
                     no_ignore = true,
                     hidden = true,
                     quiet = true,

@@ -7,12 +7,12 @@ M.borderchars = {
 }
 
 M.layout_config = {
-    prompt_position = "bottom",
-    height = math.floor(vim.opt.lines:get() * 0.6),
+    prompt_position = "top",
+    height = math.floor(vim.opt.lines:get() * 0.4),
     preview_width = 0.60,
 }
 
-M.border = true
+M.border = false
 
 M.ignores = {
     "node%_modules/*",
