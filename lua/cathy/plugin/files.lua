@@ -1,3 +1,10 @@
+local permission_hlgroups = {
+    ["-"] = "NonText",
+    ["r"] = "DiffChange",
+    ["w"] = "DiffDelete",
+    ["x"] = "DiffAdd",
+}
+
 return {
     "stevearc/oil.nvim",
     dependencies = {
@@ -8,9 +15,19 @@ return {
             default_file_explorer = true,
             skip_confirm_for_simple_edits = true,
             columns = {
-                "permissions",
-                "size",
-                "mtime",
+                {
+                    "permissions",
+                    highlight = function(permission_str)
+                        local hls = {}
+                        for i = 1, #permission_str do
+                            local char = permission_str:sub(i, i)
+                            table.insert(hls, { permission_hlgroups[char], i - 1, i })
+                        end
+                        return hls
+                    end,
+                },
+                { "size", highlight = "DiffAdd" },
+                { "mtime", highlight = "Function" },
                 "icon",
             },
             keymaps = {
@@ -20,7 +37,7 @@ return {
                 ["gq"] = { "<cmd>close<cr>", desc = "close buffer" },
                 ["<C-t>"] = "actions.open_terminal",
                 ["<C-q>"] = "actions.send_to_qflist",
-                ["gyy"] = "actions.yank_entry",
+                ["gy"] = "actions.yank_entry",
                 ["g\\"] = false,
                 ["gs"] = false,
                 ["~"] = false,
