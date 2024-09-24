@@ -16,8 +16,8 @@ return {
             vim.keymap.set("v", "<C-a>",  function() mani("increment", "visual") end)
             vim.keymap.set("v", "<C-x>",  function() mani("decrement", "visual") end)
             vim.keymap.set("v", "g<C-a>", function() mani("increment", "gvisual") end)
-            vim.keymap.set("v", "g<C-x>", function() mani("decrement", "gvisual") end)
             vim.keymap.set("n", "<c-g>",  function() mani("increment", "normal", "case") end)
+            vim.keymap.set("v", "g<C-x>", function() mani("decrement", "gvisual") end)
         end
     },
     {
@@ -96,19 +96,7 @@ return {
 
             -- Delete the main cursor.
             vim.keymap.set({"n", "v"}, "<leader>x", mc.deleteCursor)
-
-            -- Add and remove cursors with control + left click.
-            vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
-
-            vim.keymap.set({"n", "v"}, "<c-q>", function()
-                if mc.cursorsEnabled() then
-                    -- Stop other cursors from moving.
-                    -- This allows you to reposition the main cursor.
-                    mc.disableCursors()
-                else
-                    mc.addCursor()
-                end
-            end)
+            vim.keymap.set("v", "<c-q>", mc.visualToCursors)
 
             vim.keymap.set("n", "<esc>", function()
                 if not mc.cursorsEnabled() then
@@ -116,7 +104,7 @@ return {
                 elseif mc.hasCursors() then
                     mc.clearCursors()
                 else
-                    -- Default <esc> handler.
+                    vim.api.nvim_feedkeys(vim.keycode"<esc>", "n", false)
                 end
             end)
 
@@ -128,7 +116,13 @@ return {
 
             -- Append/insert for each line of visual selections.
             vim.keymap.set("v", "I", mc.insertVisual)
-            vim.keymap.set("v", "A", mc.appendVisual)
+            vim.keymap.set("v", "A", function()
+                if vim.fn.mode() == vim.keycode("<c-v>") then
+                    vim.fn.feedkeys("A", "n")
+                else
+                    mc.appendVisual()
+                end
+            end)
 
             -- match new cursors within visual selections by regex.
             vim.keymap.set("v", "M", mc.matchCursors)
