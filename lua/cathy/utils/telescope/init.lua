@@ -26,7 +26,8 @@ local is_inside_work_tree = {}
 
 M.project_files = function()
     local opts = {
-        file_ignore_patterns = config.ignores
+        file_ignore_patterns = config.ignores,
+        previewer = false,
     }
 
     local cwd = vim.fn.getcwd()

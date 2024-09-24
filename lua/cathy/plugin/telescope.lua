@@ -136,17 +136,17 @@ return {
         }
     end,
     keys = {
-        { "<leader>fw",       telescope_utils.get_word,                                           desc = "cursor grep" },
-        { "<c-p>",            require("cathy.utils.telescope").project_files,                     desc = "files" },
-        { "<leader>fF",       function() require("telescope.builtin").resume() end,               desc = "resume" },
-        { "<leader>fs",       function() require("telescope.builtin").treesitter() end,           desc = "treesitter" },
-        { "<leader>fd",       function() require("telescope.builtin").diagnostics() end,          desc = "diagnostics" },
-        { "<m-x>",            function() require("telescope.builtin").commands() end,             desc = "commands" },
-        { "<leader>fo",       function() require("telescope.builtin").oldfiles() end,             desc = "oldfiles" },
-        { "<leader>fh",       function() require("telescope.builtin").help_tags() end,            desc = "help" },
-        { "<leader><leader>", function() require("telescope").extensions.projects.projects() end, desc = "project files" },
-        { "<leader>fg",       function() require("telescope.builtin").live_grep() end,            desc = "grep" },
-        { "z=",               function() require("telescope.builtin").spell_suggest() end,        desc = "spell suggestion" },
+        { "<leader>fw",       telescope_utils.get_word,                                                    desc = "cursor grep" },
+        { "<c-p>",            require("cathy.utils.telescope").project_files,                              desc = "files" },
+        { "<leader>fF",       function() require("telescope.builtin").resume() end,                        desc = "resume" },
+        { "<leader>fs",       function() require("telescope.builtin").treesitter() end,                    desc = "treesitter" },
+        { "<leader>fd",       function() require("telescope.builtin").diagnostics() end,                   desc = "diagnostics" },
+        { "<m-x>",            function() require("telescope.builtin").commands() end,                      desc = "commands" },
+        { "<leader>fo",       function() require("telescope.builtin").oldfiles({ previewer = false }) end, desc = "oldfiles" },
+        { "<leader>fh",       function() require("telescope.builtin").help_tags() end,                     desc = "help" },
+        { "<leader><leader>", function() require("telescope").extensions.projects.projects() end,          desc = "project files" },
+        { "<leader>fg",       function() require("telescope.builtin").live_grep() end,                     desc = "grep" },
+        { "z=",               function() require("telescope.builtin").spell_suggest() end,                 desc = "spell suggestion" },
         {
             "<leader>fn",
             function()
