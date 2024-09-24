@@ -13,15 +13,6 @@ local function trouble_jump(options)
     end
 end
 
--- local function map(lhs, rhs)
---     vim.keymap.set("n", "<leader>h" .. lhs, rhs)
--- end
--- local track = require("cathy.track")
--- map("a", track.toggle_label)
--- map("c", track.clear_labels)
--- map("e", track.edit_label)
--- vim.keymap.set("n", "<leader>fa", track.search_labels, { desc = "annotations" })
-
 return {
     {
         "Eandrju/cellular-automaton.nvim",
@@ -77,7 +68,6 @@ return {
             }
         },
         keys = {
-            { "<leader>x", "<cmd>Trouble<cr>", silent = true },
             { "Zx", "<cmd>Trouble lsp_document_symbols toggle focus=true<cr>", silent = true },
             { "ZX", "<cmd>Trouble current_project_diagnostics toggle<cr>", silent = true },
             { "gR", "<cmd>Trouble lsp_references toggle<cr>", silent = true },
@@ -185,10 +175,11 @@ return {
             return {
                 { "<leader>a", grapple.toggle },
                 { "<leader>e", grapple.toggle_tags },
-                { "<c-f>", function() grapple.select({ index = 1 }) end },
-                { "<c-s>", function() grapple.select({ index = 2 }) end },
-                { "<c-n>", function() grapple.select({ index = 3 }) end },
-                { "<c-h>", function() grapple.select({ index = 4 }) end },
+                { "<leader>1", function() grapple.select({ index = 1 }) end },
+                { "<leader>2", function() grapple.select({ index = 2 }) end },
+                { "<leader>3", function() grapple.select({ index = 3 }) end },
+                { "<leader>4", function() grapple.select({ index = 4 }) end },
+                { "<leader>5", function() grapple.select({ index = 5 }) end },
                 { "<c-s-a>", function() grapple.cycle_scopes("next") end },
                 { "<c-s-x>", function() grapple.cycle_scopes("prev") end },
                 { "<c-s-f>", function() grapple.cycle_tags("next") end },
