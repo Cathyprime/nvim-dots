@@ -202,7 +202,7 @@ return {
                 { "<c-j>", "<c-w><c-j>", { silent = true } },
                 { "<c-k>", "<c-w><c-k>", { silent = true } },
                 { "<c-l>", "<c-w><c-l>", { silent = true } },
-                { "<esc>", nil, { exit = true,  silent = false } },
+                { "<esc>", "<cmd>let g:debug_mode = v:false<cr>", { exit = true,  silent = true } },
             }
         })
 
@@ -247,6 +247,7 @@ return {
                 pattern = "TermdebugStopPost",
                 group = termdebug,
                 callback = function()
+                    vim.g.debug_mode = false
                     vim.schedule(function()
                         -- termdebug_hydra:exit() -- <- this does not clean the pink keymaps AT ALL
                         termdebug_hydra.layer:exit()
@@ -260,6 +261,7 @@ return {
         end
 
         vim.keymap.set("n", "<leader>z", function()
+            vim.g.debug_mode = true
             if require("zen-mode.view").is_open() then
                 require("zen-mode").close()
             end

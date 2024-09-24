@@ -157,19 +157,20 @@ local function diff_component(args)
 end
 
 local modes = {
-    ["n"]    = { long = "NOR", short = "N",   hl = "MiniStatuslineModeNormal"      },
-    ["v"]    = { long = "VIS", short = "V",   hl = "MiniStatuslineModeVisual"      },
-    ["V"]    = { long = "VLN", short = "V-L", hl = "MiniStatuslineModeVisualLine"  },
+    ["n"] =    { long = "NOR", short = "N",   hl = "MiniStatuslineModeNormal"      },
+    ["v"] =    { long = "VIS", short = "V",   hl = "MiniStatuslineModeVisual"      },
+    ["V"] =    { long = "VLN", short = "V-L", hl = "MiniStatuslineModeVisualLine"  },
     [CTRL_V] = { long = "VBL", short = "V-B", hl = "MiniStatuslineModeVisualBlock" },
-    ["s"]    = { long = "SEL", short = "S",   hl = "MiniStatuslineModeSelect"      },
-    ["S"]    = { long = "SLN", short = "S-L", hl = "MiniStatuslineModeSelect"      },
+    ["s"] =    { long = "SEL", short = "S",   hl = "MiniStatuslineModeSelect"      },
+    ["S"] =    { long = "SLN", short = "S-L", hl = "MiniStatuslineModeSelect"      },
     [CTRL_S] = { long = "SBL", short = "S-B", hl = "MiniStatuslineModeSelect"      },
-    ["i"]    = { long = "INS", short = "I",   hl = "MiniStatuslineModeInsert"      },
-    ["R"]    = { long = "RPL", short = "R",   hl = "MiniStatuslineModeReplace"     },
-    ["c"]    = { long = "CMD", short = "C",   hl = "MiniStatuslineModeCommand"     },
-    ["r"]    = { long = "PMT", short = "P",   hl = "MiniStatuslineModeOther"       },
-    ["!"]    = { long = "SHL", short = "Sh",  hl = "MiniStatuslineModeOther"       },
-    ["t"]    = { long = "TRM", short = "T",   hl = "MiniStatuslineModeTerminal"    },
+    ["i"] =    { long = "INS", short = "I",   hl = "MiniStatuslineModeInsert"      },
+    ["R"] =    { long = "RPL", short = "R",   hl = "MiniStatuslineModeReplace"     },
+    ["c"] =    { long = "CMD", short = "C",   hl = "MiniStatuslineModeCommand"     },
+    ["r"] =    { long = "PMT", short = "P",   hl = "MiniStatuslineModeOther"       },
+    ["!"] =    { long = "SHL", short = "Sh",  hl = "MiniStatuslineModeOther"       },
+    ["t"] =    { long = "TRM", short = "T",   hl = "MiniStatuslineModeTerminal"    },
+    ["dbg"] =  { long = "DBG", short = "D",   hl = "MiniStatuslineModeDebug"       },
     -- ["n"]    = { long = "[ Normal ]", short = "NOR", hl = "MiniStatuslineModeNormal"      },
     -- ["v"]    = { long = "[ Visual ]", short = "VIS", hl = "MiniStatuslineModeVisual"      },
     -- ["V"]    = { long = "[ VisLin ]", short = "VLN", hl = "MiniStatuslineModeVisualLine"  },
@@ -187,7 +188,10 @@ local modes = {
 
 local function mode_component(args)
     local mode_info = modes[vim.fn.mode()]
-    local mode = MiniStatusline.is_truncated(args.trunc_width) and mode_info.short or mode_info.long
+    if vim.g.debug_mode then
+        mode_info = modes["dbg"]
+    end
+    local mode = mode_info.long
     return mode, mode_info.hl
 end
 
