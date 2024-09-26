@@ -16,10 +16,6 @@ local minis = {
         })
     end,
 
-    -- align = function()
-    --     require("mini.align").setup()
-    -- end,
-
     operators = function()
         require("mini.operators").setup({
             sort = {
@@ -334,8 +330,8 @@ local minis = {
                 end
             end,
         })
+    end,
 
-    end
 }
 
 return {

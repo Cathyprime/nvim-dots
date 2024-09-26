@@ -9,15 +9,15 @@ return {
             require("dial.config").augends:on_filetype(dial.on_filetype)
 
             local mani = require("dial.map").manipulate
-            vim.keymap.set("n", "<C-a>",  function() mani("increment", "normal") end)
-            vim.keymap.set("n", "<C-x>",  function() mani("decrement", "normal") end)
+            vim.keymap.set("n", "<C-a>",  function() mani("increment", "normal")  end)
+            vim.keymap.set("n", "<C-x>",  function() mani("decrement", "normal")  end)
             vim.keymap.set("n", "g<C-a>", function() mani("increment", "gnormal") end)
             vim.keymap.set("n", "g<C-x>", function() mani("decrement", "gnormal") end)
-            vim.keymap.set("v", "<C-a>",  function() mani("increment", "visual") end)
-            vim.keymap.set("v", "<C-x>",  function() mani("decrement", "visual") end)
+            vim.keymap.set("v", "<C-a>",  function() mani("increment", "visual")  end)
+            vim.keymap.set("v", "<C-x>",  function() mani("decrement", "visual")  end)
             vim.keymap.set("v", "g<C-a>", function() mani("increment", "gvisual") end)
-            vim.keymap.set("n", "<c-g>",  function() mani("increment", "normal", "case") end)
             vim.keymap.set("v", "g<C-x>", function() mani("decrement", "gvisual") end)
+            vim.keymap.set("n", "<c-g>",  function() mani("increment", "normal", "case") end)
         end
     },
     {
