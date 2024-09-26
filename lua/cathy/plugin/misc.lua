@@ -204,6 +204,7 @@ return {
                     "~/.local/*",
                     "~/go/pkg/*",
                     "~/Polygon/*",
+                    "/usr/*",
                     "*node_modules/*",
                 },
                 patterns = {
