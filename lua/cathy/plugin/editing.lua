@@ -87,12 +87,12 @@ return {
             vim.keymap.set({"n", "v"}, "<c-n>", function() mc.addCursor("*n") end)
 
             -- Jump to the next word under cursor but do not add a cursor.
-            vim.keymap.set({"n", "v"}, "<c-s>", function() mc.skipCursor("*n") end)
             vim.keymap.set({"n", "v"}, "<c-s-s>", function() mc.skipCursor("*N") end)
+            vim.keymap.set({"n", "v"}, "<c-s>", function() mc.skipCursor("*n") end)
 
             -- Rotate the main cursor.
-            vim.keymap.set({"n", "v"}, "<left>", mc.nextCursor)
-            vim.keymap.set({"n", "v"}, "<right>", mc.prevCursor)
+            vim.keymap.set({"n", "v"}, "<c-j>", mc.nextCursor)
+            vim.keymap.set({"n", "v"}, "<c-k>", mc.prevCursor)
 
             -- Delete the main cursor.
             vim.keymap.set({"n", "v"}, "<leader>x", mc.deleteCursor)
@@ -109,27 +109,21 @@ return {
             end)
 
             -- Align cursor columns.
-            vim.keymap.set("n", "<leader>ga", mc.alignCursors)
+            vim.keymap.set("n", "ga", mc.alignCursors)
 
             -- Split visual selections by regex.
             vim.keymap.set("v", "<leader>S", mc.splitCursors)
 
             -- Append/insert for each line of visual selections.
             vim.keymap.set("v", "I", mc.insertVisual)
-            vim.keymap.set("v", "A", function()
-                if vim.fn.mode() == vim.keycode("<c-v>") then
-                    vim.fn.feedkeys("A", "n")
-                else
-                    mc.appendVisual()
-                end
-            end)
+            vim.keymap.set("v", "A", mc.appendVisual)
 
             -- match new cursors within visual selections by regex.
             vim.keymap.set("v", "M", mc.matchCursors)
 
             -- Rotate visual selection contents.
-            vim.keymap.set("v", "<leader>T", function() mc.transposeCursors(-1) end)
-            vim.keymap.set("v", "<leader>t", function() mc.transposeCursors(1) end)
+            vim.keymap.set("v", "gt", function() mc.transposeCursors(1) end)
+            vim.keymap.set("v", "gT", function() mc.transposeCursors(-1) end)
         end,
     }
 }
