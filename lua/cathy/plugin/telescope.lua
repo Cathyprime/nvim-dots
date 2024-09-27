@@ -16,7 +16,7 @@ return {
         "stevearc/dressing.nvim",
         "stevearc/oil.nvim",
         {
-            "Cathyprime/telescope-file-browser.nvim",
+            "nvim-telescope/telescope-file-browser.nvim",
             dependencies = "nvim-tree/nvim-web-devicons"
         },
         {
@@ -55,30 +55,20 @@ return {
             local current_picker = actions_state.get_current_picker(prompt_bufnr)
             local entry = current_picker:get_selection()
             local finder = current_picker.finder
+            local query = current_picker:_get_prompt()
+            if query == "" then
+                actions.close(prompt_bufnr)
+                oil.open(finder.cwd)
+                return
+            end
             if entry == nil then
                 local input = (finder.files and finder.path or finder.cwd) .. os_sep .. current_picker:_get_prompt()
-                if input:match("/$") then
-                    fb_actions.create_from_prompt(prompt_bufnr)
-                    actions.close(prompt_bufnr)
-                    oil.open(input)
-                else
-                    actions.close(prompt_bufnr)
-                    vim.cmd(string.format("edit %s", input))
-                end
-            elseif entry.is_dir then
-                local Path = require("plenary.path")
-                local entry_path = Path:new(entry.value):absolute()
-                local cwd = Path:new(finder.files and finder.path or finder.cwd):parent():absolute()
-                if entry_path == cwd then
-                    fb_actions.goto_parent_dir(prompt_bufnr, true)
-                else
-                    local entry_cwd = entry.value
-                    actions.close(prompt_bufnr)
-                    oil.open(entry.value)
-                end
-            else
-                actions.select_default(prompt_bufnr)
+                actions.close(prompt_bufnr)
+                vim.cmd(string.format("edit %s", input))
+                return
             end
+            actions.close(prompt_bufnr)
+            oil.open(entry.value)
         end
         local defaults = {
             borderchars = telescope_config.borderchars,
@@ -173,8 +163,8 @@ return {
                     pph = pph:gsub("term://", ""):gsub("//.*$", "/")
                 end
                 require("telescope").extensions.file_browser.file_browser({
-                    hide_parent_dir = false,
-                    create_from_prompt = false,
+                    hide_parent_dir = true,
+                    create_from_prompt = true,
                     previewer = false,
                     no_ignore = true,
                     hidden = true,
