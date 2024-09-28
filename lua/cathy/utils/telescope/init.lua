@@ -13,62 +13,27 @@ if not ok then
 end
 
 local builtin = require "telescope.builtin"
-local pickers = require "telescope.pickers"
-local finders = require "telescope.finders"
-local sorters = require "telescope.sorters"
-local state   = require "telescope.actions.state"
-local actions = require "telescope.actions"
 local config  = require "cathy.utils.telescope.config"
 
 local M = {}
 
-local is_inside_work_tree = {}
-
 M.project_files = function()
-    local opts = {
-        file_ignore_patterns = config.ignores,
-        previewer = false,
-    }
+    local p = require("project_nvim.project")
+    local root = p.get_project_root()
 
-    local cwd = vim.fn.getcwd()
-    if is_inside_work_tree[cwd] == nil then
-        vim.fn.system("git rev-parse --is-inside-work-tree")
-        is_inside_work_tree[cwd] = vim.v.shell_error == 0
-    end
-
-    if is_inside_work_tree[cwd] then
-        builtin.git_files()
+    if root then
+        M.find_files()
     else
-        builtin.find_files(opts)
+        require("telescope").extensions.projects.projects()
     end
 end
 
-M.change_dir = function()
-    local function enter(prompt_bufnr)
-        local selected = state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        vim.cmd.cd(selected[1])
-    end
-
-    local input = {
-        os.getenv("SHELL"),
-        "-C",
-        os.getenv("HOME") .. "/.config/wezterm/workspace.sh"
-    }
-
-    local opts = {
-        finder = finders.new_oneshot_job(input, {}),
-        sorter = sorters.get_generic_fuzzy_sorter(),
-        attach_mappings = function(prompt_bufnr, map)
-            map("i", "<cr>", function()
-                enter(prompt_bufnr)
-            end)
-            return true
-        end
-    }
-
-    local picker = pickers.new({}, opts)
-    picker:find()
+M.find_files = function()
+    require("telescope.builtin").find_files({
+        file_ignore_patterns = config.ignores,
+        hidden = true,
+        previewer = false,
+    })
 end
 
 M.get_nvim = function()
@@ -77,10 +42,25 @@ M.get_nvim = function()
     })
 end
 
-M.hidden = function()
-    require("telescope.builtin").find_files({
-        file_ignore_patterns = config.ignores,
+M.grep_current_file = function()
+    require("telescope.builtin").live_grep({
+        search_dirs = { vim.fn.expand("%:p") },
+    })
+end
+
+M.file_browser = function()
+    local pph = vim.fn.expand("%:p:h")
+    if pph:find("term://") then
+        pph = pph:gsub("term://", ""):gsub("//.*$", "/")
+    end
+    require("telescope").extensions.file_browser.file_browser({
+        hide_parent_dir = true,
+        create_from_prompt = true,
+        previewer = false,
+        no_ignore = true,
         hidden = true,
+        quiet = true,
+        cwd = pph
     })
 end
 

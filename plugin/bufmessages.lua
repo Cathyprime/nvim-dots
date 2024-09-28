@@ -1,5 +1,4 @@
 local BUFNAME = "Messages"
-local TIMEOUT = 1000
 
 ---@alias bufnr integer
 
@@ -59,7 +58,7 @@ vim.api.nvim_create_user_command(
     function(opts)
         local buf = find_buffer_by_name(BUFNAME)
         if buf ~= nil then
-            vim.api.nvim_buf_delete(buf)
+            vim.api.nvim_buf_delete(buf, {})
         end
         vim.cmd(string.format(opts.mods.." sp | keepalt buffer %s", create_messages_buffer()))
     end,

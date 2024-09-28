@@ -1,12 +1,5 @@
 local telescope_utils = require("cathy.utils.telescope")
 
-local find_files = function()
-    require("telescope.builtin").find_files({
-        file_ignore_patterns = require("cathy.utils.telescope.config").ignores,
-        hidden = true,
-    })
-end
-
 return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
@@ -115,10 +108,10 @@ return {
                 projects = {
                     mappings = {
                         i = {
-                            ["<c-f>"] = find_files
+                            ["<c-f>"] = telescope_utils.find_files
                         },
                         n = {
-                            ["f"] = find_files
+                            ["f"] = telescope_utils.find_files
                         },
                     }
                 },
@@ -126,53 +119,20 @@ return {
         }
     end,
     keys = {
-        { "<leader>fw",       telescope_utils.get_word,                                                    desc = "cursor grep" },
-        { "<c-p>",            require("cathy.utils.telescope").project_files,                              desc = "files" },
-        { "<leader>fF",       function() require("telescope.builtin").resume() end,                        desc = "resume" },
-        { "<leader>fs",       function() require("telescope.builtin").treesitter() end,                    desc = "treesitter" },
-        { "<leader>fd",       function() require("telescope.builtin").diagnostics() end,                   desc = "diagnostics" },
-        { "<m-x>",            function() require("telescope.builtin").commands() end,                      desc = "commands" },
-        { "<leader>fo",       function() require("telescope.builtin").oldfiles({ previewer = false }) end, desc = "oldfiles" },
-        { "<leader>fh",       function() require("telescope.builtin").help_tags() end,                     desc = "help" },
-        { "<leader><leader>", function() require("telescope").extensions.projects.projects() end,          desc = "project files" },
-        { "<leader>fg",       function() require("telescope.builtin").live_grep() end,                     desc = "grep" },
-        { "z=",               function() require("telescope.builtin").spell_suggest() end,                 desc = "spell suggestion" },
-        {
-            "<leader>fn",
-            function()
-                require("telescope.builtin").find_files({
-                    cwd = "~/.config/nvim"
-                })
-            end,
-            desc = "config files"
-        },
-        {
-            "<leader>fG",
-            function()
-                require("telescope.builtin").live_grep({
-                    search_dirs = { vim.fn.expand("%:p") },
-                })
-            end,
-            desc = "grep current file"
-        },
-        {
-            "<leader>ff",
-            function()
-                local pph = vim.fn.expand("%:p:h")
-                if pph:find("term://") then
-                    pph = pph:gsub("term://", ""):gsub("//.*$", "/")
-                end
-                require("telescope").extensions.file_browser.file_browser({
-                    hide_parent_dir = true,
-                    create_from_prompt = true,
-                    previewer = false,
-                    no_ignore = true,
-                    hidden = true,
-                    quiet = true,
-                    cwd = pph
-                })
-            end,
-            desc = "projects"
-        }
+        { "<leader>fw",       telescope_utils.get_word,                                                    desc = "cursor grep"       },
+        { "<c-p>",            telescope_utils.find_files,                                                  desc = "files"             },
+        { "<leader><leader>", telescope_utils.project_files,                                               desc = "files"             },
+        { "<leader>fn",       telescope_utils.get_nvim,                                                    desc = "config files"      },
+        { "<leader>fG",       telescope_utils.grep_current_file,                                           desc = "grep current file" },
+        { "<leader>ff",       telescope_utils.file_browser,                                                desc = "projects"          },
+        { "<leader>fF",       function() require("telescope.builtin").resume() end,                        desc = "resume"            },
+        { "<leader>fs",       function() require("telescope.builtin").treesitter() end,                    desc = "treesitter"        },
+        { "<leader>fd",       function() require("telescope.builtin").diagnostics() end,                   desc = "diagnostics"       },
+        { "<m-x>",            function() require("telescope.builtin").commands() end,                      desc = "commands"          },
+        { "<leader>fo",       function() require("telescope.builtin").oldfiles({ previewer = false }) end, desc = "oldfiles"          },
+        { "<leader>fh",       function() require("telescope.builtin").help_tags() end,                     desc = "help"              },
+        { "<leader>fp",       function() require("telescope").extensions.projects.projects() end,          desc = "project files"     },
+        { "<leader>fg",       function() require("telescope.builtin").live_grep() end,                     desc = "grep"              },
+        { "z=",               function() require("telescope.builtin").spell_suggest() end,                 desc = "spell suggestion"  },
     }
 }
