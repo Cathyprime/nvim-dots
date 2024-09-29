@@ -88,41 +88,6 @@ return {
             { "<leader>u", "<cmd>UndotreeToggle<cr>" }
         }
     },
-    {
-        "Vigemus/iron.nvim",
-        config = function()
-            require("iron.core").setup({
-                config = {
-                    repl_open_cmd = "vertical botright 70 split",
-                    repl_definition = {
-                        sh = {
-                            command = { "zsh" },
-                        },
-                    },
-                },
-                keymaps = {
-                    send_motion = "<localleader>",
-                    visual_send = "<localleader>",
-                    send_file = "<localleader>f",
-                    send_line = "<localleader><localleader>",
-                    cr = "<localleader><cr>",
-                    interrupt = "<localleader><c-c>",
-                    exit = "<localleader><c-d>",
-                    clear = "<localleader><c-l>",
-                    send_mark = "<localleader>mm",
-                    mark_motion = "<localleader>m",
-                    mark_visual = "<localleader>m",
-                    remove_mark = "<localleader>md",
-                },
-            })
-        end,
-        keys = {
-            { "<leader>is", "<cmd>IronRepl<cr>" },
-            { "<leader>ih", "<cmd>IronHide<cr>" },
-            { "<leader>if", "<cmd>IronWatch file<cr>" },
-            { "<leader>im", "<cmd>IronWatch mark<cr>" }
-        }
-    },
     "milisims/nvim-luaref",
     {
         "folke/zen-mode.nvim",
