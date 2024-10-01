@@ -333,6 +333,33 @@ local minis = {
         })
     end,
 
+    surround = function()
+        local ts_input = require("mini.surround").gen_spec.input.treesitter
+        require("mini.surround").setup({
+            custom_surroundings = {
+                t = {
+                    input = ts_input({ outer = "@type.outer", inner = "@type.inner" }),
+                    output = function()
+                        local type_name = MiniSurround.user_input("Type name")
+                        return { left = type_name.."<", right = ">" }
+                    end
+                }
+            },
+            mappings = {
+                add = "s",
+                delete = "ds",
+                find = "",
+                find_left = "",
+                highlight = "",
+                replace = "cs",
+                update_n_lines = "",
+            },
+            search_method = 'cover_or_next',
+        })
+        vim.keymap.set("n", "ss", "s_", { remap = true })
+        vim.keymap.set("n", "S", "s", { remap = false })
+    end
+
 }
 
 return {

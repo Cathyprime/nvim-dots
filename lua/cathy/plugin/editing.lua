@@ -21,60 +21,6 @@ return {
         end
     },
     {
-        "kylechui/nvim-surround",
-        event = "InsertEnter",
-        opts = {
-            keymaps = {
-                insert = false,
-                insert_line = false,
-                normal = "s",
-                normal_cur = "ss",
-                normal_line = "S",
-                normal_cur_line = "SS",
-                visual = "s",
-                visual_line = "S",
-                delete = "ds",
-                change = "cs",
-                change_line = "cS",
-            },
-            surrounds = {
-                t = {
-                    add = function()
-                        local type = require("nvim-surround.config").get_input("Enter the type name: ")
-                        if type then
-                            return { { type .. "<" }, { ">" }}
-                        end
-                    end,
-                    find = function()
-                        local c = require("nvim-surround.config")
-                        if vim.g.loaded_nvim_treesitter then
-                            local selection = c.get_selection({
-                                query = {
-                                    capture = "@type.outer",
-                                    type = "textobjects",
-                                }
-                            })
-                            if selection then
-                                return selection
-                            end
-                        end
-                        return c.get_selection({ pattern = "[^=%s%<%>{}]+%b()" })
-                    end,
-                    delete = "^(.-%<)().-(%>)()$",
-                    change = {
-                        target = "^.-([%w_]+)()%<.-%>()()$",
-                        replacement = function()
-                            local type = require("nvim-surround.config").get_input("Enter the type name: ")
-                            if type then
-                                return { { type }, { "" } }
-                            end
-                        end
-                    }
-                }
-            }
-        },
-    },
-    {
         "jake-stewart/multicursor.nvim",
         branch = "1.0",
         config = function()
