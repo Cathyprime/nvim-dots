@@ -90,6 +90,7 @@ local minis = {
                 }, {}),
                 f = module.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
                 c = module.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+                t = module.gen_spec.treesitter({ a = "@type.outer", i = "@type.inner" }, {})
             },
             search_method = "cover_or_next"
         })

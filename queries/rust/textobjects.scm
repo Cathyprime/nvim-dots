@@ -1,4 +1,10 @@
 ;; extends
 
 (generic_type
-  type_arguments: (_) @type.inner) @type.outer
+  type: (_)) @type.outer
+
+(generic_type
+ type_arguments: (type_arguments
+     (_) @_start
+     (_)? @_end
+     (#make-range! "type.inner" @_start @_end)))
