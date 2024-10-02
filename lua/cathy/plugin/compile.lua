@@ -4,6 +4,14 @@ vim.g.dispatch_handlers = {
     "job",
 }
 
+local function oil_args(args)
+    local dir = require("oil").get_current_dir(vim.api.nvim_get_current_buf())
+    if dir == nil then
+        return args
+    end
+    return string.format("-dir=%s %s", dir, args)
+end
+
 vim.api.nvim_create_autocmd("VimEnter", {
     once = true,
     callback = function()
@@ -12,7 +20,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
             "Dispatch",
             function(opts)
                 local count = 0
-                local args = opts.args or ""
+                local args = oil_args(opts.args or "")
                 local mods = opts.mods or ""
                 local bang = opts.bang and 1 or 0
 
@@ -40,7 +48,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
             "Start",
             function(opts)
                 local count = 0
-                local args = opts.args or ""
+                local args = oil_args(opts.args or "")
                 local mods = opts.mods or ""
                 local bang = opts.bang and 1 or 0
 
