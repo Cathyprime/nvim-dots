@@ -129,6 +129,9 @@ local function start_updater(cb, start_path)
 end
 
 local function get_cwd()
+    if require("oil") and require("oil").get_current_dir() ~= nil then
+        return require("oil").get_current_dir()
+    end
     local p = vim.fn.expand("%:p:h") .. "/"
     return normalize_path(p)
 end
