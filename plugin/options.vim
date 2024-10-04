@@ -47,7 +47,7 @@ set shortmess+=c
 set noshowmode
 set laststatus=2
 set undofile
-set wildmode=longest,list,full
+set wildmode=full
 set wildoptions-=pum
 set winminwidth=5
 set pumheight=4
