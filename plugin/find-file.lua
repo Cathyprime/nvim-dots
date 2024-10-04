@@ -7,6 +7,17 @@ local function set_prefix(str)
     prefix = str .. " "
 end
 
+local function to_path(line)
+    local path = string.sub(line, #prefix + 1)
+    path = tostring(Path:new(path):expand())
+    return tostring(Path:new(path):absolute())
+end
+
+local function normalize(path)
+    local p = path:gsub("^" .. home, "~")
+    return p
+end
+
 local function create_dummy_command()
     local cmd
     local pos = prefix:find(" ")
@@ -25,11 +36,6 @@ local function create_dummy_command()
             vim.api.nvim_del_user_command(cmd)
         end,
     })
-end
-
-local function normalize_path(path)
-    local p = Path:new(path):absolute()
-    return tostring(p)
 end
 
 local function cmdline(arg)
@@ -61,31 +67,24 @@ local function set_map(lhs, rhs)
     cached_mappings[lhs] = rhs
 end
 
-local function line_path()
-    local line = cmdline()
-    local x = string.sub(line, #prefix + 1)
-    print(x)
-    return x
-end
-
 local function backspace()
-    local line = cmdline()
-    if last(line) == "/" then
-        local pos = line:sub(1, #line - 1):find(".*/")
-        local linerus = prefix .. tostring(Path:new(line_path()):parent())
-        print(linerus)
-        if last(linerus) ~= "/" then
-            linerus = linerus .. "/"
+    local line = to_path(cmdline())
+    if Path:new(line):is_dir() then
+        local path = tostring(Path:new(line):parent())
+        if path == "/" then
+            cmdline({ line = prefix .. path, pos = #prefix + 2 })
+        else
+            local parent = prefix .. path .. "/"
+            cmdline({ line = parent, pos = #parent + 1 })
         end
-        cmdline({ line = linerus, pos = #linerus + 1 })
         return
     end
     vim.api.nvim_feedkeys(vim.keycode "<bs>", "n", false)
 end
 
 local function c_w()
-    local line = cmdline()
-    if last(line) == "/" then
+    local path = to_path(cmdline())
+    if Path:new(path):is_dir() then
         backspace()
         return
     end
@@ -95,7 +94,7 @@ local function c_w()
 end
 
 local function start_updater(cb, start_path)
-    start_path = start_path or home .. "/"
+    start_path = normalize(start_path or home .. "/")
     local group = vim.api.nvim_create_augroup("find-file", { clear = false })
     vim.api.nvim_create_autocmd("CmdlineChanged", {
         once = true,
@@ -104,10 +103,14 @@ local function start_updater(cb, start_path)
             vim.api.nvim_create_autocmd("CmdlineChanged", {
                 group = group,
                 callback = function()
-                    local _, pos = cmdline()
+                    local l, pos = cmdline()
                     if pos <= #prefix then
                         cmdline(prefix)
+                        return
                     end
+                    local norm = tostring(normalize(to_path(l)))
+                    local line = prefix .. norm
+                    cmdline({ line = line, pos = #line + 1 })
                 end,
             })
         end,
@@ -121,7 +124,7 @@ local function start_updater(cb, start_path)
                 return
             end
             vim.v.event.abort = true
-            local line = line_path()
+            local line = to_path(cmdline())
             cmdline("")
             cb(line)
         end,
@@ -132,8 +135,7 @@ local function get_cwd()
     if require("oil") and require("oil").get_current_dir() ~= nil then
         return require("oil").get_current_dir()
     end
-    local p = vim.fn.expand("%:p:h") .. "/"
-    return normalize_path(p)
+    return vim.fn.expand("%:p:h") .. "/"
 end
 
 local function set_keymaps()
