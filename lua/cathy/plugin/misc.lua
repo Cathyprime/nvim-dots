@@ -164,6 +164,7 @@ return {
                 show_hidden = true,
                 detection_methods = { "pattern" },
                 exclude_dirs = {
+                    ".",
                     "~/.cargo/*",
                     "~/.rustup/*",
                     "~/.local/*",
