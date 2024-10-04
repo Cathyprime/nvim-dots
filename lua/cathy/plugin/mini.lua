@@ -328,7 +328,16 @@ local minis = {
                         local type_name = MiniSurround.user_input("Type name")
                         return { left = type_name.."<", right = ">" }
                     end
-                }
+                },
+                T = {
+                    input = { '<(%w-)%f[^<%w][^<>]->.-</%1>', '^<.->().*()</[^/]->$' },
+                    output = function()
+                        local tag_full = MiniSurround.user_input('Tag')
+                        if tag_full == nil then return nil end
+                        local tag_name = tag_full:match('^%S*')
+                        return { left = '<' .. tag_full .. '>', right = '</' .. tag_name .. '>' }
+                    end,
+                },
             },
             mappings = {
                 add = "s",
