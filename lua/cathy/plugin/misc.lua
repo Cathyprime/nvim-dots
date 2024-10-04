@@ -171,6 +171,7 @@ return {
                     "~/go/pkg/*",
                     "~/Polygon/*",
                     "/usr/*",
+                    "*src*",
                     "*node_modules/*",
                 },
                 patterns = {
