@@ -54,7 +54,12 @@ set pumheight=4
 set wrap
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 let g:markdown_recommended_style=0
-set guifont=Iosevka\ Custom:h14.2
+
+if hostname() == "luna"
+    set guifont=Iosevka\ Nerd\ Font:h14
+else
+    set guifont=Iosevka\ Nerd\ Font:h18
+endif
 
 if exists(g:neovide)
     let g:neovide_scale_factor=1.0
