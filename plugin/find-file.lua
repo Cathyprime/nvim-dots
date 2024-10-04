@@ -2,7 +2,30 @@ local cached_mappings = {}
 
 local Path = require("plenary.path")
 local home = os.getenv("HOME")
-local edit_home = "edit " .. home .. "/"
+local prefix = ""
+local function set_prefix(str)
+    prefix = str .. " "
+end
+
+local function create_dummy_command()
+    local cmd
+    local pos = prefix:find(" ")
+    if pos then
+        cmd = prefix:sub(1, pos - 1)
+    else
+        cmd = prefix
+    end
+    vim.api.nvim_create_user_command(cmd, function() end, {
+        complete = "file",
+        nargs = "*"
+    })
+    vim.api.nvim_create_autocmd("CmdlineLeave", {
+        once = true,
+        callback = function()
+            vim.api.nvim_del_user_command(cmd)
+        end,
+    })
+end
 
 local function normalize_path(path)
     local p = Path:new(path):absolute()
@@ -40,7 +63,8 @@ end
 
 local function line_path()
     local line = cmdline()
-    local x = string.sub(line, 6)
+    local x = string.sub(line, #prefix + 1)
+    print(x)
     return x
 end
 
@@ -48,13 +72,12 @@ local function backspace()
     local line = cmdline()
     if last(line) == "/" then
         local pos = line:sub(1, #line - 1):find(".*/")
-        if pos then
-            local linerus = "edit " .. tostring(Path:new(line_path()):parent())
-            if last(linerus) ~= "/" then
-                linerus = linerus .. "/"
-            end
-            cmdline({ line = linerus, pos = #linerus + 1 })
+        local linerus = prefix .. tostring(Path:new(line_path()):parent())
+        print(linerus)
+        if last(linerus) ~= "/" then
+            linerus = linerus .. "/"
         end
+        cmdline({ line = linerus, pos = #linerus + 1 })
         return
     end
     vim.api.nvim_feedkeys(vim.keycode "<bs>", "n", false)
@@ -71,19 +94,19 @@ local function c_w()
     cmdline({ line = line, pos = #line + 1 })
 end
 
-local function start_updater(cb, start)
-    start = start or home .. "/"
+local function start_updater(cb, start_path)
+    start_path = start_path or home .. "/"
     local group = vim.api.nvim_create_augroup("find-file", { clear = false })
     vim.api.nvim_create_autocmd("CmdlineChanged", {
         once = true,
         callback = function()
-            cmdline(string.format("edit %s", start))
+            cmdline(string.format("%s%s", prefix, start_path))
             vim.api.nvim_create_autocmd("CmdlineChanged", {
                 group = group,
                 callback = function()
                     local _, pos = cmdline()
-                    if pos <= 5 then
-                        cmdline("edit ")
+                    if pos <= #prefix then
+                        cmdline(prefix)
                     end
                 end,
             })
@@ -131,6 +154,8 @@ local function find_file(cb)
 end
 
 vim.api.nvim_create_user_command("FindFile", function()
+    set_prefix("Find File ::")
+    create_dummy_command()
     find_file(function(path)
         vim.cmd("edit " .. path)
     end)
