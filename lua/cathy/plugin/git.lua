@@ -60,7 +60,12 @@ return {
                 if require("zen-mode.view").is_open() then
                     require("zen-mode").close()
                 end
-                require("neogit").open({ kind = "tab" })
+                local cwd = require("oil") and require("oil").get_current_dir()
+                if cwd ~= nil then
+                    require("neogit").open({ kind = "tab", cwd = cwd:sub(0, -1) })
+                else
+                    require("neogit").open({ kind = "tab" })
+                end
             end }
         },
         config = true,
