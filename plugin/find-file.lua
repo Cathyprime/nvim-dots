@@ -165,5 +165,8 @@ vim.api.nvim_create_user_command("FindFile", function()
     create_dummy_command()
     find_file(function(path)
         vim.cmd("edit " .. path)
+        if Path:new(path):is_dir() then
+            vim.cmd.cd(path)
+        end
     end)
 end, {})
