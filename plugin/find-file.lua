@@ -105,7 +105,7 @@ local function start_updater(cb, start_path)
                 callback = function()
                     local l, pos = cmdline()
                     if pos <= #prefix then
-                        cmdline(prefix)
+                        cmdline(prefix .. "/")
                         return
                     end
                     local norm = tostring(normalize(to_path(l)))
@@ -141,6 +141,8 @@ end
 local function set_keymaps()
     set_map("<bs>", backspace)
     set_map("<c-w>", c_w)
+    set_map("<esc>", function() vim.api.nvim_feedkeys(vim.keycode"<c-c>", "n", false) end)
+    set_map("<c-f>", "<nop>")
     vim.api.nvim_create_autocmd("CmdlineLeave", {
         once = true,
         callback = function()
