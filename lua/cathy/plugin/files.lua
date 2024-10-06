@@ -48,7 +48,7 @@ return {
                 natural_order = true,
                 show_hidden = true,
                 is_always_hidden = function(name)
-                    return name == ".." or name == ".git"
+                    return name == ".."
                 end,
             },
         })
