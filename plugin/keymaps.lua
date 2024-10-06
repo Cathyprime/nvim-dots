@@ -171,33 +171,6 @@ map("c", "<c-a>", "<home>", { silent = false })
 map("c", "<m-f>", "<c-right>", { silent = false })
 map("c", "<m-b>", "<c-left>", { silent = false })
 
--- minibuffer
-map("n", "q:", function()
-    vim.opt.foldmethod = "manual"
-    return "q:"
-end, { expr = true })
-
-vim.api.nvim_create_autocmd("RecordingEnter", {
-    once = false,
-    callback = function()
-        vim.keymap.del("n", "q:")
-    end,
-})
-
-vim.api.nvim_create_autocmd("RecordingLeave", {
-    once = false,
-    callback = function()
-        map("n", "q:", function()
-            vim.opt.foldmethod = "manual"
-            return "q:"
-        end, { expr = true })
-    end,
-})
-
-map("c", "<c-f>", function()
-    vim.opt.foldmethod = "manual"
-    return "<c-f>"
-end, { expr = true })
 vim.keymap.set("ca", "G", "Git")
 map("c", "<c-t>", function()
     local cmdtype = vim.fn.getcmdtype()
