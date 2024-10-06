@@ -38,6 +38,15 @@ return {
                 ["<C-t>"] = "actions.open_terminal",
                 ["<C-q>"] = "actions.send_to_qflist",
                 ["gy"] = "actions.yank_entry",
+                ["<c-r><c-w>"] = { function()
+                    local parsed_name = require("oil").get_cursor_entry().parsed_name
+                    local ok, cmd = pcall(vim.fn.input, {
+                        prompt = string.format("execute on '%s': ", parsed_name),
+                        cancelreturn = nil,
+                    })
+                    if not ok or cmd == nil then return end
+                    vim.cmd.Start(string.format("-dir=%s -wait=always %s %s", require("oil").get_current_dir(), cmd, parsed_name))
+                end, desc = "perform an action on item" },
                 ["g\\"] = false,
                 ["gs"] = false,
                 ["~"] = false,
