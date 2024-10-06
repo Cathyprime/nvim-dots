@@ -30,7 +30,7 @@ set foldlevel=4 foldexpr=v:lua.vim.treesitter.foldexpr()
 set foldtext= foldmethod=expr foldcolumn=0 foldnestmax=4
 set formatoptions-=l
 set nohls cursorline guicursor=i-ci-ve:block showcmdloc=statusline
-set cmdwinheight=2 cmdheight=2 showtabline=0
+set cmdwinheight=2 cmdheight=1 showtabline=0
 set scrolloff=8
 set smoothscroll
 set termguicolors
@@ -47,21 +47,15 @@ set shortmess+=c
 set noshowmode
 set laststatus=2
 set undofile
-set wildmode=full
-set wildoptions-=pum
+set wildmode=full wildignorecase wildoptions-=pum
 set winminwidth=5
 set pumheight=4
 set wrap
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 let g:markdown_recommended_style=0
+set guifont=Iosevka\ Nerd\ Font:h18
 
-if hostname() == "luna"
-    set guifont=Iosevka\ Nerd\ Font:h14
-else
-    set guifont=Iosevka\ Nerd\ Font:h18
-endif
-
-if exists(g:neovide)
+if exists("g:neovide")
     let g:neovide_scale_factor=1.0
     let g:neovide_hide_mouse_when_typing=v:true
     let g:neovide_refresh_rate=144
