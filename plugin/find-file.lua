@@ -143,6 +143,9 @@ local function set_keymaps()
     set_map("<c-w>", c_w)
     set_map("<esc>", function() vim.api.nvim_feedkeys(vim.keycode"<c-c>", "n", false) end)
     set_map("<c-f>", "<nop>")
+    set_map("<c-h>", function()
+        cmdline(prefix .. home .. "/")
+    end)
     vim.api.nvim_create_autocmd("CmdlineLeave", {
         once = true,
         callback = function()
