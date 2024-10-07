@@ -216,16 +216,21 @@ vim.keymap.set("n", "n", wrap_fn(stable_search, true), { silent = true, expr = t
 vim.keymap.set("n", "N", wrap_fn(stable_search, false), { silent = true, expr = true })
 
 if vim.g.neovide then
-    local change_scale_factor = function(delta)
+    local change_scale_factor = function()
         vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
     end
-    vim.keymap.set("n", "<C-+>", function()
-        change_scale_factor(1.05)
-    end)
-    vim.keymap.set("n", "<C-=>", function()
-        vim.g.neovide_scale_factor = 1.0
-    end)
-    vim.keymap.set("n", "<C-->", function()
-        change_scale_factor(1/1.05)
-    end)
+    local function resize(lhs, delta)
+        vim.keymap.set("n", lhs, function()
+            if delta == 1.0 then
+                vim.g.neovide_scale_factor = 1.0
+                return
+            end
+            vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+        end)
+    end
+    resize("<c-+>", 1.05)
+    resize("<c-->", 1/1.05)
+    resize("<c-ScrollWheelUp>", 1.15)
+    resize("<c-ScrollWheelDown>", 1/1.15)
+    resize("<C-=>", 1.0)
 end
