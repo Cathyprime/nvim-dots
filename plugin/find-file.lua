@@ -7,6 +7,10 @@ local function set_prefix(str)
     prefix = str .. " "
 end
 
+local function abort()
+    vim.api.nvim_feedkeys(vim.keycode"<c-c>", "n", false)
+end
+
 local function to_path(line)
     local path = string.sub(line, #prefix + 1)
     path = tostring(Path:new(path):expand())
@@ -120,12 +124,12 @@ local function start_updater(cb, start_path)
         once = true,
         callback = function()
             vim.api.nvim_del_augroup_by_id(group)
+            local line = to_path(cmdline())
+            cmdline("")
             if vim.v.event.abort then
                 return
             end
             vim.v.event.abort = true
-            local line = to_path(cmdline())
-            cmdline("")
             cb(line)
         end,
     })
@@ -141,7 +145,8 @@ end
 local function set_keymaps()
     set_map("<bs>", backspace)
     set_map("<c-w>", c_w)
-    set_map("<esc>", function() vim.api.nvim_feedkeys(vim.keycode"<c-c>", "n", false) end)
+    set_map("<c-c>", abort)
+    set_map("<esc>", abort)
     set_map("<c-f>", "<nop>")
     set_map("<c-h>", function()
         cmdline(prefix .. home .. "/")
