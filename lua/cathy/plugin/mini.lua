@@ -352,6 +352,11 @@ local minis = {
         })
         vim.keymap.set("n", "ss", "s_", { remap = true })
         vim.keymap.set("n", "S", "s", { remap = false })
+    end,
+
+    icons = function()
+        require("mini.icons").setup()
+        MiniIcons.mock_nvim_web_devicons()
     end
 
 }
