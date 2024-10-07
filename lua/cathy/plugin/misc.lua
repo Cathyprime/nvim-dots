@@ -170,6 +170,7 @@ return {
                     "~/.local/*",
                     "~/go/pkg/*",
                     "~/Polygon/*",
+                    "*neovide-derive*",
                     "/usr/*",
                     "*src*",
                     "*node_modules/*",
