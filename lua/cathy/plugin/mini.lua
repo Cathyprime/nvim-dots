@@ -364,8 +364,6 @@ local minis = {
 return {
     "echasnovski/mini.nvim",
     config = function()
-        for _, func in pairs(minis) do
-            func()
-        end
+        vim.iter(minis):each(function(_, fn) fn() end)
     end
 }
