@@ -7,8 +7,17 @@ local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
-local tsp = require("luasnip.extras.treesitter_postfix")
+local d = ls.dynamic_node
 local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
+
+local rust_arrow = function(args)
+    if args and args[1] and args[1][1] ~= "" then
+        return " -> "
+    else
+        return ""
+    end
+end
 
 local expr_query = [[
 [
@@ -63,6 +72,10 @@ local expr_surround = gen.expr_surround_gen({
     query = expr_query,
     query_lang = "rust"
 })
+local func_body = [[ {
+    <body>
+}]]
+local fn = fmta(func_body, { body = i(1, "unimplemented!();")} )
 
 return {
     gen.begin_line_snip("pc ", { t"pub(crate) " }),
@@ -102,22 +115,20 @@ return {
         utils.simple_replace_callback("Option<%s>")
     ),
 
-    s({ trig = "fn ", snippetType = "autosnippet", wordTrig = true }, fmt([[
-    fn {funame}({arg}){arrow}{retype} {{
-        {body}
-    }}
-    ]], {
+    s("fn", fmt([[fn {funame}({arg}){arrow}{retype}{body}]], {
+        body = d(4, function()
+            local contains = utils.tree_contains_type(function(node)
+                return node:type() == "trait_item"
+            end)
+            if contains then
+                return sn(1, { c(1, { t";", fn }) })
+            end
+            return sn(1, fn)
+        end),
         funame = i(1, "name"),
         arg = i(2),
         retype = i(3),
-        arrow = f(function(args)
-            if args and args[1] and args[1][1] ~= "" then
-                return " -> "
-            else
-                return ""
-            end
-        end, { 3 }),
-        body = i(0, "unimplemented!();")
+        arrow = f(rust_arrow, { 3 }),
     })),
 
     s("test", fmt([[
