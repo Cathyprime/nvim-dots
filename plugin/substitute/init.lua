@@ -1,5 +1,12 @@
 CathySubstitute = {}
 
+local input = function(opts)
+    opts.cancelreturn = nil
+    local ok, replace = pcall(vim.fn.input, opts)
+    if not ok then return end
+    return replace
+end
+
 local opts = {
     silent = true,
     expr = true
@@ -49,14 +56,13 @@ local function do_query()
         cache.use_abolish = not cache.use_abolish
     end, { buffer = buf })
 
-    local ok, query = pcall(vim.fn.input, {
-        cancelreturn = -99,
+    local query = input({
         prompt = query_prompt(),
     })
 
     vim.keymap.del("c", "<c-g>", { buffer = buf })
 
-    if not ok or query == -99 then
+    if not query then
         return false
     end
     cache.query = query ~= "" and query or cache.query
@@ -64,11 +70,10 @@ local function do_query()
 end
 
 local function do_replace()
-    local ok, replace = pcall(vim.fn.input, {
-        cancelreturn = -99,
+    local replace = input({
         prompt = replace_prompt(),
     })
-    if not ok or replace == -99 then
+    if not replace then
         return false
     end
     cache.replace = replace ~= "" and replace or cache.replace
