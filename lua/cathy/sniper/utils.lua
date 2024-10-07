@@ -1,5 +1,7 @@
 local M = {}
 
+---@param match string
+---@param template string
 function M.replace_all(match, template)
     match = vim.F.if_nil(match, "")
     ---@type string
@@ -36,6 +38,8 @@ function M.make_type_matcher(types)
     return types
 end
 
+---@param node TSNode
+---@param types string[]
 function M.find_first_parent(node, types)
     local matcher = M.make_type_matcher(types)
 
@@ -127,10 +131,27 @@ function M.inject_name(NAME, find_first_paren_args)
     end
 end
 
+---@param replaced string
+---@return fun(match: string): string
 function M.simple_replace_callback(replaced)
     return function(match)
         return utils.replace_all(match, replaced)
     end
+end
+
+---@param cmp fun(node: TSNode): boolean
+---@return boolean contains
+---@return TSNode|nil matchedNode
+function M.tree_contains_type(cmp)
+    local node = vim.treesitter.get_node()
+    if not node then return false, nil end
+    while(node:parent() ~= nil) do
+        if cmp(node) then
+            return true, node
+        end
+        node = node:parent()
+    end
+    return false, nil
 end
 
 return M
