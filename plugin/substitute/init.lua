@@ -19,10 +19,10 @@ local cache = {
 }
 
 CathySubstitute.formats = {
-    normal = vim.keycode":<c-u>'[,']s###g<left><left>",
-    normal_abolish = vim.keycode":<c-u>'[,']S###g<left><left>",
+    normal = vim.keycode":<c-u>'[,']s///g<left><left>",
+    normal_abolish = vim.keycode"gp<esc>:'<,'>Subs///g<left><left>",
     visual = ":s/%s/%s/gec<cr>",
-    visual_abolish = ":S/%s/%s/gec<cr>",
+    visual_abolish = ":Subs/%s/%s/gec<cr>",
 }
 
 local function get_placeholder(visual)
@@ -82,13 +82,16 @@ end
 
 ---@return string?
 local function visual_replace()
+    cache.use_abolish = true
     if not do_query() then
         return "<esc>"
     end
     if not do_replace() then
         return "<esc>"
     end
-    return string.format(get_placeholder(true), cache.query, cache.replace)
+    local str = string.format(get_placeholder(true), cache.query, cache.replace)
+    cache.use_abolish = false
+    return str
 end
 
 function CathySubstitute.replace()
@@ -114,13 +117,13 @@ vim.keymap.set("n", "gss", function()
     return meow(true, false)
 end, opts)
 
-vim.keymap.set("n", "gS", function()
-    return meow(false, true)
-end, opts)
-
-vim.keymap.set("n", "gSS", function()
-    return meow(true, true)
-end, opts)
+-- vim.keymap.set("n", "gS", function()
+--     return meow(false, true)
+-- end, opts)
+--
+-- vim.keymap.set("n", "gSS", function()
+--     return meow(true, true)
+-- end, opts)
 
 vim.keymap.set("x", "gs", function()
     return visual_replace()

@@ -1,5 +1,8 @@
 return {
-    "tpope/vim-abolish",
+    {
+        "johmsalas/text-case.nvim",
+        opts = {}
+    },
     {
         "monaqa/dial.nvim",
         event = { "BufReadPost", "BufWritePost", "BufNewFile" },
