@@ -38,7 +38,8 @@ end
 
 M.get_nvim = function()
     builtin.find_files({
-        cwd = "~/.config/nvim"
+        cwd = "~/.config/nvim",
+        previewer = false,
     })
 end
 
@@ -48,7 +49,9 @@ M.grep_current_file = function()
     })
 end
 
+---@deprecated
 M.file_browser = function()
+    error "picker deprecated"
     local pph = vim.fn.expand("%:p:h")
     if pph:find("term://") then
         pph = pph:gsub("term://", ""):gsub("//.*$", "/")
