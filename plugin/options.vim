@@ -40,7 +40,7 @@ set splitright
 set nosplitbelow
 set splitkeep=screen
 set notimeout
-set updatetime=700
+set updatetime=500
 set noswapfile
 set nowritebackup
 set shortmess+=c
