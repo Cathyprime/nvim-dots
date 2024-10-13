@@ -106,11 +106,11 @@ local minis = {
             view = {
                 style = "sign",
                 signs = {
-                    add    = "┃",
-                    change = "┃",
-                    delete = "▁",
+                    add    = "",
+                    change = "",
+                    delete = "",
                 },
-                priority = 1,
+                priority = -199,
             },
         })
         vim.keymap.set("n", "<leader>go", function()
