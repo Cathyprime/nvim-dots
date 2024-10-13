@@ -1,7 +1,7 @@
 set background=light
 packadd termdebug
 
-set rnu nu
+set nu
 set cpo+=>
 set diffopt+=iwhite
 set diffopt+=algorithm:histogram
@@ -29,7 +29,7 @@ set ignorecase smartcase incsearch
 set foldlevel=4 foldexpr=v:lua.vim.treesitter.foldexpr()
 set foldtext= foldmethod=expr foldcolumn=0 foldnestmax=4
 set formatoptions-=l
-set nohls cursorline guicursor=i-ci-ve:block showcmdloc=statusline
+set nohls cursorline cursorlineopt=number guicursor=i-ci-ve:block showcmdloc=statusline
 set cmdwinheight=2 cmdheight=1 showtabline=0
 set scrolloff=8
 set smoothscroll
