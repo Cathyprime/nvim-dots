@@ -149,10 +149,6 @@ end, { expr = true })
 map("n", "<leader>ot", "<cmd>e todo.md<cr>")
 map("x", "<leader>;", [[<cmd>'<,'>norm A;<cr>]])
 map("n", "<c-z>", "<Nop>")
-map("n", "<leader>b", function()
-    local char = vim.fn.nr2char(vim.fn.getchar())
-    return string.format("<cmd>call setreg('%s', getreg('%s'), 'b')<cr>", char, char)
-end, { expr = true, desc = "change register to block mode" })
 map("n", "<leader>ff", "<cmd>FindFile<cr>", { silent = false })
 
 if package.loaded["rooter"] then
