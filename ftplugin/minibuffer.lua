@@ -22,6 +22,7 @@ map("n"       , "<c-p>",          "<nop>")
 
 local old_status = vim.opt.laststatus
 local old_cmdheight = vim.opt.cmdheight
+vim.opt_local.cursorline = false
 vim.opt_local.spell = false
 vim.opt_local.winbar = nil
 vim.opt.laststatus = 0
