@@ -1,10 +1,20 @@
 local function augroup(name)
-    return vim.api.nvim_create_augroup(string.format("cathy_%s", name), { clear = true })
+    return vim.api.nvim_create_augroup(string.format("Magda_%s", name), { clear = true })
 end
+
+vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
+    group = augroup("cursor_color"),
+    callback = function()
+        local hl = vim.api.nvim_get_hl(0, { name = "Cursor" })
+        vim.g.neovide_cursor_fg = hl.fg
+        vim.g.neovide_cursor_bg = hl.bg
+    end,
+})
 
 -- options.vim
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = "options.vim",
+    group = augroup("options_trail_space"),
     callback = function()
         vim.b.minitrailspace_disable = true
     end,
@@ -21,6 +31,7 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 
 -- Load view
 vim.api.nvim_create_autocmd("BufWinEnter", {
+    group = augroup("load_view"),
     pattern = "*.*",
     callback = function() vim.cmd.loadview({ mods = { emsg_silent = true } }) end,
     group = augroup("Load view"),
@@ -41,6 +52,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 -- highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
+    group = augroup("highlight_yank"),
     callback = function()
         vim.highlight.on_yank({ higroup = "Yank" })
     end,
