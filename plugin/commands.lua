@@ -12,6 +12,18 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command(
+    "Read",
+    function(opts)
+        local out = vim.split(vim.api.nvim_exec2(opts.args, { output = true }).output, "\n", {})
+        local row = vim.api.nvim_win_get_cursor(0)
+        vim.api.nvim_buf_set_lines(0, row[1], row[1], false, out)
+    end,
+    {
+        nargs = "*"
+    }
+)
+
+vim.api.nvim_create_user_command(
     "DarkMode",
     function()
         if vim.o.background == "light" then
