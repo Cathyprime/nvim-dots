@@ -100,12 +100,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 if vim.g.loaded_dispatch ~= 1 then
     map("n", "<leader>q", "<cwd>cope<cr>")
 end
-if not package.loaded["demicolon"] then
-    map("n", "]c", "<Plug>(qf_qf_next)", { desc = "Next quickfix item" })
-    map("n", "[c", "<Plug>(qf_qf_previous)", { desc = "Prev quickfix item" })
-    map("n", "]C", "<Plug>(qf_qf_previous)", { desc = "Prev quickfix item" })
-    map("n", "[C", "<Plug>(qf_qf_next)", { desc = "Next quickfix item" })
-end
+-- if not package.loaded["demicolon"] then
+--     map("n", "]c", "<Plug>(qf_qf_next)", { desc = "Next quickfix item" })
+--     map("n", "[c", "<Plug>(qf_qf_previous)", { desc = "Prev quickfix item" })
+--     map("n", "]C", "<Plug>(qf_qf_previous)", { desc = "Prev quickfix item" })
+--     map("n", "[C", "<Plug>(qf_qf_next)", { desc = "Next quickfix item" })
+-- end
 
 -- scrolling
 map("n", "<c-b>", "<Nop>")
