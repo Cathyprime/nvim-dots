@@ -2,6 +2,14 @@ local function augroup(name)
     return vim.api.nvim_create_augroup(string.format("Magda_%s", name), { clear = true })
 end
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+    callback = function()
+        if not vim.fn.expand("%:p"):match("^" .. os.getenv("HOME")) then
+            vim.opt_local.modifiable = false
+        end
+    end,
+})
+
 vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
     group = augroup("cursor_color"),
     callback = function()
