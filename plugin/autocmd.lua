@@ -10,15 +10,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
-    group = augroup("cursor_color"),
-    callback = function()
-        local hl = vim.api.nvim_get_hl(0, { name = "Cursor" })
-        vim.g.neovide_cursor_fg = hl.fg
-        vim.g.neovide_cursor_bg = hl.bg
-    end,
-})
-
 -- options.vim
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = "options.vim",
