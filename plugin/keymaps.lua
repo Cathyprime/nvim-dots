@@ -168,12 +168,12 @@ map("c", "<m-f>", "<c-right>", { silent = false })
 map("c", "<m-b>", "<c-left>", { silent = false })
 
 vim.keymap.set("ca", "G", "Git")
-map("c", "<c-t>", function()
+map("c", "<c-space>", function()
     local cmdtype = vim.fn.getcmdtype()
     if cmdtype == "/" or cmdtype == "?" then
         return ".\\{-}"
     end
-    return
+    return " "
 end, { silent = false, expr = true })
 
 map("v", "<leader>d", [[:s#\(\S\)\s\+#\1 #g<cr>:noh<cr>]])

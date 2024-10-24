@@ -140,6 +140,7 @@ local function start_updater(cb, start_path)
     })
 end
 
+-- TODO: fix in terminal buffers
 local function get_cwd()
     if require("oil") and require("oil").get_current_dir() ~= nil then
         return require("oil").get_current_dir()
