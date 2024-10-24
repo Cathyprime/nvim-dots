@@ -40,20 +40,18 @@ return {
             vim.keymap.set("v", "<c-s-n>", function() mc.addCursor("#")   end)
             vim.keymap.set("v", "<c-s>",   function() mc.skipCursor("#")  end)
             vim.keymap.set("v", "<c-s-s>", function() mc.skipCursor("*")  end)
-            vim.keymap.set("v", "S", mc.splitCursors)
-            vim.keymap.set("v", "M", mc.matchCursors)
-
             vim.keymap.set("n", "<leader>gv", mc.restoreCursors)
+
+            vim.keymap.set("v", "<c-q>", mc.visualToCursors)
+            vim.keymap.set("v", "m",     mc.matchCursors)
+            vim.keymap.set("v", "M",     mc.splitCursors)
 
             vim.keymap.set("n", "ga", mc.alignCursors)
             vim.keymap.set("v", "I",  mc.insertVisual)
             vim.keymap.set("v", "A",  mc.appendVisual)
 
-            vim.keymap.set("v", "<c-q>", mc.visualToCursors)
             vim.keymap.set("n", "<esc>", function()
-                if not mc.cursorsEnabled() then
-                    mc.enableCursors()
-                elseif mc.hasCursors() then
+                if mc.hasCursors() then
                     mc.clearCursors()
                 else
                     vim.api.nvim_feedkeys(vim.keycode"<esc>", "n", false)
