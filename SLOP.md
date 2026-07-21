@@ -24,7 +24,7 @@ lovingly ladled, absolutely not tested, and shipped straight to your bowl.
 |-------------------|--------------------------------------|----------|
 | Glorp Noodles     | sauce lagoon, goblin gravy           | yes      |
 | Crunchlet Medley  | wet crumbs, luxurious cheese fog     | maybe    |
-| Pudding Foam      | a barrel of it, nine syrup bricks     | 🫠       |
+| Pudding Foam      | a barrel of it, and nine syrup bricks | 🫠       |
 | Melted Snack      | one (1) tall glass                    | ∞        |
 
 ## 📈 Benchmarks (Peer-Reviewed by Me)
