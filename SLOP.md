@@ -39,6 +39,8 @@ speedup: infinity% (division by vibes)
 
 - Added slop.
 - Added more slop.
+- Added a **real, working `:Slop` command** (see `plugin/slop.lua`) — `:Slop [count]`
+  ladles slop into your buffer; `:Slop!` messages it instead. Lint-clean, luacheck-approved.
 - Removed a bug (it was actually a feature, re-added it as slop).
 - Ladled generously.
 
