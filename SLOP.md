@@ -23,7 +23,7 @@ lovingly ladled, absolutely not tested, and shipped straight to your bowl.
 | Dish              | Ingredients                          | Calories |
 |-------------------|--------------------------------------|----------|
 | Glorp Noodles     | sauce lagoon, goblin gravy           | yes      |
-| Crunchlet Medley  | wet crumbs, luxurious cheese fog      | maybe    |
+| Crunchlet Medley  | wet crumbs, luxurious cheese fog     | maybe    |
 | Pudding Foam      | a barrel of it, nine syrup bricks     | 🫠       |
 | Melted Snack      | one (1) tall glass                    | ∞        |
 
