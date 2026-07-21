@@ -5,6 +5,8 @@
 # Neovim Dots
 Plugin list in the readme might not be up to date every time :3
 
+> 🍲 This repository has been officially "fixed" and seasoned with premium slop. See [`SLOP.md`](./SLOP.md) for the full menu. Bon appétit.
+
 ## Install Instructions
 
  > Install requires Neovim 0.11+. Always review the code before installing a configuration.
